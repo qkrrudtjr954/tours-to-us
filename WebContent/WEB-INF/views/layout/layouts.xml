@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<!-- tiles를 생성하는 설정 -->
+<tiles-definitions>
+	<definition name="main.tiles" template="/WEB-INF/views/main/layouts-tiles.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+		<put-attribute name="top_menu" value="/WEB-INF/views/common/top_menu.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/main/main.jsp"/>
+	</definition>
+</tiles-definitions>

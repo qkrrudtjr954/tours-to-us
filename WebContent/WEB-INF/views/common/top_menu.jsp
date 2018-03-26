@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<fmt:requestEncoding value="utf-8"/>
-		<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.jpeg" width="200" height="100">
+<fmt:requestEncoding value="utf-8" />
 
-<div class="collapse bg-dark" id="navbarHeader">
+<%-- <div class="collapse bg-dark" id="navbarHeader">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-7 py-4">
@@ -43,4 +43,83 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 	</div>
-</div>
+</div> --%>
+
+<style>
+	.top-menu-nav {
+		background-color: #7DC3BB; 
+		
+	} 
+	ul {
+		display: table;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.nav-link {
+		color: white;
+		margin: 0px 15px;
+	}
+	a.nav-link:hover{
+		color: gray;
+	}
+	div.user-action a {
+		color: #7DC3BB;
+		
+	}
+	div.user-action a:hover {
+		background-color: #7DC3BB;
+		color: white;
+		transition: color 1s, background-color 1s;
+	}
+	
+</style>
+
+<header class="blog-header py-3">
+	<div class="row flex-nowrap justify-content-between align-items-center">
+		<div class="col-4 pt-1">
+			<a class="text-muted" href="#"></a>
+		</div>
+		<div class="offset-col-4 col-4 text-center">
+			<a class="blog-header-logo text-dark" href="#"> 
+				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.jpeg" width="150" height="70">
+			</a>
+		</div>
+		<div class="col-4 d-flex justify-content-end align-items-center user-action">
+			<a class="btn btn-sm" href="#">로그인</a>
+			<a class="btn btn-sm" href="#">회원 가입</a>
+		</div>
+		
+	</div>
+</header>
+
+<nav class="navbar navbar-expand-lg top-menu-nav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  style="color:white;">
+	<span data-feather="align-justify"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" >
+      	<li>
+      		<a class="nav-link" href="#">여행 계획</a> 
+      	</li>
+      	<li>
+      		<a class="nav-link" href="#">가이드북</a> 
+      	</li>
+      	<li>
+      		<a class="nav-link" href="#">커뮤니티</a> 
+      	</li>
+      	<li>
+      		<a class="nav-link" href="#">호텔</a> 
+      	</li>
+      	<li>
+      		<a class="nav-link" href="#">이벤트</a> 
+      	</li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+feather.replace();
+</script>

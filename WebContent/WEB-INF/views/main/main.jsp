@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<section class="jumbotron text-center">
+
+
+<style>
+.main-container {
+	background-image: url('${pageContext.request.contextPath}/image/background.jpg');
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
+
+<section class="jumbotron text-center main-container">
 	<div class="container">
-		<h1 class="jumbotron-heading">Album example</h1>
-		<p class="lead text-muted">Something short and leading about the
-			collection below—its contents, the creator, etc. Make it short and
-			sweet, but not too short so folks don't simply skip over it entirely.</p>
-		<p>
-			<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
-				href="#" class="btn btn-secondary my-2">Secondary action</a>
+		<h1 class="jumbotron-heading">Tours To Us.</h1>
+		<p class="lead text-muted">
+			여행을 떠나자 
 		</p>
 	</div>
 </section>
@@ -17,9 +24,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card mb-4 box-shadow">
-					<img class="card-img-top"
-						data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-						alt="Card image cap">
+					<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
 					<div class="card-body">
 						<p class="card-text">This is a wider card with supporting text
 							below as a natural lead-in to additional content. This content is

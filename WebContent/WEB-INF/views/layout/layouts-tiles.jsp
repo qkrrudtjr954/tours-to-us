@@ -3,49 +3,32 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
+<!DOCTYPE html>
 <html>
-<title>layouts-tiles</title>
-
-<tiles:insertAttribute name="header"/>
-
-<link rel="stylesheet" type="text/css"  
-	href="<%=request.getContextPath() %>/css/style.css"/>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	<title>${doc_title }</title>
 </head>
 <body>
 
-<div id="body_wrap">
-	<div id="main_wrap">
-		<div id="header_wrap">
-			<tiles:insertAttribute name="top_inc"/>
-			<tiles:insertAttribute name="top_menu"/>
-		</div>
-		
-		<div id="middle_wrap">
-			<div id="sidebar_wrap">
-				<tiles:insertAttribute name="left_main"/>
-			</div>		
-			
-			<div id="content_wrap">
-				<div id="content_title_wrap">
-					<div class="title">${doc_title }</div>				
-				</div>
-				<tiles:insertAttribute name="main"/>
-			</div>			
-		</div>
-		
-		<div id="footer_wrap">
-			<tiles:insertAttribute name="bottom_inc"/>		
-		</div>			
-	</div>
-</div>
+<header>
+	<tiles:insertAttribute name="top_menu"/>
+</header>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#content_title_wrap div.title").css("background-image",
-							"url('<%=request.getContextPath() %>/image/ico_sub_sb.gif')");	
-});
+<main role="main">
+	<tiles:insertAttribute name="main"/>
+</main>
 
-</script>      
+<footer class="text-muted">
+	<tiles:insertAttribute name="footer"/>     
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
+
 </body>
 </html>

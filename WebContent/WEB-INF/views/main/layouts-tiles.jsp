@@ -28,7 +28,7 @@
 </main>
 
 <footer class="text-muted">
-	<tiles:insertAttribute name="footer"/>     
+	<tiles:insertAttribute name="footer"/>
 </footer>
 
 </body>

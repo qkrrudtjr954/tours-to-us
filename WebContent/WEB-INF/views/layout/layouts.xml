@@ -9,4 +9,8 @@
 		<put-attribute name="main" value="/WEB-INF/views/main/main.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>
+	
+	<definition name="guidebook.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>
+	</definition>
 </tiles-definitions>

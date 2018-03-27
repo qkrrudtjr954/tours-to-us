@@ -102,20 +102,9 @@
 			</c:when>
 			<c:otherwise>
 				<div class="col-4 d-flex justify-content-end align-items-center user-action">
-				<a class="btn btn-sm" href="signout.do">로그아웃</a>
-				<a class="btn btn-sm" href="#">마이페이지</a>
-				<!-- <ul>
-					<li><a class="btn btn-sm" href="#">마이페이지</a>
-					<div class="selectMypage" style="display: block;">
-						<ul>
-							<li><a href="#">MY플랜</a></li>
-							<li><a class="btn btn-sm" href="#">회원정보관리</a></li>
-						</ul>
-					</div>
-					</li>
-				</ul> -->
-				
-			</div>
+					<a class="btn btn-sm" href="signout.do">로그아웃</a>
+					<a class="btn btn-sm" href="mypage.do">마이페이지</a>				
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>

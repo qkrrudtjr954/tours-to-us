@@ -35,6 +35,7 @@ public class TravelerController {
 		logger.info("TravelerController >>>> signinAf");
 		
 		return "redirect:/main.do";
+	}
 
 	@RequestMapping(value="signup.do", method=RequestMethod.GET)
 	public String signup(Model model) {

@@ -81,7 +81,7 @@
 		</div>
 		<div class="offset-col-4 col-4 text-center">
 			<a class="blog-header-logo text-dark" href="#"> 
-				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.jpeg" width="150" height="70">
+				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.png" width="150" height="70">
 			</a>
 		</div>
 		<div class="col-4 d-flex justify-content-end align-items-center user-action">

@@ -1,5 +1,7 @@
 package www.tours2us.com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,12 @@ public class TravelerServiceImpl implements TravelerService {
 	public TravelerDto signin(TravelerDto dto) throws Exception {
 		// TODO Auto-generated method stub
 		return travelerDao.signin(dto);
+	}
+
+	@Override
+	public List<TravelerDto> getTravelersByNamdOrEmail(String name) {
+		// TODO Auto-generated method stub
+		return travelerDao.getTravelersByNamdOrEmail(name);
 	}
 	
 }

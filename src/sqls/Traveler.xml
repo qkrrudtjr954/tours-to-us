@@ -17,4 +17,9 @@
  	</select>
 
 
+ 	<select id ="getTravelersByNamdOrEmail" parameterType="java.lang.String" resultType="www.tours2us.com.model.TravelerDto">
+ 		select * from Traveler where email like '%'||#{param}||'%' or name like '%'||#{param}||'%'
+ 	</select>
+
+
 </mapper>

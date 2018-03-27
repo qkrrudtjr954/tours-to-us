@@ -1,5 +1,7 @@
 package www.tours2us.com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -91,5 +93,20 @@ public class TravelerController {
 					return "yse";
 				}
 				
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="findFriend.do", method=RequestMethod.POST)
+	public List<TravelerDto> findFriend(String name){
+		logger.info("TravelerController findFriend name : {}", name);
+		
+		List<TravelerDto> friends = null;
+		
+		//	name 은 쿼리임. email일 수도 있고, name일 수도 있음.
+		if(!name.trim().equals("")) {
+			friends = travelerService.getTravelersByNamdOrEmail(name);			
+		}
+		
+		return friends;
 	}
 }

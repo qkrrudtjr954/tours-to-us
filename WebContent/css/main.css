@@ -56,3 +56,18 @@ footer p {
 .planer-title {
 	margin-top: 20px;
 }
+
+
+
+#findedFriendTable {
+	height: 500px;
+	overflow-x: hidden;
+    overflow-y: scroll;
+	display: block;
+}
+
+#findedFriendTable thead,
+#findedFriendTable tbody {
+	width: 100%;
+    display: inline-table;
+}

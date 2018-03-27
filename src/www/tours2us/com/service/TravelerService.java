@@ -6,5 +6,8 @@ public interface TravelerService {
 
 	public boolean signup(TravelerDto dto) throws Exception;
 	public TravelerDto getUserByEmail(String email) throws Exception;
+
+	public TravelerDto signin(TravelerDto dto) throws Exception;
+
 	
 }

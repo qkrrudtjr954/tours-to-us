@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -79,6 +79,8 @@
 		color: #7DC3BB;
 		padding: 25px;
 	}
+	
+	
 </style>
 
 <header class="blog-header py-3">
@@ -91,21 +93,40 @@
 				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.png" width="250" height="70">
 			</a>
 		</div>
-		<div class="col-4 d-flex justify-content-end align-items-center user-action">
-			<a class="btn btn-sm" href="signin.do">로그인</a>
-			<a class="btn btn-sm" href="signup.do">회원 가입</a>
-		</div>
-		
+		<c:choose>
+			<c:when test="${current_user == null }">
+			<div class="col-4 d-flex justify-content-end align-items-center user-action">
+				<a class="btn btn-sm" href="signin.do">로그인</a>
+				<a class="btn btn-sm" href="signup.do">회원 가입</a>
+			</div>
+			</c:when>
+			<c:otherwise>
+				<div class="col-4 d-flex justify-content-end align-items-center user-action">
+				<a class="btn btn-sm" href="signout.do">로그아웃</a>
+				<a class="btn btn-sm" href="#">마이페이지</a>
+				<!-- <ul>
+					<li><a class="btn btn-sm" href="#">마이페이지</a>
+					<div class="selectMypage" style="display: block;">
+						<ul>
+							<li><a href="#">MY플랜</a></li>
+							<li><a class="btn btn-sm" href="#">회원정보관리</a></li>
+						</ul>
+					</div>
+					</li>
+				</ul> -->
+				
+			</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </header>
 
-<nav class="navbar navbar-expand-lg top-menu-nav">
+<nav class="navbar navbar-expand-lg top-menu-nav" id="nav">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  style="color:white;">
 	<span data-feather="align-justify"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto" >
+    <ul class="navbar-nav mr-auto">
 		<li class="dropdown">
 			<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">여행 계획</a>
 			<ul class="dropdown-menu">

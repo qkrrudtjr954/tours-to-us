@@ -23,4 +23,8 @@ public class TravelerDaoImpl implements TravelerDao{
 	public TravelerDto getUserByEmail(String email) {
 		return sqlSession.selectOne(ns + "getUserByEmail", email);
 	}
+
+	public TravelerDto signin(TravelerDto dto) throws Exception {		
+		return sqlSession.selectOne(ns+"signin", dto);
+	}
 }

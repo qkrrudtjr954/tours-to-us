@@ -24,5 +24,9 @@ public class TravelerServiceImpl implements TravelerService {
 		// TODO Auto-generated method stub
 		return travelerDao.getUserByEmail(email);
 	}
+	public TravelerDto signin(TravelerDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return travelerDao.signin(dto);
+	}
 	
 }

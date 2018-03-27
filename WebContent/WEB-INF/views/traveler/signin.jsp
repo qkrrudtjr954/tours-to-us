@@ -2,15 +2,15 @@
 
 
 <div class="d-flex justify-content-center text-center">
-	<form class="form-signin" action="signinAf.do" method="post">
+	<form class="form-signin" action="signinAf.do" name="frmForm">
 		<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		
 		<label for="inputEmail" class="sr-only">Email address</label> 
-		<input type="email" id="inputEmail" class="form-control" placeholder="Email address" data-msg="ID를" required autofocus> 
+		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" data-msg="ID를" required autofocus> 
 		
 		<label for="inputPassword" class="sr-only">Password</label> 
-		<input type="password" id="inputPassword" class="form-control" placeholder="Password" data-msg="PassWord를" required>
+		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" data-msg="PassWord를" required>
 		
 		
 		<div class="checkbox mb-3">
@@ -35,8 +35,8 @@ $("#SigninBtn").click(function() {
 		$("#inputPassword").focus();
 	}
 	else{
-		$("#_frmForm").attr("target","_self").submit();
-	}
+		$("#frmForm").attr("target","_self").submit();
+	} 
 });
 
 $("#inputEmail").keypress(function(event) {
@@ -53,10 +53,11 @@ $("#inputPassword").keypress(function(event) {
 		$("#SigninBtn").click();
 	}
 });
-
-
+</script>
+<script type="text/javascript">
 //session, 쿠키저장 
 $('input[type="checkbox"]').on('click', function () {
+	//alert($("#inputEmail").val());
 	if($(this).is(':checked')){
 		// insert into session
 		if($('#inputEmail').val() == ''){
@@ -76,7 +77,6 @@ $('input[type="checkbox"]').on('click', function () {
 
 $(document).ready(function () {
 	var user_id = $.cookie("user_id");
-
 	if(user_id != null){
 		$('#inputEmail').val(user_id);
 		$('input[type="checkbox"]').attr('checked', 'checked');

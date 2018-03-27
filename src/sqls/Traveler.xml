@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Traveler">
 
-<mapper namespace="Member">
+<select id="signin" parameterType="www.tours2us.com.model.TravelerDto" 
+		resultType="www.tours2us.com.model.TravelerDto">
+	SELECT * FROM TRAVELER
+	WHERE EMAIL=#{email} AND PASSWORD=#{password} 
+</select>
+
 
 </mapper>

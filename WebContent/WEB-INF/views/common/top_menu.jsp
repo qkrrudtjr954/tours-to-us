@@ -91,11 +91,20 @@
 				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.png" width="250" height="70">
 			</a>
 		</div>
-		<div class="col-4 d-flex justify-content-end align-items-center user-action">
-			<a class="btn btn-sm" href="signin.do">로그인</a>
-			<a class="btn btn-sm" href="signup.do">회원 가입</a>
-		</div>
-		
+		<c:choose>
+			<c:when test="${current_user == null }">
+			<div class="col-4 d-flex justify-content-end align-items-center user-action">
+				<a class="btn btn-sm" href="signin.do">로그인</a>
+				<a class="btn btn-sm" href="signup.do">회원 가입</a>
+			</div>
+			</c:when>
+			<c:otherwise>
+				<div class="col-4 d-flex justify-content-end align-items-center user-action">
+				<a class="btn btn-sm" href="signout.do">로그아웃</a>
+				<a class="btn btn-sm" href="mypage.do">마이페이지</a>
+			</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </header>
 

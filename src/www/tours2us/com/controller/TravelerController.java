@@ -24,7 +24,7 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 	
-	@RequestMapping(value="signin.do", method=RequestMethod.GET)
+	@RequestMapping(value="signin.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signin(Model model) {
 		
 		logger.info("TravelerController >>>> signin");
@@ -50,7 +50,7 @@ public class TravelerController {
 	}
 	
 
-	@RequestMapping(value="signup.do", method=RequestMethod.GET)
+	@RequestMapping(value="signup.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signup(Model model) throws Exception{
 		
 		logger.info("TravelerController >>>> signup");
@@ -100,7 +100,7 @@ public class TravelerController {
 				
 	}
 	
-	@RequestMapping(value="signout.do", method=RequestMethod.GET)
+	@RequestMapping(value="signout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String signout(HttpServletRequest req, Model model) {
         
         logger.info("TravelerController >>>> signout");
@@ -109,11 +109,28 @@ public class TravelerController {
 
     }
 	
-	@RequestMapping(value="mypage.do", method=RequestMethod.GET)
-    public String mypage(HttpServletRequest req, TravelerDto dto, Model model) {        
+	@RequestMapping(value="mypage.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String mypage(HttpServletRequest req, TravelerDto dto, Model model)throws Exception {        
         logger.info("TravelerController >>>> mypage");        
+      TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
        
+       model.addAttribute("c_user", t_dto);
         return "mypage.tiles";
-
+    }
+	
+	@RequestMapping(value="myInfoUpd.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String myInfoUpd(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        
+        logger.info("TravelerController >>>> mypage");        
+        TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+        model.addAttribute("c_user", t_dto);
+        
+        System.out.println(dto.toString());
+        TravelerDto signin = travelerService.signin(dto);
+        
+        if(signin != null && !signin.getEmail().equals("")) {
+	        return "myInfoUpd.tiles";
+        }else {
+        	return "redirect:/mypage.do";
+        }
     }
 }

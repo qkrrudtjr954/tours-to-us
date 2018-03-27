@@ -27,7 +27,11 @@
 	</definition>
 	
 	<definition name="mypage.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/mypage/mypage.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/mypage/myInfo.jsp"/>
+	</definition>
+	
+	<definition name="myInfoUpd.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/mypage/myInfoUpd.jsp"/>
 	</definition>
 	
 	

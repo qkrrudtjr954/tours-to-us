@@ -4,10 +4,10 @@
     	.info_edit_title {
     display: inline-block;
     padding: 10px 20px;
-    color: #fff;
+    color: #fff ;
     font-size: 16px;
     font-weight: 600;
-    background: #373737;
+    background: #2ce7d0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;

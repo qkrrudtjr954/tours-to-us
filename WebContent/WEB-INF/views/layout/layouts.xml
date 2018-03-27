@@ -26,5 +26,9 @@
 		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>
 	</definition>
 	
+	<definition name="mypage.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/mypage/mypage.jsp"/>
+	</definition>
+	
 	
 </tiles-definitions>

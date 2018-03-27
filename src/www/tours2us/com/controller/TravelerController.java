@@ -49,14 +49,6 @@ public class TravelerController {
         }
 	}
 	
-    @RequestMapping(value="signout.do", method=RequestMethod.GET)
-    public String signout(HttpServletRequest req, Model model) {
-        
-        logger.info("TravelerController >>>> signout");
-        req.getSession().invalidate();
-        return "redirect:/main.do";
-
-    }
 
 	@RequestMapping(value="signup.do", method=RequestMethod.GET)
 	public String signup(Model model) throws Exception{
@@ -107,4 +99,21 @@ public class TravelerController {
 				}
 				
 	}
+	
+	@RequestMapping(value="signout.do", method=RequestMethod.GET)
+    public String signout(HttpServletRequest req, Model model) {
+        
+        logger.info("TravelerController >>>> signout");
+        req.getSession().invalidate();
+        return "redirect:/main.do";
+
+    }
+	
+	@RequestMapping(value="mypage.do", method=RequestMethod.GET)
+    public String mypage(HttpServletRequest req, TravelerDto dto, Model model) {        
+        logger.info("TravelerController >>>> mypage");        
+       
+        return "mypage.tiles";
+
+    }
 }

@@ -93,7 +93,7 @@
 		</div>
 		<div class="col-4 d-flex justify-content-end align-items-center user-action">
 			<a class="btn btn-sm" href="signin.do">로그인</a>
-			<a class="btn btn-sm" href="#">회원 가입</a>
+			<a class="btn btn-sm" href="signup.do">회원 가입</a>
 		</div>
 		
 	</div>

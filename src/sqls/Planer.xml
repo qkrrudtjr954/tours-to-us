@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Planer">
+
+	<select id="getPlaner" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT * FROM PLANER WHERE SEQ = #{seq}
+	</select>
+	
+	<insert id="addPlaner" parameterType="www.tours2us.com.model.PlanerDto">
+		INSERT INTO PLANER(SEQ, TARGET_USER_SEQ, TITLE, LOCATION, STATUS, TO_DATE, FROM_DATE, TOTAL_COST, PAPER, REG_DATE, LAST_UPDATED)
+		VALUES( PLANER_SEQ.NEXTVAL, #{target_user_seq}, #{title}, #{location}, 0, #{to_date}, #{from_date}, 0, #{paper}, SYSDATE, SYSDATE)
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+			SELECT PLANER_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
+
+</mapper>

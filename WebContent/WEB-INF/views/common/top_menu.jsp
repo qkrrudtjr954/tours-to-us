@@ -74,10 +74,11 @@
 	
 	.dropdown-item {
 		padding: 5px;
+		margin: 9px auto;
 	}
 	.dropdown-item a{
 		color: #7DC3BB;
-		padding: 25px;
+		margin: 5px;
 	}
 	
 	

@@ -14,10 +14,11 @@
 			<img src="${pageContext.request.contextPath }/image/planer.jpg" alt="" style="width:100%; height:500px;" id="paper-canvas">
 		</div>
 		<div class="col-md-4 col-xs-12">
-			<form>
+			${current_user }
+			<form id="planerForm">
 				<div class="form-group">
 					<label for="name">여행 이름</label> 
-					<input type="text" class="form-control" id="name" name="name" placeholder="Ex) 먹방 대만 여행">
+					<input type="text" class="form-control" id="title" name="title" placeholder="Ex) 먹방 대만 여행">
 				</div>
 				<div class="form-group">
 					<label for="location">여행 지역</label> 
@@ -62,31 +63,58 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="next-button">
+					<a href="#none" id="next-step">
+						<img alt="next" src="${pageContext.request.contextPath }/image/next_button.png" width="50px" height="50px">
+					</a>
+				</div>
 			</form>
 		</div>
 	</div>
+</div>
+
+<div class="add-friend">
+	<div class="row">
+		<div class="offset-md-3 col-md-6" >
+			
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$('div.paper-image img').on('mouseenter', function () {
+		$('#paper-canvas').attr('src', $(this).attr('src'));
+	})
 	
-	<script type="text/javascript">
-	
-		$('div.paper-image img').on('mouseenter', function () {
-			// $('#paper-canvas').attr('src', $(this).attr('src'));
-		})
+	$('div.paper-image img').on('click', function () {
+		for(var i=0; i< $('div.paper-image img').length; i++){
+			$('div.paper-image img').css('border', 'none');
+		}
+		$(this).css('border', '2px solid skyblue');
+		$('#paper-canvas').attr('src', $(this).attr('src'));
 		
-		$('div.paper-image img').on('click', function () {
-			for(var i=0; i< $('div.paper-image img').length; i++){
-				$('div.paper-image img').css('border', 'none');
+		var url = $(this).attr('src');
+		var temp = url.substring(12);
+		
+		$('input[name="paper"]').val(temp);
+	})
+	
+	
+	$('#next-step').on('click', function () {
+		var FormData = $('#planerForm').serialize();
+		
+		$.ajax({
+			url: 'addPlaner.do',
+			method: 'POST',
+			data: FormData,
+			success: function (data) {
+				console.log(data);
+				alert('planer add');
 			}
-			$(this).css('border', '2px solid skyblue');
-			// $('#paper-canvas').attr('src', $(this).attr('src'));
-			
-			var url = $(this).attr('src');
-			var temp = url.substring(12);
-			
-			$('input[name="paper"]').val(temp);
 		})
-		
-	
-	</script>
+	})
 	
 
-</div>
+</script>

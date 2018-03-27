@@ -72,6 +72,13 @@
 		transition: color 1s, background-color 1s;
 	}
 	
+	.dropdown-item {
+		padding: 5px;
+	}
+	.dropdown-item a{
+		color: #7DC3BB;
+		padding: 25px;
+	}
 </style>
 
 <header class="blog-header py-3">
@@ -81,11 +88,11 @@
 		</div>
 		<div class="offset-col-4 col-4 text-center">
 			<a class="blog-header-logo text-dark" href="#"> 
-				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.png" width="150" height="70">
+				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.png" width="250" height="70">
 			</a>
 		</div>
 		<div class="col-4 d-flex justify-content-end align-items-center user-action">
-			<a class="btn btn-sm" href="#">로그인</a>
+			<a class="btn btn-sm" href="signin.do">로그인</a>
 			<a class="btn btn-sm" href="#">회원 가입</a>
 		</div>
 		
@@ -99,24 +106,52 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" >
-      	<li>
-      		<a class="nav-link" href="#">여행 계획</a> 
-      	</li>
-      	<li>
-      		<a class="nav-link" href="#">가이드북</a> 
-      	</li>
-      	<li>
-      		<a class="nav-link" href="#">커뮤니티</a> 
-      	</li>
-      	<li>
-      		<a class="nav-link" href="#">호텔</a> 
-      	</li>
-      	<li>
-      		<a class="nav-link" href="#">이벤트</a> 
-      	</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">여행 계획</a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+         	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">가이드</a>
+	         <ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+			</ul>
+       	</li>
+		<li class="dropdown">
+         	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">커뮤니티</a>
+	         <ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+			</ul>
+       	</li>
+		<li class="dropdown">
+         	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">호텔</a>
+	         <ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+			</ul>
+       	</li>
+		<li class="dropdown">
+         	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">이벤트</a>
+	         <ul class="dropdown-menu">
+				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
+				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+			</ul>
+       	</li>
     </ul>
   </div>
 </nav>
+
+
+
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

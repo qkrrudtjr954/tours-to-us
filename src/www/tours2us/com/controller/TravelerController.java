@@ -32,15 +32,21 @@ public class TravelerController {
 		return "signin.tiles";
 	}
 	
-
-	@RequestMapping(value="signinAf.do", method=RequestMethod.GET)
-	public String signinAf(HttpServletRequest req,  Model model) throws Exception {
+	@ResponseBody
+	@RequestMapping(value="signinAf.do", method=RequestMethod.POST)
+	public TravelerDto signinAf(HttpServletRequest req, TravelerDto dto, Model model) throws Exception {
 		
 		logger.info("TravelerController >>>> signinAf");
-		
-		
-		
-		return "redirect:/main.do";
+		System.out.println(dto.toString());
+        TravelerDto signin = travelerService.signin(dto);
+        
+        if(signin != null && !signin.getEmail().equals("")) {
+            req.getSession().setAttribute("current_user", signin);
+	        signin.setPassword("secret");
+	        return signin;
+        }else {
+        	return signin;
+        }
 	}
 
 	@RequestMapping(value="signup.do", method=RequestMethod.GET)

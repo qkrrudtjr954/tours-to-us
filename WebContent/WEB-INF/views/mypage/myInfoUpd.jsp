@@ -44,7 +44,7 @@ div{
 					<label class="title">현재 비밀번호</label>
 				</td>
 				<td>
-					<input type="password" name="nowpass" id="nowpass" title="비밀번호">
+					<input type="password" name="nowpass" id="nowpass" title="현재 비밀번호">
 				</td>
 			</tr>
 			<tr>
@@ -52,7 +52,7 @@ div{
 					<label class="title">새 비밀번호</label>
 				</td>
 				<td>
-					<input type="password" name="newpass1" id="nowpass1" title="비밀번호">
+					<input type="password" name="newpass1" id="nowpass1" title="새 비밀번호">
 				</td>
 			</tr>
 			<tr>
@@ -60,7 +60,7 @@ div{
 					<label class="title">새 비밀번호 확인</label>
 				</td>
 				<td>
-					<input type="password" name="newpass2" id="newpass2" title="비밀번호">
+					<input type="password" name="password" id="newpass2" title="새 비밀번호 확인">
 				</td>
 			</tr>
 			<tr>

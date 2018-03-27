@@ -120,7 +120,7 @@ public class TravelerController {
 	
 	@RequestMapping(value="myInfoUpd.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String myInfoUpd(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        
-        logger.info("TravelerController >>>> mypage");        
+        logger.info("TravelerController >>>> myInfoUpd");        
         TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
         model.addAttribute("c_user", t_dto);
         
@@ -132,5 +132,22 @@ public class TravelerController {
         }else {
         	return "redirect:/mypage.do";
         }
+    }
+	
+	@RequestMapping(value="myInfoUpdAf.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String myInfoUpdAf(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        
+        logger.info("TravelerController >>>> myInfoUpdAf");                
+        System.out.println(dto.toString());
+        
+        // 업데이트
+        //TravelerDto signin = travelerService.signin(dto);
+        
+        /*
+        if(signin != null && !signin.getEmail().equals("")) {
+	        return "myInfoUpd.tiles";
+        }else {
+        	return "redirect:/mypage.do";
+        }*/
+        return "";
     }
 }

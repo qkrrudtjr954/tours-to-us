@@ -13,10 +13,8 @@ div{
     font-family: "NanumBarunGothic", "Arial", "돋움";
     font-weight: normal;
 
-}
-
-    
-    </style>
+}    
+</style>
     
 <div class="mypage-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">

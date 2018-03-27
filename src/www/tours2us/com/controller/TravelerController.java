@@ -1,5 +1,7 @@
 package www.tours2us.com.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,16 @@ public class TravelerController {
 	@RequestMapping(value="signin.do", method=RequestMethod.GET)
 	public String signin(Model model) {
 		
-		logger.info("TravelerController >>>> login");
+		logger.info("TravelerController >>>> signin");
 		
 		return "signin.tiles";
+	}
+	
+	@RequestMapping(value="signinAf.do", method=RequestMethod.GET)
+	public String signinAf(HttpServletRequest req,Model model) {
+		
+		logger.info("TravelerController >>>> signinAf");
+		
+		return "redirect:/main.do";
 	}
 }

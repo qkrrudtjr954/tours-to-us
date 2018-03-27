@@ -23,6 +23,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 //			} else {
 //				result = true;
 //			}
+			result = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

@@ -10,6 +10,10 @@
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>
 	
+	<definition name="signin.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/member/signin.jsp"/>
+	</definition>
+
 	<definition name="guidebook.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>
 	</definition>

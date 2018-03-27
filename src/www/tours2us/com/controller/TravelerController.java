@@ -28,11 +28,20 @@ public class TravelerController {
 		return "signin.tiles";
 	}
 	
+
 	@RequestMapping(value="signinAf.do", method=RequestMethod.GET)
 	public String signinAf(HttpServletRequest req,Model model) {
 		
 		logger.info("TravelerController >>>> signinAf");
 		
 		return "redirect:/main.do";
+
+	@RequestMapping(value="signup.do", method=RequestMethod.GET)
+	public String signup(Model model) {
+		
+		logger.info("TravelerController >>>> signup");
+		
+		return "signup.tiles";
+
 	}
 }

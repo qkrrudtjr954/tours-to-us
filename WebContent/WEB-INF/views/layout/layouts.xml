@@ -13,6 +13,10 @@
 	<definition name="signin.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/traveler/signin.jsp"/>
 	</definition>
+	
+	<definition name="signup.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/traveler/signup.jsp"/>
+	</definition>
 
 	<definition name="guidebook.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>

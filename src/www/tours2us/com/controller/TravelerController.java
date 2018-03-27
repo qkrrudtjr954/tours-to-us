@@ -5,10 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.TravelerService;
@@ -29,21 +31,24 @@ public class TravelerController {
 		return "signin.tiles";
 	}
 	
-
-	@RequestMapping(value="signinAf.do", method=RequestMethod.GET)
-	public String signinAf(HttpServletRequest req, TravelerDto dto, Model model)throws Exception {
+	@ResponseBody
+	@RequestMapping(value="signinAf.do", method=RequestMethod.POST)
+	public TravelerDto signinAf(HttpServletRequest req, TravelerDto dto, Model model)throws Exception {
 		
 		logger.info("TravelerController >>>> signinAf");
 		System.out.println(dto.toString());
-		TravelerDto signin = null;
-		signin = travelerService.signin(dto);
+		
+		
+		TravelerDto signin = travelerService.signin(dto);
 		
 		
 		if(signin != null && !signin.getEmail().equals("")) {
 			req.getSession().setAttribute("current_user", signin);
-			return "redirect:/main.do";
+			signin.setPassword("scret");
+			
+			return signin;
 		}else {
-			return "redirect:/signin.do";
+			return signin;
 		}
 	}
 

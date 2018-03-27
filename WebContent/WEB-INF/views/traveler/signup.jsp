@@ -3,8 +3,8 @@
 	<br><br><br><br>
 	<div class="row">
 			<div class="offset-md-3 col-md-6 order-md-1">
-				<form class="needs-validation" id="signUpForm" action="" method="POST" novalidate>
-										
+				<div id="step1view">
+				<form class="needs-validation" id="signUpForm" action="" method="GET" novalidate>										
 					<div class="mb-3">
 						<label for="email">Email</label> 
 							<input type="email" class="form-control success" name="email" id="email" placeholder="you@example.com">
@@ -17,13 +17,13 @@
 						<label for="name">Name</label> 
 							<input type="text" class="form-control success" name="name" id="name" placeholder="이름을 입력해주세요" onkeypress="hangul();">
 						<div class="invalid-feedback">이름을 입력해주세요.</div>
-						<div class="invalid-email"></div>
+					
 
 					</div>
 
 					<div class="mb-3">
 						<label for="password">Password</label> 
-						<input type="password" class="form-control" name="password1" id="password1" required>
+						<input type="password" class="form-control" name="password" id="password" required>
 						<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 					</div>
 
@@ -51,25 +51,54 @@
 					
 					<hr class="mb-4">
 					<div class="offset-md-11">
-					<button type="submit" style="background: url(next_button.png) no-repeat;  border: none;  outline: none;"><img src="image/next_button.png" width="50"></button>
+					<button type="button" id="step1" style="background: url(next_button.png) no-repeat;  border: none;  outline: none;"><img src="image/next_button.png" width="50"></button>
+					<!-- <a href="#none" id="_btnRegi" title="회원가입">
+					<img src="image/next_button.png" width="50"></a> -->
 					</div>
 				</form>
+				</div>
+				
+				<div id="step2view">
+				<form  id="signUpForm2" action="" method="GET" novalidate>	
+				<img src="image/map.png" width="100%">
+				<h1>Welcome!</h1>
+				<h3>Tours to us에 오신 것을 환영합니다. </h3>
+				<br>
+				당신의 성향은? <br><br>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" name="character" id="Character1" value="활동적인">
+					<label class="custom-control-label" for="Character1">
+							활동적인
+					</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" name="character" id="Character2" value="역동적인">
+					<label class="custom-control-label" for="Character2">
+							역동적인
+					</label>
+				</div>
+				
+				</form>
+				</div>
 			</div>
 		</div>
 		
 		<script>
 		
-		function hangul()	{
+/* 		function hangul()	{
 		if((event.keyCode < 12592) || (event.keyCode > 12687))
 		event.returnValue = false
-		}	  
-			
+		alert("한글을 입력해주세요");
+		}	   */
+	
+		
+				
 			$(document).ready(function () {
 				$('#email').keyup(function () {
 					$.ajax({
-		  				url : 'UserControl',
-		  				data : { command:'checkEmail', email: $('#email').val() },
-		  				type : 'POST',
+		  				url : 'checkEmail.do',
+		  				data : { email: $('#email').val() },
+		  				type : 'GET',
 		  				success : function (data) {
 		  					if(data == 'no'){
 		  						$('#email').attr('style', 'border-color:#dc3545;');
@@ -85,7 +114,7 @@
 				});
 		    	  
 				$('#password2').keyup(function () {
-					if(this.value != $('#password1').val()){
+					if(this.value != $('#password').val()){
 						$(this).attr('style', 'border-color:#dc3545;');
 						$(this).removeClass('success');
 						$('.invalid-password').html('<span style="font-size:80%;color:#dc3545;">비밀번호가 일치하지 않습니다..</span>');
@@ -98,6 +127,24 @@
 				});
 			});
 		
+			$('#step1').onclick(function () {
+				$.ajax({
+					url : 'signup1step.do',
+	  				data : { email: $('#email').val(), name: $('#name').val(), password:$('password').val(); },
+	  				type : 'GET',
+	  				success : function (data) {
+	  					if(data == 'no'){
+	  						$('#email').attr('style', 'border-color:#dc3545;');
+	  						$('#email').removeClass('success');
+	  						$('.invalid-email').html('<span style="font-color:#dc3545;">이미 사용중인 이메일 입니다.</span>');
+	  					}else{
+	  						$('#email').attr('style', 'border-color:#28a745;');
+	  						$('#email').addClass('success');
+	  						$('.invalid-email').html('<span style="font-color:#28a745;">사용가능한 이메일 입니다.</span>');
+	  					}
+	  				}
+				})
+			});
 		
 		
 		</script>

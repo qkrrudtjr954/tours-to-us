@@ -114,7 +114,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto" >
+    <ul class="navbar-nav mr-auto"  id="navi">
 		<li class="dropdown">
 			<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">여행 계획</a>
 			<ul class="dropdown-menu">

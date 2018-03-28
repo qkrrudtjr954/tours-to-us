@@ -43,7 +43,7 @@ div{
 					<label class="title">비밀번호</label>
 				</td>
 				<td>
-					<input type="password" name="password" id="login_pw" title="비밀번호">
+					<input type="password" name="password" id="password" title="비밀번호">
 				</td>
 			</tr>
 			<tr>

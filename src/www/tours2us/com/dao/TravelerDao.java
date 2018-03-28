@@ -8,8 +8,9 @@ import www.tours2us.com.model.TravelerDto;
 public interface TravelerDao {
 
 	TravelerDto signin(TravelerDto dto)throws Exception; 
-boolean signup(TravelerDto dto) throws Exception;
+	boolean signup(TravelerDto dto) throws Exception;
 	TravelerDto getUserByEmail(String email);
 	List<TravelerDto> getTravelersByNamdOrEmail(String name);
+	boolean myInfoUpd(TravelerDto dto);
 
 }

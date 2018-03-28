@@ -12,5 +12,6 @@ public interface TravelerService {
 	public TravelerDto signin(TravelerDto dto) throws Exception;
 	public List<TravelerDto> getTravelersByNamdOrEmail(String name);
 
+	public boolean myInfoUpd(TravelerDto dto);
 	
 }

@@ -34,4 +34,10 @@ public class TravelerDaoImpl implements TravelerDao{
 	public List<TravelerDto> getTravelersByNamdOrEmail(String name) {
 		return sqlSession.selectList(ns + "getTravelersByNamdOrEmail", name);
 	}
+
+	@Override
+	public boolean myInfoUpd(TravelerDto dto) {
+		int n = sqlSession.update(ns+"myInfoUpd", dto);
+		return n>0?true:false;
+	}
 }

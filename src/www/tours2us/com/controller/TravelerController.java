@@ -44,7 +44,7 @@ public class TravelerController {
         
         if(signin != null && !signin.getEmail().equals("")) {
             req.getSession().setAttribute("current_user", signin);
-	        signin.setPassword("secret");
+	        //signin.setPassword("secret");
 	        return signin;
         }else {
         	return signin;
@@ -130,19 +130,20 @@ public class TravelerController {
         logger.info("TravelerController >>>> mypage");        
       TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
        
-       model.addAttribute("c_user", t_dto);
+       TravelerDto signin = travelerService.signin(t_dto);
+       System.out.println(signin.toString());
+       model.addAttribute("c_user", signin);
         return "mypage.tiles";
     }
 	
 	@RequestMapping(value="myInfoUpd.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String myInfoUpd(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        
         logger.info("TravelerController >>>> myInfoUpd");        
-        TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
-        model.addAttribute("c_user", t_dto);
-        
-        System.out.println(dto.toString());
+        // 비번확인
+       
         TravelerDto signin = travelerService.signin(dto);
-        
+        System.out.println(signin.toString());
+        model.addAttribute("c_user", signin);
         if(signin != null && !signin.getEmail().equals("")) {
 	        return "myInfoUpd.tiles";
         }else {
@@ -155,16 +156,15 @@ public class TravelerController {
         logger.info("TravelerController >>>> myInfoUpdAf");                
         System.out.println(dto.toString());
         
-        // 업데이트
-        //TravelerDto signin = travelerService.signin(dto);
+        // 정보 수정
+        boolean isS = travelerService.myInfoUpd(dto);
         
-        /*
-        if(signin != null && !signin.getEmail().equals("")) {
-	        return "myInfoUpd.tiles";
+        if(isS) {
+	        return "redirect:/signin.do";
         }else {
         	return "redirect:/mypage.do";
-        }*/
-        return "";
+        }
+        
     }
 
 }

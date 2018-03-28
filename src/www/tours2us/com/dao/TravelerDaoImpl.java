@@ -3,6 +3,8 @@ package www.tours2us.com.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,8 @@ import www.tours2us.com.model.TravelerDto;
 
 @Repository
 public class TravelerDaoImpl implements TravelerDao{
+	Logger logger = LoggerFactory.getLogger(TravelerDaoImpl.class);
+	
 	@Autowired
 	SqlSession sqlSession;
 
@@ -48,7 +52,25 @@ public class TravelerDaoImpl implements TravelerDao{
 
 	@Override
 	public int addCoTraveler(CoTravelerDto coTravelerDto) {
+		if(coTravelerDto.getDescription()== null || coTravelerDto.getDescription().equals("")) {
+			coTravelerDto.setDescription("no description");
+		}
+		logger.info("coTravelerDto : {}", coTravelerDto);
+		
+		
 		return sqlSession.insert(ns + "addCoTraveler", coTravelerDto);
+	}
+
+	@Override
+	public CoTravelerDto getCoTraveler(CoTravelerDto coTraveler) {
+		return sqlSession.selectOne(ns+"checkCoTraveler", coTraveler);
+	}
+
+	@Override
+	public boolean deleteCoTraveler(CoTravelerDto coTraveler) {
+		int del = sqlSession.delete(ns+"deleteCoTraveler", coTraveler);
+		System.out.println(del);
+		return (del > 0)?true:false;
 	}
 
 	

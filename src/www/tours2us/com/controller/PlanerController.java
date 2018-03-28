@@ -62,13 +62,16 @@ public class PlanerController {
 		return planer;
 	}
 	
-	@RequestMapping(value="planer2.do", method=RequestMethod.POST)
-	public String planer2(int seq, HttpServletRequest req) {
+	@RequestMapping(value="planer2.do", method=RequestMethod.GET)
+	public String planer2(Model model, int seq, HttpServletRequest req) {
 		
 		logger.info("param planerdto : {}", seq);
 		
 		PlanerDto planer = planerService.getPlaner(seq);
 		List<TravelerDto> coTraveler = planerService.getCoTraveler(seq);
+		
+		model.addAttribute("planer", planer);
+		model.addAttribute("coTraveler", coTraveler);
 		
 		return "planer2.tiles";
 	}

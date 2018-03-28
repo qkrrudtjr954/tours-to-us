@@ -173,15 +173,35 @@ public class TravelerController {
 
 	@ResponseBody
 	@RequestMapping(value="addFriend.do", method=RequestMethod.POST)
-	public List<TravelerDto> addFriend(CoTravelerDto coTraveler){
+	public TravelerDto addFriend(CoTravelerDto coTraveler){
 		logger.info("PlanerController addFriend name : {}", coTraveler);
 		
+		TravelerDto returnTravelerDto = new TravelerDto();
+		
 		if(coTraveler.getTarget_planer_seq() == 0 || coTraveler.getTarget_user_seq() == 0 || coTraveler.getTarget_user_name().equals("")) {
-			return null;
+			returnTravelerDto.setSeq(0);
+		} else {
+			if(travelerService.checkCoTraveler(coTraveler)) {
+				//	true면 이미 존재하는 것, false면 없는 것 
+				returnTravelerDto.setSeq(-1);
+			} else {
+				travelerService.addCoTraveler(coTraveler);							
+				returnTravelerDto = travelerService.getUserBySeq(coTraveler.getTarget_user_seq());
+			}
 		}
 		
+		return returnTravelerDto;
 		
-		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="deleteFriend.do", method=RequestMethod.POST)
+	public String deleteFriend(CoTravelerDto coTraveler){
+		logger.info("PlanerController deleteFriend : {}", coTraveler);
+		
+		boolean result = travelerService.deleteCoTraveler(coTraveler);
+		
+		return "done";
 	}
 
 

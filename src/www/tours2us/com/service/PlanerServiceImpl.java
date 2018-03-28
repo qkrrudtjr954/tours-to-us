@@ -48,5 +48,5 @@ public class PlanerServiceImpl implements PlanerService{
 	public List<TravelerDto> getCoTraveler(int planer_seq) {
 		return travelDao.getCoTraveler(planer_seq);
 	}
-
+	
 }

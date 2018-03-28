@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="planer-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2>여행 계획</h2>
@@ -8,8 +10,17 @@
 	<hr>
 </div>
     
+    
+    
+    <br>
+    ${coTraveler }
 <div class="add-friend">
 	<div class="row">
+		<div class="col-md-2 col-xs-12">
+			<p>
+				${planer }
+			</p>
+		</div>
 		<div class="offset-md-2 col-md-4 col-xs-12">
 			
 			<div class="input-group">
@@ -61,13 +72,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+					<c:forEach items="${coTraveler }" varStatus="i" var="traveler">
+						<tr>
+							<td>${traveler.seq }</td>
+							<td>${traveler.name }</td>
+							<td>${traveler.email }</td>
+							<td><button onclick="deleteFriend(${traveler.seq }, this)">x</button></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <script type="text/javascript">
 var planer_seq = 0;
@@ -117,16 +136,32 @@ function findFriend(name) {
 	})
 }
 
-function addFriend(seq){
+function addFriend(seq, name){
 	if(seq == ''){
 		alert('추가할 수 없습니다.');
 	} else {
 		$.ajax({
 			url: 'addFriend.do',
 			method: 'POST',
-			data: { target_user_seq : seq, target_user_name : name, target_planer_seq : planer_seq},
+			data: { target_user_seq : seq, target_planer_seq : ${planer.seq}, target_user_name : name },
 			success: function (data) {
-				console.log(data);
+				if(data.seq == 0){
+					alert('추가할 수 없습니다. 다시 시도해주세요.');
+				} else if(data.seq == -1){
+					alert('이미 추가되었습니다.');
+				} else {					
+					var tableElement = 
+						'<tr>' + 
+							'<td>' + data.seq + '</td>' + 
+							'<td>' + data.name + '</td>' + 
+							'<td>' + data.email + '</td>' + 
+							'<td style="text-align:left;"><button class="addFriendBtn">x</button></td>' + 
+						'</tr>';
+						
+					if(data.email != '${current_user.email}'){
+						$('.added-friend tbody').append(tableElement);
+					}
+				}
 			}
 		})
 	}
@@ -139,12 +174,24 @@ function drawFindedFriends(friend) {
 			'<td>' + friend.seq + '</td>' + 
 			'<td>' + friend.name + '</td>' + 
 			'<td>' + friend.email + '</td>' + 
-			'<td style="text-align:left;"><button class="addFriendBtn" onclick="addFriend('+friend.seq+')">+</button></td>' + 
+			'<td style="text-align:left;"><button class="addFriendBtn" onclick="addFriend('+friend.seq+',\''+friend.name+'\')">+</button></td>' + 
 		'</tr>';
 		
 	if(friend.email != '${current_user.email}'){
 		$('#findedFriendTable tbody').append(tableElement);
 	}
+}
+
+function deleteFriend(seq, td) {
+	$.ajax({
+		url: 'deleteFriend.do',
+		method: 'POST',
+		data: { target_user_seq : seq, target_planer_seq : ${planer.seq} },
+		success: function (data) {
+			$(td).parent().parent().remove();			
+		}
+	})
+	
 }
 
 </script>

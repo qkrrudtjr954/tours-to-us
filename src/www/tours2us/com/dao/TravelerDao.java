@@ -15,5 +15,7 @@ boolean signup(TravelerDto dto) throws Exception;
 	List<TravelerDto> getCoTraveler(int planer_seq);
 	TravelerDto getUserBySeq(int seq);
 	int addCoTraveler(CoTravelerDto coTravelerDto);
+	CoTravelerDto getCoTraveler(CoTravelerDto coTraveler);
+	boolean deleteCoTraveler(CoTravelerDto coTraveler);
 
 }

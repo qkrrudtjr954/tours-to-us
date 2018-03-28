@@ -37,6 +37,12 @@ public class TravelerServiceImpl implements TravelerService {
 		// TODO Auto-generated method stub
 		return travelerDao.getTravelersByNamdOrEmail(name);
 	}
+
+	@Override
+	public boolean myInfoUpd(TravelerDto dto) {
+		// TODO Auto-generated method stub
+		return travelerDao.myInfoUpd(dto);
+	}
 	
 
 	@Override

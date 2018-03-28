@@ -15,7 +15,7 @@ import www.tours2us.com.model.TravelerDto;
 @Repository
 public class TravelerDaoImpl implements TravelerDao{
 	Logger logger = LoggerFactory.getLogger(TravelerDaoImpl.class);
-	
+
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
@@ -31,7 +31,7 @@ public class TravelerDaoImpl implements TravelerDao{
 	public TravelerDto getUserByEmail(String email) {
 		return sqlSession.selectOne(ns + "getUserByEmail", email);
 	}
-	
+
 	@Override
 	public TravelerDto getUserBySeq(int seq) {
 		return sqlSession.selectOne(ns + "getUserBySeq", seq);
@@ -56,8 +56,8 @@ public class TravelerDaoImpl implements TravelerDao{
 		if(coTravelerDto.getDescription()== null || coTravelerDto.getDescription().equals("")) {
 			coTravelerDto.setDescription("no description");
 		}
-		
-		
+
+
 		return sqlSession.insert(ns + "addCoTraveler", coTravelerDto);
 	}
 
@@ -71,6 +71,9 @@ public class TravelerDaoImpl implements TravelerDao{
 		int del = sqlSession.delete(ns+"deleteCoTraveler", coTraveler);
 		return (del > 0)?true:false;
 	}
+	public boolean myInfoUpd(TravelerDto dto) {
+		int n = sqlSession.update(ns+"myInfoUpd", dto);
+		return n>0?true:false;
+	}
 
-	
 }

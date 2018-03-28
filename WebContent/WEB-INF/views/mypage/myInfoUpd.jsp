@@ -28,7 +28,7 @@ div{
 <div class="check-Box">
 <div class="row">
 <div class="offset-md-4">
-	<form action="mypageCheck.do" id="frmForm" autocomplete="off">
+	<form action="myInfoUpdAf.do" id="frmForm" autocomplete="off">
 	<table class="table">
 		<tbody>
 			<tr>
@@ -44,7 +44,7 @@ div{
 					<label class="title">현재 비밀번호</label>
 				</td>
 				<td>
-					<input type="password" name="nowpass" id="nowpass" title="현재 비밀번호">
+					<input type="password" name="nowpass" class="nowpass" title="현재 비밀번호">
 				</td>
 				<td class="invalid-nowpwd">
 				</td>
@@ -54,7 +54,7 @@ div{
 					<label class="title">새 비밀번호</label>
 				</td>
 				<td>
-					<input type="password" name="newpass1" id="nowpass1" title="새 비밀번호">
+					<input type="password" name="newpass1" class="newpass1" title="새 비밀번호">
 				</td>
 				<td class="invalid-feedback">
 				</td>
@@ -64,7 +64,7 @@ div{
 					<label class="title">새 비밀번호 확인</label>
 				</td>
 				<td>
-					<input type="password" name="password" id="newpass2" title="새 비밀번호 확인">
+					<input type="password" name="password" class="newpass2" title="새 비밀번호 확인">
 				</td>
 				<td class="invalid-password">
 				</td>
@@ -74,12 +74,12 @@ div{
 					<label class="title">이름</label>
 				</td>
 				<td colspan="2">
-					<input type="text" name="name" id="name" value="${c_user.name }">
+					<input type="text" name="name" class="name" value="${c_user.name }">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
-					<input type="button" id="login_submit" class="btn btn-primary" value="확인">
+					<input type="button" id="upd-btn" class="btn btn-primary" value="확인">
 				</td>
 			</tr>
 		</tbody>
@@ -88,3 +88,61 @@ div{
 	</div>
 </div>
 </div>
+
+<script>
+$(".nowpass").keyup(function () {
+	var pwd = "${c_user.password}";
+	//alert($("#nowpass").val());
+	if($(".nowpass").val() != pwd){
+		$(this).removeClass('success');
+		$(".invalid-nowpwd").html('<span style="font-size:80%;color:#dc3545;">비밀번호가 일치하지 않습니다.</span>');
+	}else{
+		$(this).addClass('success');
+		$(".invalid-nowpwd").html('<span style="font-size:80%;color:#dc3545;">완료</span>');
+	}
+});
+
+$('.newpass2').keyup(function () {
+	if(this.value != $('.newpass1').val()){
+		//$(this).attr('style', 'border-color:#dc3545;');
+		$(this).removeClass('success');
+		$('.invalid-password').html('<span style="font-size:80%;color:#dc3545;">비밀번호가 일치하지 않습니다..</span>');
+			
+	}else{
+		//$(this).attr('style', 'border-color:#28a745;');
+		$(this).addClass('success');
+		$('.invalid-password').html('<span style="font-size:80%;color:#28a745;">비밀번호가 일치합니다.</span>');
+	}	
+});
+
+$("#upd-btn").click(function name() {
+	var nowpwd = $(".nowpass").val();
+	var newpwd1 = $(".newpass1").val();
+	var newpwd2 = $(".newpass2").val();
+	
+	if(nowpwd === ""){
+		alert("현재 비밀번호를 입력해 주십시오");
+		$(".nowpass").focus();
+		return;
+	}else if(newpwd1 === ""){
+		alert("새 비밀번호를 입력해 주십시오");
+		$(".newpass1").focus();
+	}else if(newpwd2 === ""){
+		alert("새 비밀번호 확인을 입력해 주십시오");
+		$(".newpass2").focus();
+	}else{
+		$("#frmForm").submit();
+	}
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+

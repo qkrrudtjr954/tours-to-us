@@ -17,5 +17,6 @@ public interface TravelerService {
 	int addCoTraveler(CoTravelerDto coTravelerDto);
 	public boolean checkCoTraveler(CoTravelerDto coTraveler);
 	public boolean deleteCoTraveler(CoTravelerDto coTraveler);
-	
+	public boolean myInfoUpd(TravelerDto dto);
+
 }

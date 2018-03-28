@@ -10,6 +10,8 @@ public interface PlanerService {
 
 	PlanerDto addPlaner(PlanerDto planer);
 
+	public List<PlanerDto> getplanList(int seq);
+
 	PlanerDto getPlaner(int seq);
 
 	List<TravelerDto> getCoTraveler(int planer_seq);

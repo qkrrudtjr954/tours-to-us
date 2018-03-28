@@ -17,24 +17,24 @@ import www.tours2us.com.model.TravelerDto;
 public class PlanerServiceImpl implements PlanerService{
 
 	Logger logger = LoggerFactory.getLogger(PlanerServiceImpl.class);
-	
+
 	@Autowired
 	PlanerDao planerDao;
-	
+
 	@Autowired
 	TravelerDao travelDao;
-	
-	
+
+
 	@Override
 	public PlanerDto addPlaner(PlanerDto planer) {
-		//	저장한 후 , Dto 세팅 
+		//	저장한 후 , Dto 세팅
 		int planer_seq = planerDao.addPlaner(planer);
-		
+
 		TravelerDto traveler = travelDao.getUserBySeq(planer.getTarget_user_seq());
 		CoTravelerDto coTravelerDto = new CoTravelerDto(traveler.getSeq(), planer_seq, traveler.getName());
 		travelDao.addCoTraveler(coTravelerDto);
-		
-		return planerDao.getPlaner(planer_seq); 
+
+		return planerDao.getPlaner(planer_seq);
 	}
 
 
@@ -43,10 +43,14 @@ public class PlanerServiceImpl implements PlanerService{
 		return planerDao.getPlaner(seq);
 	}
 
-
 	@Override
 	public List<TravelerDto> getCoTraveler(int planer_seq) {
 		return travelDao.getCoTraveler(planer_seq);
 	}
-	
+
+	public List<PlanerDto> getplanList(int seq) {
+		// TODO Auto-generated method stub
+		return planerDao.getplanList(seq);
+	}
+
 }

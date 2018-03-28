@@ -21,59 +21,65 @@ import www.tours2us.com.service.PlanerService;
 
 @Controller
 public class PlanerController {
-	
+
 	Logger logger = LoggerFactory.getLogger(PlanerController.class);
-	
+
 	@Autowired
 	PlanerService planerService;
-	
+
 	@RequestMapping(value="planer.do", method=RequestMethod.GET)
 	public String planer(Model model, HttpServletRequest req) {
-		
-		//		테스트용 유저
-		HttpSession session = req.getSession();
-		TravelerDto current_user = new TravelerDto(1, "a@a.a", "a", "a", "2018-03-03", "2018-03-03", 0);
-		session.setAttribute("current_user", current_user);
-		
-		//	테스트용 유
-		
+
 		logger.info("PlanerController >>>> planer");
-		
+
 		return "planer.tiles";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="addPlaner.do", method=RequestMethod.POST)
 	public PlanerDto addPalenr(PlanerDto planer, HttpServletRequest req) {
-		
+
 		logger.info("param planerdto : {}", planer);
-		
-		
-		
+
+
+
 		HttpSession session = req.getSession();
 		TravelerDto current_user = (TravelerDto)session.getAttribute("current_user");
 		planer.setTarget_user_seq(current_user.getSeq());
-		
+
 		// add planer
 		planer = planerService.addPlaner(planer);
-		
+
 		logger.info("return planerdto : {}", planer);
-		
+
 		return planer;
 	}
-	
+
 	@RequestMapping(value="planer2.do", method=RequestMethod.GET)
 	public String planer2(Model model, int seq, HttpServletRequest req) {
-		
+
 		logger.info("param planerdto : {}", seq);
-		
+
 		PlanerDto planer = planerService.getPlaner(seq);
 		List<TravelerDto> coTraveler = planerService.getCoTraveler(seq);
-		
+
 		model.addAttribute("planer", planer);
 		model.addAttribute("coTraveler", coTraveler);
-		
+
 		return "planer2.tiles";
 	}
-	
+
+	@RequestMapping(value="myplan.do", method= {RequestMethod.GET, RequestMethod.POST})
+  public String myplan(HttpServletRequest req, PlanerDto planer, Model model)throws Exception{
+      logger.info("TravelerController >>>> myplan");
+      TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+      //System.out.println(t_dto.getSeq());
+      int seq = t_dto.getSeq();
+
+      // 플랜 select
+      List<PlanerDto> planlist = planerService.getplanList(seq);
+      model.addAttribute("planlist", planlist);
+      return "myplan.tiles";
+  }
+
 }

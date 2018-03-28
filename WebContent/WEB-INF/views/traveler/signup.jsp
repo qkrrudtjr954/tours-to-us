@@ -59,26 +59,59 @@
 				</div>
 				
 				<div id="step2view">
-				<form  id="signUpForm2" action="" method="GET" novalidate>	
 				<img src="image/map.png" width="100%">
 				<h1>Welcome!</h1>
 				<h3>Tours to us에 오신 것을 환영합니다. </h3>
 				<br>
 				당신의 성향은? <br><br>
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" name="character" id="Character1" value="활동적인">
-					<label class="custom-control-label" for="Character1">
-							활동적인
-					</label>
-				</div>
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" name="character" id="Character2" value="역동적인">
-					<label class="custom-control-label" for="Character2">
-							역동적인
-					</label>
+				
+				<!-- <div class="choiceView" style="background-color: pink; width: 80%; height: 200px;">
+				<span id="choice1">aaa1</span>
+				<span id="choice2">aaa2</span>
+				<span id="choice3">aaa3</span>
+				<span id="choice4">aaa4</span>
+				<span id="choice5">aaa5</span><br><br>
+				
+				<span id="choice6">aaa6</span>
+				<span id="choice7">aaa7</span>
+				<span id="choice8">aaa8</span>
+				<span id="choice9">aaa9</span>
+				<span id="choice10">aaa10</span><br><br>
+				
+				<span id="choice11">aaa11</span>
+				<span id="choice12">aaa12</span>
+				<span id="choice13">aaa13</span>
+				<span id="choice14">aaa14</span>
+				<span id="choice15">aaa15</span><br><br>
+				</div> -->
+				
+				<div class="choiceView" style="background-color: pink; width: 80%; height: 200px;">
+				<span class="choice">aaa1</span>
+				<span class="choice">aaa2</span>
+				<span class="choice">aaa3</span>
+				<span class="choice">aaa4</span>
+				<span class="choice">aaa5</span><br><br>
+				
+				<span class="choice">aaa6</span>
+				<span class="choice">aaa7</span>
+				<span class="choice">aaa8</span>
+				<span class="choice">aaa9</span>
+				<span class="choice">aaa10</span><br><br>
+				
+				<span class="choice">aaa11</span>
+				<span class="choice">aaa12</span>
+				<span class="choice">aaa13</span>
+				<span class="choice">aaa14</span>
+				<span class="choice">aaa15</span><br><br>
 				</div>
 				
-				</form>
+				<div class="user_choice" style="background-color: green; width: 80%; height: 200px;">
+						<input type="text" name="userChoice[]" id="choice1" value="아이템을 클릭해주세요" readonly="readonly"><br>
+						<input type="text" name="userChoice[]" id="choice2" value="아이템을 클릭해주세요2" readonly="readonly">	<br>
+						<input type="text" name="userChoice[]" id="choice3" value="아이템을 클릭해주세요3" readonly="readonly"><br>			
+				</div>
+				                
+		
 				</div>
 			</div>
 		</div>
@@ -127,10 +160,10 @@
 				});
 			});
 		
-			$('#step1').onclick(function () {
+			$('#step1').on('click', function () {
 				$.ajax({
 					url : 'signup1step.do',
-	  				data : { email: $('#email').val(), name: $('#name').val(), password:$('password').val(); },
+	  				data : { email: $('#email').val(), name: $('#name').val(), password:$('#password').val() },
 	  				type : 'GET',
 	  				success : function (data) {
 	  					if(data == 'no'){
@@ -145,6 +178,30 @@
 	  				}
 				})
 			});
-		
+/* 		
+			$("span").click(function(){
+			    $(this).hide();
+			    
+			    var arr = [];
+			    $.each($("input[name='userChoice[]']"),function(k,v){
+			        arr[arr.length] = $(v).val();
+			    });
+			    
+			   //$('.user_choice').append($('#choice1').val($(this).text())); 
+			}); */
+ 	
+			 $("span").click(function(){
+		            var size = $("input[name='userChoice[]']").length;
+		            var arr={$(this).text(), $(this).text(), $(this).text()};  
+		            for(i=0;i<size;i++){
+		            	
+		                console.log("type1: "+$("input[name='userChoice[]']").eq(i).attr("value"));
+		            }
+		        });
+	
+			$("span").click(function(){
+			    $(this).hide();
+			    $('.user_choice').append($('#choice1').val($(this).text())); 
+			}); 
 		
 		</script>

@@ -149,7 +149,7 @@ public class TravelerController {
         }else {
         	return "redirect:/mypage.do";
         }
-    }
+    }                                
 	
 	@RequestMapping(value="myInfoUpdAf.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String myInfoUpdAf(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        

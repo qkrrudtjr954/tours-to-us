@@ -37,7 +37,7 @@
 			<img class="card-img-top" src="${(empty plan.paper) ? './image/no-img.png' : plan.paper  }" alt="./image/no-img.png" height="350">
 			</div>
 			<div class="card-body">
-				<span>${plan.to_date }</span>~<span>${plan.from_date }</span>
+				<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
 				<br>
 				<span><a href="#none">${plan.title }</a></span>
 			</div>

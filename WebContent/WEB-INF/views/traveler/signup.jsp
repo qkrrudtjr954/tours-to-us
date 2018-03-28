@@ -58,61 +58,40 @@
 				</form>
 				</div>
 				
-				<div id="step2view">
+			
 				<img src="image/map.png" width="100%">
 				<h1>Welcome!</h1>
 				<h3>Tours to us에 오신 것을 환영합니다. </h3>
 				<br>
+				<div id="step2view">
 				당신의 성향은? <br><br>
 				
-				<!-- <div class="choiceView" style="background-color: pink; width: 80%; height: 200px;">
-				<span id="choice1">aaa1</span>
-				<span id="choice2">aaa2</span>
-				<span id="choice3">aaa3</span>
-				<span id="choice4">aaa4</span>
-				<span id="choice5">aaa5</span><br><br>
 				
-				<span id="choice6">aaa6</span>
-				<span id="choice7">aaa7</span>
-				<span id="choice8">aaa8</span>
-				<span id="choice9">aaa9</span>
-				<span id="choice10">aaa10</span><br><br>
 				
-				<span id="choice11">aaa11</span>
-				<span id="choice12">aaa12</span>
-				<span id="choice13">aaa13</span>
-				<span id="choice14">aaa14</span>
-				<span id="choice15">aaa15</span><br><br>
-				</div> -->
-				
-				<div class="choiceView" style="background-color: pink; width: 80%; height: 200px;">
-				<span class="choice">aaa1</span>
-				<span class="choice">aaa2</span>
-				<span class="choice">aaa3</span>
-				<span class="choice">aaa4</span>
-				<span class="choice">aaa5</span><br><br>
-				
-				<span class="choice">aaa6</span>
-				<span class="choice">aaa7</span>
-				<span class="choice">aaa8</span>
-				<span class="choice">aaa9</span>
-				<span class="choice">aaa10</span><br><br>
-				
-				<span class="choice">aaa11</span>
-				<span class="choice">aaa12</span>
-				<span class="choice">aaa13</span>
-				<span class="choice">aaa14</span>
-				<span class="choice">aaa15</span><br><br>
-				</div>
-				
+				<form id="step2Form" action="" method="GET" novalidate>
 				<div class="user_choice" style="background-color: green; width: 80%; height: 200px;">
-						<input type="text" name="userChoice[]" id="choice1" value="아이템을 클릭해주세요" readonly="readonly"><br>
-						<input type="text" name="userChoice[]" id="choice2" value="아이템을 클릭해주세요2" readonly="readonly">	<br>
-						<input type="text" name="userChoice[]" id="choice3" value="아이템을 클릭해주세요3" readonly="readonly"><br>			
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="aaa">aaa	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="bbb">bbb	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ccc">ccc
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
 				</div>
+				<div class="offset-md-11">
+				<button type="button" id="step2" style="background: url(next_button.png) no-repeat;  border: none;  outline: none;"><img src="image/next_button.png" width="50"></button>		
+				</div>
+				</form>
+				
 				                
 		
 				</div>
+				
+		
 			</div>
 		</div>
 		
@@ -123,10 +102,15 @@
 		event.returnValue = false
 		alert("한글을 입력해주세요");
 		}	   */
-	
+		
 		
 				
 			$(document).ready(function () {
+				
+				$("#step1view").css("display", "block");
+				$("#step2view").css("display", "none");	
+				
+				
 				$('#email').keyup(function () {
 					$.ajax({
 		  				url : 'checkEmail.do',
@@ -166,20 +150,97 @@
 	  				data : { email: $('#email').val(), name: $('#name').val(), password:$('#password').val() },
 	  				type : 'GET',
 	  				success : function (data) {
-	  					if(data == 'no'){
-	  						$('#email').attr('style', 'border-color:#dc3545;');
-	  						$('#email').removeClass('success');
-	  						$('.invalid-email').html('<span style="font-color:#dc3545;">이미 사용중인 이메일 입니다.</span>');
-	  					}else{
-	  						$('#email').attr('style', 'border-color:#28a745;');
-	  						$('#email').addClass('success');
-	  						$('.invalid-email').html('<span style="font-color:#28a745;">사용가능한 이메일 입니다.</span>');
-	  					}
+	  					$("#step1view").css("display", "none");
+	  					$("#step2view").css("display", "block");	
 	  				}
 				})
 			});
-/* 		
-			$("span").click(function(){
+			
+			$('#step2').on('click', function () {
+				
+				var checkboxValues = [];
+			    $("input[name='choice']:checked").each(function(i) {
+			        checkboxValues.push($(this).val());
+			        console.log(checkboxValues);
+			    });  			  
+			    
+			    $.ajax({
+					url : 'signup2step.do',
+	  				data : checkboxValues,
+	  				type : 'GET',
+	  				success : function (data) {
+	  					$("#step1view").css("display", "none");
+	  					$("#step2view").css("display", "block");	
+	  				}
+				}) 
+			
+			});
+			
+			  /*   
+			$.ajax({
+				url : 'signup2step.do',
+  				data : checkboxValues,
+  				type : 'GET',
+  				success : function (data) {
+  					$("#step1view").css("display", "none");
+  					$("#step2view").css("display", "block");	
+  				}
+			}) */
+			
+			
+			
+			
+	/* 		// 사용자 ID를 갖고 온다.
+		    var checkedItem = $("#choice").val(); 
+		    // name이 같은 체크박스의 값들을 배열에 담는다.
+		    var checkboxValues = [];
+		    $("input[name='choice']:checked").each(function(i) {
+		        checkboxValues.push($(this).val());
+		    });
+		     
+		    // 사용자 ID(문자열)와 체크박스 값들(배열)을 name/value 형태로 담는다.
+		   //  var allData = { "userId": userId,  "checkArray": checkboxValues }; 
+		    var allData = { "userId": userId,  "checkArray": checkboxValues };
+		     
+		    $.ajax({
+		        url:"signup2step.do",
+		        type:'GET',
+		        data: allData,
+		        success:function(data){
+		        	$("#step1view").css("display", "none");
+  					$("#step2view").css("display", "none");	
+  					//$("#step3view").css("display", "block");	
+		        },
+		        error:function(jqXHR, textStatus, errorThrown){
+		            alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+		            self.close();
+		        }
+		    }); */
+			
+		
+			
+			var maxChecked = 3;   //선택가능한 체크박스 갯수
+			var totalChecked = 0; // 설정 끝
+
+			function CountChecked(field) {
+			    if (field.checked)
+			        totalChecked += 1;
+			    else
+			        totalChecked -= 1;
+
+			    if (totalChecked > maxChecked) {
+			        alert ("최대 3개 까지만 선택 가능합니다.");
+			    field.checked = false;
+			    totalChecked -= 1;
+			    }
+			    
+			}
+
+			function ResetCount(){
+			    totalChecked = 0;
+			}
+			
+/* 			$("span").click(function(){
 			    $(this).hide();
 			    
 			    var arr = [];
@@ -188,7 +249,7 @@
 			    });
 			    
 			   //$('.user_choice').append($('#choice1').val($(this).text())); 
-			}); */
+			});
  	
 			 $("span").click(function(){
 		            var size = $("input[name='userChoice[]']").length;
@@ -202,6 +263,6 @@
 			$("span").click(function(){
 			    $(this).hide();
 			    $('.user_choice').append($('#choice1').val($(this).text())); 
-			}); 
+			});  */
 		
 		</script>

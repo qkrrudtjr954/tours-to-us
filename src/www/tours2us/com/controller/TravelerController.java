@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import www.tours2us.com.model.TravelerDto;
+import www.tours2us.com.model.TravelerinfoDto;
 import www.tours2us.com.service.TravelerService;
 
 @Controller
@@ -53,6 +54,7 @@ public class TravelerController {
 
 	}
 	
+	@ResponseBody	
 	@RequestMapping(value="signup1step.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signup(Model model, TravelerDto dto) throws Exception{
 		
@@ -92,4 +94,20 @@ public class TravelerController {
 				}
 				
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="signup2step.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String signup2(HttpServletRequest req, Model model) throws Exception{
+		
+		logger.info("TravelerController >>>> signup2step");
+		
+		String checkboxValues[] = req.getParameterValues("checkboxValues");
+		System.out.println(checkboxValues);
+		
+		 //TravelerinfoDto inTravelerinfoDto = new TravelerinfoDto(dispositon1, dispositon2, dispositon3);
+		
+		return "signup.tiles";
+
+	}
+	
 }

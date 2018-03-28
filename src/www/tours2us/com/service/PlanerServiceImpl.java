@@ -1,5 +1,7 @@
 package www.tours2us.com.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,13 @@ public class PlanerServiceImpl implements PlanerService{
 		//	저장한 후 , Dto 세팅 
 		int seq = planerDao.addPlaner(planer);
 		return planerDao.getPlaner(seq); 
+	}
+
+
+	@Override
+	public List<PlanerDto> getplanList(int seq) {
+		// TODO Auto-generated method stub
+		return planerDao.getplanList(seq);
 	}
 
 }

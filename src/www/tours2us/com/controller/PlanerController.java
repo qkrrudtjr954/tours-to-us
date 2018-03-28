@@ -1,5 +1,7 @@
 package www.tours2us.com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -58,5 +60,18 @@ public class PlanerController {
 		
 		return planer;
 	}
+	
+	@RequestMapping(value="myplan.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String myplan(HttpServletRequest req, PlanerDto planer, Model model)throws Exception{        
+        logger.info("TravelerController >>>> myplan");  
+        TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+        //System.out.println(t_dto.getSeq());
+        int seq = t_dto.getSeq();
+       
+        // 플랜 select
+        List<PlanerDto> planlist = planerService.getplanList(seq);
+        model.addAttribute("planlist", planlist);
+        return "myplan.tiles";           
+    }
 
 }

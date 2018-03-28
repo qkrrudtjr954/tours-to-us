@@ -166,12 +166,6 @@ public class TravelerController {
         }
         
     }
-	@RequestMapping(value="myplan.do", method= {RequestMethod.GET, RequestMethod.POST})
-    public String myplan(Model model)throws Exception{        
-        logger.info("TravelerController >>>> myplan");  
-        // 플랜 select
-        return "myplan.tiles";   
-        
-    }
+	
 
 }

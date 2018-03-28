@@ -87,7 +87,7 @@ a.nav_link:hover {
 		<ul style="list-style-type: none">
 			<li class="title">나의 플랜</li>
 			<li class="menu_item">
-				<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+				<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기" >나의 플랜보기</a>
 			</li>
 			<li class="title">회원정보관리</li>
 			<li class="menu_item">

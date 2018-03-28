@@ -35,4 +35,9 @@
 	</definition>
 	
 	
+	<definition name="afterBbs.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/commu/afterBbs.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>

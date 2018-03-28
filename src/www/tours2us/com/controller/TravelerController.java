@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.TravelerService;
 
@@ -116,6 +116,9 @@ public class TravelerController {
 		
 		return friends;
 	}
+	
+	
+	
 	@RequestMapping(value="signout.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String signout(HttpServletRequest req, Model model) {
         
@@ -166,5 +169,20 @@ public class TravelerController {
         }*/
         return "";
     }
+	
+
+	@ResponseBody
+	@RequestMapping(value="addFriend.do", method=RequestMethod.POST)
+	public List<TravelerDto> addFriend(CoTravelerDto coTraveler){
+		logger.info("PlanerController addFriend name : {}", coTraveler);
+		
+		if(coTraveler.getTarget_planer_seq() == 0 || coTraveler.getTarget_user_seq() == 0 || coTraveler.getTarget_user_name().equals("")) {
+			return null;
+		}
+		
+		
+		return null;
+	}
+
 
 }

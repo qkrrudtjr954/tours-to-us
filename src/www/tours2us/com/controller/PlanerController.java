@@ -1,5 +1,7 @@
 package www.tours2us.com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.PlanerService;
@@ -58,5 +61,16 @@ public class PlanerController {
 		
 		return planer;
 	}
-
+	
+	@RequestMapping(value="planer2.do", method=RequestMethod.POST)
+	public String planer2(int seq, HttpServletRequest req) {
+		
+		logger.info("param planerdto : {}", seq);
+		
+		PlanerDto planer = planerService.getPlaner(seq);
+		List<TravelerDto> coTraveler = planerService.getCoTraveler(seq);
+		
+		return "planer2.tiles";
+	}
+	
 }

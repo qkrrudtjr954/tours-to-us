@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.TravelerDto;
 
 @Repository
@@ -25,6 +26,11 @@ public class TravelerDaoImpl implements TravelerDao{
 	public TravelerDto getUserByEmail(String email) {
 		return sqlSession.selectOne(ns + "getUserByEmail", email);
 	}
+	
+	@Override
+	public TravelerDto getUserBySeq(int seq) {
+		return sqlSession.selectOne(ns + "getUserBySeq", seq);
+	}
 
 	public TravelerDto signin(TravelerDto dto) throws Exception {
 		return sqlSession.selectOne(ns+"signin", dto);
@@ -34,4 +40,16 @@ public class TravelerDaoImpl implements TravelerDao{
 	public List<TravelerDto> getTravelersByNamdOrEmail(String name) {
 		return sqlSession.selectList(ns + "getTravelersByNamdOrEmail", name);
 	}
+
+	@Override
+	public List<TravelerDto> getCoTraveler(int planer_seq) {
+		return sqlSession.selectList(ns + "getCoTraveler", planer_seq);
+	}
+
+	@Override
+	public int addCoTraveler(CoTravelerDto coTravelerDto) {
+		return sqlSession.insert(ns + "addCoTraveler", coTravelerDto);
+	}
+
+	
 }

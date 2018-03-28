@@ -74,118 +74,35 @@
 	</div>
 </div>
 
-				<input type="hidden" name="targer-planer-seq" value="">
-				
-				
-<div class="add-friend">
-	<div class="row">
-		<div class="offset-md-2 col-md-4 col-xs-12">
-			<form id="findFriendForm">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="여행을 함께할 친구를 찾아보세요." aria-describedby="basic-addon2" id="friendName">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button" id="findFriendBtn">
-							<span data-feather="search"></span>
-						</button>
-					</div>
-				</div>
-				<span id="notice" style="margin-left: 10px;"></span>
-			</form>
-			
-			<table class="table" id="findedFriendTable">
-				<thead>
-					<tr>
-						<th>pic</th>
-						<th>name</th>
-						<th>email</th>
-					</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
-			</table>
-		</div>
-		<div class="col-md-4" >
-			<div class="added-friend">
-				test user
-			</div>
-		</div>
-	</div>
-</div>
-
 <script type="text/javascript">
-
-	$('#findFriendBtn').on('click', function () {
-		var name = $('#friendName').val();
-		
-		if(name == ""/*  || name.length < 3 */){
-			$('#notice').text('이름을 3글자 이상 입력해주세요.');
-			$('#notice').css('color', 'red').css('font-size', '13px');
-			$('#friendName').focus();
-		} else {
-			$('#notice').text('');
-			
-			findFriend(name);
-		}
-	})
-	
-	function findFriend(name) {
-		$.ajax({
-			url : 'findFriend.do',
-			method : 'POST',
-			data : { name : name },
-			success : function (data) {
-				//	table 그리기 
-				console.log(data);
-				
-				for(var i=0; i<data.length; i++){
-					drawFindedFriends(data[i]);					
-				}
-				
-				
-			}
-		})
-	}
-	
-	function drawFindedFriends(friend) {
-		var tableElement = 
-			'<tr>'+
-				'<td>'+friend.seq+'</td>'+
-				'<td>'+friend.name+'</td>'+
-				'<td>'+friend.email+'</td>'+
-			'</tr>';
-			
-		$('#findedFriendTable tbody').append(tableElement);
-	}
-
-	$('div.paper-image img').on('mouseenter', function () {
+	$('div.paper-image img').on('mouseenter', function() {
 		$('#paper-canvas').attr('src', $(this).attr('src'));
 	})
-	
-	$('div.paper-image img').on('click', function () {
-		for(var i=0; i< $('div.paper-image img').length; i++){
+
+	$('div.paper-image img').on('click', function() {
+		for (var i = 0; i < $('div.paper-image img').length; i++) {
 			$('div.paper-image img').css('border', 'none');
 		}
 		$(this).css('border', '2px solid skyblue');
 		$('#paper-canvas').attr('src', $(this).attr('src'));
-		
+
 		var url = $(this).attr('src');
 		var temp = url.substring(12);
-		
+
 		$('input[name="paper"]').val(temp);
 	})
-	
-	
-	$('#next-step').on('click', function () {
+
+	$('#next-step').on('click', function() {
 		var FormData = $('#planerForm').serialize();
-		
+
 		$.ajax({
-			url: 'addPlaner.do',
-			method: 'POST',
-			data: FormData,
-			success: function (data) {
-				console.log(data);
-				alert('planer add');
+			url : 'addPlaner.do',
+			method : 'POST',
+			data : FormData,
+			success : function(data) {
+				if(data.seq != 0){
+					location.href="planer2.do?seq="+data.seq;
+				}
 			}
 		})
 	})

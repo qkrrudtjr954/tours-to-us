@@ -80,7 +80,7 @@ $('input[type="button"]#SigninBtn').on('click', function () {
 	// make validate function
 	$.ajax({
 		url : 'signinAf.do',
-		method : 'GET',
+		method : 'POST',
 		data : { email : $('#inputEmail').val(), password : $('#inputPassword').val() },
 		success : function (data) {
 			var user = data;

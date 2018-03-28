@@ -196,12 +196,8 @@ public class TravelerController {
 	
 	@ResponseBody
 	@RequestMapping(value="deleteFriend.do", method=RequestMethod.POST)
-	public String deleteFriend(CoTravelerDto coTraveler){
-		logger.info("PlanerController deleteFriend : {}", coTraveler);
-		
-		boolean result = travelerService.deleteCoTraveler(coTraveler);
-		
-		return "done";
+	public void deleteFriend(CoTravelerDto coTraveler){
+		travelerService.deleteCoTraveler(coTraveler);
 	}
 
 

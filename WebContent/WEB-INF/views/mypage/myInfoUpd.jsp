@@ -35,7 +35,7 @@ div{
 				<td>
 					<label class="title">아이디 또는 이메일 주소</label>
 				</td>
-				<td>
+				<td colspan="2">
 					${c_user.email }<input type="hidden" name="email" id="login_id" value="${c_user.email }">
 				</td>
 			</tr>
@@ -46,6 +46,8 @@ div{
 				<td>
 					<input type="password" name="nowpass" id="nowpass" title="현재 비밀번호">
 				</td>
+				<td class="invalid-nowpwd">
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -53,6 +55,8 @@ div{
 				</td>
 				<td>
 					<input type="password" name="newpass1" id="nowpass1" title="새 비밀번호">
+				</td>
+				<td class="invalid-feedback">
 				</td>
 			</tr>
 			<tr>
@@ -62,9 +66,19 @@ div{
 				<td>
 					<input type="password" name="password" id="newpass2" title="새 비밀번호 확인">
 				</td>
+				<td class="invalid-password">
+				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
+				<td>
+					<label class="title">이름</label>
+				</td>
+				<td colspan="2">
+					<input type="text" name="name" id="name" value="${c_user.name }">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
 					<input type="button" id="login_submit" class="btn btn-primary" value="확인">
 				</td>
 			</tr>

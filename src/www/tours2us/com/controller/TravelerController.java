@@ -126,10 +126,10 @@ public class TravelerController {
     }
 	
 	@RequestMapping(value="mypage.do", method= {RequestMethod.GET, RequestMethod.POST})
-    public String mypage(HttpServletRequest req, TravelerDto dto, Model model)throws Exception {        
+    public String mypage(HttpServletRequest req, Model model)throws Exception {        
         logger.info("TravelerController >>>> mypage");        
       TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
-       
+       System.out.println(t_dto.toString());
        TravelerDto signin = travelerService.signin(t_dto);
        System.out.println(signin.toString());
        model.addAttribute("c_user", signin);

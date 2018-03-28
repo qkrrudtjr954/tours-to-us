@@ -29,10 +29,10 @@ public class PlanerController {
 	@RequestMapping(value="planer.do", method=RequestMethod.GET)
 	public String planer(Model model, HttpServletRequest req) {
 		
-		//		테스트용 유저
+		/*//		테스트용 유저
 		HttpSession session = req.getSession();
 		TravelerDto current_user = new TravelerDto(1, "a@a.a", "a", "a", "2018-03-03", "2018-03-03", 0);
-		session.setAttribute("current_user", current_user);
+		session.setAttribute("current_user", current_user);*/
 		
 		//	테스트용 유
 		

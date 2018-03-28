@@ -98,7 +98,7 @@ a.nav_link:hover {
 </div>
 
 <script>
-	document.getElementById('login_pw').focus();
+	document.getElementById('password').focus();
 </script>
 
 <script>

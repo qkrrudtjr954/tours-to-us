@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style type="text/css">
-   .nav-link {
+   .nav_link {
 	color: white;
-	
+	padding: 0px 15px;
 }
 
-a.nav-link:hover {
+a.nav_link:hover {
 	color: gray;
+	padding: 0px 15px;
 }
 
 #floatMenu {

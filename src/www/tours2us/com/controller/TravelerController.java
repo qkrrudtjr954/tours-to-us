@@ -1,4 +1,4 @@
-package www.tours2us.com.controller;
+﻿package www.tours2us.com.controller;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 	
-	@RequestMapping(value="signin.do", method=RequestMethod.GET)
+	@RequestMapping(value="signin.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signin(Model model) {
 		
 		logger.info("TravelerController >>>> signin");
@@ -34,18 +34,25 @@ public class TravelerController {
 		return "signin.tiles";
 	}
 	
-
-	@RequestMapping(value="signinAf.do", method=RequestMethod.GET)
-	public String signinAf(HttpServletRequest req,  Model model) throws Exception {
+	@ResponseBody
+	@RequestMapping(value="signinAf.do", method=RequestMethod.POST)
+	public TravelerDto signinAf(HttpServletRequest req, TravelerDto dto, Model model) throws Exception {
 		
 		logger.info("TravelerController >>>> signinAf");
-		
-		
-		
-		return "redirect:/main.do";
+		System.out.println(dto.toString());
+        TravelerDto signin = travelerService.signin(dto);
+        
+        if(signin != null && !signin.getEmail().equals("")) {
+            req.getSession().setAttribute("current_user", signin);
+	        signin.setPassword("secret");
+	        return signin;
+        }else {
+        	return signin;
+        }
 	}
+	
 
-	@RequestMapping(value="signup.do", method=RequestMethod.GET)
+	@RequestMapping(value="signup.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signup(Model model) throws Exception{
 		
 		logger.info("TravelerController >>>> signup");
@@ -109,4 +116,55 @@ public class TravelerController {
 		
 		return friends;
 	}
+	@RequestMapping(value="signout.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String signout(HttpServletRequest req, Model model) {
+        
+        logger.info("TravelerController >>>> signout");
+        req.getSession().invalidate();
+        return "redirect:/main.do";
+
+    }
+	
+	@RequestMapping(value="mypage.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String mypage(HttpServletRequest req, TravelerDto dto, Model model)throws Exception {        
+        logger.info("TravelerController >>>> mypage");        
+      TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+       
+       model.addAttribute("c_user", t_dto);
+        return "mypage.tiles";
+    }
+	
+	@RequestMapping(value="myInfoUpd.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String myInfoUpd(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        
+        logger.info("TravelerController >>>> myInfoUpd");        
+        TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+        model.addAttribute("c_user", t_dto);
+        
+        System.out.println(dto.toString());
+        TravelerDto signin = travelerService.signin(dto);
+        
+        if(signin != null && !signin.getEmail().equals("")) {
+	        return "myInfoUpd.tiles";
+        }else {
+        	return "redirect:/mypage.do";
+        }
+    }
+	
+	@RequestMapping(value="myInfoUpdAf.do", method= {RequestMethod.GET, RequestMethod.POST})
+    public String myInfoUpdAf(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{        
+        logger.info("TravelerController >>>> myInfoUpdAf");                
+        System.out.println(dto.toString());
+        
+        // 업데이트
+        //TravelerDto signin = travelerService.signin(dto);
+        
+        /*
+        if(signin != null && !signin.getEmail().equals("")) {
+	        return "myInfoUpd.tiles";
+        }else {
+        	return "redirect:/mypage.do";
+        }*/
+        return "";
+    }
+
 }

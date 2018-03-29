@@ -30,11 +30,13 @@
 <div class="row">
 	<div class="offset-md-2 col-md-8">
 		<c:if test="${empty planlist }">
-			<span>작성된 글이 없습니다</span>
+			<div class="col-md-12 text-center col-xs-12">
+				<p>작성된 글이 없습니다</p>
+			</div>
 		</c:if>
 		<div class="row">
 			<c:forEach items="${planlist }" var="plan" varStatus="i">
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-12">
 					<div class="card mb-4 box-shadow">
 					<img class="card-img-top" src="${pageContext.request.contextPath }/${plan.paper}" alt="no-cover" height="350">
 					</div>
@@ -47,8 +49,6 @@
 			</c:forEach>
 		</div>
 	</div>
-
-
 </div>
 </div>
 

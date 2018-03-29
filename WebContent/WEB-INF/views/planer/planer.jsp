@@ -14,7 +14,6 @@
 			<img src="${pageContext.request.contextPath }/image/planer.jpg" alt="" style="width:100%; height:500px;" id="paper-canvas">
 		</div>
 		<div class="col-md-4 col-xs-12">
-			${current_user }
 			<form id="planerForm">
 				<div class="form-group">
 					<label for="name">여행 이름</label> 
@@ -101,7 +100,7 @@
 			data : FormData,
 			success : function(data) {
 				if(data.seq != 0){
-					location.href="planer2.do?seq="+data.seq;
+					location.href="addFriends.do?seq="+data.seq;
 				}
 			}
 		})

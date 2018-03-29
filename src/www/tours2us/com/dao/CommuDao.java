@@ -8,6 +8,8 @@ public interface CommuDao {
 	
 	List<CommuAfterBbsDto> getAfterBbslist()throws Exception;
 	
+	boolean afterwriteBbs(CommuAfterBbsDto bbs)throws Exception;
+	
 	
 	
 	

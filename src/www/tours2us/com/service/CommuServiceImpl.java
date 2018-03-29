@@ -26,6 +26,12 @@ public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
 	return commutDao.getAfterBbslist();
 }
 
+@Override
+public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.afterwriteBbs(bbs);
+}
+
 
 
 

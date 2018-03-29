@@ -13,6 +13,14 @@
       ORDER BY A.REG_DATE DESC    
 </select>
 
+<insert id="AfterWrite" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
+		INSERT INTO AFTERBBS
+		(SEQ,TARGET_PLANER_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(AFTERBBS_SEQ.NEXTVAL,72,41,#{title},#{content},SYSDATE,SYSDATE,0)
+		
+	</insert>
+
+
 
 	
 

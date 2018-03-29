@@ -45,6 +45,10 @@
 	<definition name="afterBbs.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/commu/afterBbs.jsp"/>
 	</definition>
+	<definition name="afterWrite.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/commu/afterWrite.jsp"/>
+	</definition>
+	
 	
 	
 </tiles-definitions>

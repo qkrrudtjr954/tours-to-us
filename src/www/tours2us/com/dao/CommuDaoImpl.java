@@ -33,6 +33,14 @@ public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
 	return list;
 }
 
+@Override
+public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
+	sqlSession.insert(ns+"AfterWrite", bbs);
+	return true;
+}
+
+
+
 
 
 

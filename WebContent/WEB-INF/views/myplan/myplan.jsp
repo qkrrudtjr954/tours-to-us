@@ -28,21 +28,25 @@
 
 <div class="myplan-content">
 <div class="row">
-	<c:if test="${empty planlist }">
-		<span class="offset-md-4">작성된 글이 없습니다</span>
-	</c:if>
-	<c:forEach items="${planlist }" var="plan" varStatus="i">
-		<div class="offset-md-4 col-md-4">
-			<div class="card mb-4 box-shadow">
-			<img class="card-img-top" src="${(empty plan.paper) ? './image/no-img.png' : plan.paper  }" alt="./image/no-img.png" height="350">
-			</div>
-			<div class="card-body">
-				<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
-				<br>
-				<span><a href="#none">${plan.title }</a></span>
-			</div>
+	<div class="offset-md-2 col-md-8">
+		<c:if test="${empty planlist }">
+			<span>작성된 글이 없습니다</span>
+		</c:if>
+		<div class="row">
+			<c:forEach items="${planlist }" var="plan" varStatus="i">
+				<div class="col-md-6">
+					<div class="card mb-4 box-shadow">
+					<img class="card-img-top" src="${pageContext.request.contextPath }/${plan.paper}" alt="no-cover" height="350">
+					</div>
+					<div class="card-body">
+						<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
+						<br>
+						<span><a href="#none">${plan.title }</a></span>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
-	</c:forEach>
+	</div>
 
 
 </div>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.DayPlanerDto;
 import www.tours2us.com.model.PlanerDto;
+import www.tours2us.com.model.TimePlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.TravelerService;
@@ -88,11 +89,34 @@ public class PlanerController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="getDayPlaner.do", method=RequestMethod.POST)
-	public DayPlanerDto getDayPlaner(Model model, int planer_seq) {
+	@RequestMapping(value="getDayPlaner.do", method=RequestMethod.GET)
+	public DayPlanerDto getDayPlaner(Model model, DayPlanerDto dayPlaner) {
 		//	dayplaner를 가져온다.
+		logger.info("PlanerContoller >>>>> getDayPlaner : {}", dayPlaner);
 		
-		return null;
+		PlanerDto planer = planerService.getPlaner(dayPlaner.getTarget_planer_seq());
+		
+		
+		logger.info("{}  <  {}", planer.getRange(), dayPlaner.getDay_count());
+		
+		if(planer.getRange() < dayPlaner.getDay_count()) {
+			dayPlaner.setDay_count(planer.getRange());
+		} else if(dayPlaner.getDay_count() < 1) {
+			dayPlaner.setDay_count(1);
+		}
+		
+		DayPlanerDto returnDayPlaner = new DayPlanerDto();
+		
+		//	target_planer_seq, day_count를 이용해 dayPlaner를 가져온다.
+		returnDayPlaner = planerService.getDayPlanerByTargetPlanerSeqAndDayCount(dayPlaner);
+		logger.info("PlanerContoller >>>>> after getDayPlanerByTargetPlanerSeqAndDayCount : {}", returnDayPlaner);
+		
+		if(returnDayPlaner == null) {
+			returnDayPlaner = planerService.addDayPlaner(dayPlaner);
+			logger.info("PlanerContoller >>>>> after addDayPlaner : {}", returnDayPlaner);
+		}			
+		
+		return returnDayPlaner;
 	}
 	
 
@@ -107,6 +131,28 @@ public class PlanerController {
 		List<PlanerDto> planlist = planerService.getplanList(seq);
 		model.addAttribute("planlist", planlist);
 		return "myplan.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="getTimePlaners.do", method=RequestMethod.GET)
+	public List<TimePlanerDto> getTimePlaners(DayPlanerDto dayPlaner) {
+		
+		logger.info("PlanerContoller >>>>>> getTimePlaner : {}", dayPlaner);
+		List<TimePlanerDto> timePlaners = planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlaner.getSeq()); 
+		return timePlaners;
+		
+		
+	}
+	@ResponseBody
+	@RequestMapping(value="addTimePlaner.do", method=RequestMethod.POST)
+	public TimePlanerDto addTimePlaner(TimePlanerDto timePlaner) {
+		
+		logger.info("PlanerContoller >>>>>> addTimePlaner : {}", timePlaner);
+		
+		//	add time planer
+		TimePlanerDto addedTimePlaner = planerService.addTimePlaner(timePlaner);
+
+		return addedTimePlaner;
 	}
 	
 	

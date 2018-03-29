@@ -75,14 +75,32 @@ footer p {
 
 .planer-info {
 	position: fixed;
+	z-index: -100;
 }
 
 @media (max-width: 768px){
 	.planer-info {
 		position: relative;
 	}
-	
+}
 
-
-
+.timePlanerContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%; 
+    height: 600px;	
+}
+.timePlanersList {
+    width: 100%;
+    padding: 5px;
+}
+.timePlaner {
+	border: 2px solid black;
+	font-size: 13px;
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+.timePlaner > ul {
+	margin-left: 0;
 }

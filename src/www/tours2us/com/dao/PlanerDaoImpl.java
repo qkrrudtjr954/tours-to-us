@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import www.tours2us.com.model.DayPlanerDto;
 import www.tours2us.com.model.PlanerDto;
+import www.tours2us.com.model.TimePlanerDto;
 
 @Repository
 public class PlanerDaoImpl implements PlanerDao{
@@ -38,6 +40,37 @@ public class PlanerDaoImpl implements PlanerDao{
 	public List<PlanerDto> getplanList(int seq) {
 		List<PlanerDto> list = new ArrayList<PlanerDto>();
 		return list = sqlSession.selectList(namespace+"getplanList", seq);
+	}
+
+	@Override
+	public DayPlanerDto getDayPlanerByTargetPlanerSeqAndDayCount(DayPlanerDto dayPlaner) {
+		return sqlSession.selectOne(namespace+"getDayPlanerByTargetPlanerSeqAndDayCount", dayPlaner);
+	}
+
+	@Override
+	public int addDayPlaner(DayPlanerDto dayPlaner) {
+		sqlSession.insert(namespace+"addDayPlaner", dayPlaner);
+		return dayPlaner.getSeq();
+	}
+
+	@Override
+	public DayPlanerDto getDayPlanerBySeq(int seq) {
+		return sqlSession.selectOne(namespace + "getDayPlanerBySeq", seq);
+	}
+
+	@Override
+	public int addTimePlaner(TimePlanerDto timePlaner) {
+		return sqlSession.insert(namespace+"addTimePlaner", timePlaner);
+	}
+
+	@Override
+	public TimePlanerDto getTimePlanerBySeq(int seq) {
+		return sqlSession.selectOne(namespace+"getTimePlaner", seq);
+	}
+
+	@Override
+	public List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq) {
+		return sqlSession.selectList(namespace+ "getAllTimePlanersByTargetDayPlanerSeq", seq);
 	}
 
 }

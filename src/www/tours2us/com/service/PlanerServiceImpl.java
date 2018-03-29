@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import www.tours2us.com.dao.PlanerDao;
 import www.tours2us.com.dao.TravelerDao;
 import www.tours2us.com.model.CoTravelerDto;
+import www.tours2us.com.model.DayPlanerDto;
 import www.tours2us.com.model.PlanerDto;
+import www.tours2us.com.model.TimePlanerDto;
 import www.tours2us.com.model.TravelerDto;
 
 @Service
@@ -47,6 +49,32 @@ public class PlanerServiceImpl implements PlanerService{
 	public List<PlanerDto> getplanList(int seq) {
 		// TODO Auto-generated method stub
 		return planerDao.getplanList(seq);
+	}
+
+
+	@Override
+	public DayPlanerDto getDayPlanerByTargetPlanerSeqAndDayCount(DayPlanerDto dayPlaner) {
+		return planerDao.getDayPlanerByTargetPlanerSeqAndDayCount(dayPlaner);
+	}
+
+
+	@Override
+	public DayPlanerDto addDayPlaner(DayPlanerDto dayPlaner) {
+		int seq = planerDao.addDayPlaner(dayPlaner);
+		return planerDao.getDayPlanerBySeq(seq);
+	}
+
+
+	@Override
+	public TimePlanerDto addTimePlaner(TimePlanerDto timePlaner) {
+		int seq = planerDao.addTimePlaner(timePlaner);
+		return planerDao.getTimePlanerBySeq(seq);
+	}
+
+
+	@Override
+	public List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq) {
+		return planerDao.getAllTimePlanersByTargetDayPlanerSeq(seq);
 	}
 
 }

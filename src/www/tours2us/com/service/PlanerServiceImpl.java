@@ -43,10 +43,6 @@ public class PlanerServiceImpl implements PlanerService{
 		return planerDao.getPlaner(seq);
 	}
 
-	@Override
-	public List<TravelerDto> getCoTraveler(int planer_seq) {
-		return travelDao.getCoTraveler(planer_seq);
-	}
 
 	public List<PlanerDto> getplanList(int seq) {
 		// TODO Auto-generated method stub

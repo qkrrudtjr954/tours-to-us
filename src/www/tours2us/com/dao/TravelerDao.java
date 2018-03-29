@@ -12,7 +12,7 @@ public interface TravelerDao {
 	boolean signup(TravelerDto dto) throws Exception;
 	TravelerDto getUserByEmail(String email);
 	List<TravelerDto> getTravelersByNamdOrEmail(String name);
-	List<TravelerDto> getCoTraveler(int planer_seq);
+	List<TravelerDto> getCoTravelers(int planer_seq);
 	TravelerDto getUserBySeq(int seq);
 	int addCoTraveler(CoTravelerDto coTravelerDto);
 	CoTravelerDto getCoTraveler(CoTravelerDto coTraveler);

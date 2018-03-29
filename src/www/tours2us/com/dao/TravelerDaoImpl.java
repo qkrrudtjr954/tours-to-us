@@ -50,8 +50,8 @@ public class TravelerDaoImpl implements TravelerDao{
 	}
 
 	@Override
-	public List<TravelerDto> getCoTraveler(int planer_seq) {
-		return sqlSession.selectList(ns + "getCoTraveler", planer_seq);
+	public List<TravelerDto> getCoTravelers(int planer_seq) {
+		return sqlSession.selectList(ns + "getCoTravelers", planer_seq);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class TravelerDaoImpl implements TravelerDao{
 
 	@Override
 	public CoTravelerDto getCoTraveler(CoTravelerDto coTraveler) {
-		return sqlSession.selectOne(ns+"checkCoTraveler", coTraveler);
+		return sqlSession.selectOne(ns+"getCoTraveler", coTraveler);
 	}
 
 	@Override

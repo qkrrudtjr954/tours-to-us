@@ -41,5 +41,6 @@
 	<definition name="myplan.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/myplan/myplan.jsp"/>
 	</definition>
+
 	
 </tiles-definitions>

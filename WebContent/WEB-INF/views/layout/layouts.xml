@@ -55,5 +55,10 @@
 	</definition>
 	
 	
+<!-- 가이드북 -->
+	<definition name="editor_essay.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/editor_essay.jsp"/>
+	</definition>
+	
 	
 </tiles-definitions>

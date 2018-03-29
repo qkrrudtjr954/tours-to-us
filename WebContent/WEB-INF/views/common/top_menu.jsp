@@ -134,7 +134,7 @@
   left: 0;
   top: 100%;
   width: 170px;
-  height: 200px;
+  height: 180px;
 }
 .navi ul li { float: none; }
 .navi ul li:hover { background: #fff; }
@@ -197,7 +197,7 @@
 										<li><span class="profilePhoto">
 												<img src="${current_user.profile }" alt="나의 프로필 사진">
 												<span class="cover"></span>
-											</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<span>${current_user.name }</span>님</li>							
 										<li class="dropdown-item"><a href="myplan.do" class="nav-link" title="나의플랜보기" >나의 플랜보기</a></li>
 										<li class="dropdown-item"><a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a></li>

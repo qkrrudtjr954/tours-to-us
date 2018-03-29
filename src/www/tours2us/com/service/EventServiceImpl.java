@@ -19,4 +19,10 @@ public class EventServiceImpl implements EventService {
 		// TODO Auto-generated method stub
 		return eventDao.getEventList();
 	}
+
+	@Override
+	public EventDto getEventDetail(int seq) {
+		// TODO Auto-generated method stub
+		return eventDao.getEventDetail(seq);
+	}
 }

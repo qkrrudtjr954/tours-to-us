@@ -7,4 +7,5 @@ import www.tours2us.com.model.EventDto;
 
 public interface EventDao {
 	List<EventDto> getEventList();
+	EventDto getEventDetail(int seq);
 }

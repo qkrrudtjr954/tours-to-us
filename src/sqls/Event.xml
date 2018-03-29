@@ -4,12 +4,14 @@
 <mapper namespace="Event">
 
 	<select id="getEventList" resultType="www.tours2us.com.model.EventDto">
-		SELECT * FROM EVENT
+		SELECT SEQ, CATEGORY, TITLE, CONTENT, FROM_DATE, TO_DATE, LAST_UPDATED, REG_DATE, STATUS
+		FROM EVENT
 		ORDER BY REG_DATE DESC
 	</select>
 	
-	<select id="getEventDetail" parameterType="int" resultType="www.tours2us.com.model.EventDto">
-		SELECT * FROM EVENT
+	<select id="getEventDetail" parameterType="java.lang.Integer" resultType="www.tours2us.com.model.EventDto">
+		SELECT SEQ, CATEGORY, TITLE, CONTENT, FROM_DATE, TO_DATE, LAST_UPDATED, REG_DATE, STATUS
+		FROM EVENT
 		WHERE SEQ=#{seq}
 	</select>
 </mapper>

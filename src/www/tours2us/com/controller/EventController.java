@@ -25,14 +25,14 @@ public class EventController {
 		logger.info("TravelerController >>>> event");
 		List<EventDto> eventlist = eventService.getEventList();
 		model.addAttribute("eventlist", eventlist);
-		System.out.println(eventlist.toString());
 		return "event.tiles";
 	}
 	
 	@RequestMapping(value="eventDetail.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String eventDetail(int seq, Model model)throws Exception {
 		logger.info("TravelerController >>>> event");
-		
+		EventDto eventDto = eventService.getEventDetail(seq);
+		model.addAttribute("e_dto", eventDto);
 		
 		return "eventDetail.tiles";
 	}

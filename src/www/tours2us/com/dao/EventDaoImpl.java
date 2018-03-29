@@ -26,4 +26,10 @@ Logger logger = LoggerFactory.getLogger(PlanerDaoImpl.class);
 		List<EventDto> list = new ArrayList<EventDto>();
 		return list = sqlSession.selectList(ns+"getEventList");
 	}
+
+	@Override
+	public EventDto getEventDetail(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ns="getEventDetail", seq);
+	}
 }

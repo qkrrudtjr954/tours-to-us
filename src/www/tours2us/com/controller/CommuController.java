@@ -30,7 +30,7 @@ public String afterBbs(Model model) throws Exception{
 	logger.info("CommuController >>>> afterbbslist");
 	List<CommuAfterBbsDto> list = commuService.getAfterBbslist();
 	
-	model.addAttribute("getAfterBbslist", list);
+	model.addAttribute("afterBbslist", list);
 	
 
 	return "afterBbs.tiles";

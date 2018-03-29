@@ -82,19 +82,7 @@ footer p {
 		position: relative;
 	}
 	
-.img_content{
-    position: relative;
-    background-image: url(image/join_img.png);                                                               
-    height: 100%;
-    background-size: cover;
-}
 
-.img-cover{
-   position: absolute;
-   height: 100%;
-   width: 100%;                                                             
-   z-index:1;
-}
 
 
 }

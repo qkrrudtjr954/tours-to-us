@@ -1,17 +1,46 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<style>
+.img{
+    position: relative;
+    background-image: url(./image/join_img.png);
+    width: 50hv;                                                             
+    background-size: cover;
+    }
+ .img-cover{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0);                                                                 
+   z-index:1;
+
+ 
+ 
+}
+.img .img_content{
+     position: absolute;
+     top:50%;
+     left:50%;
+     transform: translate(-50%, -50%);                                                                   
+     font-size:5rem;
+     color: white;
+     z-index: 2;
+     text-align: center;
+}
+
+
+</style>
 <div class="row">
 <div class="offset-md-3 col-md-6 order-md-1">
 	<br>
-	<div class="img">
+	<div class="img" width="100%">
         <div class="img_content">
             <h1>Welcome!</h1>
 			<h3>Tours to us에 오신 것을 환영합니다. </h3>
         </div>
         <div class="img-cover"></div>
     </div>
-    
-		
-				<br>
+  <br>
 
        <div class="join_terms">
           <!--이용약관 테이블 시작-->

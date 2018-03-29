@@ -13,9 +13,23 @@ public class CommuAfterBbsDto implements Serializable {
 	private String last_updated;
 	private int status;
 	
+	public CommuAfterBbsDto() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	
+	
+	public CommuAfterBbsDto(int target_user_seq, String title, String content) {
+		super();
+		this.target_user_seq = target_user_seq;
+		this.title = title;
+		this.content = content;
+	}
+
+
+
+
 	public CommuAfterBbsDto(int seq, int target_planer_seq, int target_user_seq, String title, String content,
 			String reg_date, String last_updated, int status) {
 		super();

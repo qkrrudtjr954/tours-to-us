@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	<title>${doc_title }</title>
 </head>
@@ -30,6 +31,13 @@
 <footer class="text-muted">
 	<tiles:insertAttribute name="footer"/>
 </footer>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+feather.replace();
+</script>
+
 
 </body>
 </html>

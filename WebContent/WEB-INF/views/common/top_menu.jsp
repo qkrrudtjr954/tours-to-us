@@ -74,10 +74,11 @@
 	
 	.dropdown-item {
 		padding: 5px;
+		margin: 9px auto;
 	}
 	.dropdown-item a{
 		color: #7DC3BB;
-		padding: 25px;
+		margin: 5px;
 	}
 	
 	
@@ -102,20 +103,9 @@
 			</c:when>
 			<c:otherwise>
 				<div class="col-4 d-flex justify-content-end align-items-center user-action">
-				<a class="btn btn-sm" href="signout.do">로그아웃</a>
-				<a class="btn btn-sm" href="#">마이페이지</a>
-				<!-- <ul>
-					<li><a class="btn btn-sm" href="#">마이페이지</a>
-					<div class="selectMypage" style="display: block;">
-						<ul>
-							<li><a href="#">MY플랜</a></li>
-							<li><a class="btn btn-sm" href="#">회원정보관리</a></li>
-						</ul>
-					</div>
-					</li>
-				</ul> -->
-				
-			</div>
+					<a class="btn btn-sm" href="signout.do">로그아웃</a>
+					<a class="btn btn-sm" href="mypage.do">마이페이지</a>				
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -131,8 +121,7 @@
 			<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">여행 계획</a>
 			<ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="planer.do">계획 만들기</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+				<li class="dropdown-item"><a href="myplan.do">계획 보기</a></li>
 			</ul>
 		</li>
 		<li class="dropdown">
@@ -174,8 +163,3 @@
 
 
 
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-feather.replace();
-</script>

@@ -1,6 +1,8 @@
 package www.tours2us.com.model;
 
-public class PlanerDto {
+import java.io.Serializable;
+
+public class PlanerDto implements Serializable {
 
 	private int seq;
 	private int target_user_seq;

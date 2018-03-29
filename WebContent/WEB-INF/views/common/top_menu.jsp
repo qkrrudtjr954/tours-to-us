@@ -246,7 +246,7 @@
 		<li class="dropdown">
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">호텔</a>
 	         <ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
+				<li class="dropdown-item"><a href="hotelPrice.do">호텔 최저가</a></li>
 				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
 				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
 			</ul>

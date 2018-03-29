@@ -5,16 +5,11 @@
 
 <fmt:requestEncoding value="utf-8"/>   
 
-<div class="menu_table">
-	<ul style="width: 100%;">	
-		<li class="title">답변형게시판</li>
-		<li class="subtitle">답변형게시판</li>	
-		<li class="menu_item">
-			<a href="#none" onclick="url_bbslist()" title="글목록">글목록</a>
-		</li>
-		<li class="menu_item">
-			<a href="#none" onclick="url_bbswrite()" title="글쓰기">글쓰기</a>
-		</li>
-	
-	</ul>
+<div class="planer-info">
+	<div class="col-md-2 col-xs-12">
+		<p>
+			가이드
+			<hr>
+		</p>
+	</div>
 </div>

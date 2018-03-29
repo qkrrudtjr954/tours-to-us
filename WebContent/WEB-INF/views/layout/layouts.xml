@@ -60,5 +60,9 @@
 		<put-attribute name="main" value="/WEB-INF/views/guide/editor_essay.jsp"/>
 	</definition>
 	
+	<!-- 호텔최저가 -->
+	<definition name="hotelPrice.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/hotel/hotelPrice.jsp"/>
+	</definition>
 	
 </tiles-definitions>

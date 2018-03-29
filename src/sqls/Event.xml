@@ -3,4 +3,7 @@
 
 <mapper namespace="Event">
 
+	<select id="getEventList" resultType="www.tours2us.com.model">
+		SELECT * FROM EVENT
+	</select>
 </mapper>

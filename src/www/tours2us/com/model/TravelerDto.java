@@ -21,36 +21,10 @@ public class TravelerDto implements Serializable {
 	}
 
 	
-	public TravelerDto(String email, String password, String name, String profile, String like1, String like2,
-			String like3) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.profile = profile;
-		this.like1 = like1;
-		this.like2 = like2;
-		this.like3 = like3;
-	}
 
 
-	public TravelerDto(int seq, String email, String password, String name, String reg_date, String last_updated,
-			int author, String profile, String like1, String like2, String like3) {
-		super();
-		this.seq = seq;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.reg_date = reg_date;
-		this.last_updated = last_updated;
-		this.author = author;
-		this.profile = profile;
-		this.like1 = like1;
-		this.like2 = like2;
-		this.like3 = like3;
-	}
+
 	
-
 	public TravelerDto(int seq, String email, String password, String name, String reg_date, String last_updated,
 			int author, String profile, String like1, String like2, String like3) {
 		super();
@@ -66,6 +40,11 @@ public class TravelerDto implements Serializable {
 		this.like2 = like2;
 		this.like3 = like3;
 	}
+
+
+
+
+
 
 	public int getSeq() {
 		return seq;

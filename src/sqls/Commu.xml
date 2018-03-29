@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Commu">
+
+<select id="AfterBbslist" resultType="www.tours2us.com.model.CommuAfterBbsDto">
+		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
+      FROM AFTERBBS A, TRAVELER B
+      WHERE A.TARGET_USER_SEQ = B.SEQ
+      ORDER BY A.REG_DATE DESC    
+</select>
+
+<insert id="AfterWrite" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
+		INSERT INTO AFTERBBS
+		(SEQ,TARGET_PLANER_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(AFTERBBS_SEQ.NEXTVAL,72,41,#{title},#{content},SYSDATE,SYSDATE,0)
+		
+	</insert>
+
+
+
+	
+
+
+
+
+</mapper>

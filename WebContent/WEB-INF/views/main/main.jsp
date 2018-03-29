@@ -19,6 +19,7 @@
 	</div>
 </section>
 
+<%-- <img src="${initParam.IMG_SERVER_PATH }/image/${current_user.profile }" width="50" height="50"> --%>
 <div class="album py-5 bg-light">
 	<div class="container">
 		<div class="row">

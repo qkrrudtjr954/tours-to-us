@@ -81,7 +81,86 @@
 		margin: 5px;
 	}
 	
-	
+	.myInfo li {
+    position: relative;
+    float: left;
+    display: inline-block;
+    padding: 0 9px;
+    background: url(//img.tourtips.com/images/cm/bg_myInfo.gif) left center no-repeat;
+}
+
+.myInfo .selectMypage ul li {
+    float: none;
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    clear: both;
+}	
+
+.myInfo .selectMypage {
+    display: none;
+    z-index: 100;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right:: 20px;
+    width: 180px;
+    height: 100px;
+    background: #FFF;
+    border: 1px solid #898989;
+}
+.navi { margin: 0; padding: 0; }
+.navi li {
+  float: left;
+  list-style:none;
+  position: relative;
+	color: #7DC3BB;
+}
+
+.navi a {
+  color: #7DC3BB;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.navi ul {
+  background: #fff;
+  border: 1px solid silver;
+  display: none;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 170px;
+  height: 180px;
+}
+.navi ul li { float: none; }
+.navi ul li:hover { background: #fff; }
+.navi ul li:hover a { color: #fff; }
+.navi ul a { color: #7DC3BB; }
+.navi ul ul { left: 100%; top: 0; }
+
+.profilePhoto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 30px;
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+}
+.profilePhoto .cover {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 34px;
+    height: 34px;
+    background: url(//img.tourtips.com/images/cm/bg_profilePhoto.png);
+}
 </style>
 
 <header class="blog-header py-3">
@@ -97,18 +176,42 @@
 		<c:choose>
 			<c:when test="${current_user == null }">
 			<div class="col-4 d-flex justify-content-end align-items-center user-action">
-				<a class="btn btn-sm" href="signin.do">로그인</a>
-				<a class="btn btn-sm" href="signup.do">회원 가입</a>
+				
+					<ul class="navi">
+					<li><a class="btn btn-sm" href="signin.do">로그인</a></li>
+					<li><a class="btn btn-sm" href="signup.do">회원 가입</a></li>
+					</ul>	
+					
 			</div>
 			</c:when>
 			<c:otherwise>
 				<div class="col-4 d-flex justify-content-end align-items-center user-action">
-					<a class="btn btn-sm" href="signout.do">로그아웃</a>
-					<a class="btn btn-sm" href="mypage.do">마이페이지</a>				
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
+					<!-- <a class="btn btn-sm" href="signout.do">로그아웃</a>
+					<a class="btn btn-sm" href="mypage.do">마이페이지</a>	 -->
+						<%-- <p><span>${current_user.name }</span>님</p> --%>
+						<ul class="navi">	
+							<li><a class="btn btn-sm" href="signout.do">로그아웃</a></li>
+							<li class="dropdown">							
+								<a class="nav-link" data-toggle="dropdown" href="#">마이페이지</a>
+									<ul class="dropdown-menu">		
+										<li><span class="profilePhoto">
+												<img src="${current_user.profile }" alt="나의 프로필 사진">
+												<span class="cover"></span>
+											</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<span>${current_user.name }</span>님</li>							
+										<li class="dropdown-item"><a href="myplan.do" class="nav-link" title="나의플랜보기" >나의 플랜보기</a></li>
+										<li class="dropdown-item"><a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a></li>
+									</ul>				
+							</li>
+						</ul>
+						<!-- <span class="profilePhoto">
+							<img src="./image/planer.jpg" alt="나의 프로필 사진">
+							<span class="cover"></span>
+						</span>  -->
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
 </header>
 
 <nav class="navbar navbar-expand-lg top-menu-nav" id="nav">
@@ -135,8 +238,8 @@
 		<li class="dropdown">
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">커뮤니티</a>
 	         <ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
+				<li class="dropdown-item"><a href="afterBbs.do">여행후기</a></li>
+				<li class="dropdown-item"><a href="#">자유게시판</a></li>
 				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
 			</ul>
        	</li>
@@ -159,7 +262,6 @@
     </ul>
   </div>
 </nav>
-
 
 
 

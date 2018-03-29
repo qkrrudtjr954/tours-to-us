@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.TravelerDto;
+import www.tours2us.com.model.TravelerinfoDto;
 import www.tours2us.com.service.TravelerService;
 
 @Controller
@@ -63,18 +64,46 @@ public class TravelerController {
 	}
 
 	@RequestMapping(value="signup1step.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String signup(Model model, TravelerDto dto) throws Exception{
+	public String signup(TravelerDto dto, String[] choice, Model model) throws Exception{
 
-		logger.info("TravelerController >>>> signup1step");
-		System.out.println(dto.toString());
-
-		boolean isS = travelerService.signup(dto);
-
-		if(isS) {
-			System.out.println("성공");
+		logger.info("TravelerController >>>> signup1step {} {}", dto);
+//		String email = req.getParameter("email");
+//		String name = req.getParameter("name");
+//		String password = req.getParameter("password");
+//		String profile= req.getParameter("profile");		
+//
+//		String choice[] = req.getParameterValues("choice");
+		System.out.println(choice);
+		if(choice==null) {
+			dto.setLike1("선택 안함");
+			dto.setLike2("선택 안함");
+			dto.setLike3("선택 안함");
+		}else if(choice.length == 1) {
+			dto.setLike1(choice[0]);
+			dto.setLike2("선택 안함");
+			dto.setLike3("선택 안함");
+		}else if(choice.length == 2) {
+			dto.setLike1(choice[0]);
+			dto.setLike2(choice[1]);
+			dto.setLike3("선택 안함");
+		}else if(choice.length == 3) {
+			dto.setLike1(choice[0]);
+			dto.setLike2(choice[1]);
+			dto.setLike3(choice[2]);
+		}
+		
+	
+	/*	dto.setLike2(choice[1]);
+		dto.setLike3(choice[2]);
+	*/
+		
+		boolean isS =travelerService.signup(dto);
+		
+		if(!isS) {
+			System.out.println("추가 실패");
 		}
 
-		return "signup.tiles";
+		return "redirect:/signin.do";
 
 	}
 
@@ -194,11 +223,11 @@ public class TravelerController {
 
 	}
 
+
 	@ResponseBody
 	@RequestMapping(value="deleteFriend.do", method=RequestMethod.POST)
 	public void deleteFriend(CoTravelerDto coTraveler){
 		travelerService.deleteCoTraveler(coTraveler);
 	}
-
 
 }

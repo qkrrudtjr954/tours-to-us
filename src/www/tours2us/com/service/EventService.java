@@ -1,5 +1,9 @@
 package www.tours2us.com.service;
 
-public interface EventService {
+import java.util.List;
 
+import www.tours2us.com.model.EventDto;
+
+public interface EventService {
+	public List<EventDto> getEventList();
 }

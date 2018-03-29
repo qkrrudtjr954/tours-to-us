@@ -3,7 +3,13 @@
 
 <mapper namespace="Event">
 
-	<select id="getEventList" resultType="www.tours2us.com.model">
+	<select id="getEventList" resultType="www.tours2us.com.model.EventDto">
 		SELECT * FROM EVENT
+		ORDER BY REG_DATE DESC
+	</select>
+	
+	<select id="getEventDetail" parameterType="int" resultType="www.tours2us.com.model.EventDto">
+		SELECT * FROM EVENT
+		WHERE SEQ=#{seq}
 	</select>
 </mapper>

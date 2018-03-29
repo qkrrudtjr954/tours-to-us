@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class EventDto implements Serializable {
 	private int seq;
+	private String category;
 	private String title;
 	private String content;
 	private String from_date;
@@ -16,10 +17,11 @@ public class EventDto implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EventDto(int seq, String title, String content, String from_date, String to_date, String last_dated,
-			String reg_date, int status) {
+	public EventDto(int seq, String category, String title, String content, String from_date, String to_date,
+			String last_dated, String reg_date, int status) {
 		super();
 		this.seq = seq;
+		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.from_date = from_date;
@@ -35,6 +37,14 @@ public class EventDto implements Serializable {
 
 	public void setSeq(int seq) {
 		this.seq = seq;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getTitle() {
@@ -95,10 +105,10 @@ public class EventDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EventDto [seq=" + seq + ", title=" + title + ", content=" + content + ", from_date=" + from_date
-				+ ", to_date=" + to_date + ", last_dated=" + last_dated + ", reg_date=" + reg_date + ", status="
-				+ status + "]";
+		return "EventDto [seq=" + seq + ", category=" + category + ", title=" + title + ", content=" + content
+				+ ", from_date=" + from_date + ", to_date=" + to_date + ", last_dated=" + last_dated + ", reg_date="
+				+ reg_date + ", status=" + status + "]";
 	}
-	
+
 	
 }

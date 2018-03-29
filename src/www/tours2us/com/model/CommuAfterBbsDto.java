@@ -32,6 +32,19 @@ public class CommuAfterBbsDto implements Serializable {
 		this.name = name;
 	}
 
+	public CommuAfterBbsDto(int seq, int target_planer_seq, int target_user_seq, String title, String content,
+			String reg_date, String last_updated, int status) {
+		super();
+		this.seq = seq;
+		this.target_planer_seq = target_planer_seq;
+		this.target_user_seq = target_user_seq;
+		this.title = title;
+		this.content = content;
+		this.reg_date = reg_date;
+		this.last_updated = last_updated;
+		this.status = status;
+	}
+
 	public int getSeq() {
 		return seq;
 	}

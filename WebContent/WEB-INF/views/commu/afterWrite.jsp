@@ -17,6 +17,7 @@
 	<hr>
 </div>
 <form action="afterWriteAf.do">
+<input type="hidden" name="target_planer_seq" value="${seq }">
 <div class="row">
 	<div class=" offset-md-3 col-md-6 write-form">
 		<div class="input-group-prepend">

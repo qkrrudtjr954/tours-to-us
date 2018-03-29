@@ -44,6 +44,7 @@
 						<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
 						<br>
 						<span><a href="#none">${plan.title }</a></span>
+						<a href="afterWrite.do?seq=${plan.seq }" class="offset-md-9 btn btn-primary">후기쓰기</a>
 					</div>
 				</div>
 			</c:forEach>

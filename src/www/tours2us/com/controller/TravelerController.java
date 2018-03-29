@@ -64,21 +64,38 @@ public class TravelerController {
 	}
 
 	@RequestMapping(value="signup1step.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String signup(HttpServletRequest req,  Model model) throws Exception{
+	public String signup(TravelerDto dto, String[] choice, Model model) throws Exception{
 
-		logger.info("TravelerController >>>> signup1step");
-		String email = req.getParameter("email");
-		String name = req.getParameter("name");
-		String password = req.getParameter("password");
-		String profile= req.getParameter("profile");		
-
-		String choice[] = req.getParameterValues("choice");
-		String like1= choice[0];
-		String like2= choice[1];
-		String like3= choice[2];
+		logger.info("TravelerController >>>> signup1step {} {}", dto);
+//		String email = req.getParameter("email");
+//		String name = req.getParameter("name");
+//		String password = req.getParameter("password");
+//		String profile= req.getParameter("profile");		
+//
+//		String choice[] = req.getParameterValues("choice");
+		System.out.println(choice);
+		if(choice==null) {
+			dto.setLike1("선택 안함");
+			dto.setLike2("선택 안함");
+			dto.setLike3("선택 안함");
+		}else if(choice.length == 1) {
+			dto.setLike1(choice[0]);
+			dto.setLike2("선택 안함");
+			dto.setLike3("선택 안함");
+		}else if(choice.length == 2) {
+			dto.setLike1(choice[0]);
+			dto.setLike2(choice[1]);
+			dto.setLike3("선택 안함");
+		}else if(choice.length == 3) {
+			dto.setLike1(choice[0]);
+			dto.setLike2(choice[1]);
+			dto.setLike3(choice[2]);
+		}
 		
-		TravelerDto dto = new TravelerDto(email, password, name, profile, like1, like2, like3);
-		System.out.println(dto.toString());
+	
+	/*	dto.setLike2(choice[1]);
+		dto.setLike3(choice[2]);
+	*/
 		
 		boolean isS =travelerService.signup(dto);
 		

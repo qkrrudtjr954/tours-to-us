@@ -1,45 +1,12 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<style>
-.img{
-    position: relative;
-    background-image: url(./image/join_img.png);
-    width: 50hv;                                                             
-    background-size: cover;
-    }
- .img-cover{
-   position: absolute;
-   height: 100%;
-   width: 100%;
-   background-color: rgba(0, 0, 0, 0);                                                                 
-   z-index:1;
-
- 
- 
-}
-.img .img_content{
-     position: absolute;
-     top:50%;
-     left:50%;
-     transform: translate(-50%, -50%);                                                                   
-     font-size:5rem;
-     color: white;
-     z-index: 2;
-     text-align: center;
-}
-
-
-</style>
 <div class="row">
 <div class="offset-md-3 col-md-6 order-md-1">
 	<br>
-	<div class="img" width="100%">
-        <div class="img_content">
+	<img src="image/img">
             <h1>Welcome!</h1>
 			<h3>Tours to us에 오신 것을 환영합니다. </h3>
-        </div>
-        <div class="img-cover"></div>
-    </div>
+       
   <br>
 
        <div class="join_terms">
@@ -127,11 +94,10 @@
 					</div>
 					
 					<div class="mb-3">
-						<label for="profile" >profile*</label> 
-						<input type="file" class="form-control" name="profile" id="profile" required>
-						<br>
-						<img id="blah" src="image/no-img.png" alt="your image"  width="300px"/>
-						
+						<label for="profile" >profile*</label>
+						<input type="file" class="form-control" id="user_profile">
+						<input type="hidden" class="form-control" id="user_profile" name="profile" value="no-img.png">
+						<img alt="test" src="${pageContext.request.contextPath }/image/no-img.png" class="circle" id="user_image"  width="300px">
 					</div>
 
 								
@@ -185,8 +151,37 @@
 		
 			</div>
 		</div>
-		
-		<script>
+
+		<script type="text/javascript">
+
+$('#user_profile').change(function () {
+	sendFile(this.files[0]);
+});
+
+
+function sendFile(file, dom) {
+	   formdata = new FormData();
+	   formdata.append("userImage", file);
+
+	   $.ajax({
+	      data: formdata,
+	      type: "POST",
+	      url: '${initParam.IMG_SERVER_PATH}/upload',
+	      cache: false,
+	      contentType: false,
+	      processData: false,
+	      success: function(data) {
+	         console.log(data);
+	         var filename = data.filename;
+			
+	         $('input[name="profile"]').val(filename);
+	         
+	         $('#user_image').attr('src', '${initParam.IMG_SERVER_PATH}/image/'+filename);
+	        
+			}
+	   });
+	}
+
 		
 			$('#btn_enter').on('click', function () {
 			
@@ -201,13 +196,13 @@
 				  			
 			});
 		
-        function hangul()	{
+/*         function hangul()	{
 		if((event.keyCode < 12592) || (event.keyCode > 12687))
 		event.returnValue = false
 		alert("한글을 입력해주세요");
 		}	
 		
-		
+		 */
 				
 			$(document).ready(function () {
 				$(".join_terms").css("display", "block");
@@ -253,7 +248,7 @@
 					
 
 			
-	 $(function() {
+	/*  $(function() {
             $("#profile").on('change', function(){
                 readURL(this);
             });
@@ -270,7 +265,7 @@
               reader.readAsDataURL(input.files[0]);
             }
         }
-
+ */
 
 
 
@@ -328,7 +323,7 @@
 	         $('#profile').focus();
 	      }
 	      else{
-	         $("#signUpForm").attr({"target":"_self", "action":"signup1step.do.do"}).submit();
+	         $("#signUpForm").attr({"target":"_self", "action":"signup1step.do"}).submit();
 	      }
 	});
 

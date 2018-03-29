@@ -15,5 +15,8 @@
 		</selectKey>
 	</insert>
 
+	<select id="getplanList" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT * FROM PLANER WHERE TARGET_USER_SEQ=#{SEQ} ORDER BY REG_DATE DESC
+	</select>
 
 </mapper>

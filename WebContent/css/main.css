@@ -71,3 +71,14 @@ footer p {
 	width: 100%;
     display: inline-table;
 }
+
+
+.planer-info {
+	position: fixed;
+}
+
+@media (max-width: 768px){
+	.planer-info {
+		position: relative;
+	}
+}

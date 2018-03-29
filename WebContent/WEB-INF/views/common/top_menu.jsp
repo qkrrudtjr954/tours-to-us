@@ -121,8 +121,7 @@
 			<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">여행 계획</a>
 			<ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="planer.do">계획 만들기</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+				<li class="dropdown-item"><a href="myplan.do">계획 보기</a></li>
 			</ul>
 		</li>
 		<li class="dropdown">

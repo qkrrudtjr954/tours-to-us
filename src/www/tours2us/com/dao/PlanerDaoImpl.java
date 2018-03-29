@@ -1,5 +1,8 @@
 package www.tours2us.com.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +32,12 @@ public class PlanerDaoImpl implements PlanerDao{
 	@Override
 	public PlanerDto getPlaner(int seq) {
 		return sqlSession.selectOne(namespace + "getPlaner", seq);
+	}
+
+	@Override
+	public List<PlanerDto> getplanList(int seq) {
+		List<PlanerDto> list = new ArrayList<PlanerDto>();
+		return list = sqlSession.selectList(namespace+"getplanList", seq);
 	}
 
 }

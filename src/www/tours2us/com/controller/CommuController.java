@@ -43,7 +43,6 @@ public String afterBbs(Model model) throws Exception{
 @RequestMapping(value = "afterWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})
 public String afterbbswrite(Model model) {
 	logger.info("CommuController >>>> afterWrite");	
-	
 return "afterWrite.tiles";
 
 }
@@ -53,6 +52,7 @@ return "afterWrite.tiles";
 method = RequestMethod.GET)
 public String bbswriteAf(CommuAfterBbsDto bbs, Model model) throws Exception {
 if(bbs.getContent().equals("") || bbs.getTitle().equals("")){
+	
 return "afterWrite.tiles";
 }
 logger.info("CommuController >>>> bbswriteAf");	

@@ -64,18 +64,29 @@ public class TravelerController {
 	}
 
 	@RequestMapping(value="signup1step.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String signup(Model model, TravelerDto dto) throws Exception{
+	public String signup(HttpServletRequest req,  Model model) throws Exception{
 
 		logger.info("TravelerController >>>> signup1step");
+		String email = req.getParameter("email");
+		String name = req.getParameter("name");
+		String password = req.getParameter("password");
+		String profile= req.getParameter("profile");		
+
+		String choice[] = req.getParameterValues("choice");
+		String like1= choice[0];
+		String like2= choice[1];
+		String like3= choice[2];
+		
+		TravelerDto dto = new TravelerDto(email, password, name, profile, like1, like2, like3);
 		System.out.println(dto.toString());
-
-		boolean isS = travelerService.signup(dto);
-
-		if(isS) {
-			System.out.println("성공");
+		
+		boolean isS =travelerService.signup(dto);
+		
+		if(!isS) {
+			System.out.println("추가 실패");
 		}
 
-		return "signup.tiles";
+		return "redirect:/signin.do";
 
 	}
 
@@ -195,20 +206,7 @@ public class TravelerController {
 
 	}
 
-	@ResponseBody
-	@RequestMapping(value="signup2step.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String signup2(HttpServletRequest req, Model model) throws Exception{
 
-		logger.info("TravelerController >>>> signup2step");
-
-		String checkboxValues[] = req.getParameterValues("checkboxValues");
-		System.out.println(checkboxValues);
-
-		 //TravelerinfoDto inTravelerinfoDto = new TravelerinfoDto(dispositon1, dispositon2, dispositon3);
-
-		return "signup.tiles";
-
-	}
 	@ResponseBody
 	@RequestMapping(value="deleteFriend.do", method=RequestMethod.POST)
 	public void deleteFriend(CoTravelerDto coTraveler){

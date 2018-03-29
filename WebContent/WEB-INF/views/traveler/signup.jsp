@@ -1,12 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="row">
+<div class="offset-md-3 col-md-6 order-md-1">
+	<br>
+	<div class="img">
+        <div class="img_content">
+            <h1>Welcome!</h1>
+			<h3>Tours to us에 오신 것을 환영합니다. </h3>
+        </div>
+        <div class="img-cover"></div>
+    </div>
+    
+		
+				<br>
 
-	<br><br><br><br>
-	<div class="row">
-			<div class="offset-md-3 col-md-6 order-md-1">
+       <div class="join_terms">
+          <!--이용약관 테이블 시작-->
+          <table width=810>
+            <tr>
+              <td>
+                <div>
+                 <font color="#7DC3BB" size=4>01</font> <font size=3>이용약관</font>
+                </div>
+             </td>
+           </tr>
+           <tr>
+             <td align=center>
+               <textarea name="tos" id ="join01" rows=15 cols=100 readonly="readonly"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                &nbsp;&nbsp;<input type="checkbox" class="check">이용약관에 동의합니다.<br><br><br><br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                 <font color="#7DC3BB" size=4>02</font> <font size=3>개인정보 수집 및 이용에 대한 안내</font>
+                </div>
+             </td>
+           </tr>
+           <tr>
+             <td align=center>
+               <textarea name="tos" rows=15 cols=100 id="join02" readonly="readonly">
+               
+                  </textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                &nbsp;&nbsp;<input type="checkbox" class="check">개인정보 수집 및 이용에 대한 안내에 동의합니다.
+              </td>
+            </tr>
+          </table>
+          <br><br>
+          <div class="offset-md-5">
+		<button id="btn_enter">회원가입</button>
+		<button id="btn_back">돌아가기</button>
+		</div>
+			<br><br>
+	</div>
+               
+               
+               
+               
+				
 				<div id="step1view">
 				<form class="needs-validation" id="signUpForm" action="" method="GET" novalidate>										
 					<div class="mb-3">
-						<label for="email">Email</label> 
+					<p><font color="#7DC3BB" size=4>필수 입력 사항</font></p>
+						<label for="email">Email*</label> 
 							<input type="email" class="form-control success" name="email" id="email" placeholder="you@example.com">
 						<div class="invalid-feedback">이메일을 입력해주세요.</div>
 						<div class="invalid-email"></div>
@@ -14,7 +77,7 @@
 					</div>
 					
 					<div class="mb-3">
-						<label for="name">Name</label> 
+						<label for="name">Name*</label> 
 							<input type="text" class="form-control success" name="name" id="name" placeholder="이름을 입력해주세요" onkeypress="hangul();">
 						<div class="invalid-feedback">이름을 입력해주세요.</div>
 					
@@ -22,18 +85,46 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="password">Password</label> 
+						<label for="password">Password*</label> 
 						<input type="password" class="form-control" name="password" id="password" required>
 						<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="password">Password <span style="font-size: 12px;">(Confirm)</span></label> 
+						<label for="password">Password* <span style="font-size: 12px;">(Confirm)</span></label> 
 						<input type="password" class="form-control" name="password2" id="password2" required>
 						<div class="invalid-feedback">비밀번호를 확인해주세요.</div>
 						<div class="invalid-password"></div>
 					</div>
+					
+					<div class="mb-3">
+						<label for="profile" >profile*</label> 
+						<input type="file" class="form-control" name="profile" id="profile" required>
+						<br>
+						<img id="blah" src="image/no-img.png" alt="your image"  width="300px"/>
+						
+					</div>
 
+								
+					<hr class="mb-4">
+					<p><font color="#7DC3BB" size=4>선택 입력 사항</font></p>
+					회원님의 여행 타입은? (3개 선택)<br><br>
+				
+				
+				<div class="user_choice" style="background-color: green; width: 80%; height: 200px;">
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="aaa">aaa	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="bbb">bbb	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ccc">ccc
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
+				</div>
+				
 					<hr class="mb-4">
 					
 					<div class="custom-control custom-checkbox">
@@ -49,44 +140,15 @@
 						</label>
 					</div>
 					
-					<hr class="mb-4">
-					<div class="offset-md-11">
-					<button type="button" id="step1" style="background: url(next_button.png) no-repeat;  border: none;  outline: none;"><img src="image/next_button.png" width="50"></button>
-					<!-- <a href="#none" id="_btnRegi" title="회원가입">
-					<img src="image/next_button.png" width="50"></a> -->
-					</div>
-				</form>
+					
+				<div class="offset-md-11">
+				<button type="button" id="btn_join" style="background: url(next_button.png) no-repeat;  border: none;  outline: none;">
+				<img src="image/next_button.png" width="100px">
+				</button>
 				</div>
+				</form>
 				
 			
-				<img src="image/map.png" width="100%">
-				<h1>Welcome!</h1>
-				<h3>Tours to us에 오신 것을 환영합니다. </h3>
-				<br>
-				<div id="step2view">
-				당신의 성향은? <br><br>
-				
-				
-				
-				<form id="step2Form" action="" method="GET" novalidate>
-				<div class="user_choice" style="background-color: green; width: 80%; height: 200px;">
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="aaa">aaa	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="bbb">bbb	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ccc">ccc
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-						<input type="checkbox" onclick=CountChecked(this) id ="choice" name="choice" value="ddd">ddd	
-				</div>
-				<div class="offset-md-11">
-				<button type="button" id="step2" style="background: url(next_button.png) no-repeat;  border: none;  outline: none;"><img src="image/next_button.png" width="50"></button>		
-				</div>
-				</form>
-				
 				                
 		
 				</div>
@@ -97,20 +159,36 @@
 		
 		<script>
 		
-/* 		function hangul()	{
+			$('#btn_enter').on('click', function () {
+			
+				if ($('input.check').is(':checked')==false) {
+				alert("모든 약관에 동의해주세요");
+					return;
+				}else{
+								
+					$(".join_terms").css("display", "none");
+					$("#step1view").css("display", "block");
+				}
+				  			
+			});
+		
+        function hangul()	{
 		if((event.keyCode < 12592) || (event.keyCode > 12687))
 		event.returnValue = false
 		alert("한글을 입력해주세요");
-		}	   */
+		}	
 		
 		
 				
 			$(document).ready(function () {
+				$(".join_terms").css("display", "block");
+				$("#step1view").css("display", "none");
+
+               	 $("#join01").load("text/join01.txt");
+               	 $("#join02").load("text/join02.txt");
 				
-				$("#step1view").css("display", "block");
-				$("#step2view").css("display", "none");	
-				
-				
+
+					
 				$('#email').keyup(function () {
 					$.ajax({
 		  				url : 'checkEmail.do',
@@ -143,79 +221,31 @@
 					}	
 				});
 			});
-		
-			$('#step1').on('click', function () {
-				$.ajax({
-					url : 'signup1step.do',
-	  				data : { email: $('#email').val(), name: $('#name').val(), password:$('#password').val() },
-	  				type : 'GET',
-	  				success : function (data) {
-	  					$("#step1view").css("display", "none");
-	  					$("#step2view").css("display", "block");	
-	  				}
-				})
-			});
+					
+
 			
-			$('#step2').on('click', function () {
-				
-				var checkboxValues = [];
-			    $("input[name='choice']:checked").each(function(i) {
-			        checkboxValues.push($(this).val());
-			        console.log(checkboxValues);
-			    });  			  
-			    
-			    $.ajax({
-					url : 'signup2step.do',
-	  				data : checkboxValues,
-	  				type : 'GET',
-	  				success : function (data) {
-	  					$("#step1view").css("display", "none");
-	  					$("#step2view").css("display", "block");	
-	  				}
-				}) 
-			
-			});
-			
-			  /*   
-			$.ajax({
-				url : 'signup2step.do',
-  				data : checkboxValues,
-  				type : 'GET',
-  				success : function (data) {
-  					$("#step1view").css("display", "none");
-  					$("#step2view").css("display", "block");	
-  				}
-			}) */
-			
-			
-			
-			
-	/* 		// 사용자 ID를 갖고 온다.
-		    var checkedItem = $("#choice").val(); 
-		    // name이 같은 체크박스의 값들을 배열에 담는다.
-		    var checkboxValues = [];
-		    $("input[name='choice']:checked").each(function(i) {
-		        checkboxValues.push($(this).val());
-		    });
-		     
-		    // 사용자 ID(문자열)와 체크박스 값들(배열)을 name/value 형태로 담는다.
-		   //  var allData = { "userId": userId,  "checkArray": checkboxValues }; 
-		    var allData = { "userId": userId,  "checkArray": checkboxValues };
-		     
-		    $.ajax({
-		        url:"signup2step.do",
-		        type:'GET',
-		        data: allData,
-		        success:function(data){
-		        	$("#step1view").css("display", "none");
-  					$("#step2view").css("display", "none");	
-  					//$("#step3view").css("display", "block");	
-		        },
-		        error:function(jqXHR, textStatus, errorThrown){
-		            alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
-		            self.close();
-		        }
-		    }); */
+	 $(function() {
+            $("#profile").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+
+
+
 			
 		
 			
@@ -240,29 +270,37 @@
 			    totalChecked = 0;
 			}
 			
-/* 			$("span").click(function(){
-			    $(this).hide();
-			    
-			    var arr = [];
-			    $.each($("input[name='userChoice[]']"),function(k,v){
-			        arr[arr.length] = $(v).val();
-			    });
-			    
-			   //$('.user_choice').append($('#choice1').val($(this).text())); 
-			});
- 	
-			 $("span").click(function(){
-		            var size = $("input[name='userChoice[]']").length;
-		            var arr={$(this).text(), $(this).text(), $(this).text()};  
-		            for(i=0;i<size;i++){
-		            	
-		                console.log("type1: "+$("input[name='userChoice[]']").eq(i).attr("value"));
-		            }
-		        });
-	
-			$("span").click(function(){
-			    $(this).hide();
-			    $('.user_choice').append($('#choice1').val($(this).text())); 
-			});  */
-		
+			
+		$('#btn_join').on('click', function () {
+	      // insert into session
+	      if($('#email').val() == ''){
+	         
+	         alert("이메일을 입력해 주십시오");
+	         $('#email').focus();
+	      }
+	      else if($('#name').val() == ''){
+	         
+	         alert("이름을 입력해 주십시오");
+	         $('#name').focus();
+	      }
+	      else if($('#password').val() == ''){
+	         
+	         alert("비밀번호를 입력해 주십시오");
+	         $('#password').focus();
+	      }
+	      else if($('#profile').val() == ''){
+	         
+	         alert("프로필을 등록해 주십시오");
+	         $('#profile').focus();
+	      }
+	      else if($('#profile').val() == ''){
+	         
+	         alert("프로필을 등록해 주십시오");
+	         $('#profile').focus();
+	      }
+	      else{
+	         $("#signUpForm").attr({"target":"_self", "action":"signup1step.do.do"}).submit();
+	      }
+	});
+
 		</script>

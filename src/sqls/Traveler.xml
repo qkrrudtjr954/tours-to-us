@@ -10,11 +10,8 @@
 	</select>
 
  	<insert id="signup" parameterType="www.tours2us.com.model.TravelerDto">
- 		INSERT INTO TRAVELER(SEQ, EMAIL, NAME, PASSWORD, AUTHOR, REG_DATE, LAST_UPDATED)
- 		VALUES(TRAVELER_SEQ.NEXTVAL, #{email}, #{name},#{password}, 0, SYSDATE, SYSDATE)
- 		<selectKey keyProperty="seq" resultType="int" order="AFTER">
-			SELECT TRAVELER_SEQ.CURRVAL FROM DUAL
-		</selectKey>
+ 		INSERT INTO TRAVELER(SEQ, EMAIL, NAME, PASSWORD, AUTHOR, REG_DATE, LAST_UPDATED, PROFILE, LIKE1, LIKE2, LIKE3)
+ 		VALUES(TRAVELER_SEQ.NEXTVAL, #{email}, #{name},#{password}, 0, SYSDATE, SYSDATE, #{profile}, #{like1}, #{like2}, #{like3})
  	</insert>
 
 

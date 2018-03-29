@@ -254,9 +254,7 @@
 		<li class="dropdown">
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">이벤트</a>
 	         <ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="#">Page 1-1</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+				<li class="dropdown-item"><a href="event.do">진행 중 EVENT</a></li>
 			</ul>
        	</li>
     </ul>

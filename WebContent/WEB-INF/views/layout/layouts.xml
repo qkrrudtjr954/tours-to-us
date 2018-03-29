@@ -54,6 +54,8 @@
 		<put-attribute name="main" value="/WEB-INF/views/commu/afterWrite.jsp"/>
 	</definition>
 	
-	
+	<definition name="event.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/event.jsp"/>
+	</definition>
 	
 </tiles-definitions>

@@ -1,94 +1,96 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:requestEncoding value="utf-8"/>
- 
- <h1>여행후기</h1>
- 
- <%-- <div class="box_border" style="margin-top:5px; margin-bottom: 10px;">
+<fmt:requestEncoding value="utf-8"/>    
+    
+   
 
-<form name="frmForm1" id="_frmFormSearch" method="post" action="">
-
-<table style="margin-left:auto; margin-right:auto; margin-top:3px; margin-bottom:3px; border:0; padding:0;">
-<tr>
-	<td>검색 : </td>
-	<td style="padding-left:5px;">
-		<select id="_s_category" name="s_category">
-		
-		<!-- 검색했을 경우 -->
-		<option value="">선택</option>
-		<option value="title">제목</option>
-		<option value="contents">내용</option>	
-		
-			<c:choose>
-			<c:when test="${s_category eq 'title' }">
-			<option value="title" selected="selected">제목</option>
-			</c:when>
-			<c:when test="${s_category eq 'contents' }">
-			<option value="contents" selected="selected">내용</option>
-			</c:when>
-			<c:otherwise>
-			<option value="" selected="selected">선택</option>
-			
-			</c:otherwise>
-			
-			
-			</c:choose>
-			
-										
-		</select>
-	</td>
-	<td style="padding-left:5px;"><input type="text" id="_s_keyword" name="s_keyword" value="${s_keyword}"/></td>
-	<td style="padding-left:5px;"><span class="button blue"><button type="button" id="_btnSearch"> 검색 </button></span></td>
-</tr>
-</table>
- 
-<input type="hidden" name="pageNumber" id="_pageNumber" value="0"/>						
-<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage}"/>						
-
-</form>
+<div class="after-title">
+	<div class="offset-md-2 col-md-4 col-xs-12">
+		<h2>회원 정보 수정</h2>
+	</div>
 </div>
---%>
-<%-- <jsp:useBean id="ubbs" class="kh.com.a.arrow.BbsArrow"/> --%>
- 
-<table class="list_table" style="width:85%;">
-	<colgroup>
-		<col style="width:70px;" />
-		<col style="width:auto;" />
+<div class="offset-md-2 col-md-8 col-xs-12">
+	<hr>
+</div>
+<div class="search">
+<div class="row" style="margin:0 auto;width:1200px;">
+	<div class="offset-md-1 input-group-prepend">
+	<select class="custom-select" id="inputGroupSelect01"name="Searchtype" style="width: 150px">
+		<option value="target_user_seq">글쓴이</option>
+		<option value="title">제목</option>
+		<option value="location">지역</option>
+	</select> 
+	<input type="text" class="form-control"
+		aria-label="Text input with segmented dropdown button" size="10"
+		name="SearchWord" id="text">
+	</div>
+	<div class="serach">
+		<input type="button" class="btn btn-success" id="btnsearch" style="background-color: #28A745; color: #fff"
+			value="검색">
+	</div>
+	<div class="offset-md-6">
+		<input type="button" class="btn btn-success" id="btnwrite" style="background-color: #28A745; color: #fff"
+			value="글쓰기" onclick="writeAfBbs()">
+	</div>
+</div>
+</div>
+
+
+
+
+<div class="offset-md-2">
+<table style="width:85%;" class="table">
+<colgroup>
 		<col style="width:100px;" />
-	</colgroup>
+		<col style="width:100px;" />
+		<col style="width:100px;" />
+		<col style="width:100px;" />
+</colgroup>
+
 
 <thead>
 	<tr>
-		<th>순서</th> <th>제목</th> <th>작성자</th> 
+		<th>번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th>  
 	</tr>
 </thead>
-
 <tbody>	
 	<c:if test="${empty afterBbslist}">
 	<tr>
-		<td colspan="3">작성된 글이 없습니다.</td>
+		<td colspan="11">작성된 글이 없습니다.</td>
 	</tr>	
 	</c:if>
 
-	<c:forEach items="${afterBbslist}" var="bbs" varStatus="vs">
-	<jsp:setProperty property="depth" name="ubbs" 
-	value="${bbs.depth}"/>
-	
-	<tr class="_hover_tr">
-		<td style="text-align: left">
-		<jsp:getProperty property="arrow" name="ubbs"/>
-		<c:if test="${bbs.status==0}">                   
-		<a href='bbsdetail.do?seq=${bbs.seq}'>
-		${bbs.title}</a>
-		</c:if>
-		<c:if test="${bbs.status eq 1}">
-		관리자의해 삭제된 글입니다
-		</c:if>
+	<c:forEach items="${afterBbslist }" var="after" varStatus="i">
+	<tr>
+		
+		<td>
+			${i.count }
 		</td>
-		<td>${bbs.target_user_seq}</td> 
+	
+		<td>
+			<a href="commuafterdetail.do?seq=${after.seq }">${after.title }</a>
+		</td>
+		
+		<td>
+			${after.name }
+		</td>
+		
+		<td>
+			${after.reg_date }
+		</td>	
+		
 	</tr>
 	</c:forEach>
 </tbody>
-
 </table>
+</div>
+
+<script>
+function writeAfBbs() {
+	
+	location.href="afterWrite.do";
+	
+}
+</script>

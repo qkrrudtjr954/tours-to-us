@@ -1,5 +1,6 @@
 package www.tours2us.com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -28,8 +29,8 @@ method= {RequestMethod.GET, RequestMethod.POST})
 public String afterBbs(Model model) throws Exception{
 	
 	logger.info("CommuController >>>> afterbbslist");
-	List<CommuAfterBbsDto> list = commuService.getAfterBbslist();
-	
+	List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
+	list = commuService.getAfterBbslist();
 	model.addAttribute("afterBbslist", list);
 	
 

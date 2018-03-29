@@ -28,9 +28,7 @@ public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
 	System.out.println("타입:" + sqlSession.getConfiguration().getDefaultExecutorType());
 	
 	List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
-	list = sqlSession.selectList(ns + "AfterBbslist");
-	
-	
+	list = sqlSession.selectList(ns + "AfterBbslist");	
 	
 	return list;
 }

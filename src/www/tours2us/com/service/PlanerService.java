@@ -14,6 +14,4 @@ public interface PlanerService {
 
 	PlanerDto getPlaner(int seq);
 
-	List<TravelerDto> getCoTraveler(int planer_seq);
-
 }

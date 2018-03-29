@@ -72,74 +72,51 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${coTraveler }" varStatus="i" var="traveler">
-						<tr>
-							<td>${traveler.seq }</td>
-							<td>${traveler.name }</td>
-							<td>${traveler.email }</td>
-							<td><button onclick="deleteFriend(${traveler.seq }, this)">x</button></td>
-						</tr>
+						<c:choose>
+							<c:when test="${current_user.email == traveler.email }">
+								<tr>
+									<td>${traveler.seq }</td>
+									<td>${traveler.name }</td>
+									<td>${traveler.email }</td>
+									<td>나 </td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td>${traveler.seq }</td>
+									<td>${traveler.name }</td>
+									<td>${traveler.email }</td>
+									<td><button onclick="deleteFriend(${traveler.seq }, this)">x</button></td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</tbody>
 			</table>
 			</div>
-		</div>
-	</div>
-</div>
-
-
-<div class="add-planer">
-	<div class="row">
-		<div class="offset-md-2 col-md-4 col-xs-12">
-			<form>
-				<div class="form-group">
-					<label for="exampleFormControlInput1">Email address</label> <input
-						type="email" class="form-control" id="exampleFormControlInput1"
-						placeholder="name@example.com">
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Example select</label> <select
-						class="form-control" id="exampleFormControlSelect1">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlSelect2">Example multiple
-						select</label> <select multiple class="form-control"
-						id="exampleFormControlSelect2">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Example textarea</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="3"></textarea>
-				</div>
-			</form>
-		</div>
-		<div class="col-md-4" style="height: 500px; border:2px solid red;">
-			<div class="added-tile-planer">
-				
+			<div class="next-button">
+				<a href="#none" id="next-step"> 
+					<img alt="next" src="${pageContext.request.contextPath }/image/next_button.png" width="50px" height="50px">
+				</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-
 <script type="text/javascript">
-var planer_seq = 0;
 
-$('.addFriendBtn').on('click', function () {
-	console.log($(this).parent())
+$('#next-step').on('click', function () {
+	var planer = ${planer.seq};
+	
+	if(planer != ''){
+		location.href="dayPlaner.do?seq="+planer;	
+	} else {
+		alert('다시 시도해주세요.');
+		window.refresh();
+	}
 })
-//	$('#findFriendBtn').on('click', function () {
+
+
 $('#friendName').on('keyup', function() {
 	var name = $('#friendName').val();
 
@@ -152,7 +129,7 @@ $('#friendName').on('keyup', function() {
 
 		findFriend(name);
 	}
-})
+});
 
 function findFriend(name) {
 	$.ajax({
@@ -171,8 +148,6 @@ function findFriend(name) {
 			}
 
 			//	table 그리기
-			console.log(data);
-
 			for (var i = 0; i < data.length; i++) {
 				drawFindedFriends(data[i]);
 			}

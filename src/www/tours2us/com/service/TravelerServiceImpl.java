@@ -67,5 +67,11 @@ public class TravelerServiceImpl implements TravelerService {
 		return travelerDao.deleteCoTraveler(coTraveler);
 	}
 
+	@Override
+	public List<TravelerDto> getCoTravelers(int planer_seq) {
+		return travelerDao.getCoTravelers(planer_seq);
+	}
+
+
 	
 }

@@ -22,8 +22,12 @@
 		<put-attribute name="main" value="/WEB-INF/views/planer/planer.jsp"/>
 	</definition>
 
-	<definition name="planer2.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/planer/planer2.jsp"/>
+	<definition name="dayPlaner.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/planer/dayPlaner.jsp"/>
+	</definition>
+
+	<definition name="addFriends.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/planer/addFriends.jsp"/>
 	</definition>
 
 	<definition name="guidebook.tiles" extends="main.tiles">

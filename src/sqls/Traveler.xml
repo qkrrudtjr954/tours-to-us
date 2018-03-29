@@ -41,12 +41,12 @@
 		</selectKey>
  	</insert>
 
- 	<select id ="getCoTraveler" parameterType="java.lang.Integer" resultType="www.tours2us.com.model.TravelerDto">
+ 	<select id ="getCoTravelers" parameterType="java.lang.Integer" resultType="www.tours2us.com.model.TravelerDto">
  		SELECT * FROM TRAVELER T, COTRAVELER C WHERE C.TARGET_USER_SEQ = T.SEQ AND C.TARGET_PLANER_SEQ = #{seq}
  	</select>
 
 
- 	<select id ="checkCoTraveler" parameterType="www.tours2us.com.model.CoTravelerDto" resultType="www.tours2us.com.model.CoTravelerDto">
+ 	<select id ="getCoTraveler" parameterType="www.tours2us.com.model.CoTravelerDto" resultType="www.tours2us.com.model.CoTravelerDto">
  		SELECT * FROM COTRAVELER WHERE TARGET_USER_SEQ = #{target_user_seq} AND TARGET_PLANER_SEQ = #{target_planer_seq}
  	</select>
 

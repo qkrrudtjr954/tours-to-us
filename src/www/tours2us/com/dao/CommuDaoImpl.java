@@ -23,7 +23,7 @@ private String ns = "Commu.";
 
 @Override
 public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
-	
+	logger.info("CommuDaoImpl >>>> afterbbslist");
 	// sqlSession 설정 타입 (BATCH, SIMPLE)
 	System.out.println("타입:" + sqlSession.getConfiguration().getDefaultExecutorType());
 	
@@ -35,23 +35,25 @@ public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
 
 @Override
 public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
+	logger.info("CommuDaoImpl >>>> afterwriteBbs");
 	sqlSession.insert(ns+"AfterWrite", bbs);
 	return true;
 }
 
 @Override
 public CommuAfterBbsDto getAfterBbs(int seq) throws Exception {
-	// TODO Auto-generated method stub
+	logger.info("CommuDaoImpl >>>> getAfterBbs");
 	return sqlSession.selectOne(ns+ "AftergetBbs", seq);
 }
 
-
-
-
-
-
-
-
+@Override
+public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
+	logger.info("CommuDaoImpl >>>> AfterUpdate");
+	int n = sqlSession.update(ns+"AfterUpdateBbs", bbs);
+	
+	System.out.println("bbs = "  +bbs);
+	return n>0?true:false;
+}
 
 
 

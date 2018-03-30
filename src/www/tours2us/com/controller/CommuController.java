@@ -15,12 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuService;
 import www.tours2us.com.service.PlanerService;
+import www.tours2us.com.service.TravelerService;
 
 
 
@@ -32,6 +32,8 @@ private static final Logger logger = LoggerFactory.getLogger(CommuController.cla
 CommuService commuService;
 @Autowired
 PlanerService planerService;
+@Autowired
+TravelerService travelerService;
 
 @RequestMapping(value="afterBbs.do",
 method= {RequestMethod.GET, RequestMethod.POST})
@@ -85,15 +87,39 @@ public String afterbbsdetail(int seq,Model model) throws Exception {
 	 logger.info("CommuController >>>> commuafterdetail");
 	 
 	 CommuAfterBbsDto aftergetBbs=null;
-	 aftergetBbs = commuService.getAfterBbs(seq);
+	 aftergetBbs = commuService.getAfterBbs(seq);	 
 	 model.addAttribute("aftergetBbs", aftergetBbs);
 	 
 	return "afterdetail.tiles";
 }
 
+@RequestMapping(value="afterUpdate.do", method={RequestMethod.GET, RequestMethod.POST})
+public String afterupdate(Model model, int seq) throws Exception {
+	logger.info("CommuController >>>> afterupdate");
+	PlanerDto planer = planerService.getPlaner(seq);
+	CommuAfterBbsDto afterbbs=commuService.getAfterBbs(seq);
+	model.addAttribute("afterbbs", afterbbs);
+	model.addAttribute("planer", planer);
 
+	return "afterUpdate.tiles";
+}
 
-
+@RequestMapping(value="afterUpdateAf.do", method={RequestMethod.GET, RequestMethod.POST})
+public String updateAf(Model model, CommuAfterBbsDto bbs) throws Exception{
+	logger.info("CommuController >>>> updateAf");
+	boolean isS = commuService.AfterUpdate(bbs);
+	logger.info("isS" + isS);
+	if(isS) {
+		
+		return "redirect:/afterdetail.do?seq=" + bbs.getSeq();
+	}else{
+		
+		return "redirect:/afterUpdate.do?seq=" + bbs.getSeq();
+	}
+	
+	
+	
+}
 
 
 

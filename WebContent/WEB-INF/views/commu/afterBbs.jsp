@@ -87,6 +87,9 @@
 </table>
 </div>
 
+
+
+
 <script>
 function writeAfBbs() {
 	

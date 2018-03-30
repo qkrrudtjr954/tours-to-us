@@ -12,6 +12,7 @@ public interface CommuDao {
 	
 	public CommuAfterBbsDto getAfterBbs(int seq) throws Exception;
 	
+	boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception;
 	
 	
 	

@@ -38,7 +38,11 @@ public CommuAfterBbsDto getAfterBbs(int seq) throws Exception {
 	return commutDao.getAfterBbs(seq);
 }
 
-
+@Override
+public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.AfterUpdate(bbs);
+}
 
 
 

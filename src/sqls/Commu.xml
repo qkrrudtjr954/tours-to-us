@@ -25,19 +25,13 @@
 	parameterType="int"
 	resultType="www.tours2us.com.model.CommuAfterBbsDto">
 		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
-         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
       	FROM AFTERBBS A, TRAVELER B
 		WHERE  A.TARGET_USER_SEQ = B.SEQ AND A.SEQ=#{seq}
 	</select>
 
-
-
-
-
-
-	
-
-
-
-
+	<update id="AfterUpdateBbs" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
+		UPDATE AFTERBBS SET TITLE=#{title}, CONTENT=#{content}
+		WHERE SEQ=#{seq}
+	</update>
 </mapper>

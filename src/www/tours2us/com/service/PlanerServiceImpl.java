@@ -77,4 +77,10 @@ public class PlanerServiceImpl implements PlanerService{
 		return planerDao.getAllTimePlanersByTargetDayPlanerSeq(seq);
 	}
 
+
+	@Override
+	public void updateCompletePlaner(PlanerDto planer) {
+		planerDao.updateCompletePlaner(planer);
+	}
+
 }

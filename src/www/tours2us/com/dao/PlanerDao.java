@@ -26,4 +26,6 @@ public interface PlanerDao {
 
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
 
+	void updateCompletePlaner(PlanerDto planer);
+
 }

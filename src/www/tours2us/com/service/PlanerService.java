@@ -24,4 +24,6 @@ public interface PlanerService {
 
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
 
+	void updateCompletePlaner(PlanerDto planer);
+
 }

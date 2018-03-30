@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Event">
+
+	<select id="getEventList" resultType="www.tours2us.com.model.EventDto">
+		SELECT SEQ, CATEGORY, TITLE, CONTENT, FROM_DATE, TO_DATE, LAST_UPDATED, REG_DATE, STATUS
+		FROM EVENT
+		ORDER BY REG_DATE DESC
+	</select>
+	
+	<select id="getEventDetail" parameterType="java.lang.Integer" resultType="www.tours2us.com.model.EventDto">
+		SELECT SEQ, CATEGORY, TITLE, CONTENT, FROM_DATE, TO_DATE, LAST_UPDATED, REG_DATE, STATUS
+		FROM EVENT
+		WHERE SEQ=#{seq}
+	</select>
+</mapper>

@@ -24,54 +24,51 @@ import www.tours2us.com.service.CommuService;
 
 @Controller
 public class CommuController {
-private static final Logger logger = LoggerFactory.getLogger(CommuController.class);	
+private static final Logger logger = LoggerFactory.getLogger(CommuController.class);
 
 @Autowired
 CommuService commuService;
 
 
-@RequestMapping(value="afterBbs.do", 
+@RequestMapping(value="afterBbs.do",
 method= {RequestMethod.GET, RequestMethod.POST})
 public String afterBbs(Model model) throws Exception{
-	
+
 	logger.info("CommuController >>>> afterbbslist");
 	List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
 	list = commuService.getAfterBbslist();
 	model.addAttribute("afterBbslist", list);
-	
+
 
 	return "afterBbs.tiles";
-	
+
 }
 
-
-
-
-@RequestMapping(value = "afterWrite.do", method = {RequestMethod.GET,   RequestMethod.POST})
+@RequestMapping(value = "afterWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})
 public String afterbbswrite(Model model, int seq) {
-   logger.info("CommuController >>>> afterWrite");   
-   System.out.println("ss:"+seq);
-   
- model.addAttribute("seq", seq);
+	logger.info("CommuController >>>> afterWrite");
+	System.out.println("ss:"+seq);
+
+	model.addAttribute("seq", seq);
 return "afterWrite.tiles";
 
 }
 
 
-@RequestMapping(value = "afterWriteAf.do", 
+@RequestMapping(value = "afterWriteAf.do",
 method = RequestMethod.GET)
 public String bbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model model) throws Exception {
    if(bbs.getContent().equals("") || bbs.getTitle().equals("")){
       return "afterWrite.tiles";
    }
-   logger.info("CommuController >>>> bbswriteAf");   
+   logger.info("CommuController >>>> bbswriteAf");
    TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
     System.out.println("s"+t_dto.toString());
-    
+
     bbs.setTarget_user_seq(t_dto.getSeq());
     System.out.println("b"+bbs.getTarget_user_seq());
     System.out.println(bbs.toString());
-    
+
    commuService.afterwriteBbs(bbs);
    return "redirect:/afterBbs.do";
 }
@@ -80,7 +77,7 @@ public String bbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model mod
 
 
 
-	
-	
+
+
 
 }

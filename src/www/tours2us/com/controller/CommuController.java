@@ -62,7 +62,7 @@ return "afterWrite.tiles";
 
 @RequestMapping(value = "afterWriteAf.do",
 method = RequestMethod.GET)
-public String bbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model model) throws Exception {
+public String afterbbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model model) throws Exception {
    if(bbs.getContent().equals("") || bbs.getTitle().equals("")){
       return "afterWrite.tiles";
    }
@@ -79,7 +79,17 @@ public String bbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model mod
 }
 
 
-
+@RequestMapping(value = "afterdetail.do", 
+method = {RequestMethod.GET, RequestMethod.POST})
+public String afterbbsdetail(int seq,Model model) throws Exception {
+	 logger.info("CommuController >>>> commuafterdetail");
+	 
+	 CommuAfterBbsDto aftergetBbs=null;
+	 aftergetBbs = commuService.getAfterBbs(seq);
+	 model.addAttribute("aftergetBbs", aftergetBbs);
+	 
+	return "afterdetail.tiles";
+}
 
 
 

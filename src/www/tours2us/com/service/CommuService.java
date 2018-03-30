@@ -8,5 +8,6 @@ public interface CommuService {
 	
 	List<CommuAfterBbsDto> getAfterBbslist()throws Exception;
 	boolean afterwriteBbs(CommuAfterBbsDto bbs)throws Exception;
+	public CommuAfterBbsDto getAfterBbs(int seq) throws Exception;
 
 }

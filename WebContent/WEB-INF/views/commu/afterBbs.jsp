@@ -70,7 +70,7 @@
 		</td>
 	
 		<td>
-			<a href="commuafterdetail.do?seq=${after.seq }">${after.title }</a>
+			<a href="afterdetail.do?seq=${after.seq }">${after.title }</a>
 		</td>
 		
 		<td>

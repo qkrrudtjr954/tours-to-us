@@ -39,6 +39,15 @@ public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
 	return true;
 }
 
+@Override
+public CommuAfterBbsDto getAfterBbs(int seq) throws Exception {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne(ns+ "AftergetBbs", seq);
+}
+
+
+
+
 
 
 

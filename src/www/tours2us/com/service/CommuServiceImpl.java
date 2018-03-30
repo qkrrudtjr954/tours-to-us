@@ -32,12 +32,14 @@ public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
 	return commutDao.afterwriteBbs(bbs);
 }
 
+@Override
+public CommuAfterBbsDto getAfterBbs(int seq) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.getAfterBbs(seq);
+}
 
 
 
 
-
-
-	
 
 }

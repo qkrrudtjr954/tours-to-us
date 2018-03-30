@@ -10,6 +10,9 @@ public interface CommuDao {
 	
 	boolean afterwriteBbs(CommuAfterBbsDto bbs)throws Exception;
 	
+	public CommuAfterBbsDto getAfterBbs(int seq) throws Exception;
+	
+	
 	
 	
 	

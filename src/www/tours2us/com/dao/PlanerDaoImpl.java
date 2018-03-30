@@ -37,6 +37,12 @@ public class PlanerDaoImpl implements PlanerDao{
 	}
 
 	@Override
+	public List<DayPlanerDto> getDayplanList(int seq) {
+		List<DayPlanerDto> list = new ArrayList<DayPlanerDto>();
+		return list = sqlSession.selectList(namespace+"getDayplanList", seq);
+	}
+	
+	@Override
 	public List<PlanerDto> getplanList(int seq) {
 		List<PlanerDto> list = new ArrayList<PlanerDto>();
 		return list = sqlSession.selectList(namespace+"getplanList", seq);
@@ -72,5 +78,8 @@ public class PlanerDaoImpl implements PlanerDao{
 	public List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq) {
 		return sqlSession.selectList(namespace+ "getAllTimePlanersByTargetDayPlanerSeq", seq);
 	}
+
+
+	
 
 }

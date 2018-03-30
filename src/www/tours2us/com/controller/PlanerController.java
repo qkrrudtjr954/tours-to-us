@@ -122,7 +122,7 @@ public class PlanerController {
 
 	@RequestMapping(value = "myplan.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myplan(HttpServletRequest req, PlanerDto planer, Model model) throws Exception {
-		logger.info("TravelerController >>>> myplan");
+		logger.info("PlanerContoller >>>> myplan");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		// System.out.println(t_dto.getSeq());
 		int seq = t_dto.getSeq();
@@ -153,6 +153,29 @@ public class PlanerController {
 		TimePlanerDto addedTimePlaner = planerService.addTimePlaner(timePlaner);
 
 		return addedTimePlaner;
+	}
+	
+	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String planDetail(int seq, Model model) throws Exception {
+		logger.info("PlanerContoller >>>> planDetail");
+		System.out.println("pseq:"+seq);
+		
+		PlanerDto planer = planerService.getPlaner(seq);
+		
+		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
+		
+		int d_seq = 0;
+		for (int j = 0; j < dayPlanlist.size(); j++) {
+			System.out.println(dayPlanlist.get(j).getSeq());
+			d_seq = dayPlanlist.get(j).getSeq();
+		}
+		List<TimePlanerDto> timeplanlist = planerService.getAllTimePlanersByTargetDayPlanerSeq(d_seq);
+		
+		model.addAttribute("planer",planer);
+		model.addAttribute("dayPlanlist", dayPlanlist);
+		model.addAttribute("timeplanlist", timeplanlist);
+		
+		return "planDetail.tiles";
 	}
 	
 	

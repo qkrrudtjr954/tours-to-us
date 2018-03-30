@@ -95,4 +95,9 @@ public String afterbbsdetail(int seq,Model model) throws Exception {
 
 
 
+
+
+
+
+
 }

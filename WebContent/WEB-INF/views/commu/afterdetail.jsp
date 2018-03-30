@@ -28,7 +28,7 @@
 <div class="row offset-md-7">
 <p>
 	<b>작성자</b>
-	${aftergetBbs.target_user_seq }
+	${aftergetBbs.name }
 	&nbsp;&nbsp;&nbsp;<b>작성일</b>
 	${aftergetBbs.reg_date }&nbsp;&nbsp;&nbsp;
 	</p>

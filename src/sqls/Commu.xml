@@ -24,10 +24,10 @@
 <select id="AftergetBbs"
 	parameterType="int"
 	resultType="www.tours2us.com.model.CommuAfterBbsDto">
-		SELECT SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ, TITLE,
-		CONTENT, REG_DATE, LAST_UPDATED, STATUS
-		FROM AFTERBBS
-		WHERE SEQ=#{seq}
+		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
+      	FROM AFTERBBS A, TRAVELER B
+		WHERE  A.TARGET_USER_SEQ = B.SEQ AND A.SEQ=#{seq}
 	</select>
 
 

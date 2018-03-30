@@ -7,6 +7,9 @@
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2>진행 중 EVENT</h2>
 	</div>
+	<div class="offset-md-9 col-md-4 col-xs-12">
+		<a href="event.do" class="btn btn-primary">리스트로</a>
+	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
 	<hr>

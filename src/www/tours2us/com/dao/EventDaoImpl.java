@@ -30,6 +30,6 @@ Logger logger = LoggerFactory.getLogger(PlanerDaoImpl.class);
 	@Override
 	public EventDto getEventDetail(int seq) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(ns="getEventDetail", seq);
+		return sqlSession.selectOne(ns+"getEventDetail", seq);
 	}
 }

@@ -1,6 +1,5 @@
 package www.tours2us.com.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -26,18 +25,18 @@ public class hotelController {
 		return "hotelPrice.tiles";
 	}
 	
-	//@ResponseBody
+	
 	@RequestMapping(value="hotelSearch.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public List<HotelResultDto> searchResult(HotelDto dto, Model model) throws Exception{
+	public String searchResult(HotelDto dto, Model model) throws Exception{
 		logger.info("TravelerController >>>> searchResult");
 		
 		FindHotel util = new FindHotel();
 		System.out.println(dto.toString());
-		//util.getAirSites(dto);
-		List<HotelResultDto> list = new ArrayList<>();
 		
-		//list = util.getAirSites(dto);
-		
-		return list;
+		List<HotelResultDto> list = util.getAirSites(dto);
+		model.addAttribute("list", list);
+
+		return "hotelPrice.tiles";
 	}
+	
 }

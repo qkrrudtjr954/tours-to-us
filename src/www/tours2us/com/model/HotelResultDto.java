@@ -7,7 +7,6 @@ public class HotelResultDto implements Serializable {
 	public String link;
 	public String name;
 	public String price;
-	public float star;
 	public String desc;
 	public String pic;
 	
@@ -15,17 +14,14 @@ public class HotelResultDto implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public HotelResultDto(String link, String name, String price, float star, String desc, String pic) {
+	public HotelResultDto(String link, String name, String price, String desc, String pic) {
 		super();
 		this.link = link;
 		this.name = name;
 		this.price = price;
-		this.star = star;
 		this.desc = desc;
 		this.pic = pic;
 	}
-
 
 	public String getLink() {
 		return link;
@@ -51,14 +47,6 @@ public class HotelResultDto implements Serializable {
 		this.price = price;
 	}
 
-	public float getStar() {
-		return star;
-	}
-
-	public void setStar(float star) {
-		this.star = star;
-	}
-
 	public String getDesc() {
 		return desc;
 	}
@@ -67,12 +55,20 @@ public class HotelResultDto implements Serializable {
 		this.desc = desc;
 	}
 
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 
 	@Override
 	public String toString() {
-		return "HotelResultDto [link=" + link + ", name=" + name + ", price=" + price + ", star=" + star + ", desc="
-				+ desc + ", pic=" + pic + "]";
+		return "HotelResultDto [link=" + link + ", name=" + name + ", price=" + price + ", desc=" + desc + ", pic="
+				+ pic + "]";
 	}
+
 
 
 	

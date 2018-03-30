@@ -67,6 +67,10 @@
 	<definition name="hotelPrice.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/hotel/hotelPrice.jsp"/>
 	</definition>
+	
+
+	
+	
 
 	<definition name="eventDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import www.tours2us.com.model.HotelDto;
@@ -19,43 +20,67 @@ public class FindHotel {
 		
 		try {
 		
-			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
-			
-			Elements links = doc.select("div.cont_inner a.url_fl");
-			Elements names = doc.select("div.cont_inner div.wrap_tit a");
-			Elements descs = doc.select("div.cont_inner p.desc");
-			
-			System.out.println(links.size());
-			System.out.println(names.size());
-			System.out.println(descs.size());
+			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
+			System.out.println("https://www.airbnb.co.kr/s/"+dto.getCity()+"/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w");
+			Elements links = doc.select("div._1szwzht a:first-child");
+			Elements names = doc.select("div._1qp0hqb div._1rths372");
+			Elements descs = doc.select("div._saba1yg span");
+			Elements pic = doc.select("div._1szwzht div._1df8dftk");
+			Elements price = doc.select("div._1yarz4r span span:nth-child(2)");
+
+			for (Element e : pic) {
+				String attr = e.attr("style");
+				System.out.println(attr);
+				System.out.println(attr.substring(attr.indexOf("https://"), attr.indexOf(")")));
+				e.text(attr.substring(attr.indexOf("https://"), attr.indexOf(")")));
+			}
+			for (Element e : links) {
+				String attr = e.attr("href");
+				System.out.println(attr);
+				e.text("https://www.airbnb.co.kr"+attr);
+			}
+		
+			System.out.println("링크 사이즈 :" +links.size());
+			System.out.println("names 사이즈 :" +names.size());
+			System.out.println("링descs크 사이즈 :" +descs.size());
+			System.out.println("pic 사이즈 :" +pic.size());
+			System.out.println("price" +price.size());
 			
 			int size = 10;
 			
-			if(links.size() <= 10 || names.size() <= 10 || descs.size() <= 10) {
+			if(links.size() <= 10 || names.size() <= 10 || descs.size() <= 10 || pic.size() <= 10 || price.size() <= 10) {
 				if(links.size() < names.size()) {
 					if(descs.size() < links.size()) {
 						size = descs.size();
+						size=pic.size();
+						size=price.size();
 					} else { 
 						size = links.size();
+						size=pic.size();
+						size=price.size();
 					}
 				} else {
 					if(descs.size() < names.size()) {
 						size = descs.size();
+						size=pic.size();
+						size=price.size();
 					} else { 
 						size = names.size();
+						size=pic.size();
+						size=price.size();
 					}
 				}				
 			}
 			
 			for(int i=0; i<size; i++) {
 				HotelResultDto hdto = new HotelResultDto();
-				System.out.println(links.get(i).text());
+				
 				hdto.link = links.get(i).text();
 				hdto.name = names.get(i).text();
 				hdto.desc = descs.get(i).text();
-			/*	hdto.price = price.get(i).text();
-				hdto.pic = pic.get.get(i).text();*/
-				
+				hdto.price = price.get(i).text();
+				hdto.pic = pic.get(i).text();
+				System.out.println("hdto" + hdto);
 				list.add(hdto);
 			}
 			
@@ -67,4 +92,17 @@ public class FindHotel {
 		return list;
 		
 	}
+	
+	/*
+	String html = "<html><head></head><body><div class=\"post_video\" style=\"background-image:url(http://img.youtube.com/vi/JFf3uazyXco/2.jpg);\"></body></html>";
+
+    Document doc = Jsoup.parse( html );
+    Elements elements = doc.getElementsByClass("post_video");
+
+    for( Element e : elements ) {
+        String attr = e.attr("style");
+        System.out.println( attr.substring( attr.indexOf("http://"), attr.indexOf(")") ) );
+    }
+}
+*/
 }

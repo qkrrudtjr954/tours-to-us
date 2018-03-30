@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import www.tours2us.com.model.CommuAfterBbsDto;
+import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuService;
+import www.tours2us.com.service.PlanerService;
 
 
 
@@ -28,7 +30,8 @@ private static final Logger logger = LoggerFactory.getLogger(CommuController.cla
 
 @Autowired
 CommuService commuService;
-
+@Autowired
+PlanerService planerService;
 
 @RequestMapping(value="afterBbs.do",
 method= {RequestMethod.GET, RequestMethod.POST})
@@ -48,8 +51,10 @@ public String afterBbs(Model model) throws Exception{
 public String afterbbswrite(Model model, int seq) {
 	logger.info("CommuController >>>> afterWrite");
 	System.out.println("ss:"+seq);
+	
+	PlanerDto planer = planerService.getPlaner(seq);
 
-	model.addAttribute("seq", seq);
+	model.addAttribute("planer", planer);
 return "afterWrite.tiles";
 
 }

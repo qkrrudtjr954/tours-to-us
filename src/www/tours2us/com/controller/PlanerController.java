@@ -182,10 +182,12 @@ public class PlanerController {
 	@RequestMapping(value = "changeTitle.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public PlanerDto changeTitle(Model model, PlanerDto planer)throws Exception {
 		logger.info("PlanerController >>>> changeTitle");
-		//System.out.println(planer.toString());
+		System.out.println(planer.toString());
 		PlanerDto dto = null;
 		int seq = planer.getSeq();
+		System.out.println(""+seq);
 		boolean isS = planerService.changeTitle(planer);
+		System.out.println(isS);
 		if(isS) {
 			dto = planerService.getPlaner(seq);
 			return dto;

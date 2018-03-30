@@ -14,22 +14,22 @@
 
 <div id="myplanDetail-content">
 	<div class="offset-md-2 col-md-8 col-xs-12">
-		<c:forEach items="${timeplanlist }" varStatus="i" var="timeplan">
-			<div class="card">
-				<div class="card-header" id="headingOne">
-					<c:forEach items="${dayPlanlist }" varStatus="i" var="dayplan">
+		<div class="card">
+			<c:forEach items="${timeplanlist }" varStatus="i" var="timeplan">
+				<c:forEach items="${dayPlanlist }" varStatus="i" var="dayplan">
+					<div class="card-header" id="headingOne">
 						<h5 class="mb-0">
-							<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Day ${dayplan.day_count }</button>
+							<button class="btn btn-link collapsed" data-toggle="collapse"
+								data-target="#collapse" aria-expanded="false"
+								aria-controls="collapse">Day ${dayplan.day_count }</button>
 						</h5>
-					</c:forEach>
-				</div>
-
-				<div id="collapseOne" class="collapse"
-					aria-labelledby="headingOne" data-parent="#accordion">
-					<div class="card-body">내용</div>
-				</div>
-
-			</div>
-		</c:forEach>
+					</div>
+					<div id="collapse" class="collapse" aria-labelledby="heading"
+						data-parent="#accordion">
+						<div class="card-body">${timeplan.content }</div>
+					</div>
+				</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
 </div>

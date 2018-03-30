@@ -8,17 +8,18 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import www.tours2us.com.model.hotelResultDto;
+import www.tours2us.com.model.HotelDto;
+import www.tours2us.com.model.HotelResultDto;
 
 
 
 public class FindHotel {
-	public List<hotelResultDto> getAirSites(String query){
-		List<hotelResultDto> list = new ArrayList<>();
+	public List<HotelResultDto> getAirSites(HotelDto dto){
+		List<HotelResultDto> list = new ArrayList<>();
 		
 		try {
 		
-			Document doc = Jsoup.connect("https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&q="+query).get();
+			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
 			
 			Elements links = doc.select("div.cont_inner a.url_fl");
 			Elements names = doc.select("div.cont_inner div.wrap_tit a");
@@ -47,13 +48,15 @@ public class FindHotel {
 			}
 			
 			for(int i=0; i<size; i++) {
-				DengSiteDto dto = new DengSiteDto();
+				HotelResultDto hdto = new HotelResultDto();
 				System.out.println(links.get(i).text());
-				dto.link = links.get(i).text();
-				dto.name = names.get(i).text();
-				dto.desc = descs.get(i).text();
+				hdto.link = links.get(i).text();
+				hdto.name = names.get(i).text();
+				hdto.desc = descs.get(i).text();
+			/*	hdto.price = price.get(i).text();
+				hdto.pic = pic.get.get(i).text();*/
 				
-				list.add(dto);
+				list.add(hdto);
 			}
 			
 		} catch (IOException e) {

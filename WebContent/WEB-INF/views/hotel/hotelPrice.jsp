@@ -30,7 +30,7 @@ background-color: rgb(102, 102, 102, 0.3);
 <form id="hetelprice">
 <br>
 <label for="location" style="font-weight: bold;">목적지</label> <br>
-<input type="text" id="location" name="location" class="form-control success" placeholder="국내 도시를 입력해주세요">
+<input type="text" id="city" name="city" class="form-control success" placeholder="국내 도시를 입력해주세요">
 <div class="form-group">
 <br>
 					<label for="tripdate"  style="font-weight: bold;">여행 기간</label> 
@@ -38,11 +38,11 @@ background-color: rgb(102, 102, 102, 0.3);
 					<div class="row">
 						<div class="col">
 						<span>체크인</span>
-							<input type="date" class="form-control" id="from_date" name="from_date">
+							<input type="date" class="form-control" id="checkin" name=""checkin"">
 						</div>
 						<div class="col">
 						<span>체크아웃</span>
-							<input type="date" class="form-control" id="to_date" name="to_date">
+							<input type="date" class="form-control" id="checkout" name="checkout">
 						</div>				
 					</div>
 				</div>
@@ -78,10 +78,36 @@ background-color: rgb(102, 102, 102, 0.3);
 
 <br>
 <br>
-<input type="submit"  class="form-control" value="검색하기" style="background-color: #7DC3BB; border: none; color: #FFFFFF; font-weight: bold;">
+<input type="submit"  id="searchBtn"class="form-control" value="검색하기" style="background-color: #7DC3BB; border: none; color: #FFFFFF; font-weight: bold;">
 <br>
 </form>
 </div>
 
 
 </div>
+
+<script>
+
+/* $('#searchBtn').click(function () {
+	$.ajax({
+			url : 'hotelSearch.do',
+			data : { email: $('#email').val() },
+			type : 'GET',
+			success : function (data) {
+				if(data == 'no'){
+					$('#email').attr('style', 'border-color:#dc3545;');
+					$('#email').removeClass('success');
+					$('.invalid-email').html('<span style="font-color:#dc3545;">이미 사용중인 이메일 입니다.</span>');
+				}else{
+					$('#email').attr('style', 'border-color:#28a745;');
+					$('#email').addClass('success');
+					$('.invalid-email').html('<span style="font-color:#28a745;">사용가능한 이메일 입니다.</span>');
+				}
+			}
+	})
+});
+}) */
+
+
+
+</script>

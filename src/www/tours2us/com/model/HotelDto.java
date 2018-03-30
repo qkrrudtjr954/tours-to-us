@@ -3,18 +3,18 @@ package www.tours2us.com.model;
 import java.io.Serializable;
 
 
-public class hotelDto implements Serializable {
+public class HotelDto implements Serializable {
 	private String city;
 	private String checkin;
 	private String checkout;
 	private int adults;
 	private int children;
 	
-	public hotelDto() {
+	public HotelDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public hotelDto(String city, String checkin, String checkout, int adults, int children) {
+	public HotelDto(String city, String checkin, String checkout, int adults, int children) {
 		super();
 		this.city = city;
 		this.checkin = checkin;

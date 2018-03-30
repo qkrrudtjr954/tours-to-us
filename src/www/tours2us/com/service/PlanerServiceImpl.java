@@ -83,6 +83,13 @@ public class PlanerServiceImpl implements PlanerService{
 	}
 
 
+	@Override
+	public boolean changeTitle(PlanerDto planer) {
+		
+		return planerDao.changeTitle(planer);
+	}
+
+
 	
 
 }

@@ -26,5 +26,5 @@ public interface PlanerService {
 
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
 	
-
+	public boolean changeTitle(PlanerDto planer);
 }

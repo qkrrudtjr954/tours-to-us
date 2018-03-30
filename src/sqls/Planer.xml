@@ -55,4 +55,9 @@
 	<select id="getAllTimePlanersByTargetDayPlanerSeq" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
 		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
 	</select>
+	
+	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">
+		UPDATE PLANER SET TITLE=#{title} WHERE SEQ=#{seq}
+	</update>
+	
 </mapper>

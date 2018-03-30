@@ -78,7 +78,7 @@ function changeTitle(button, seq) {
 		method : 'POST',
 		success : function (data) {
 			console.log(data);
-			//	$('#plan-title').text(data.title);
+			$('#plan-title').text(data.title);
 			
 			$(img).parent().parent().find('.change-title-span').css('display', 'none');
 			$(img).parnet().css('display', 'block');

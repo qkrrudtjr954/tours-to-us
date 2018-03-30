@@ -28,5 +28,5 @@ public interface PlanerDao {
 
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
 	
-
+	boolean changeTitle(PlanerDto planer);
 }

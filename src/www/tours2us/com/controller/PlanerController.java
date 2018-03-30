@@ -179,5 +179,19 @@ public class PlanerController {
 	}
 	
 	// changeTitle.do
+	@RequestMapping(value = "changeTitle.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public PlanerDto changeTitle(Model model, PlanerDto planer)throws Exception {
+		logger.info("PlanerController >>>> changeTitle");
+		//System.out.println(planer.toString());
+		PlanerDto dto = null;
+		int seq = planer.getSeq();
+		boolean isS = planerService.changeTitle(planer);
+		if(isS) {
+			dto = planerService.getPlaner(seq);
+			return dto;
+		}else {
+			return dto;
+		}
+	}
 
 }

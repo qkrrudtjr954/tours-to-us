@@ -13,11 +13,11 @@
 		background-color: #000;
 		color: #fff;
 	}
-a {
+.title{
 text-decoration:none;
 color: #fff;
 }
-a:hover {
+.title:hover {
 text-decoration: underline;
 color: #7DC3BB;
 }
@@ -48,7 +48,14 @@ color: #7DC3BB;
 					<div class="card-body">
 						<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
 						<br>
-						<span><a href="planDetail.do?seq=${plan.seq }">${plan.title }</a></span>
+						<span class="title-span">
+							<a id="plan-title" href="planDetail.do?seq=${plan.seq }" class="title">${plan.title }</a>
+							<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="15px" height="15px">
+						</span>
+						<span class="change-title-span" style="display:none;">
+							<input type="text" placeholder="${plan.title }">
+							<button class="btn" onclick="changeTitle(this, ${plan.seq})">change</button>
+						</span>
 						<a href="afterWrite.do?seq=${plan.seq }" class="offset-md-10 btn btn-primary">후기쓰기</a>
 					</div>
 				</div>
@@ -58,18 +65,25 @@ color: #7DC3BB;
 </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
+function showTitleInput(img){
+	$(img).parent().parent().find('.change-title-span').css('display', 'block');
+	$(img).parnet().css('display', 'none');
+}
+
+function changeTitle(button, seq) {
+	$.ajax({
+		url : 'changeTitle.do',
+		data : { title : $(button).parent().find('input[type="text"]').val() , seq : seq },
+		method : 'POST',
+		success : function (data) {
+			console.log(data);
+			//	$('#plan-title').text(data.title);
+			
+			$(img).parent().parent().find('.change-title-span').css('display', 'none');
+			$(img).parnet().css('display', 'block');
+		}
+	})
+}
 
 </script>

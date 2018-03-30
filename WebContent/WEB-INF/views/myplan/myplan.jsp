@@ -5,7 +5,7 @@
 <style>
 	.card-body{
 		position: absolute;
-		top:230px; 
+		top:230px;
 		left:16px;
 		opacity: 0.5;
 		width: 485px;
@@ -13,17 +13,22 @@
 		background-color: #000;
 		color: #fff;
 	}
-	a{
-		color: #fff;
-	}
+a {
+text-decoration:none;
+color: #fff;
+}
+a:hover {
+text-decoration: underline;
+color: #7DC3BB;
+}
 </style>
 <div class="myplan-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>나의 플랜</h2>
-	</div>
+   <div class="offset-md-2 col-md-4 col-xs-12">
+      <h2>나의 플랜</h2>
+   </div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
-	<hr>
+   <hr>
 </div>
 
 <div class="myplan-content">
@@ -44,6 +49,7 @@
 						<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
 						<br>
 						<span><a href="#none">${plan.title }</a></span>
+						<a href="afterWrite.do?seq=${plan.seq }" class="offset-md-10 btn btn-primary">후기쓰기</a>
 					</div>
 				</div>
 			</c:forEach>

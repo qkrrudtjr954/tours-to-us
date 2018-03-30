@@ -3,8 +3,9 @@
 
 <div class="planer-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>여행 계획</h2>
-	</div>	
+		<h2 id="title">Day <span id="day_count"></span><span data-feather="calendar" style="margin-left:5px"></span></h2>
+		<span id="day"></span>
+	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
 	<hr>
@@ -25,66 +26,169 @@
 	<div class="row">
 		<div class="offset-md-2 col-md-4 col-xs-12">
 			
-			<form>
+			<form id="timePlanerForm">
+				<input type="hidden" name="target_dayplaner_seq">
 				<div class="form-group">
 					<label for="location"><span data-feather="map-pin"></span></label> 
 					<input type="text" class="form-control" id="location" name="location" placeholder="Ex) 전주 한옥 마을">
 				</div>
 				<div class="form-group">
-					<label for="location"><span data-feather="clock"></span></label> 
+					<label for="time"><span data-feather="clock"></span></label> 
 					<div class="row">
 						<div class="col">
-							<input type="text" class="form-control" id="location" placeholder="Ex) 전주 한옥 마을">
+							<select class="form-control" id="start_time" name="start_time">
+								<c:forEach varStatus="i" begin="0" end="24">
+									<option>${(i.index lt 12)?'AM':'PM' } ${i.index} : 00</option>
+									<option>${(i.index lt 12)?'AM':'PM' } ${i.index} : 30</option>
+								</c:forEach>
+							</select>
 						</div>	
 						<div class="col">
-							<input type="text" class="form-control" id="location" placeholder="Ex) 전주 한옥 마을">
+							<select class="form-control" id="end_time" name="end_time">
+								<c:forEach varStatus="i" begin="0" end="24">
+									<option>${(i.index lt 12)?'AM':'PM' } ${i.index} : 00</option>
+									<option>${(i.index lt 12)?'AM':'PM' } ${i.index} : 30</option>
+								</c:forEach>
+							</select>
 						</div>		
 					</div>
 				</div>
 			
 				<div class="form-group">
-					<label for="exampleFormControlSelect1">Example select</label> 
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+					<label for="transportation"><span data-feather="truck"></span></label> 
+					<select class="form-control" id="exampleFormControlSelect1" name="transportation">
+						<option>자동차 </option>
+						<option>대중 교통 </option>
+						<option>택시 </option>
+						<option>기차 </option>
+						<option>자전거 </option>
+						<option>도보 </option>
+						<option>기타 </option>
 					</select>
 				</div>
 				
 				<div class="form-group">
-					<label for="exampleFormControlInput1">Email address</label> 
-					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+					<label for="expected_cost"><span data-feather="dollar-sign"></span></label> 
+					<div class="input-group mb-3">
+						<input type="number" class="form-control" id="expected_cost" name="expected_cost"  placeholder="Ex) 10000">
+						<div class="input-group-append">
+							<span class="input-group-text">원</span>
+						</div>
+					</div>
 				</div>
+
+
 				<div class="form-group">
-					<label for="exampleFormControlSelect2">Example multiple
-						select</label> <select multiple class="form-control"
-						id="exampleFormControlSelect2">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+					<label for="types"><span data-feather="shopping-cart"></span></label> 
+					<select class="form-control" id="types" name="types">
+						<option>쇼핑 </option>
+						<option>관광 </option>
+						<option>숙소 </option>
+						<option>식당 </option>
+						<option>체험 </option>
+						<option>휴식 </option>
 					</select>
 				</div>
+				
 				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Example textarea</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="3"></textarea>
+					<label for="content"><span data-feather="file-text"></span></label>
+					<textarea class="form-control" id="content" name="content" rows="3"></textarea>
 				</div>
+				
 			</form>
-
-			<span id="notice" style="margin-left: 10px;"></span>
 			
-			
-			
+			<div class="btn-area d-flex justify-content-center">
+				<button id="addButton" class="btn btn-primary">+</button>			
+			</div>
 		</div>
-		<div class="col-md-4" style="height: 500px; border:2px solid red;">
+		<div class="col-md-4">
+			<div class="row">
+				<div class="timePlanerContainer">
+					<div class="timePlanersList"></div>
+				</div>
+			</div>
 			
+			<div class="row justify-content-around">
+				<button class="btn btn-primary" id="nextDayPlaner">next</button>
+				<button class="btn btn-primary" id="prevDayPlaner">prev</button>
+			</div>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
+$(document).ready(function () {
+	getDayPlaner(1);
+})
+
+$('#nextDayPlaner').on('click', function () {
+	var nextDay = parseInt($('#day_count').text())+1;
+	getDayPlaner(nextDay);
+})
+$('#prevDayPlaner').on('click', function () {
+	var prevDay = parseInt($('#day_count').text())-1;
+	getDayPlaner(prevDay);
+})
+
+function getDayPlaner(day_count) {
+	$.ajax({
+		url: 'getDayPlaner.do',
+		method: 'GET',
+		data: { target_planer_seq : ${planer.seq}, day_count : day_count },
+		success: function (data) {
+			console.log(data);
+			$('#day_count').text(data.day_count);
+			$('input[name="target_dayplaner_seq"]').val(data.seq);
+			$('#day').text(data.day);
+			$('.timePlanersList').children().remove();
+			getTimePlaners(data.seq);
+		}
+	})
+}
+
+function getTimePlaners(seq) {
+	$.ajax({
+		url : 'getTimePlaners.do',
+		data : { seq : seq },
+		method : 'GET',
+		success : function (data) {
+			console.log(data);
+			
+			for(var i=0; i<data.length; i++){
+				drawTimePlaner(data[i]);
+			}
+		}
+	})
+}
+
+$('#addButton').on('click', function () {
+	var FormData = $('#timePlanerForm').serialize();
+	
+	$.ajax({
+		url : 'addTimePlaner.do',
+		data : FormData,
+		method : 'POST',
+		success : function (data) {
+			console.log(data);
+			drawTimePlaner(data);
+		}
+	})
+})
+
+
+function drawTimePlaner(data) {
+	var html = 
+		'<div class="timePlaner" style="border:1px solid black; font-size:13px;">'+
+			'<ul>'+
+				'<li>'+data.location+'</li>'+
+				'<li>'+data.start_time+' ~ '+data.end_time+'</li>'+
+				'<li>'+data.transportation+'</li>'+
+				'<li>'+data.expected_cost+'</li>'+
+				'<li>'+data.types+'</li>'+
+				'<li>'+data.content+'</li>'+
+			'</ul>'+			
+		'</div>';
+	
+	$('.timePlanersList').append(html);	
+}
 </script>

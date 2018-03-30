@@ -9,15 +9,15 @@
 		<put-attribute name="main" value="/WEB-INF/views/main/main.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>
-	
+
 	<definition name="signin.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/traveler/signin.jsp"/>
 	</definition>
-	
+
 	<definition name="signup.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/traveler/signup.jsp"/>
 	</definition>
-	
+
 	<definition name="planer.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/planer/planer.jsp"/>
 	</definition>
@@ -33,36 +33,43 @@
 	<definition name="guidebook.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>
 	</definition>
-	
+
 	<definition name="mypage.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/mypage/myInfo.jsp"/>
 	</definition>
-	
+
 	<definition name="myInfoUpd.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/mypage/myInfoUpd.jsp"/>
 	</definition>
-	
+
 	<definition name="myplan.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/myplan/myplan.jsp"/>
 	</definition>
 
-	
+
 	<definition name="afterBbs.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/commu/afterBbs.jsp"/>
 	</definition>
 	<definition name="afterWrite.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/commu/afterWrite.jsp"/>
 	</definition>
-	
-	
+
+	<definition name="event.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/event.jsp"/>
+	</definition>
+
 <!-- 가이드북 -->
 	<definition name="editor_essay.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/editor_essay.jsp"/>
 	</definition>
-	
+
 	<!-- 호텔최저가 -->
 	<definition name="hotelPrice.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/hotel/hotelPrice.jsp"/>
+	</definition>
+
+	<definition name="eventDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
 	
 </tiles-definitions>

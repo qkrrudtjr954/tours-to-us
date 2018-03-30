@@ -11,6 +11,7 @@ public class PlanerDto implements Serializable {
 	private int status;
 	private String to_date;
 	private String from_date;
+	private int range;
 	private long total_cost;
 	private String reg_date;
 	private String last_updated;
@@ -23,7 +24,7 @@ public class PlanerDto implements Serializable {
 	}
 
 	public PlanerDto(int seq, int target_user_seq, String title, String location, int status, String to_date,
-			String from_date, long total_cost, String reg_date, String last_updated, String paper) {
+			String from_date, int range, long total_cost, String reg_date, String last_updated, String paper) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -32,6 +33,7 @@ public class PlanerDto implements Serializable {
 		this.status = status;
 		this.to_date = to_date;
 		this.from_date = from_date;
+		this.range = range;
 		this.total_cost = total_cost;
 		this.reg_date = reg_date;
 		this.last_updated = last_updated;
@@ -94,6 +96,14 @@ public class PlanerDto implements Serializable {
 		this.from_date = from_date;
 	}
 
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+
 	public long getTotal_cost() {
 		return total_cost;
 	}
@@ -129,9 +139,10 @@ public class PlanerDto implements Serializable {
 	@Override
 	public String toString() {
 		return "PlanerDto [seq=" + seq + ", target_user_seq=" + target_user_seq + ", title=" + title + ", location="
-				+ location + ", status=" + status + ", to_date=" + to_date + ", from_date=" + from_date
-				+ ", total_cost=" + total_cost + ", reg_date=" + reg_date + ", last_updated=" + last_updated
+				+ location + ", status=" + status + ", to_date=" + to_date + ", from_date=" + from_date + ", range="
+				+ range + ", total_cost=" + total_cost + ", reg_date=" + reg_date + ", last_updated=" + last_updated
 				+ ", paper=" + paper + "]";
 	}
+
 
 }

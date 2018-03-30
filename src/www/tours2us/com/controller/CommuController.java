@@ -47,10 +47,6 @@ public String afterBbs(Model model) throws Exception{
 
 
 
-
-
-
-
 @RequestMapping(value = "afterWrite.do", method = {RequestMethod.GET,   RequestMethod.POST})
 public String afterbbswrite(Model model, int seq) {
    logger.info("CommuController >>>> afterWrite");   

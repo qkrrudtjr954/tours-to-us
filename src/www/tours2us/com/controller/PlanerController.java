@@ -137,7 +137,7 @@ public class PlanerController {
 	@RequestMapping(value="getTimePlaners.do", method=RequestMethod.GET)
 	public List<TimePlanerDto> getTimePlaners(DayPlanerDto dayPlaner) {
 		
-		logger.info("PlanerContoller >>>>>> getTimePlaner : {}", dayPlaner);
+		logger.info("PlanerContoller >>>>>> getTimePlaners : {}", dayPlaner);
 		List<TimePlanerDto> timePlaners = planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlaner.getSeq()); 
 		return timePlaners;
 		

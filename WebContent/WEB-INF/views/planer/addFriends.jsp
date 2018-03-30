@@ -175,7 +175,7 @@ function addFriend(seq, name){
 							'<td>' + data.seq + '</td>' + 
 							'<td>' + data.name + '</td>' + 
 							'<td>' + data.email + '</td>' + 
-							'<td style="text-align:left;"><button class="addFriendBtn">x</button></td>' + 
+							'<td style="text-align:left;"><button class="addFriendBtn" onclick="deleteFriend('+ data.seq +', this)">x</button></td>' + 
 						'</tr>';
 						
 					if(data.email != '${current_user.email}'){

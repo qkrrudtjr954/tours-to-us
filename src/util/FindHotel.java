@@ -46,9 +46,9 @@ public class FindHotel {
 			System.out.println("pic 사이즈 :" +pic.size());
 			System.out.println("price" +price.size());
 			
-			int size = 10;
+			int size = 12;
 			
-			if(links.size() <= 10 || names.size() <= 10 || descs.size() <= 10 || pic.size() <= 10 || price.size() <= 10) {
+			if(links.size() <= 12 || names.size() <= 12 || descs.size() <= 12 || pic.size() <= 12 || price.size() <= 12) {
 				if(links.size() < names.size()) {
 					if(descs.size() < links.size()) {
 						size = descs.size();

@@ -53,7 +53,8 @@
 	</select>
 	
 	<select id="getAllTimePlanersByTargetDayPlanerSeq" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
-		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
+		SELECT * FROM TIMEPLANER WHERE TARGET_PLANER_SEQ = #{seq}
+		ORDER BY SEQ ASC
 	</select>
 	
 	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">

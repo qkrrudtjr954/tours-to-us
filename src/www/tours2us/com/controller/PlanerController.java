@@ -1,5 +1,6 @@
 package www.tours2us.com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -156,29 +157,28 @@ public class PlanerController {
 	}
 	
 	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String planDetail(int seq, Model model) throws Exception {
+	public String planDetail(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> planDetail");
-		System.out.println("pseq:"+seq);
+		//System.out.println("pseq:"+seq);
 		
 		PlanerDto planer = planerService.getPlaner(seq);
-		
 		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
 		
 		int d_seq = 0;
+		List<TimePlanerDto> timeplanlist = new ArrayList<TimePlanerDto>();
 		for (int j = 0; j < dayPlanlist.size(); j++) {
-			System.out.println(dayPlanlist.get(j).getSeq());
-			d_seq = dayPlanlist.get(j).getSeq();
-		}
-		List<TimePlanerDto> timeplanlist = planerService.getAllTimePlanersByTargetDayPlanerSeq(d_seq);
-		
+			d_seq = dayPlanlist.get(j).getTarget_planer_seq();
+			timeplanlist = planerService.getAllTimePlanersByTargetDayPlanerSeq(d_seq);
+			System.out.println("["+j+"]="+timeplanlist);
+		}		
 		model.addAttribute("planer",planer);
 		model.addAttribute("dayPlanlist", dayPlanlist);
-		model.addAttribute("timeplanlist", timeplanlist);
+		model.addAttribute("timePlanlist", timeplanlist);
 		
 		return "planDetail.tiles";
 	}
 	
-	// changeTitle.do
+
 	@RequestMapping(value = "changeTitle.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public PlanerDto changeTitle(Model model, PlanerDto planer)throws Exception {
 		logger.info("PlanerController >>>> changeTitle");

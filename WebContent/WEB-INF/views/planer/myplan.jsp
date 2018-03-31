@@ -75,14 +75,10 @@ function changeTitle(button, seq) {
 	$.ajax({
 		url : 'changeTitle.do',
 		data : { title : $(button).parent().find('input[type="text"]').val() , seq : seq },
-		method : 'GET',
+		method : 'POST',
 		success : function (data) {
 			alert(data);
-			/* alert(data);
-			$('#plan-title').text(data.title);
 			
-			$(img).parent().parent().find('.change-title-span').css('display', 'none');
-			$(img).parnet().css('display', 'block'); */
 			lcation.href="myplan.do";
 		},
 		

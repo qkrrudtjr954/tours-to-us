@@ -37,7 +37,7 @@
 				<c:forEach items="${timePlanlist }" varStatus="i" var="timeplan">
 					<div id="collapse${dayplan.day_count }" class="collapse" aria-labelledby="heading"
 						data-parent="#accordion">
-						<div class="card-body">${timePlanlist }</div>
+						<div class="card-body">${timeplan.content }</div>
 					</div>
 				</c:forEach>
 			</c:forEach>

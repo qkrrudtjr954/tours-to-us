@@ -17,13 +17,13 @@ import www.tours2us.com.model.TimePlanerDto;
 public class PlanerDaoImpl implements PlanerDao{
 
 	Logger logger = LoggerFactory.getLogger(PlanerDaoImpl.class);
-	
-	
+
+
 	private String namespace = "Planer.";
-	
+
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
+
 	@Override
 	public int addPlaner(PlanerDto planer) {
 		sqlSession.insert(namespace + "addPlaner", planer);
@@ -41,7 +41,7 @@ public class PlanerDaoImpl implements PlanerDao{
 		List<DayPlanerDto> list = new ArrayList<DayPlanerDto>();
 		return list = sqlSession.selectList(namespace+"getDayplanList", seq);
 	}
-	
+
 	@Override
 	public List<PlanerDto> getplanList(int seq) {
 		List<PlanerDto> list = new ArrayList<PlanerDto>();
@@ -85,7 +85,9 @@ public class PlanerDaoImpl implements PlanerDao{
 		return c>0?true:false;
 	}
 
+	public void updateCompletePlaner(PlanerDto planer) {
+		sqlSession.update(namespace+ "updateCompletePlaner", planer);
+	}
 
-	
 
 }

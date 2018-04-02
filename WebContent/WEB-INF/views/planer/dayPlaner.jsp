@@ -101,7 +101,7 @@
 				<button id="addButton" class="btn btn-primary">+</button>			
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<div class="row">
 				<div class="timePlanerContainer">
 					<div class="timePlanersList"></div>
@@ -109,10 +109,18 @@
 			</div>
 			
 			<div class="row justify-content-around">
-				<button class="btn btn-primary" id="nextDayPlaner">next</button>
 				<button class="btn btn-primary" id="prevDayPlaner">prev</button>
+				<form action="myplan.do" method="POST">
+					<input type="hidden" name="status" value="2">
+					<input type="hidden" name="seq" value="${planer.seq }">
+					<input type="submit" class="btn btn-primary" id="completePlaner" style="display:none;" value="complete">
+				</form>
+				
+				<button class="btn btn-primary" id="nextDayPlaner">next</button>
 			</div>
 		</div>
+		
+		
 	</div>
 </div>
 
@@ -141,6 +149,13 @@ function getDayPlaner(day_count) {
 			$('input[name="target_dayplaner_seq"]').val(data.seq);
 			$('#day').text(data.day);
 			$('.timePlanersList').children().remove();
+			
+			if(data.day_count == ${planer.range}){
+				$('#completePlaner').css('display', 'block');
+			} else {
+				$('#completePlaner').css('display', 'none');				
+			}
+			
 			getTimePlaners(data.seq);
 		}
 	})
@@ -178,17 +193,23 @@ $('#addButton').on('click', function () {
 
 function drawTimePlaner(data) {
 	var html = 
-		'<div class="timePlaner" style="border:1px solid black; font-size:13px;">'+
-			'<ul>'+
-				'<li>'+data.location+'</li>'+
-				'<li>'+data.start_time+' ~ '+data.end_time+'</li>'+
-				'<li>'+data.transportation+'</li>'+
-				'<li>'+data.expected_cost+'</li>'+
-				'<li>'+data.types+'</li>'+
-				'<li>'+data.content+'</li>'+
-			'</ul>'+			
+		'<div class="d-flex justify-content-around">'+	
+			'<div class="timePlaner">'+
+				'<ul>'+
+					'<li>'+data.location+'</li>'+
+					'<li>'+data.start_time+' ~ '+data.end_time+'</li>'+
+					'<li>'+data.transportation+'</li>'+
+					'<li>'+data.expected_cost+'</li>'+
+					'<li>'+data.types+'</li>'+
+					'<li>'+data.content+'</li>'+
+				'</ul>'+	
+			'</div>'+
+			'<div class="buttonArea">'+
+				'<a href="deleteTimePlaner.do" class="btn btn-outline-danger">X</a>'+
+			'</div>'+
 		'</div>';
 	
 	$('.timePlanersList').append(html);	
 }
+
 </script>

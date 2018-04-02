@@ -6,7 +6,7 @@
 	<select id="getPlaner" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
 		SELECT * FROM PLANER WHERE SEQ = #{seq}
 	</select>
-	
+
 	<insert id="addPlaner" parameterType="www.tours2us.com.model.PlanerDto">
 		INSERT INTO PLANER(SEQ, TARGET_USER_SEQ, TITLE, LOCATION, STATUS, TO_DATE, FROM_DATE, TOTAL_COST, PAPER, RANGE, REG_DATE, LAST_UPDATED)
 		VALUES( PLANER_SEQ.NEXTVAL, #{target_user_seq}, #{title}, #{location}, 0, #{to_date}, #{from_date}, 0, #{paper}, (SELECT (to_date(#{to_date}, 'yyyy-MM-dd')-to_date(#{from_date}, 'yyyy-MM-dd'))+1 from dual), SYSDATE, SYSDATE)
@@ -18,15 +18,19 @@
 	<select id="getplanList" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
 		SELECT * FROM PLANER WHERE TARGET_USER_SEQ=#{SEQ} ORDER BY REG_DATE DESC
 	</select>
-	
+
 	<select id="getDayplanList" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
 		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ=#{SEQ}
 		ORDER BY REG_DATE ASC
 	</select>
 
+	<update id="updateCompletePlaner" parameterType="www.tours2us.com.model.PlanerDto">
+		UPDATE PLANER SET STATUS = #{status} WHERE SEQ = #{seq}
+	</update>
+
 	<select id="getDayPlanerByTargetPlanerSeqAndDayCount" parameterType="www.tours2us.com.model.DayPlanerDto" resultType="www.tours2us.com.model.DayPlanerDto">
 		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ = #{target_planer_seq} AND DAY_COUNT = #{day_count}
-	</select> 
+	</select>
 
 	<select id="getDayPlanerBySeq" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
 		SELECT * FROM DAYPLANER WHERE SEQ = #{seq}
@@ -47,18 +51,18 @@
 			SELECT TIMEPLANER_SEQ.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
-	
+
 	<select id="getTimePlaner" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
 		SELECT * FROM TIMEPLANER WHERE SEQ = #{seq}
 	</select>
-	
+
 	<select id="getAllTimePlanersByTargetDayPlanerSeq" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
 		SELECT * FROM TIMEPLANER WHERE TARGET_PLANER_SEQ = #{seq}
 		ORDER BY SEQ ASC
 	</select>
-	
+
 	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">
 		UPDATE PLANER SET TITLE=#{title} WHERE SEQ=#{seq}
 	</update>
-	
+
 </mapper>

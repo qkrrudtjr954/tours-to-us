@@ -38,8 +38,10 @@
 			<mvc:mapping path="/**/*.do" />
 			<mvc:exclude-mapping path="/main.do" />
 			<mvc:exclude-mapping path="/signin.do" />
+			<mvc:exclude-mapping path="/signinAf.do" />
 			<mvc:exclude-mapping path="/signup.do" />
-			<mvc:exclude-mapping path="/myplan.do" />
+			<mvc:exclude-mapping path="/signupAf.do" />
+			<mvc:exclude-mapping path="/event.do" />
 			<bean class="www.tours2us.com.aop.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

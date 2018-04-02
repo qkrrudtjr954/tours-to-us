@@ -11,9 +11,9 @@ public interface PlanerDao {
 	int addPlaner(PlanerDto planer);
 
 	PlanerDto getPlaner(int seq);
-	
+
 	List<PlanerDto> getplanList(int seq);
-	
+
 	List<DayPlanerDto> getDayplanList(int seq);
 
 	DayPlanerDto getDayPlanerByTargetPlanerSeqAndDayCount(DayPlanerDto dayPlaner);
@@ -27,6 +27,8 @@ public interface PlanerDao {
 	TimePlanerDto getTimePlanerBySeq(int seq);
 
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
-	
+
 	boolean changeTitle(PlanerDto planer);
+
+	void updateCompletePlaner(PlanerDto planer);
 }

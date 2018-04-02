@@ -54,6 +54,6 @@
 
 <script>
 function btn_update(seq) {
-	location.href="dayplaner.do?seq="+seq;
+	location.href="dayPlaner.do?seq="+seq;
 }
 </script>

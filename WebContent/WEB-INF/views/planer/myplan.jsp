@@ -15,6 +15,9 @@
 	background-position: center;
 	border: 1px solid #7DC3BB;
 }
+.card-body:hover{
+	height: 450px;
+}
 .card-container {
 	background-color: rgb(0,0,0,0.5);
 	position: absolute;
@@ -66,7 +69,6 @@
 			<c:forEach items="${planlist }" var="plan" varStatus="i" begin="0" step="2">
 				<div class="card col-md-6 ">
 					<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
-						<%-- <img class="card-img-top" src="${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}" alt="Card image cap"> --%>
 						<div class="card-container">
 							<h5 class="card-title">
 								<span data-feather="calendar"></span>&nbsp;&nbsp;
@@ -90,25 +92,6 @@
 						</div>
 					</div>
 				</div>
-				<%-- <div class="col-md-6 col-xs-12">
-						
-					<div class="card mb-4 box-shadow">
-					<img class="card-img-top" src="${pageContext.request.contextPath }/${plan.paper}" alt="no-cover" height="350">
-					</div>
-					<div class="card-body">
-						<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
-						<br>
-						<span class="title-span">
-							<a id="plan-title" href="planDetail.do?seq=${plan.seq }" class="title">${plan.title }</a>
-							<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="15px" height="15px">
-						</span>
-						<span class="change-title-span" style="display:none;">
-							<input type="text" placeholder="${plan.title }">
-							<button class="btn" onclick="changeTitle(this, ${plan.seq})">change</button>
-						</span>
-						<a href="afterWrite.do?seq=${plan.seq }" class="offset-md-10 btn btn-primary">후기쓰기</a>
-					</div>
-				</div> --%>
 			</c:forEach>
 		</div>
 	</div>
@@ -132,17 +115,13 @@ function changeTitle(button, seq) {
 		data : { title : title , seq : seq },
 		method : 'POST',
 		success : function (data) {
-			var title = data;
-			
-			if(title === ""){
-				location.href="main.do";
+			if(data === ""){
+				alert('변경할 수 없습니다. 잠시 후 다시 시도해주세요.');
 			}else{
-				location.href="myplan.do";
+				$(button).parent().parent().parent().find('a').text(data.title);
+				hideTitleInput($(button).parent().parent().parent().find('img'));
 			}
-			
-			
-		},
-		
+		}
 	})
 }
 

@@ -38,6 +38,9 @@ public class DayPlanerDto implements Serializable {
 	}
 
 
+	
+
+
 	public int getSeq() {
 		return seq;
 	}
@@ -112,7 +115,16 @@ public class DayPlanerDto implements Serializable {
 	public String toString() {
 		return "DayPlanerDto [seq=" + seq + ", target_planer_seq=" + target_planer_seq + ", day=" + day + ", day_count="
 				+ day_count + ", expected_cost=" + expected_cost + ", reg_date=" + reg_date + ", last_updated="
-				+ last_updated + "]";
+				+ last_updated + ", getSeq()=" + getSeq() + ", getTarget_planer_seq()=" + getTarget_planer_seq()
+				+ ", getDay()=" + getDay() + ", getDay_count()=" + getDay_count() + ", getExpected_cost()="
+				+ getExpected_cost() + ", getReg_date()=" + getReg_date() + ", getLast_updated()=" + getLast_updated()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
+
+
+
+
+	
 	
 }

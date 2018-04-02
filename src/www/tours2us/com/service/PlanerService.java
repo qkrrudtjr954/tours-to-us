@@ -14,8 +14,10 @@ public interface PlanerService {
 
 	public List<PlanerDto> getplanList(int seq);
 
+	public List<DayPlanerDto> getDayplanList(int seq);
+
 	PlanerDto getPlaner(int seq);
-	
+
 	DayPlanerDto getDayPlanerByTargetPlanerSeqAndDayCount(DayPlanerDto dayPlaner);
 
 	DayPlanerDto addDayPlaner(DayPlanerDto dayPlaner);
@@ -24,6 +26,7 @@ public interface PlanerService {
 
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
 
-	void updateCompletePlaner(PlanerDto planer);
+	public boolean changeTitle(PlanerDto planer);
 
+	void updateCompletePlaner(PlanerDto planer);
 }

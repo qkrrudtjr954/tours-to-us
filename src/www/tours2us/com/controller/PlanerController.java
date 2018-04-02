@@ -1,6 +1,9 @@
 package www.tours2us.com.controller;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.DayPlanerDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
@@ -130,7 +132,7 @@ public class PlanerController {
 
 	@RequestMapping(value = "myplan.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myplan(HttpServletRequest req, PlanerDto planer, Model model) throws Exception {
-		logger.info("TravelerController >>>> myplan");
+		logger.info("PlanerContoller >>>> myplan");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		// System.out.println(t_dto.getSeq());
 		int seq = t_dto.getSeq();
@@ -163,6 +165,49 @@ public class PlanerController {
 		return addedTimePlaner;
 	}
 	
+	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String planDetail(HttpServletRequest req, int seq, Model model) throws Exception {
+		logger.info("PlanerContoller >>>> planDetail");
+		System.out.println("planerseq:"+seq);
+		
+		PlanerDto planer = planerService.getPlaner(seq);
+		
+		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
+		Map<DayPlanerDto, List<TimePlanerDto>> planMap = new TreeMap<>(new Comparator<DayPlanerDto>() {
+			@Override
+			public int compare(DayPlanerDto o1, DayPlanerDto o2) {
+				// TODO Auto-generated method stub
+				return (o1.getDay_count() - o2.getDay_count());
+			}
+		});
+		
+		for(DayPlanerDto dayPlan : dayPlanlist) {
+			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+		}
 	
+		model.addAttribute("planer",planer);
+		model.addAttribute("planerMap", planMap);
+		
+		return "planDetail.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "changeTitle.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public PlanerDto changeTitle(Model model, PlanerDto planer)throws Exception {
+		logger.info("PlanerController >>>> changeTitle");
+		System.out.println(planer.toString());
+		PlanerDto dto = null;
+		int seq = planer.getSeq();
+		System.out.println(""+seq);
+		boolean isS = planerService.changeTitle(planer);
+		System.out.println(isS);
+		if(isS) {
+			dto = planerService.getPlaner(seq);
+			return dto;
+		}else {
+			return dto;
+		}
+	}
+
 
 }

@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-a {
+a .title{
 text-decoration:none;
 color: #000;
 }
-a:hover {
+a .titile:hover {
 text-decoration: underline; 
 color: #7DC3BB;
 }
@@ -44,7 +44,7 @@ color: #7DC3BB;
 				
 					<td> 
 						<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${event.category }</span>&nbsp;
-						<a href="eventDetail.do?seq=${event.seq }">${event.title }</a>
+						<a href="eventDetail.do?seq=${event.seq }" class="title">${event.title }</a>
 					</td>
 				
 					<td>${event.from_date } ~ ${event.to_date }</td>

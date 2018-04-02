@@ -29,21 +29,25 @@
 	<definition name="addFriends.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/planer/addFriends.jsp"/>
 	</definition>
+	
+	<definition name="planDetail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/planer/planDetail.jsp"/>
+	</definition>
 
 	<definition name="guidebook.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>
 	</definition>
 	
 	<definition name="mypage.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/mypage/myInfo.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/traveler/myInfo.jsp"/>
 	</definition>
 	
 	<definition name="myInfoUpd.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/mypage/myInfoUpd.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/traveler/myInfoUpd.jsp"/>
 	</definition>
 	
 	<definition name="myplan.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/myplan/myplan.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/planer/myplan.jsp"/>
 	</definition>
 
 	
@@ -61,5 +65,7 @@
 	<definition name="eventDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
+	
+	
 	
 </tiles-definitions>

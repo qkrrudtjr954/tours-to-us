@@ -51,6 +51,11 @@ public class PlanerServiceImpl implements PlanerService{
 		return planerDao.getplanList(seq);
 	}
 
+	@Override
+	public List<DayPlanerDto> getDayplanList(int seq) {
+		// TODO Auto-generated method stub
+		return planerDao.getDayplanList(seq);
+	}
 
 	@Override
 	public DayPlanerDto getDayPlanerByTargetPlanerSeqAndDayCount(DayPlanerDto dayPlaner) {
@@ -79,8 +84,16 @@ public class PlanerServiceImpl implements PlanerService{
 
 
 	@Override
+	public boolean changeTitle(PlanerDto planer) {
+
+		return planerDao.changeTitle(planer);
+	}
+
 	public void updateCompletePlaner(PlanerDto planer) {
 		planerDao.updateCompletePlaner(planer);
 	}
+
+
+
 
 }

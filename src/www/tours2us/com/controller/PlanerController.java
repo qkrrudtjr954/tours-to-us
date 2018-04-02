@@ -183,12 +183,40 @@ public class PlanerController {
 		
 		for(DayPlanerDto dayPlan : dayPlanlist) {
 			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 	
 		model.addAttribute("planer",planer);
 		model.addAttribute("planerMap", planMap);
 		
 		return "planDetail.tiles";
+	}
+	
+	@RequestMapping(value = "planDetailAll.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String planDetailAll(HttpServletRequest req, int seq, Model model) throws Exception {
+		logger.info("PlanerContoller >>>> planDetailAll");
+		System.out.println("planerseq:"+seq);
+		
+PlanerDto planer = planerService.getPlaner(seq);
+		
+		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
+		Map<DayPlanerDto, List<TimePlanerDto>> planMap = new TreeMap<>(new Comparator<DayPlanerDto>() {
+			@Override
+			public int compare(DayPlanerDto o1, DayPlanerDto o2) {
+				// TODO Auto-generated method stub
+				return (o1.getDay_count() - o2.getDay_count());
+			}
+		});
+		
+		for(DayPlanerDto dayPlan : dayPlanlist) {
+			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+		}
+	
+		model.addAttribute("planer",planer);
+		model.addAttribute("planerMap", planMap);
+		
+		return "planDetailAll.tiles";
 	}
 	
 	@ResponseBody

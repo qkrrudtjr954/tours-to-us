@@ -167,20 +167,18 @@ public class PlanerController {
 	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String planDetail(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> planDetail");
-		//System.out.println("pseq:"+seq);
+		System.out.println("planerseq:"+seq);
 		
 		PlanerDto planer = planerService.getPlaner(seq);
-		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
 		
-		int d_seq = 0;
-		List<TimePlanerDto> timeplanlist = null;
-		d_seq = dayPlanlist.get(0).getTarget_planer_seq();
-		timeplanlist = planerService.getAllTimePlanersByTargetDayPlanerSeq(d_seq);
-		System.out.println("[list]="+timeplanlist);
+		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
+		System.out.println("dlist"+dayPlanlist);
+		//int d_seq = dayPlanlist.get(i).getSeq();
+		
 	
 		model.addAttribute("planer",planer);
 		model.addAttribute("dayPlanlist", dayPlanlist);
-		model.addAttribute("timePlanlist", timeplanlist);
+		//model.addAttribute("timePlanlist", timeplanlist);
 		
 		return "planDetail.tiles";
 	}

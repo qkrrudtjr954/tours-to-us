@@ -68,7 +68,7 @@ color: #7DC3BB;
 <script>
 function showTitleInput(img){
 	$(img).parent().parent().find('.change-title-span').css('display', 'block');
-	$(img).parnet().css('display', 'none');
+	$(img).parnet().hide();
 }
 
 function changeTitle(button, seq) {

@@ -20,7 +20,7 @@
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
-	<input type="button" onclick="btn_update()" class="btn btn-primary" value="수정">
+	<input type="button" onclick="btn_update(${planer.seq})" class="offset-md-11 btn btn-primary" value="수정">
 	<hr>
 </div>
 

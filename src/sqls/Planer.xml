@@ -20,7 +20,7 @@
 	</select>
 
 	<select id="getDayplanList" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
-		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ=#{SEQ}
+		SELECT SEQ, TARGET_PLANER_SEQ, DAY, DAY_COUNT,  EXPECTED_COST, REG_DATE, LAST_UPDATED FROM DAYPLANER WHERE TARGET_PLANER_SEQ=#{SEQ}
 		ORDER BY REG_DATE ASC
 	</select>
 
@@ -57,12 +57,12 @@
 	</select>
 
 	<select id="getAllTimePlanersByTargetDayPlanerSeq" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
-		SELECT * FROM TIMEPLANER WHERE TARGET_PLANER_SEQ = #{seq}
+		SELECT * FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{seq}
 		ORDER BY SEQ ASC
 	</select>
 
 	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">
-		UPDATE PLANER SET TITLE=#{title} WHERE SEQ=#{seq}
+		UPDATE PLANER SET TITLE=#{title}, LAST_UPDATED=sysdate WHERE SEQ=#{seq}
 	</update>
 
 </mapper>

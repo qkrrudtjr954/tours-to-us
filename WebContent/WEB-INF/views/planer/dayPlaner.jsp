@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+
 <div class="planer-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2 id="title">Day <span id="day_count"></span><span data-feather="calendar" style="margin-left:5px"></span></h2>
@@ -101,7 +103,7 @@
 				<button id="addButton" class="btn btn-primary">+</button>			
 			</div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<div class="row">
 				<div class="timePlanerContainer">
 					<div class="timePlanersList"></div>
@@ -120,12 +122,26 @@
 			</div>
 		</div>
 		
+		<div class="col-md-2">
+			<input type="text" id="message" />
+		    <input type="button" id="sendBtn" value="전송" />
+		  
+		    <div id="data"></div>
+		</div>
+		
 		
 	</div>
 </div>
 
 <script type="text/javascript">
+
+var sock = new SockJS("${pageContext.request.contextPath}/echo");
+
 $(document).ready(function () {
+	$("#sendBtn").click(function() {
+        sendMessage();
+    });
+	
 	getDayPlaner(1);
 })
 
@@ -210,6 +226,41 @@ function drawTimePlaner(data) {
 		'</div>';
 	
 	$('.timePlanersList').append(html);	
+}
+
+
+//자바스크립트 안에 function을 집어넣을 수 있음
+//데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
+sock.onmessage = onMessage;
+
+//데이터를 끊고싶을때 실행하는 메소드
+sock.onclose = onClose;
+
+sock.onopen = function(){
+	message = {};
+	message.room = ${planer.seq};
+	message.msg = '${current_user.email}';
+	message.isFirst = true;
+    sock.send(JSON.stringify(message));
+};
+
+function sendMessage() {
+    	message = {};
+	message.room = ${planer.seq};
+	message.msg = $("#message").val();
+	message.isFirst = false;
+    sock.send(JSON.stringify(message));
+    	$("#message").val("");
+}
+
+//evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
+function onMessage(evt) {
+    var data = evt.data;
+    $("#data").append(data + "<br/> ");
+    //sock.close();
+}
+function onClose(evt) {
+    $("#data").append("연결 끊김");
 }
 
 </script>

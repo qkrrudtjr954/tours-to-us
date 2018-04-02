@@ -101,7 +101,7 @@
 				<button id="addButton" class="btn btn-primary">+</button>			
 			</div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<div class="row">
 				<div class="timePlanerContainer">
 					<div class="timePlanersList"></div>
@@ -118,6 +118,10 @@
 				
 				<button class="btn btn-primary" id="nextDayPlaner">next</button>
 			</div>
+		</div>
+		
+		<div class="col-md-2">
+		chat
 		</div>
 		
 		

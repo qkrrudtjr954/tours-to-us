@@ -38,7 +38,13 @@
 				<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="i">
 					<div id="collapse${dayPlan.day_count }" class="collapse" aria-labelledby="heading"
 						data-parent="#accordion">
-						<div class="card-body">${timePlan.content }</div>
+						<div class="card-body">
+							${timePlan.start_time }<br>
+							${timePlan.location }<br>
+							${timePlan.transportation }<br>
+							${timePlan.expected_cost }<br>
+							${timePlan.content }
+						</div>
 					</div>
 				</c:forEach>
 			</c:forEach>

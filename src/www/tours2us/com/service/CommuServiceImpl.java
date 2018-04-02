@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import www.tours2us.com.dao.CommuDao;
 import www.tours2us.com.model.CommuAfterBbsDto;
+import www.tours2us.com.model.CommuAfterCommentDto;
 
 @Service
 public class CommuServiceImpl implements CommuService {
@@ -48,6 +49,18 @@ public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
 public boolean Afterdelete(int seq) throws Exception {
 	// TODO Auto-generated method stub
 	return commutDao.Afterdelete(seq);
+}
+
+@Override
+public List<CommuAfterCommentDto> getAllComments(int ref) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.getAllComments(ref);
+}
+
+@Override
+public boolean addComment(CommuAfterCommentDto comment) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.addComment(comment);
 }
 
 

@@ -41,4 +41,17 @@
 		WHERE SEQ=#{seq} 	
 	</update>
 	
+	<!-- 댓글List -->
+	<select id="AfterComent" resultType="www.tours2us.com.model.CommuAfterCommentDto">
+			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_USER_SEQ=#{target_user_seq} AND STATUS=0 ORDER BY REG_DATE ASC
+	</select>
+	
+	<!-- 댓글 쓰기 -->
+	<insert id="AfterAddComent" parameterType="www.tours2us.com.model.CommuAfterCommentDto">
+		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(AFTERBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_bbs_seq},#{content},SYSDATE,SYSDATE,0)
+	</insert>
+	
+	
+	
 </mapper>

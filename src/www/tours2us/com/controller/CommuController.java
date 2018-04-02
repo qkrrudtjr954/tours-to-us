@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
+import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuService;
@@ -87,9 +89,8 @@ public String afterbbsdetail(int seq,Model model) throws Exception {
 	 logger.info("CommuController >>>> commuafterdetail");
 	 
 	 CommuAfterBbsDto aftergetBbs=null;
-	 aftergetBbs = commuService.getAfterBbs(seq);	 
+	 aftergetBbs = commuService.getAfterBbs(seq);
 	 model.addAttribute("aftergetBbs", aftergetBbs);
-	 
 	return "afterdetail.tiles";
 }
 
@@ -134,6 +135,21 @@ public String delete(Model model, int seq) {
 
 
 
+
+@ResponseBody
+@RequestMapping(value="AfterComentAf.do", 
+method={RequestMethod.GET, RequestMethod.POST})
+public String ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
+	logger.info("CommuController >>>> AfterComentAf");
+	System.out.println(comment.toString());
+	 TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+	comment.setTarget_user_seq(t_dto.getSeq());
+	//CommuAfterCommentDto commentlist =(CommuAfterCommentDto) commuService.getAllComments(comment.getTarget_bbs_seq());
+	//model.addAttribute("commentlist", commentlist);
+	boolean isS = commuService.addComment(comment);
+	
+	return "redirect:/afterdetail.do";
+}
 
 
 

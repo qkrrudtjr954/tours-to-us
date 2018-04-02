@@ -11,6 +11,7 @@
 		<h2>여행 후기</h2>
 	</div>
 </div>
+
 <div class="offset-md-2 col-md-8 col-xs-12">
 	<hr>
 </div>

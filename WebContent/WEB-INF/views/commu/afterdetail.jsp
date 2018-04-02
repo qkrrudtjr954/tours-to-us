@@ -24,7 +24,6 @@
 <div class="offset-md-2 col-md-8 col-xs-12">
 <hr>
 </div>
-
 <div class="row offset-md-7">
 <p>
 	<b>작성자</b>
@@ -51,14 +50,75 @@
 <a href="afterDelete.do?seq=${aftergetBbs.seq }" id="_btndelete" title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a> 
 </c:if>
 </div>
-</div>	
+</div>
+
+<br>
+<div class="row">
+	<div class="offset-md-1 col-md-8">
+		<input type="text" class="form-control" name="content" id="content" size="90" placeholder="댓글을 입력해주세요">
+	</div>
+	
+<div class="col-md-2">
+			<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment()">
+</div>
+</div>
+<br><br> 
+<div class="comment-area">
+					<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
+						<div class="row">
+							<div class="comment-email col-md-2" style="height: 50px;">
+								${current_user.email }
+							</div>
+							<div class="comment-box col" style="height: 50px;">
+								<div class="row">
+									<div class="col comment-content">
+										${comment.content }
+									</div>
+								</div>
+							</div>
+							<div class="comment-date col-md-1" style="height: 50px;">
+								<fmt:parseDate value="${commentlist.reg_date }" pattern="yyyy-MM-dd HH:mm:ss.S" var="tempRegDate"/>
+							</div>
+
+						</div>
+						<hr>
+					</c:forEach>
+
+			</div>
+
+
+
+<script>
+function addComment() {
+	alert("dddd");
+	var seq = ${aftergetBbs.seq};
+	var user_seq = ${current_user.seq};
+	alert("addComment seq = "  + seq);
+	alert("addComment user = "  + user_seq);
+	$.ajax({
+		url:"AfterComentAf.do",
+		type:"post",
+		data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
+		success:function(data){
+			alert("data: " + data);
+			//$("#formid").val(data);
+		},
+		error:function(request, status, error){
+			alert("실패");
+		}
+	});
+	
+	
+}
+
+	
+	
+	 
+
+
+
+</script>
 
 
 
 
-
-
-
-
-
- 

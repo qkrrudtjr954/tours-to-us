@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
+import www.tours2us.com.model.CommuAfterCommentDto;
 
 @Repository
 public class CommuDaoImpl implements CommuDao {
@@ -61,5 +62,23 @@ public boolean Afterdelete(int seq) throws Exception {
 	int count = sqlSession.update(ns + "AfterdeleteBbs", seq);
 	return count>0?true:false;
 }
+
+@Override
+public List<CommuAfterCommentDto> getAllComments(int ref) throws Exception {
+	logger.info("CommuDaoImpl >>>> getAllComments");
+	List<CommuAfterCommentDto> list = new ArrayList<CommuAfterCommentDto>();
+	list = sqlSession.selectList(ns + "AfterComent", ref); 
+	return list;
+}
+
+@Override
+public boolean addComment(CommuAfterCommentDto comment) throws Exception {
+	logger.info("CommuDaoImpl >>>> addComment");
+	sqlSession.insert(ns+"AfterAddComent", comment);
+	return true;
+}
+
+
+
 
 }

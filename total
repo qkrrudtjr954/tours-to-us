@@ -136,7 +136,6 @@ LAST_UPDATED DATE
 );
 
 ----------------------------------------------------------------------
-
 --TimePlaner
 CREATE SEQUENCE TIMEPLANER_SEQ START WITH 1 INCREMENT BY 1;
 

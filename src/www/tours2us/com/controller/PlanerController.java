@@ -118,6 +118,14 @@ public class PlanerController {
 		
 		return returnDayPlaner;
 	}
+
+	@ResponseBody
+	@RequestMapping(value="completePlaner.do", method=RequestMethod.POST)
+	public void completePlaner(Model model, PlanerDto planer) {
+		//	status 가 2이면 완료, 0이면 작성중, 1이면 임시저장 
+		logger.info("PlanerContoller >>>>> completePlaner : {}", planer);
+		planerService.updateCompletePlaner(planer);
+	}
 	
 
 	@RequestMapping(value = "myplan.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -137,7 +145,7 @@ public class PlanerController {
 	@RequestMapping(value="getTimePlaners.do", method=RequestMethod.GET)
 	public List<TimePlanerDto> getTimePlaners(DayPlanerDto dayPlaner) {
 		
-		logger.info("PlanerContoller >>>>>> getTimePlaner : {}", dayPlaner);
+		logger.info("PlanerContoller >>>>>> getTimePlaners : {}", dayPlaner);
 		List<TimePlanerDto> timePlaners = planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlaner.getSeq()); 
 		return timePlaners;
 		

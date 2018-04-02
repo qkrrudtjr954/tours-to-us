@@ -73,4 +73,9 @@ public class PlanerDaoImpl implements PlanerDao{
 		return sqlSession.selectList(namespace+ "getAllTimePlanersByTargetDayPlanerSeq", seq);
 	}
 
+	@Override
+	public void updateCompletePlaner(PlanerDto planer) {
+		sqlSession.update(namespace+ "updateCompletePlaner", planer);
+	}
+
 }

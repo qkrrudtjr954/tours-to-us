@@ -44,6 +44,14 @@ public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
 	return commutDao.AfterUpdate(bbs);
 }
 
+@Override
+public boolean Afterdelete(int seq) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.Afterdelete(seq);
+}
+
+
+
 
 
 }

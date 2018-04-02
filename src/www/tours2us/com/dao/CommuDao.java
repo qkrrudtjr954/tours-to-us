@@ -14,6 +14,7 @@ public interface CommuDao {
 	
 	boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception;
 	
+	boolean Afterdelete(int seq) throws Exception;
 	
 	
 	

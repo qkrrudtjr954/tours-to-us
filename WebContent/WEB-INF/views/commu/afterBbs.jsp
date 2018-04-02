@@ -63,6 +63,7 @@
 	</c:if>
 
 	<c:forEach items="${afterBbslist }" var="after" varStatus="i">
+	<c:if test="${after.status==0 }">
 	<tr>
 		
 		<td>
@@ -82,6 +83,7 @@
 		</td>	
 		
 	</tr>
+	</c:if>
 	</c:forEach>
 </tbody>
 </table>

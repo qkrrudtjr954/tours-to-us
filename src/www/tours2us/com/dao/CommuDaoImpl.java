@@ -55,9 +55,11 @@ public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
 	return n>0?true:false;
 }
 
-
-
-	
-	
+@Override
+public boolean Afterdelete(int seq) throws Exception {
+	logger.info("CommuDaoImpl >>>> Afterdelete");
+	int count = sqlSession.update(ns + "AfterdeleteBbs", seq);
+	return count>0?true:false;
+}
 
 }

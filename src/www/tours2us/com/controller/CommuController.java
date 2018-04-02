@@ -117,8 +117,19 @@ public String updateAf(Model model, CommuAfterBbsDto bbs) throws Exception{
 		return "redirect:/afterUpdate.do?seq=" + bbs.getSeq();
 	}
 	
-	
-	
+}
+
+//지우기
+@RequestMapping(value="afterDelete.do", method={RequestMethod.GET, RequestMethod.POST})
+public String delete(Model model, int seq) {
+	logger.info("CommuController >>>> updateAf");
+	try {
+		commuService.Afterdelete(seq);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return "redirect:/afterBbs.do";
 }
 
 

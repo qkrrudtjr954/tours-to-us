@@ -13,5 +13,7 @@ public interface CommuService {
 	public CommuAfterBbsDto getAfterBbs(int seq) throws Exception;
 	
 	boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception;
+	
+	boolean Afterdelete(int seq) throws Exception;
 
 }

@@ -27,11 +27,18 @@
 		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
          A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
       	FROM AFTERBBS A, TRAVELER B
-		WHERE  A.TARGET_USER_SEQ = B.SEQ AND A.SEQ=#{seq}
+		WHERE  A.TARGET_USER_SEQ = B.SEQ AND A.SEQ=#{seq} AND STATUS=0
 	</select>
 
 	<update id="AfterUpdateBbs" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
 		UPDATE AFTERBBS SET TITLE=#{title}, CONTENT=#{content}
 		WHERE SEQ=#{seq}
 	</update>
+	
+	<!-- 삭제 -->
+	<update id="AfterdeleteBbs" parameterType="int">
+		UPDATE AFTERBBS SET STATUS=1
+		WHERE SEQ=#{seq} 	
+	</update>
+	
 </mapper>

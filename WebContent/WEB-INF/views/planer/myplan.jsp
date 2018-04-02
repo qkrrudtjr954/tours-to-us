@@ -66,7 +66,7 @@
 			</div>
 		</c:if>
 		<div class="row no-gutters">
-			<c:forEach items="${planlist }" var="plan" varStatus="i" begin="0" step="2">
+			<c:forEach items="${planlist }" var="plan" varStatus="i" begin="0">
 				<div class="card col-md-6 ">
 					<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
 						<div class="card-container">

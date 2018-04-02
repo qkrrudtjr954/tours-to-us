@@ -60,7 +60,8 @@ public class PlanerDaoImpl implements PlanerDao{
 
 	@Override
 	public int addTimePlaner(TimePlanerDto timePlaner) {
-		return sqlSession.insert(namespace+"addTimePlaner", timePlaner);
+		sqlSession.insert(namespace+"addTimePlaner", timePlaner);
+		return timePlaner.getSeq();
 	}
 
 	@Override

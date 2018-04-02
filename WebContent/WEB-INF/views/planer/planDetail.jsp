@@ -37,7 +37,7 @@
 				<c:forEach items="${timePlanlist }" varStatus="i" var="timeplan">
 					<div id="collapse${dayplan.day_count }" class="collapse" aria-labelledby="heading"
 						data-parent="#accordion">
-						<div class="card-body">${timeplan.content }</div>
+						<div class="card-body">${i.count }, ${timeplan.content }</div>
 					</div>
 				</c:forEach>
 			</c:forEach>
@@ -48,7 +48,7 @@
 <div style="height:2000px">
 </div>
 <div id="floatMenu">
-<span style="color: skyblue">day : </span>${dayPlanlist }
+<span style="color: red">day : </span>${dayPlanlist }
 <br>
-<span style="color: skyblue">time : </span>${timePlanlist }
+<span style="color: red">time : </span>${timePlanlist }
 </div>

@@ -77,9 +77,15 @@ function changeTitle(button, seq) {
 		data : { title : $(button).parent().find('input[type="text"]').val() , seq : seq },
 		method : 'POST',
 		success : function (data) {
-			alert(data);
+			var title = data;
 			
-			lcation.href="myplan.do";
+			if(title === ""){
+				location.href="main.do";
+			}else{
+				location.href="myplan.do";
+			}
+			
+			
 		},
 		
 	})

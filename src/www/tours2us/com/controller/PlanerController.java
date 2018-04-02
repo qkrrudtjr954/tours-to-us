@@ -165,12 +165,11 @@ public class PlanerController {
 		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
 		
 		int d_seq = 0;
-		List<TimePlanerDto> timeplanlist = new ArrayList<TimePlanerDto>();
-		for (int j = 0; j < dayPlanlist.size(); j++) {
-			d_seq = dayPlanlist.get(j).getTarget_planer_seq();
-			timeplanlist = planerService.getAllTimePlanersByTargetDayPlanerSeq(d_seq);
-			System.out.println("["+j+"]="+timeplanlist);
-		}		
+		List<TimePlanerDto> timeplanlist = null;
+		d_seq = dayPlanlist.get(0).getTarget_planer_seq();
+		timeplanlist = planerService.getAllTimePlanersByTargetDayPlanerSeq(d_seq);
+		System.out.println("[list]="+timeplanlist);
+	
 		model.addAttribute("planer",planer);
 		model.addAttribute("dayPlanlist", dayPlanlist);
 		model.addAttribute("timePlanlist", timeplanlist);
@@ -178,7 +177,7 @@ public class PlanerController {
 		return "planDetail.tiles";
 	}
 	
-
+	@ResponseBody
 	@RequestMapping(value = "changeTitle.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public PlanerDto changeTitle(Model model, PlanerDto planer)throws Exception {
 		logger.info("PlanerController >>>> changeTitle");

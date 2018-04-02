@@ -1,7 +1,9 @@
 package www.tours2us.com.controller;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.DayPlanerDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
@@ -172,13 +173,20 @@ public class PlanerController {
 		PlanerDto planer = planerService.getPlaner(seq);
 		
 		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
-		System.out.println("dlist"+dayPlanlist);
-		//int d_seq = dayPlanlist.get(i).getSeq();
+		Map<DayPlanerDto, List<TimePlanerDto>> planMap = new TreeMap<>(new Comparator<DayPlanerDto>() {
+			@Override
+			public int compare(DayPlanerDto o1, DayPlanerDto o2) {
+				// TODO Auto-generated method stub
+				return (o1.getDay_count() - o2.getDay_count());
+			}
+		});
 		
+		for(DayPlanerDto dayPlan : dayPlanlist) {
+			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+		}
 	
 		model.addAttribute("planer",planer);
-		model.addAttribute("dayPlanlist", dayPlanlist);
-		//model.addAttribute("timePlanlist", timeplanlist);
+		model.addAttribute("planerMap", planMap);
 		
 		return "planDetail.tiles";
 	}
@@ -200,5 +208,6 @@ public class PlanerController {
 			return dto;
 		}
 	}
+
 
 }

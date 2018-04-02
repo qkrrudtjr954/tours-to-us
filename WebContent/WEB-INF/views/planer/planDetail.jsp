@@ -27,31 +27,23 @@
 <div id="myplanDetail-content">
 	<div class="offset-md-2 col-md-8 col-xs-12">
 		<div class="card">
-			<c:forEach items="${dayPlanlist }" varStatus="i" var="dayplan">
+			<c:forEach var="dayPlan" items="${planerMap.keySet() }">
 				<div class="card-header" id="heading">
 					<h5 class="mb-0">
 						<button class="btn btn-link collapsed" data-toggle="collapse"
-							data-target="#collapse${dayplan.day_count }" aria-expanded="false"
-							aria-controls="collapse">Day ${dayplan.day_count }</button>
+							data-target="#collapse${dayPlan.day_count }" aria-expanded="false"
+							aria-controls="collapse">Day ${dayPlan.day_count }</button>
 					</h5>
 				</div>
-				<c:forEach items="${timePlanlist }" varStatus="i" var="timeplan">
-					<div id="collapse${dayplan.day_count }" class="collapse" aria-labelledby="heading"
+				<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="i">
+					<div id="collapse${dayPlan.day_count }" class="collapse" aria-labelledby="heading"
 						data-parent="#accordion">
-						<div class="card-body">${i.count }, ${timeplan.content }</div>
+						<div class="card-body">${timePlan.content }</div>
 					</div>
 				</c:forEach>
 			</c:forEach>
 		</div>
 	</div>
-</div>
-
-<div style="height:2000px">
-</div>
-<div id="floatMenu">
-<span style="color: red">day : </span>${dayPlanlist }
-<br>
-<span style="color: red">time : </span>${timePlanlist }
 </div>
 
 <script>

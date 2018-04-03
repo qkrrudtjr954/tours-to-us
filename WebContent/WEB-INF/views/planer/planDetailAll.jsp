@@ -37,6 +37,7 @@
 
 <script>
 function day_back(seq) {
-	location.href="planDetail.do?seq="+seq;
+	window.open("planDetail.do?seq="+seq, "_parent");
+	window.close();
 }
 </script>

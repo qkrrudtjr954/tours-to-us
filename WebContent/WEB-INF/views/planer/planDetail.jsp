@@ -91,6 +91,6 @@ function day_remove() {
 }
 
 function day_all(seq) {
-	location.href="planDetailAll.do?seq="+seq;
+	window.open("planDetailAll.do?seq="+seq, "_blank" );
 }
 </script>

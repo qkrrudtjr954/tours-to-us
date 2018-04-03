@@ -33,10 +33,6 @@
 	<definition name="planDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/planer/planDetail.jsp"/>
 	</definition>
-	
-	<definition name="planDetailAll.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/planer/planDetailAll.jsp"/>
-	</definition>
 
 	<definition name="guidebook.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/guidebook.jsp"/>
@@ -68,6 +64,11 @@
 	
 	<definition name="eventDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>
+	</definition>
+	
+	
+	<definition name="planDetailAll.tiles" template="/WEB-INF/views/layout/layouts-plan-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/planer/planDetailAll.jsp"/>
 	</definition>
 	
 	

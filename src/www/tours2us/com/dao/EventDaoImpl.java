@@ -14,7 +14,7 @@ import www.tours2us.com.model.EventDto;
 @Repository
 public class EventDaoImpl implements EventDao {
 
-Logger logger = LoggerFactory.getLogger(PlanerDaoImpl.class);	
+	Logger logger = LoggerFactory.getLogger(EventDaoImpl.class);	
 	
 	private String ns = "Event.";
 	

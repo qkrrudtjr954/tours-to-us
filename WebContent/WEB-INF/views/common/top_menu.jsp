@@ -93,7 +93,7 @@ div.user-action a:hover {
 								<ul class="dropdown-menu dropdown-menu-right mypage-link-list">		
 									<li>
 										<div class="profie-container">
-											<img src="${pageContext.request.contextPath }/${current_user.profile }" alt="" class="img-responsive circle" style="border:1px solid red;border-radius:50%;margin:5px;" width="50px" height="50px">
+											<img src="${pageContext.request.contextPath }/${current_user.profile }" alt="" class="img-responsive circle" style="border:2px solid #7DC3BB;border-radius:50%;margin:5px;" width="50px" height="50px">
 											<span style="padding:5px;">${current_user.name }</span>님
 										</div>
 									</li>							

@@ -15,9 +15,7 @@
 	background-position: center;
 	border: 1px solid #7DC3BB;
 }
-.card-body:hover{
-	height: 450px;
-}
+
 .card-container {
 	background-color: rgb(0,0,0,0.5);
 	position: absolute;

@@ -29,27 +29,22 @@ public class TravelerController {
 
 	@RequestMapping(value="signin.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signin(Model model) {
-
 		logger.info("TravelerController >>>> signin");
-
 		return "signin.tiles";
 	}
 
 	@ResponseBody
 	@RequestMapping(value="signinAf.do", method=RequestMethod.POST)
 	public TravelerDto signinAf(HttpServletRequest req, TravelerDto dto, Model model) throws Exception {
-
 		logger.info("TravelerController >>>> signinAf");
 		System.out.println(dto.toString());
         TravelerDto signin = travelerService.signin(dto);
 
         if(signin != null && !signin.getEmail().equals("")) {
             req.getSession().setAttribute("current_user", signin);
-	        //signin.setPassword("secret");
-	        return signin;
-        }else {
-        	return signin;
+	        signin.setPassword("secret");
         }
+        return signin;
 	}
 
 
@@ -61,33 +56,28 @@ public class TravelerController {
 
 	@ResponseBody
 	@RequestMapping(value="signupAf.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String signupAf(TravelerDto dto, Model model) throws Exception{
+	public String signupAf(TravelerDto dto, String password2, Model model){
 		logger.info("TravelerController >>>> signupAf {} {}", dto);
-		boolean isS = travelerService.signup(dto);
+		boolean isS = false;
+		System.out.println(password2);
+		try {
+			isS = travelerService.signup(dto);
+		} catch (Exception e) {
+			logger.error("Duplicate email");
+			isS = false;
+		}
 		return (isS) ? "200" : "500";
 	}
 
 	@ResponseBody
-	@RequestMapping(value="checkEmail", method=RequestMethod.GET)
-	public String checkEmail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-				logger.info("test");
-
-			    String email = req.getParameter("email");
-
-			    TravelerDto dto = new TravelerDto();
-			    dto = travelerService.getUserByEmail(email);
-
-				if(dto != null) {
-					// result.getSeq()가 0이 아니면 아이디가 있는 것.
-					//	아이디 사용 불가능
-					//resp.getWriter().write("no");
-					return "no";
-				}else {
-					// result.getSeq()가 0이면 아이디가 없는 것.
-					//	아이디 사용 가능
-					//resp.getWriter().write("yes");
-					return "yse";
-				}
+	@RequestMapping(value="checkEmail.do", method=RequestMethod.GET)
+	public String checkEmail(String email) throws Exception{
+	    TravelerDto dto = travelerService.getUserByEmail(email);
+		if(dto != null) {
+			return "no";
+		}else {
+			return "yse";
+		}
 
 	}
 

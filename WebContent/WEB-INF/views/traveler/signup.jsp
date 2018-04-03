@@ -47,20 +47,29 @@
 #step1view label {
 	font-size: 20px;
 }
+
+.likeBtnArea{
+	border: 2px solid #7DC3BB;
+	padding: 40px;
+}
+.likeBtn {
+	margin: 5px;
+}
 </style>
 <div class="row">
-	<div class="offset-md-3 col-md-6 order-md-1">
-		<div class="sign-up-image justify-content-center">
-			<div class="sign-up-text align-bottom">
-				<h1
-					style="color: white; text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;">Welcome!</h1>
-				<h3
-					style="color: black; text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;">
-					<span style="color: #7DC3BB; font-size: 40px;">Tours to us</span>에
-					오신 것을 환영합니다.
-				</h3>
-			</div>
+<div class="offset-md-3 col-md-6 order-md-1">
+	<div class="sign-up-image justify-content-center">
+		<div class="sign-up-text align-bottom">
+			<h1 style="color: white; text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;">Welcome!</h1>
+			<h3 style="color: black; text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;">
+				<span style="color: #7DC3BB; font-size: 40px;">Tours to us</span>에 오신 것을 환영합니다.
+			</h3>
 		</div>
+	</div>
+</div>
+</div>
+<div class="row step1-container">
+	<div class="offset-md-3 col-md-6 order-md-1">
 		<div class="join_terms">
 			<!--이용약관 테이블 시작-->
 			<table style="width: 100%">
@@ -113,120 +122,121 @@
 				<button class="btn btn-outline-secondary" id="btn_back">돌아가기</button>
 			</div>
 		</div>
-
-		<div id="step1view">
-			<form class="needs-validation" id="signUpForm" action="" method="POST" novalidate>
-				<div class="step1-title">
-					<span style="color:#7DC3BB; font-size:20px;">필수 입력 사항</span>
-				</div>
-				<hr>
-				<div class="d-flex justify-content-center">
-					<div class="text-center">
-						<img alt="test" src="${pageContext.request.contextPath }/image/no-img.png" class="circle" id="user_image" width="200px">
-						<input type="file" class="form-control-file" id="user_profile"> 
-						<input type="hidden" class="form-control" id="user_profile" name="profile" value="no-img.png"> 
-					</div>
-				</div>
-				<div class="mb-3">
-					<label for="email">
-						<span class="signup-step-number">01</span>Email <span class="red-star">*</span>
-					</label> 
-					<input type="email" class="form-control success" name="email" id="email" placeholder="you@example.com">
-					<div class="invalid-feedback">이메일을 입력해주세요.</div>
-					<div class="invalid-email"></div>
-				</div>
-
-				<div class="mb-3">
-					<label for="name">
-						<span class="signup-step-number">02</span>Name <span class="red-star">*</span>
-					</label>
-					<input type="text" class="form-control success" name="name" id="name" placeholder="이름을 입력해주세요" onkeypress="hangul();">
-					<div class="invalid-feedback">이름을 입력해주세요.</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="password">
-						<span class="signup-step-number">03</span>Password <span class="red-star">*</span>
-					</label> 
-					
-					<input type="password" class="form-control" name="password" id="password" required>
-					<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="password">
-						<span class="signup-step-number">04</span>Password 
-						<span style="font-size: 15px;">(Confirm)</span>
-						<span class="red-star">*</span>
-					</label> 
-					<input type="password" class="form-control" name="password2" id="password2" required>
-					<div class="invalid-feedback">비밀번호를 확인해주세요.</div>
-					<div class="invalid-password"></div>
-				</div>
-
-				
-
-
-				<hr class="mb-4">
-				<p>
-					<span style="font-color: #7DC3BB; font-size: 4px;">선택 입력 사항</span>
-				</p>
-				회원님의 여행 타입은? (3개 선택)<br>
-				<br>
-
-
-				<div class="user_choice"
-					style="background-color: green; width: 80%; height: 200px;">
-					<input type="checkbox" onclick=CountChecked(this) id="choice"
-						name="choice" value="aaa">aaa <input type="checkbox"
-						onclick=CountChecked(this) id="choice" name="choice" value="bbb">bbb
-					<input type="checkbox" onclick=CountChecked(this) id="choice"
-						name="choice" value="ccc">ccc <input type="checkbox"
-						onclick=CountChecked(this) id="choice" name="choice" value="ddd">ddd
-					<input type="checkbox" onclick=CountChecked(this) id="choice"
-						name="choice" value="ddd">ddd <input type="checkbox"
-						onclick=CountChecked(this) id="choice" name="choice" value="ddd">ddd
-					<input type="checkbox" onclick=CountChecked(this) id="choice"
-						name="choice" value="ddd">ddd <input type="checkbox"
-						onclick=CountChecked(this) id="choice" name="choice" value="ddd">ddd
-					<input type="checkbox" onclick=CountChecked(this) id="choice"
-						name="choice" value="ddd">ddd <input type="checkbox"
-						onclick=CountChecked(this) id="choice" name="choice" value="ddd">ddd
-					<input type="checkbox" onclick=CountChecked(this) id="choice"
-						name="choice" value="ddd">ddd
-				</div>
-
-				<hr class="mb-4">
-
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input"
-						id="same-address"> <label class="custom-control-label"
-						for="same-address"> Shipping address is the same as my
-						billing address </label>
-				</div>
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="save-info">
-					<label class="custom-control-label" for="save-info"> Save
-						this information for next time </label>
-				</div>
-
-
-				<div class="offset-md-11">
-					<button type="button" id="btn_join"
-						style="background: url(next_button.png) no-repeat; border: none; outline: none;">
-						<img src="image/next_button.png" width="100px">
-					</button>
-				</div>
-			</form>
-
-
-
-
-		</div>
-
-
 	</div>
 </div>
+
+
+<div class="row step2-container">
+	<div class="offset-md-3 col-md-6 order-md-1">
+		<div class="step1-title">
+			<span style="color:#7DC3BB; font-size:20px;">필수 입력 사항</span>
+		</div>
+		<hr>
+		<div class="row no-gutters">
+			<div id="step1view" class="offset-md-3 col-md-6 col-xs-12">
+				<form class="needs-validation" id="signUpForm" method="POST" onsubmit="false">
+					<div class="d-flex justify-content-center">
+						<div class="text-center">
+							<img alt="test" src="${pageContext.request.contextPath }/image/no-img.png" class="circle" id="user_image" width="200px">
+							<input type="file" class="form-control-file" id="user_profile1" name="profile" value="no-img.png"> 
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="email">
+							<span class="signup-step-number">01</span>Email <span class="red-star">*</span>
+						</label> 
+						<input type="email" class="form-control success" name="email" id="email" placeholder="you@example.com">
+						<div class="invalid-feedback">이메일을 입력해주세요.</div>
+						<div class="invalid-email"></div>
+					</div>
+	
+					<div class="mb-3">
+						<label for="name">
+							<span class="signup-step-number">02</span>Name <span class="red-star">*</span>
+						</label>
+						<input type="text" class="form-control success" name="name" id="name" placeholder="이름을 입력해주세요" onkeypress="hangul();">
+						<div class="invalid-feedback">이름을 입력해주세요.</div>
+					</div>
+	
+					<div class="mb-3">
+						<label for="password">
+							<span class="signup-step-number">03</span>Password <span class="red-star">*</span>
+						</label> 
+						
+						<input type="password" class="form-control" name="password" placeholder="비밀번호를 입력해주세요" id="password" required>
+						<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+					</div>
+	
+					<div class="mb-3">
+						<label for="password">
+							<span class="signup-step-number">04</span>Password 
+							<span style="font-size: 15px;">(Confirm)</span>
+							<span class="red-star">*</span>
+						</label> 
+						<input type="password" class="form-control"  placeholder="비밀번호를 확인해주세요" id="password2" required>
+						<div class="invalid-feedback">비밀번호를 확인해주세요.</div>
+						<div class="invalid-password"></div>
+					</div>
+					<!-- <input type="text" name="like1" id="like1" value="없음">
+					<input type="text" name="like2" id="like2" value="없음">
+					<input type="text" name="like3" id="like3" value="없음"> -->
+					
+					<input type="hidden" name="like1" id="like1" value="없음">
+					<input type="hidden" name="like2" id="like2" value="없음">
+					<input type="hidden" name="like3" id="like3" value="없음">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="offset-md-3 col-md-6 order-md-1">
+		<div class="step1-title">
+			<span style="color:#7DC3BB; font-size:20px;">선택 입력 사항</span>
+		</div>
+		<hr>
+		<div class="row no-gutters">
+			<div id="step1view" class="offset-md-2 col-md-8 col-xs-12">
+				<label for="likeBtn">
+					성향을 선택해주세요. 
+					<span style="font-size: 15px;">(3개)</span>
+				</label> 
+				<div class="mb-3">					
+					<div class="likeBtnArea">
+						<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello1</button>
+						<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello2</button>
+						<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello3</button>
+						<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello4</button>
+						<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello5</button>
+						<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello6</button>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		<hr>
+	</div>
+	<div class="row">
+		<div class="offset-md-4 col-md-3">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="same-address"> 
+				<label class="custom-control-label" for="same-address"> Shipping address is the same as my billing address </label>
+			</div>
+			
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="save-info">
+				<label class="custom-control-label" for="save-info"> Save this information for next time </label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="offset-md-8">
+			<button type="button" id="btn_join" style="background: url(next_button.png) no-repeat; border: none; outline: none;">
+				<img src="image/next_button.png" width="100px">
+			</button>
+		</div>
+	</div>
+</div>
+
 
 <script type="text/javascript">
 	$('#user_profile').change(function() {
@@ -258,14 +268,13 @@
 	}
 
 	$('#btn_enter').on('click', function() {
-
 		if ($('input.check').is(':checked') == false) {
 			alert("모든 약관에 동의해주세요");
 			return;
 		} else {
 
-			$(".join_terms").css("display", "none");
-			$("#step1view").css("display", "block");
+			$(".step1-container").css("display", "none");
+			$(".step2-container").css("display", "block");
 		}
 
 	});
@@ -275,46 +284,46 @@
 	 event.returnValue = false
 	 alert("한글을 입력해주세요");
 	 }	
-	
 	 */
 
 	$(document).ready(function() {
-		$(".join_terms").css("display", "none");
-		$("#step1view").css("display", "block");
+		$(".step1-container").css("display", "block");
+		$(".step2-container").css("display", "none");
 
 		$("#join01").load("text/join01.txt");
 		$("#join02").load("text/join02.txt");
 
-		$('#email').keyup(function() {
-			$.ajax({
-				url : 'checkEmail.do',
-				data : { email : $('#email').val() },
-				type : 'GET',
-				success : function(data) {
-					if (data == 'no') {
-						$('#email').attr('style', 'border-color:#dc3545;');
-						$('#email').removeClass('success');
-						$('.invalid-email').html('<span style="font-color:#dc3545;">이미 사용중인 이메일 입니다.</span>');
-					} else {
-						$('#email').attr('style','border-color:#28a745;');
-						$('#email').addClass('success');
-						$('.invalid-email').html('<span style="font-color:#28a745;">사용가능한 이메일 입니다.</span>');
-					}
-				}
-			})
-		});
+	});
 
-		$('#password2').keyup(function() { 
-			if (this.value != $('#password') .val()) { 
-				$(this).attr('style','border-color:#dc3545;');
-				$(this).removeClass('success');
-				$('.invalid-password').html('<span style="font-size:80%;color:#dc3545;">비밀번호가 일치하지 않습니다..</span>');
-			} else {
-				$(this).attr('style','border-color:#28a745;');
-				$(this).addClass('success');
-				$('.invalid-password').html('<span style="font-size:80%;color:#28a745;">비밀번호가 일치합니다.</span>');
+	 $('#email').keyup(function() {
+		$.ajax({
+			url : 'checkEmail.do',
+			data : { email : $('#email').val() },
+			type : 'GET',
+			success : function(data) {
+				if (data == 'no') {
+					$('#email').attr('style', 'border-color:#dc3545;');
+					$('#email').removeClass('success');
+					$('.invalid-email').html('<span style="font-color:#dc3545;">이미 사용중인 이메일 입니다.</span>');
+				} else {
+					$('#email').attr('style','border-color:#28a745;');
+					$('#email').addClass('success');
+					$('.invalid-email').html('<span style="font-color:#28a745;">사용가능한 이메일 입니다.</span>');
+				}
 			}
-		});
+		})
+	});
+
+	$('#password2').keyup(function() { 
+		if (this.value != $('#password') .val()) { 
+			$(this).attr('style','border-color:#dc3545;');
+			$(this).removeClass('success');
+			$('.invalid-password').html('<span style="font-size:80%;color:#dc3545;">비밀번호가 일치하지 않습니다..</span>');
+		} else {
+			$(this).attr('style','border-color:#28a745;');
+			$(this).addClass('success');
+			$('.invalid-password').html('<span style="font-size:80%;color:#28a745;">비밀번호가 일치합니다.</span>');
+		}
 	});
 
 
@@ -342,30 +351,62 @@
 	$('#btn_join').on('click', function() {
 		// insert into session
 		if ($('#email').val() == '') {
-
 			alert("이메일을 입력해 주십시오");
 			$('#email').focus();
 		} else if ($('#name').val() == '') {
-
 			alert("이름을 입력해 주십시오");
 			$('#name').focus();
 		} else if ($('#password').val() == '') {
-
 			alert("비밀번호를 입력해 주십시오");
 			$('#password').focus();
 		} else if ($('#profile').val() == '') {
-
-			alert("프로필을 등록해 주십시오");
-			$('#profile').focus();
-		} else if ($('#profile').val() == '') {
-
 			alert("프로필을 등록해 주십시오");
 			$('#profile').focus();
 		} else {
-			$("#signUpForm").attr({
-				"target" : "_self",
-				"action" : "signup1step.do"
-			}).submit();
+			submitForm();
 		}
 	});
+	
+	function addLike(button) {
+		let val = $(button).text();
+		if($(button).hasClass('btn-secondary')){			
+			for(let i=1; i<=3; i++){	
+				if($('input[name="like'+i+'"]').val() == '없음'){
+					$('input[name="like'+i+'"]').val(val);
+					$(button).removeClass('btn-secondary');
+					$(button).addClass('btn-primary');
+					break;
+				}
+			}
+		} else {
+			for(let i=1; i<=3; i++){			
+				if($('input[name="like'+i+'"]').val() == val){
+					$('input[name="like'+i+'"]').val('없음');
+					$(button).addClass('btn-secondary');
+					$(button).removeClass('btn-primary');	
+					break;
+				}
+			}
+		}
+		
+	}
+	
+	function submitForm() {
+		let FormData = $('#signUpForm').serialize();
+		
+		$.ajax({
+			url : 'signupAf.do',
+			data : FormData,
+			method : 'POST',
+			success : function (data) {
+				if(data == '200'){
+					alert('회원 가입할 수 없습니다. 잠시후 다시 시도해주세요.');
+				} else if(data == '200'){
+					alert('회원 가입에 성공했습니다.');
+					location.href = 'main.do';
+				}
+			}
+		}); 
+		
+	}
 </script>

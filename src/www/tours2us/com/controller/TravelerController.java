@@ -55,56 +55,16 @@ public class TravelerController {
 
 	@RequestMapping(value="signup.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String signup(Model model) throws Exception{
-
 		logger.info("TravelerController >>>> signup");
-
-
 		return "signup.tiles";
-
 	}
 
-	@RequestMapping(value="signup1step.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String signup(TravelerDto dto, String[] choice, Model model) throws Exception{
-
-		logger.info("TravelerController >>>> signup1step {} {}", dto);
-//		String email = req.getParameter("email");
-//		String name = req.getParameter("name");
-//		String password = req.getParameter("password");
-//		String profile= req.getParameter("profile");		
-//
-//		String choice[] = req.getParameterValues("choice");
-		System.out.println(choice);
-		if(choice==null) {
-			dto.setLike1("선택 안함");
-			dto.setLike2("선택 안함");
-			dto.setLike3("선택 안함");
-		}else if(choice.length == 1) {
-			dto.setLike1(choice[0]);
-			dto.setLike2("선택 안함");
-			dto.setLike3("선택 안함");
-		}else if(choice.length == 2) {
-			dto.setLike1(choice[0]);
-			dto.setLike2(choice[1]);
-			dto.setLike3("선택 안함");
-		}else if(choice.length == 3) {
-			dto.setLike1(choice[0]);
-			dto.setLike2(choice[1]);
-			dto.setLike3(choice[2]);
-		}
-		
-	
-	/*	dto.setLike2(choice[1]);
-		dto.setLike3(choice[2]);
-	*/
-		
-		boolean isS =travelerService.signup(dto);
-		
-		if(!isS) {
-			System.out.println("추가 실패");
-		}
-
-		return "redirect:/signin.do";
-
+	@ResponseBody
+	@RequestMapping(value="signupAf.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String signupAf(TravelerDto dto, Model model) throws Exception{
+		logger.info("TravelerController >>>> signupAf {} {}", dto);
+		boolean isS = travelerService.signup(dto);
+		return (isS) ? "200" : "500";
 	}
 
 	@ResponseBody

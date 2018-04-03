@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<div class="d-flex justify-content-center text-center">
+<div class="d-flex justify-content-center text-center row no-gutters">
 	<form class="form-signin" name="frmForm">
 		<img class="mb-4" src="./image/signimg.png" alt="" width="150px" height="150px">
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>

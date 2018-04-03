@@ -3,23 +3,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-	.card-body{
-		position: absolute;
-		top:230px;
-		left:16px;
-		opacity: 0.5;
-		width: 485px;
-		height: 120px;
-		background-color: #000;
-		color: #fff;
-	}
-.title{
-text-decoration:none;
-color: #fff;
+.card {
+	padding: 0;
+	border: 1px solid #7DC3BB;
 }
-.title:hover {
-text-decoration: underline;
-color: #7DC3BB;
+.card-body{
+	padding: 0;
+	height: 400px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border: 1px solid #7DC3BB;
+}
+.card-body:hover{
+	height: 450px;
+}
+.card-container {
+	background-color: rgb(0,0,0,0.5);
+	position: absolute;
+	padding: 20px 50px;
+	bottom: 0;
+	width: 100%;
+}
+#plan-title{
+	font-size: 20px;
+	font-weight: 500;
+	text-decoration:none;
+}
+#plan-title,
+.card-title {
+	color: #fff;
+}
+
+#plan-title:hover {
+	text-decoration: underline;
+	color: #7DC3BB;
+} 
+
+.change-title-div {
+	display: none;
+}
+.change-title-div,
+.title-div {
+	margin: 20px 0px;
 }
 </style>
 <div class="myplan-title">
@@ -39,24 +65,31 @@ color: #7DC3BB;
 				<p>작성된 글이 없습니다</p>
 			</div>
 		</c:if>
-		<div class="row">
+		<div class="row no-gutters">
 			<c:forEach items="${planlist }" var="plan" varStatus="i">
-				<div class="col-md-6 col-xs-12">
-					<div class="card mb-4 box-shadow">
-					<img class="card-img-top" src="${pageContext.request.contextPath }/${plan.paper}" alt="no-cover" height="350">
-					</div>
-					<div class="card-body">
-						<span>${plan.from_date }</span>~<span>${plan.to_date }</span>
-						<br>
-						<span class="title-span">
-							<a id="plan-title" href="planDetail.do?seq=${plan.seq }" class="title">${plan.title }</a>
-							<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="15px" height="15px">
-						</span>
-						<span class="change-title-span" style="display:none;">
-							<input type="text" placeholder="${plan.title }">
-							<button class="btn" onclick="changeTitle(this, ${plan.seq})">change</button>
-						</span>
-						<a href="afterWrite.do?seq=${plan.seq }" class="offset-md-10 btn btn-primary">후기쓰기</a>
+				<div class="card col-md-6 ">
+					<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
+						<div class="card-container">
+							<h5 class="card-title">
+								<span data-feather="calendar"></span>&nbsp;&nbsp;
+								<span>${plan.from_date }</span>&nbsp;~&nbsp;<span>${plan.to_date }</span>
+							</h5>
+							<div class="card-text">
+								<div class="title-div"> 
+									<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a> 
+									<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="15px" height="15px">
+								</div> 
+								
+								<div class="change-title-div input-group mb-3">
+									<input type="text" class="form-control" placeholder="${plan.title }">
+									<div class="input-group-append">
+										<button class="btn btn-primary" onclick="changeTitle(this, ${plan.seq})">변경하기</button>
+										<button class="btn btn-danger" onclick="hideTitleInput(this)">X</button>
+									</div>
+								</div>
+							</div>
+							<a href="afterWrite.do?seq=${plan.seq }" class="btn btn-primary">후기쓰기</a>
+						</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -66,28 +99,29 @@ color: #7DC3BB;
 </div>
 
 <script>
-function showTitleInput(img){
-	$(img).parent().parent().find('.change-title-span').css('display', 'block');
-	$(img).parnet().hide();
+function showTitleInput(img){	
+	$(img).parent().parent().find('.change-title-div').css('display', 'inline-flex');
+	$(img).parent().parent().find('.title-div').css('display', 'none');
+}
+function hideTitleInput(img) {
+	$(img).parent().parent().parent().find('.change-title-div').css('display', 'none');
+	$(img).parent().parent().parent().find('.title-div').css('display', 'block');
 }
 
 function changeTitle(button, seq) {
+	let title = $(button).parent().parent().find('input[type="text"]').val();
 	$.ajax({
 		url : 'changeTitle.do',
-		data : { title : $(button).parent().find('input[type="text"]').val() , seq : seq },
+		data : { title : title , seq : seq },
 		method : 'POST',
 		success : function (data) {
-			var title = data;
-			
-			if(title === ""){
-				location.href="main.do";
+			if(data === ""){
+				alert('변경할 수 없습니다. 잠시 후 다시 시도해주세요.');
 			}else{
-				location.href="myplan.do";
+				$(button).parent().parent().parent().find('a').text(data.title);
+				hideTitleInput($(button).parent().parent().parent().find('img'));
 			}
-			
-			
-		},
-		
+		}
 	})
 }
 

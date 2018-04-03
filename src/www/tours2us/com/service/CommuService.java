@@ -17,9 +17,7 @@ public interface CommuService {
 	
 	boolean Afterdelete(int seq) throws Exception;
 	
-	public List<CommuAfterCommentDto> getAllComments(int ref) throws Exception;
 	
-	public boolean addComment(CommuAfterCommentDto comment) throws Exception;
 	
 
 }

@@ -20,6 +20,7 @@ import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
+import www.tours2us.com.service.CommuCommentService;
 import www.tours2us.com.service.CommuService;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.TravelerService;
@@ -36,6 +37,9 @@ CommuService commuService;
 PlanerService planerService;
 @Autowired
 TravelerService travelerService;
+@Autowired
+CommuCommentService commucommentService;
+
 
 @RequestMapping(value="afterBbs.do",
 method= {RequestMethod.GET, RequestMethod.POST})
@@ -89,7 +93,9 @@ public String afterbbsdetail(int seq,Model model) throws Exception {
 	 logger.info("CommuController >>>> commuafterdetail");
 	 
 	 CommuAfterBbsDto aftergetBbs=null;
-	 aftergetBbs = commuService.getAfterBbs(seq);
+	 aftergetBbs = commuService.getAfterBbs(seq); 
+	 List<CommuAfterCommentDto> commentlist = commucommentService.getAllComments(seq);
+	 model.addAttribute("commentlist", commentlist);
 	 model.addAttribute("aftergetBbs", aftergetBbs);
 	return "afterdetail.tiles";
 }
@@ -139,17 +145,18 @@ public String delete(Model model, int seq) {
 @ResponseBody
 @RequestMapping(value="AfterComentAf.do", 
 method={RequestMethod.GET, RequestMethod.POST})
-public String ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
+public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
 	logger.info("CommuController >>>> AfterComentAf");
-	System.out.println(comment.toString());
+	System.out.println("coment" + comment.toString());
 	 TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 	comment.setTarget_user_seq(t_dto.getSeq());
-	//CommuAfterCommentDto commentlist =(CommuAfterCommentDto) commuService.getAllComments(comment.getTarget_bbs_seq());
-	//model.addAttribute("commentlist", commentlist);
-	boolean isS = commuService.addComment(comment);
 	
-	return "redirect:/afterdetail.do";
+	 List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
+	System.out.println(commList);
+	
+	return commList;
 }
+
 
 
 

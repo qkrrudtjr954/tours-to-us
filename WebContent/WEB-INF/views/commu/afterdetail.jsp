@@ -64,6 +64,7 @@
 </div>
 <br><br> 
 <div class="comment-area">
+					<span id="commentCount">${comments.size() }</span>
 					<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
 						<div class="row">
 							<div class="comment-email col-md-2" style="height: 50px;">
@@ -77,12 +78,14 @@
 								</div>
 							</div>
 							<div class="comment-date col-md-1" style="height: 50px;">
-								<fmt:parseDate value="${commentlist.reg_date }" pattern="yyyy-MM-dd HH:mm:ss.S" var="tempRegDate"/>
+								${comment.reg_date }
 							</div>
 
 						</div>
 						<hr>
 					</c:forEach>
+					
+				
 
 			</div>
 
@@ -90,26 +93,60 @@
 
 <script>
 function addComment() {
-	alert("dddd");
+	//alert("dddd");
 	var seq = ${aftergetBbs.seq};
 	var user_seq = ${current_user.seq};
-	alert("addComment seq = "  + seq);
-	alert("addComment user = "  + user_seq);
+	//alert("addComment seq = "  + seq);
+	//alert("addComment user = "  + user_seq);
 	$.ajax({
 		url:"AfterComentAf.do",
 		type:"post",
 		data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
 		success:function(data){
-			alert("data: " + data);
-			//$("#formid").val(data);
+			alert("data: " + data);		
+			
+			
+			var comments = JSON.parse(data);
+			altert("comments=" + comments);
+			$('#commentCount').html(comments.length);
+			for(var i=0; i <comments.length; i++){
+				printCommentHtml(comments[i]);
+				
+				
+			}
+			$('#content').val("");
+			
+			
 		},
 		error:function(request, status, error){
 			alert("실패");
 		}
 	});
-	
-	
 }
+
+
+function printCommentHtml(current_user , comment ){
+	var html = 
+		'<div class=row>'+
+			'<div class="comment-email col-md-2" style="height: 50px;">'+
+				current_user.email+
+			'</div>'+
+			'<div class="comment-box col" style="height: 50px;">'+
+				'<div class="row">'+
+					'<div class="col comment-content">'+
+					comment.content+
+					'</div>'+
+				'</div>'+
+			'</div>'+
+			'<div class="comment-date col-md-1" style="height: 50px;">'+
+				comment.reg_date+
+			'</div>'+
+			'<hr>';
+			console.log(html);
+			$('.comment-area').append(html);
+				
+	
+} 
 
 	
 	

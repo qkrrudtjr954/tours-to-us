@@ -1,5 +1,6 @@
 package www.tours2us.com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -51,17 +52,9 @@ public boolean Afterdelete(int seq) throws Exception {
 	return commutDao.Afterdelete(seq);
 }
 
-@Override
-public List<CommuAfterCommentDto> getAllComments(int ref) throws Exception {
-	// TODO Auto-generated method stub
-	return commutDao.getAllComments(ref);
-}
 
-@Override
-public boolean addComment(CommuAfterCommentDto comment) throws Exception {
-	// TODO Auto-generated method stub
-	return commutDao.addComment(comment);
-}
+
+
 
 
 

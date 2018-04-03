@@ -6,11 +6,11 @@
 <mapper namespace="Commu">
 
 <select id="AfterBbslist" resultType="www.tours2us.com.model.CommuAfterBbsDto">
-		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
-         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
-      FROM AFTERBBS A, TRAVELER B
-      WHERE A.TARGET_USER_SEQ = B.SEQ
-      ORDER BY A.REG_DATE DESC    
+	SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+    	A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
+    FROM AFTERBBS A, TRAVELER B
+    WHERE A.TARGET_USER_SEQ = B.SEQ
+    ORDER BY A.REG_DATE DESC    
 </select>
 
 <insert id="AfterWrite" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
@@ -42,8 +42,8 @@
 	</update>
 	
 	<!-- 댓글List -->
-	<select id="AfterComent" resultType="www.tours2us.com.model.CommuAfterCommentDto">
-			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_USER_SEQ=#{target_user_seq} AND STATUS=0 ORDER BY REG_DATE ASC
+	<select id="getAllComments" resultType="www.tours2us.com.model.CommuAfterCommentDto">
+			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE ASC
 	</select>
 	
 	<!-- 댓글 쓰기 -->
@@ -51,6 +51,12 @@
 		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
 		VALUES(AFTERBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_bbs_seq},#{content},SYSDATE,SYSDATE,0)
 	</insert>
+	
+	
+
+
+	
+	
 	
 	
 	

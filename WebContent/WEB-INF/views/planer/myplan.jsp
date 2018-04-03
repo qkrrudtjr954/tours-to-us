@@ -50,7 +50,7 @@
 </style>
 <div class="myplan-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
-      <h2>나의 플랜</h2>
+      <h2>나의 플랜</h2> 
    </div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">

@@ -40,9 +40,8 @@
 							aria-controls="collapse">Day ${dayPlan.day_count }</button>
 					</h5>
 				</div>
-				<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }">
-					<div id="collapse${i.count }" class="collapse" aria-labelledby="heading"
-						data-parent="#accordion">
+				<div id="collapse${i.count }" class="collapse" aria-labelledby="heading" >
+					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }">
 						<div class="card-body">
 							${timePlan.start_time }<br>
 							${timePlan.location }<br>
@@ -50,8 +49,8 @@
 							${timePlan.expected_cost }<br>
 							${timePlan.content }<br>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
 			</c:forEach>
 		</div>
 	</div>

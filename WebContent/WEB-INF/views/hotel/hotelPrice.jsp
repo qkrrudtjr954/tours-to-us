@@ -23,9 +23,6 @@ background-color: rgb(102, 102, 102, 0.3);
 
 }
 
-a:link { color: black; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: black; text-decoration: none;}
 
 #logo{
 padding: 10px;
@@ -103,8 +100,7 @@ font-size: 13px;
 
 <p id="desc">*숙소 예약 서비스는 <span style="font-size: 15px; font-weight: bold;">airbnb</span>와 <span style="font-size: 15px; font-weight: bold;">Tours to-us </span>가 제휴를 맺어 제공하는 숙소 예약 서비스입니다. </p>
 </div>
-<!-- <div class="offset-md-1">숙소 예약 서비스는 에어비엔비와 <span style="font-size: 15px; font-weight: bold;">Tours to-us </span>가 제휴를 맺어 제공하는 숙소 예약 서비스입니다. </div>
-<br> -->
+
 <br>
 <div class="row offset-md-1 col-md-10">
 <c:if test="${list.size()==0 }">
@@ -120,7 +116,7 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 		<div class="col-md-4">
 			<div class="card mb-4 box-shadow">
 			<img class="card-img-top" src="${item.pic }" height="300px">
-			<a href="${item.link }" target="_blank">
+			<a href="${item.link }" target="_blank" style="text-decoration:none; color: black;">
 			<div class="card-body">				
 				<!-- <p class="card-text"> -->
 					<span style="font-size: 10px; color: rgb(155, 49, 67);">

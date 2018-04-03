@@ -124,9 +124,9 @@ div.user-action a:hover {
 		<li class="dropdown">
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">가이드</a>
 	         <ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="editor_essay.do">에디터 에세이</a></li>
-				<li class="dropdown-item"><a href="#">투투가이드북</a></li>
-				<li class="dropdown-item"><a href="#">여행 자료실</a></li>
+				<li class="dropdown-item"><a href="editor_essay.do">투디터 pick</a></li>
+				<li class="dropdown-item"><a href="#">투둥이 가이드북</a></li>
+				<li class="dropdown-item"><a href="#">투투 가이드북</a></li>
 			</ul>
        	</li>
 		<li class="dropdown">
@@ -140,9 +140,7 @@ div.user-action a:hover {
 		<li class="dropdown">
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">호텔</a>
 	         <ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="hotelPrice.do">호텔 최저가</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-2</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
+				<li class="dropdown-item"><a href="hotelPrice.do">airbnb 예약하기</a></li>
 			</ul>
        	</li>
 		<li class="dropdown">

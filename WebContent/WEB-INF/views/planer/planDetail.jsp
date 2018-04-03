@@ -13,6 +13,14 @@
 	top: 200px;
 	color: #000;
 }
+
+.tran-img{
+	position:relative;
+	width: 35px;
+	height: 35px;
+	left: 30px;
+	top: 50px;
+}
 </style>
 
 <div class="myplanDetail-title">
@@ -33,21 +41,34 @@
 	<div class="offset-md-3 col-md-5 col-xs-12">
 		<div class="card">
 			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
-				<div class="card-header" id="heading">
-					<h5 class="mb-0">
-						<button class="btn btn-link collapsed" data-toggle="collapse"
-							data-target="#collapse${i.count }" aria-expanded="false"
-							aria-controls="collapse">Day ${dayPlan.day_count }</button>
-					</h5>
+				<div class="row no-gutters">
+					<div class="col-md-2">
+						<img src="${(i.index == 0) ? './image/first.png' : i.index == planerMap.size()-1 ?'./image/last.png':'./image/middle.png'  }" width="100%" height="100%"> 
+					</div>				
+					<div class="col">
+						<div class="card-head" id="heading"> 
+							<h5 class="mb-0">
+								<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse">Day ${dayPlan.day_count }</a>
+							</h5>
+						</div> 					
+					</div>
 				</div>
+				
 				<div id="collapse${i.count }" class="collapse" aria-labelledby="heading" >
-					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }">
-						<div class="card-body">
-							${timePlan.start_time }<br>
-							${timePlan.location }<br>
-							${timePlan.transportation }<br>
-							${timePlan.expected_cost }<br>
-							${timePlan.content }<br>
+					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="t">
+						<div class="row no-gutters">
+							<div class="col-md-2"> 
+								<img src="./image/taxi.png" class="tran-img">
+							</div>				
+							<div class="col">
+								<div class="card-body">
+									${timePlan.start_time }<br>
+									${timePlan.location }<br>
+									${timePlan.transportation }<br>
+									${timePlan.expected_cost }<br>
+									${timePlan.content }<br>
+								</div>			
+							</div>
 						</div>
 					</c:forEach>
 				</div>

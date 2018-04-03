@@ -66,6 +66,10 @@
 	<definition name="editor_essay.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/editor_essay.jsp"/>
 	</definition>
+	<definition name="toditor_write.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toditor_write.jsp"/>
+	</definition>
+	
 
 	<!-- 호텔최저가 -->
 	<definition name="hotelPrice.tiles" extends="main.tiles">

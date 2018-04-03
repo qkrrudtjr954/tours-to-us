@@ -45,6 +45,9 @@
 			<mvc:exclude-mapping path="/signup.do" />
 			<mvc:exclude-mapping path="/signupAf.do" />
 			<mvc:exclude-mapping path="/event.do" />
+			<mvc:exclude-mapping path="/editor_essay.do" />
+			<mvc:exclude-mapping path="/toditor_write.do" />
+			
 			<bean class="www.tours2us.com.aop.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

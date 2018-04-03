@@ -72,6 +72,53 @@ text-shadow: 5px 5px 5px #444444;
 }
 
 
+#hovereffect{
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.overlay {
+  margin-left: 15px;
+  margin-right:15px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 92%;
+  opacity: 0;
+  transition: .5s ease;
+background-color: rgba(0, 0, 0, 0.63);
+}
+
+#hovereffect:hover .overlay {
+   opacity: 1;
+}
+
+#hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.overlay-content{
+position:absolute;
+top: 200px;
+left:15px;
+text-align: left;
+padding-left: 20px;
+}
+.overlay-content span{
+
+color: #ffffff;
+}
 
 /* hr{ 
   
@@ -120,34 +167,82 @@ text-shadow: 5px 5px 5px #444444;
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="row">
-      	 <div class="col-md-4">
-						<img class="card-img-top" src="image/example.jpg" height="300px">					
-		 </div>
-
+      	 <div class="col-md-4" id="hovereffect">
+						<img class="card-img-top" src="image/example.jpg" height="300px">			
+				<div class="overlay">
+					<div class="overlay-content">
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
+					<span>제주도<br>
+					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
+					Editor: 김아무개</span>
+					</div>
+				</div>
+		  </div>
 		 
-		 
-		 <div class="col-md-4">
-						<img class="card-img-top" src="image/example.jpg" height="300px">					
-		 </div>
-		 
-		 <div class="col-md-4">
-						<img class="card-img-top" src="image/example.jpg" height="300px">					
-		 </div>
+		 <div class="col-md-4" id="hovereffect">
+						<img class="card-img-top" src="image/example.jpg" height="300px">			
+				<div class="overlay">
+					<div class="overlay-content">
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
+					<span>제주도<br>
+					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
+					Editor: 김아무개</span>
+					</div>
+				</div>
+		  </div>
+		  
+		  <div class="col-md-4" id="hovereffect">
+						<img class="card-img-top" src="image/example.jpg" height="300px">			
+				<div class="overlay">
+					<div class="overlay-content">
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
+					<span>제주도<br>
+					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
+					Editor: 김아무개</span>
+					</div>
+				</div>
+		  </div>
+	
       </div>
     </div>
     <div class="carousel-item">
-      <div class="row">
-      	 <div class="col-md-4">
-						<img class="card-img-top" src="image/example.jpg" height="300px">					
-		 </div>
+  <div class="row">
+      	 <div class="col-md-4" id="hovereffect">
+						<img class="card-img-top" src="image/example.jpg" height="300px">			
+				<div class="overlay">
+					<div class="overlay-content">
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
+					<span>제주도<br>
+					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
+					Editor: 김아무개</span>
+					</div>
+				</div>
+		  </div>
 		 
-		 <div class="col-md-4">
-						<img class="card-img-top" src="image/example.jpg" height="300px">					
-		 </div>
-		 
-		 <div class="col-md-4">
-						<img class="card-img-top" src="image/example.jpg" height="300px">					
-		 </div>
+		 <div class="col-md-4" id="hovereffect">
+						<img class="card-img-top" src="image/example.jpg" height="300px">			
+				<div class="overlay">
+					<div class="overlay-content">
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
+					<span>제주도<br>
+					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
+					Editor: 김아무개</span>
+					</div>
+				</div>
+		  </div>
+		  
+		  <div class="col-md-4" id="hovereffect">
+						<img class="card-img-top" src="image/example.jpg" height="300px">			
+				<div class="overlay">
+					<div class="overlay-content">
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
+					<span>제주도<br>
+					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
+					Editor: 김아무개</span>
+					</div>
+				</div>
+		  </div>
+	
       </div>
     </div>
   </div>
@@ -176,8 +271,11 @@ text-shadow: 5px 5px 5px #444444;
  			   <button class="btn btn-outline-secondary" type="button"><span data-feather="search"></span></button>
  		 </div>
 	</div>
+	<div class="offset-md-2">
+		<button class="form-control" id="btn_write">에디터 글쓰기</button>
+	</div>
 </div>
-
+<br>
 
 
 <div class="row content">
@@ -206,3 +304,10 @@ text-shadow: 5px 5px 5px #444444;
 
 <!-- 내용 div 끝 -->
 </div>
+
+<script>
+$('#btn_write').click(function () {
+	location.href="toditor_write.do";
+});
+
+</script>

@@ -13,10 +13,15 @@ public class guidebookController {
 	
 	@RequestMapping(value="editor_essay.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String essaylist(Model model) throws Exception{
-		logger.info("TravelerController >>>> essaylist");
+		logger.info("guidebookController >>>> essaylist");
 
 		return "editor_essay.tiles";
 	}
 	
-	
+	@RequestMapping(value="toditor_write.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String toditor_write(Model model) throws Exception{
+		logger.info("guidebookController >>>> toditor_write");
+		
+		return "toditor_write.tiles";
+	}
 }

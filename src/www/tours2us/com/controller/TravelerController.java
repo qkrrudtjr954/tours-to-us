@@ -101,6 +101,8 @@ public class TravelerController {
 		
 		if(!isS) {
 			System.out.println("추가 실패");
+		}else {
+			
 		}
 
 		return "redirect:/signin.do";

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Toditor">
+
+	<select id="getCategory" resultType="www.tours2us.com.model.ToditorCategoryDto">
+		select*from EDITORCATEGORY WHERE STATUS=1
+	</select>
+
+	<insert id="Toditorwrite" parameterType="www.tours2us.com.model.ToditorBBS">
+	INSERT INTO EDITOR VALUES(EDITOR_SEQ.NEXTVAL, #{target_user_seq}, #{target_category_seq}, #{title}, #{content}, #{pic1}, sysdate, sysdate)
+	</insert>
+	
+	<select id="ToditorgetList" resultType="www.tours2us.com.model.ToditorBBS">
+	SELECT TITLE, E.SEQ, CONTENT, PIC1, (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME
+	FROM EDITOR E, TRAVELER T
+	WHERE T.SEQ = E.TARGET_USER_SEQ
+	ORDER BY E.REG_DATE DESC
+	</select>
+	
+</mapper>

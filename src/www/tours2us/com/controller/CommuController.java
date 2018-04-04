@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.TravelerDto;
@@ -63,6 +64,7 @@ private static final Logger logger = LoggerFactory.getLogger(CommuController.cla
 		bbs.setTarget_user_seq(t_dto.getSeq());
 		System.out.println("b" + bbs.getTarget_user_seq());
 		System.out.println(bbs.toString());
+		
 
 		commuService.afterwriteBbs(bbs);
 		return "redirect:/afterBbs.do";

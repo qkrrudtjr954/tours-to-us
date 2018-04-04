@@ -56,8 +56,3 @@
 		<websocket:sockjs />
 	</websocket:handlers>
 </beans>
-
-
-
-
-

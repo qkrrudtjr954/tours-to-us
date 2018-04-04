@@ -125,7 +125,7 @@ div.user-action a:hover {
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">가이드</a>
 	         <ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="editor_essay.do">투디터 pick</a></li>
-				<li class="dropdown-item"><a href="#">투둥이 가이드북</a></li>
+				<li class="dropdown-item"><a href="user_guide.do">투둥이 가이드북</a></li>
 				<li class="dropdown-item"><a href="#">투투 가이드북</a></li>
 			</ul>
        	</li>

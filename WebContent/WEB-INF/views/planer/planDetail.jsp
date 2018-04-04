@@ -28,12 +28,17 @@
 		<h2>${planer.title }</h2>
 	</div>
 </div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<input type="button" onclick="day_all(${planer.seq})" class="offset-md-6 btn btn-primary" value="크게보기">
-	<input type="button" onclick="day_show()" class="btn btn-primary" value="전체보기">
-	<input type="button" onclick="day_remove()" class="btn btn-primary" value="전체접기">
-	<input type="button" onclick="btn_update(${planer.seq})" class=" btn btn-primary" value="수정">
-	<hr>
+<div class="offset-md-2 col-md-8 col-xs-12">
+	<div class="offset-md-9 btn-img">
+		<img src="./image/zoom-in.png" onclick="day_all(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/indent-all.png" onclick="day_show()"  style="cursor:pointer" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/zoom-in.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
+		<hr>
+	</div>
 </div>
 
 

@@ -15,14 +15,16 @@
 }
 </style>
 
-<div class="myplanDetail-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>${planer.title }</h2>
+<div class="row">
+	<div class="offset-md-2  myplanDetail-title">
+		<div class="col-md-4 col-xs-12">
+			<h2>${planer.title }</h2>
+		</div>
 	</div>
-</div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<input type="button" onclick="day_back(${planer.seq})" class="offset-md-10 btn btn-primary" value="돌아가기">
-	<hr>
+	<div class="offset-md-2 col-md-8 col-xs-12">
+		<img src="./image/back.png" onclick="day_back(${planer.seq})" class="offset-md-11" style="cursor:pointer"  width="30px" height="30px">
+		<hr>
+	</div>
 </div>
 
 

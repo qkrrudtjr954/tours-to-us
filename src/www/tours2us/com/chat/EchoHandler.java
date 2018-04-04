@@ -3,6 +3,7 @@ package www.tours2us.com.chat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +46,7 @@ public class EchoHandler extends TextWebSocketHandler {
 			//	처음 초기 
 			//	session id와 room number를 저장한다.
 			Msg.roomSet.put(session.getId(), msgVO.room);
+			Msg.nameSet.put(session.getId(), msgVO.msg);
 			
 			//	room number의 세션 리스트가 존재하는 지 확인한다.
 			if(sessionList.get(msgVO.room) == null) {
@@ -52,14 +54,21 @@ public class EchoHandler extends TextWebSocketHandler {
 				sessionList.put(msgVO.room, new ArrayList<WebSocketSession>());				
 			}
 			//	방이 있으면 방에 session을 추가한다. 
-			sessionList.get(msgVO.room).add(session);			
+			sessionList.get(msgVO.room).add(session);
+			
+			if(Msg.roomSet.get(session.getId()) == msgVO.room && !msgVO.msg.equals("")) {
+				for (WebSocketSession sess : sessionList.get(msgVO.room)) {
+					sess.sendMessage(new TextMessage(Msg.nameSet.get(sess.getId()) + "-ReturnSecretKeyParker-"+msgVO.msg+"님이 입장했습니다."));
+				}			
+			}
+		}else {			
+			if(Msg.roomSet.get(session.getId()) == msgVO.room && !msgVO.msg.equals("")) {
+				for (WebSocketSession sess : sessionList.get(msgVO.room)) {
+					sess.sendMessage(new TextMessage(Msg.nameSet.get(sess.getId()) + "-ReturnSecretKeyParker-" + msgVO.msg));
+				}			
+			}
 		}
 		
-		if(Msg.roomSet.get(session.getId()) == msgVO.room && !msgVO.msg.equals("")) {
-			for (WebSocketSession sess : sessionList.get(msgVO.room)) {
-				sess.sendMessage(new TextMessage(session.getId() + " : " + msgVO.msg));
-			}			
-		}
 		
 	}
 	
@@ -72,23 +81,23 @@ public class EchoHandler extends TextWebSocketHandler {
 		int roomnum = Msg.roomSet.get(session.getId());
 		//	집합에서 지운다.
 		Msg.roomSet.remove(session.getId());
+		Msg.nameSet.remove(session.getId());
 		
-		System.out.println("remove : "+session);
 		
 		System.out.println("-------------- before -------------");
-//		sessionList.get(roomnum).stream().forEach(System.out::println);
+		sessionList.get(roomnum).stream().forEach(System.out::println);
 		System.out.println("-------------- before -------------");
 		
 		//	session id와 같은 session을 list에서 지워줍니다.
-//		IntStream.range(0, sessionList.get(roomnum).size())
-//			.forEach(idx -> {
-//				if(sessionList.get(roomnum).get(idx).getId().equals(session.getId())) {
-//					sessionList.get(roomnum).remove(idx);
-//				}
-//			});
+		IntStream.range(0, sessionList.get(roomnum).size())
+			.forEach(idx -> {
+				if(sessionList.get(roomnum).get(idx).getId().equals(session.getId())) {
+					sessionList.get(roomnum).remove(idx);
+				}
+			});
 		
 		System.out.println("-------------- after -------------");
-//		sessionList.get(roomnum).stream().forEach(System.out::println);
+		sessionList.get(roomnum).stream().forEach(System.out::println);
 		System.out.println("-------------- after -------------");
 		
 		logger.info("{} 연결 끊김", session.getId());

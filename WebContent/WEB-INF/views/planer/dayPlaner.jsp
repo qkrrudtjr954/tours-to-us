@@ -3,40 +3,177 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 
-<div class="planer-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2 id="title">Day <span id="day_count"></span><span data-feather="calendar" style="margin-left:5px"></span></h2>
-		<span id="day"></span>
+<style>
+.planer-info-over {
+	background-color: #7DC3BB;
+	padding: 15px;
+	margin: 10px;
+	width: 90%;
+	text-align: center;
+	border-radius: 15px;
+}
+.planer-label-icon {
+    margin-top: 15px;
+    color: white;
+}
+.planer-label-title {
+	width: 100%;
+	font-size: 18px;
+	font-weight: 500;
+	color: white;
+}
+
+.time-planer-icon {
+	margin: 0px 15px;
+	color: #7DC3BB;
+}
+
+.time-planer-title {
+	font-size: 20px;
+	vertical-align: text-bottom;
+}
+
+.form-group {
+	margin-bottom: 30px;
+}
+
+.chat-container {
+	position: fixed;
+    right: 0;
+    height: 500px;
+    bottom: 100px;
+    z-index: 500;
+    background-color: white;
+    border: 1px solid #7DC3BB;
+    background-color: lightpink;
+    /* background-image: url("./image/chat-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+}
+#data {
+	font-size: 13px;
+}
+.chat-container2{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.chat-right {
+    margin: 5px 5px 0px 20px;
+    float: right;
+    clear: both;   
+}
+.chat-left {
+    margin: 5px 20px 0px 5px;
+    float: left;
+    clear: both;
+}
+
+.chat-right > p,
+.chat-left > p {
+	word-break:break-all;
+	padding: 3px;
+	border-radius: 5px; 
+	width: 100%;
+	clear: both;
+	margin: 0;
+}
+
+.chat-right > p {
+	background: #7DC3BB;
+	float: right;
+}
+.chat-left > p {
+	background: skyblue;
+	folat: left;
+}
+.chat-right > span,
+.chat-left > span {
+	clear: both;
+}
+.chat-right > span {
+	float: right;
+}
+.chat-left > span {
+	folat: left;
+}
+
+.commonBtn {
+    border: 2px solid #7cc4bb;
+    width: 100%;
+    color: #7cc4bb;
+    transition: color 0.6s, background-color 0.6s;
+}
+
+.commonBtn:hover {
+    background-color: #7cc4bb;
+    color: white;
+    transition: color 0.6s, background-color 0.6s;
+}
+
+.form-group {
+	margin-bottom: 30px;
+}
+
+</style>
+<div class="offset-md-3 col-md-6 col-xs-12 planer-title">
+	<div class="d-flex justify-content-around align-items-center">
+		<div class="planer-title-button">
+			<button class="btn btn-default commonBtn" id="prevDayPlaner">prev</button>
+		</div>
+		<div class="planer-title-content">
+			<h2 id="title">Day <span id="day_count"></span><span data-feather="calendar" style="margin-left:5px"></span></h2>
+			<span id="day"></span>
+		</div>
+		<div class="planer-title-button">
+			<button class="btn btn-default commonBtn" id="nextDayPlaner">next</button>
+		</div>
 	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
 	<hr>
 </div>
-    
-<div class="planer-info">
-	<div class="col-md-2 col-xs-12">
-		<p>
-			${planer }
-		</p>
-		<p>
-			${coTraveler }
-		</p>
-	</div>
-</div>
-
+   
 <div class="add-friend">
-	<div class="row">
-		<div class="offset-md-2 col-md-4 col-xs-12">
-			
+	<div class="row no-gutters">
+		<div class="col-md-2 col-xs-12">
+			<div class="planer-info-over">
+				<p>
+					<span class="planer-label-icon" data-feather="briefcase"></span><br>
+					<span class="planer-label-title">${planer.title }</span> 
+				</p>
+				<hr style="color:white; width:100%;">
+				<p>
+					<span class="planer-label-icon" data-feather="map"></span><br>
+					<span class="planer-label-title">${planer.location }</span> 
+				</p>
+				<p>
+					<span class="planer-label-icon" data-feather="calendar"></span><br>
+					<span class="planer-label-title">${planer.from_date } ~ </span><br>
+					<span class="planer-label-title">${planer.to_date }</span><br><br>
+					<c:choose>
+						<c:when test="${planer.range < 2 }">
+							<span class="planer-label-title">당일 치기</span>								
+						</c:when>
+						<c:otherwise>
+							<span class="planer-label-title">${planer.range-1 }박 ${planer.range }일</span>
+						</c:otherwise>
+					</c:choose>
+				</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-xs-12">
 			<form id="timePlanerForm">
 				<input type="hidden" name="target_dayplaner_seq">
 				<div class="form-group">
-					<label for="location"><span data-feather="map-pin"></span></label> 
+					<label for="location"><span class="time-planer-icon" data-feather="map-pin"></span><span class="time-planer-title">일정 장소</span></label> 
 					<input type="text" class="form-control" id="location" name="location" placeholder="Ex) 전주 한옥 마을">
 				</div>
 				<div class="form-group">
-					<label for="time"><span data-feather="clock"></span></label> 
-					<div class="row">
+					<label for="time"><span class="time-planer-icon" data-feather="clock"></span><span class="time-planer-title">일정 시간</span></label> 
+					<div class="row no-gutters">
 						<div class="col">
 							<select class="form-control" id="start_time" name="start_time">
 								<c:forEach varStatus="i" begin="0" end="24">
@@ -44,7 +181,10 @@
 									<option>${(i.index lt 12)?'AM':'PM' } ${i.index} : 30</option>
 								</c:forEach>
 							</select>
-						</div>	
+						</div>
+						<div class="col-md-1 text-center">
+							<span style="font-size:20px;font-weight:700;">~</span>
+						</div>
 						<div class="col">
 							<select class="form-control" id="end_time" name="end_time">
 								<c:forEach varStatus="i" begin="0" end="24">
@@ -57,7 +197,7 @@
 				</div>
 			
 				<div class="form-group">
-					<label for="transportation"><span data-feather="truck"></span></label> 
+					<label for="transportation"><span class="time-planer-icon" data-feather="truck"></span><span class="time-planer-title">이동 수단</span></label> 
 					<select class="form-control" id="exampleFormControlSelect1" name="transportation">
 						<option>자동차 </option>
 						<option>대중 교통 </option>
@@ -70,7 +210,7 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="expected_cost"><span data-feather="dollar-sign"></span></label> 
+					<label for="expected_cost"><span class="time-planer-icon" data-feather="dollar-sign"></span><span class="time-planer-title">예상 경비</span></label> 
 					<div class="input-group mb-3">
 						<input type="number" class="form-control" id="expected_cost" name="expected_cost"  placeholder="Ex) 10000">
 						<div class="input-group-append">
@@ -81,7 +221,7 @@
 
 
 				<div class="form-group">
-					<label for="types"><span data-feather="shopping-cart"></span></label> 
+					<label for="types"><span class="time-planer-icon" data-feather="shopping-cart"></span><span class="time-planer-title">일정 종류</span></label> 
 					<select class="form-control" id="types" name="types">
 						<option>쇼핑 </option>
 						<option>관광 </option>
@@ -93,48 +233,56 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="content"><span data-feather="file-text"></span></label>
+					<label for="content"><span class="time-planer-icon" data-feather="file-text"></span><span class="time-planer-title">기타 사항</span></label>
 					<textarea class="form-control" id="content" name="content" rows="3"></textarea>
 				</div>
 				
 			</form>
-			
-			<div class="btn-area d-flex justify-content-center">
-				<button id="addButton" class="btn btn-primary">+</button>			
-			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="row">
+			<div class="row no-gutters">
 				<div class="timePlanerContainer">
 					<div class="timePlanersList"></div>
 				</div>
 			</div>
+		</div>		
+		<div class="col-md-2 chat-container">
+			<div class="chat-container2">
+			    <div id="chat-data"></div>
+			</div>
 			
-			<div class="row justify-content-around">
-				<button class="btn btn-primary" id="prevDayPlaner">prev</button>
+			<div class="input-group chat-input">
+				<input type="text" class="form-control" id="message">
+				<div class="input-group-append">
+					<button class="btn btn-default commonBtn" id="sendBtn" type="button">전송</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row no-gutters">
+		<div class="offset-md-2 col-md-4">
+			<div class="d-flex justify-content-center">
+				<div class="btn-area">
+					<button id="addButton" class="btn btn-default commonBtn">일정 추가하기</button>			
+				</div>
+			</div>
+		</div>
+		<%-- <div class="col-md-4">
+			<div class="d-flex justify-content-around">
+				<button class="btn btn-default commonBtn" id="prevDayPlaner">prev</button>
 				<form action="myplan.do" method="POST">
 					<input type="hidden" name="status" value="2">
 					<input type="hidden" name="seq" value="${planer.seq }">
-					<input type="submit" class="btn btn-primary" id="completePlaner" style="display:none;" value="complete">
+					<input type="submit" class="btn btn-default commonBtn" id="completePlaner" style="display:none;" value="complete">
 				</form>
 				
-				<button class="btn btn-primary" id="nextDayPlaner">next</button>
+				<button class="btn btn-default commonBtn" id="nextDayPlaner">next</button>
 			</div>
-		</div>
-		
-		<div class="col-md-2">
-			<input type="text" id="message" />
-		    <input type="button" id="sendBtn" value="전송" />
-		  
-		    <div id="data"></div>
-		</div>
-		
-		
+		</div> --%>
 	</div>
 </div>
 
 <script type="text/javascript">
-
 var sock = new SockJS("${pageContext.request.contextPath}/echo");
 
 $(document).ready(function () {
@@ -144,6 +292,12 @@ $(document).ready(function () {
 	
 	getDayPlaner(1);
 })
+
+$("input[type=text]#message").keypress(function(e) { 
+    if (e.keyCode == 13){
+		sendMessage();
+    }    
+});
 
 $('#nextDayPlaner').on('click', function () {
 	var nextDay = parseInt($('#day_count').text())+1;
@@ -209,7 +363,7 @@ $('#addButton').on('click', function () {
 
 function drawTimePlaner(data) {
 	var html = 
-		'<div class="d-flex justify-content-around">'+	
+		'<div class="d-flex justify-content-around align-items-center">'+	
 			'<div class="timePlaner">'+
 				'<ul>'+
 					'<li>'+data.location+'</li>'+
@@ -239,7 +393,7 @@ sock.onclose = onClose;
 sock.onopen = function(){
 	message = {};
 	message.room = ${planer.seq};
-	message.msg = '${current_user.email}';
+	message.msg = '${current_user.name}';
 	message.isFirst = true;
     sock.send(JSON.stringify(message));
 };
@@ -256,11 +410,32 @@ function sendMessage() {
 //evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
 function onMessage(evt) {
     var data = evt.data;
-    $("#data").append(data + "<br/> ");
-    //sock.close();
+    addChat(data);
 }
+
+function addChat(data) {
+	let name = data.split('-ReturnSecretKeyParker-');
+	
+	if(name[0] == '${current_user.name}'){
+		drawSpan(name, 'chat-right');
+	} else {
+		drawSpan(name, 'chat-left');		
+	}
+}
+
+function drawSpan(name, align) {
+	var html1 = '<div class="'+align+'">'+ '<span>'+name[0]+'</span>'+ '<p>'+name[1]+'</p>'+ '</div>';
+	var html2 = '<div class="'+align+'">'+ '<p>'+name[1]+'</p>'+ '</div>';
+	
+	if($('#chat-data div:last-child').hasClass('chat-right')){
+		$('#chat-data').append(html2);		
+	} else {
+		$('#chat-data').append(html1);				
+	}
+}
+
 function onClose(evt) {
-    $("#data").append("연결 끊김");
+    $("#chat-data").append("연결 끊김");
 }
 
 </script>

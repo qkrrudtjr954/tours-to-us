@@ -1,10 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<style>
+#signInBtn {
+	padding: 15px;
+    border: 2px solid #7cc4bb;
+    border-radius: 10px;
+    width: 100%;
+    color: #7cc4bb;
+    transition: color 1s, background-color 1s;
+}
 
+input#signInBtn:hover {
+    background-color: #7cc4bb;
+    color: white;
+    transition: color 1s, background-color 1s;
+}
+</style>
 <div class="d-flex justify-content-center text-center row no-gutters">
 	<form class="form-signin" name="frmForm">
 		<img class="mb-4" src="./image/signimg.png" alt="" width="150px" height="150px">
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
 		
 		<label for="inputEmail" class="sr-only">Email address</label> 
 		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" data-msg="ID를" required autofocus> 
@@ -19,13 +34,13 @@
 				<input type="checkbox" value="remember-me"> Remember me
 			</label>
 		</div>
-		<input class="btn btn-lg btn-primary btn-block" type="button" id="SigninBtn" value="Sign in">
+		<input class="btn btn-lg btn-defalut btn-block" type="button" id="signInBtn" value="Sign in">
 		<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 	</form>
 </div>
 
 <script type="text/javascript">
-$("#SigninBtn").click(function() {
+$("#signInBtn").click(function() {
 	//alert("SigninBtn");
 	if($("#inputEmail").val()==""){
 		alert($("#inputEmail").attr("data-msg")+" 입력해 주십시요");
@@ -51,11 +66,10 @@ $("#inputPassword").keypress(function(event) {
 	if(event.which == "13"){
 		event.preventDefault();
 		//버튼클릭부분으로 이동시킴
-		$("#SigninBtn").click();
+		$("#signInBtn").click();
 	}
 });
-</script>
-<script type="text/javascript">
+
 //session, 쿠키저장 
 $('input[type="checkbox"]').on('click', function () {
 	//alert($("#inputEmail").val());
@@ -76,7 +90,7 @@ $('input[type="checkbox"]').on('click', function () {
 	}
 });
 
-$('input[type="button"]#SigninBtn').on('click', function () {
+$('input[type="button"]#signInBtn').on('click', function () {
 	// make validate function
 	$.ajax({
 		url : 'signinAf.do',

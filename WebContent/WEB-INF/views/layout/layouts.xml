@@ -80,4 +80,11 @@
 		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
 
+	
+	<definition name="planDetailAll.tiles" template="/WEB-INF/views/layout/layouts-plan-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/planer/planDetailAll.jsp"/>
+	</definition>
+
+
+
 </tiles-definitions>

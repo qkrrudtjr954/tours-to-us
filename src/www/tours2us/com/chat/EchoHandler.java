@@ -3,7 +3,6 @@ package www.tours2us.com.chat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.Gson;
 
-public class EchoHandler extends TextWebSocketHandler {
+public class EchoHandler extends TextWebSocketHandler { 
 	Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 	
 	//	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();

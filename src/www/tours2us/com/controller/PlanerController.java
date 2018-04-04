@@ -134,11 +134,13 @@ public class PlanerController {
 	public String myplan(HttpServletRequest req, PlanerDto planer, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> myplan");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		// System.out.println(t_dto.getSeq());
+		 System.out.println(t_dto.getSeq());
 		int seq = t_dto.getSeq();
 
 		// 플랜 select
 		List<PlanerDto> planlist = planerService.getplanList(seq);
+		System.out.println(planlist);
+		model.addAttribute("seq", seq);
 		model.addAttribute("planlist", planlist);
 		return "myplan.tiles";
 	}
@@ -183,12 +185,40 @@ public class PlanerController {
 		
 		for(DayPlanerDto dayPlan : dayPlanlist) {
 			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 	
 		model.addAttribute("planer",planer);
 		model.addAttribute("planerMap", planMap);
 		
 		return "planDetail.tiles";
+	}
+	
+	@RequestMapping(value = "planDetailAll.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String planDetailAll(HttpServletRequest req, int seq, Model model) throws Exception {
+		logger.info("PlanerContoller >>>> planDetailAll");
+		System.out.println("planerseq:"+seq);
+		
+PlanerDto planer = planerService.getPlaner(seq);
+		
+		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
+		Map<DayPlanerDto, List<TimePlanerDto>> planMap = new TreeMap<>(new Comparator<DayPlanerDto>() {
+			@Override
+			public int compare(DayPlanerDto o1, DayPlanerDto o2) {
+				// TODO Auto-generated method stub
+				return (o1.getDay_count() - o2.getDay_count());
+			}
+		});
+		
+		for(DayPlanerDto dayPlan : dayPlanlist) {
+			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
+		}
+	
+		model.addAttribute("planer",planer);
+		model.addAttribute("planerMap", planMap);
+		
+		return "planDetailAll.tiles";
 	}
 	
 	@ResponseBody

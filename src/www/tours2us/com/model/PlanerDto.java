@@ -15,6 +15,8 @@ public class PlanerDto implements Serializable {
 	private long total_cost;
 	private String reg_date;
 	private String last_updated;
+	
+	private String target_user_name;
 
 	// 표지 url
 	private String paper;
@@ -39,6 +41,7 @@ public class PlanerDto implements Serializable {
 		this.last_updated = last_updated;
 		this.paper = paper;
 	}
+
 
 	public int getSeq() {
 		return seq;
@@ -135,6 +138,7 @@ public class PlanerDto implements Serializable {
 	public void setPaper(String paper) {
 		this.paper = paper;
 	}
+	
 
 	@Override
 	public String toString() {

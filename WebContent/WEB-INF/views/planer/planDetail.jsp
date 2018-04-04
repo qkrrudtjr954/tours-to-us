@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
  <style type="text/css">
 #floatMenu {
@@ -12,6 +13,14 @@
 	top: 200px;
 	color: #000;
 }
+
+.tran-img{
+	position:relative;
+	width: 35px;
+	height: 35px;
+	left: 30px;
+	top: 50px;
+}
 </style>
 
 <div class="myplanDetail-title">
@@ -19,34 +28,55 @@
 		<h2>${planer.title }</h2>
 	</div>
 </div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<input type="button" onclick="btn_update(${planer.seq})" class="offset-md-11 btn btn-primary" value="수정">
-	<hr>
+<div class="offset-md-2 col-md-8 col-xs-12">
+	<div class="offset-md-9 btn-img">
+		<img src="./image/zoom-in.png" onclick="day_all(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/indent-all.png" onclick="day_show()"  style="cursor:pointer" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/zoom-in.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
+		<hr>
+	</div>
 </div>
 
+
 <div id="myplanDetail-content">
-	<div class="offset-md-2 col-md-8 col-xs-12">
+	<div class="offset-md-3 col-md-6 col-xs-12">
 		<div class="card">
-			<c:forEach var="dayPlan" items="${planerMap.keySet() }">
-				<div class="card-header" id="heading">
-					<h5 class="mb-0">
-						<button class="btn btn-link collapsed" data-toggle="collapse"
-							data-target="#collapse${dayPlan.day_count }" aria-expanded="false"
-							aria-controls="collapse">Day ${dayPlan.day_count }</button>
-					</h5>
-				</div>
-				<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="i">
-					<div id="collapse${dayPlan.day_count }" class="collapse" aria-labelledby="heading"
-						data-parent="#accordion">
-						<div class="card-body">
-							${timePlan.start_time }<br>
-							${timePlan.location }<br>
-							${timePlan.transportation }<br>
-							${timePlan.expected_cost }<br>
-							${timePlan.content }
-						</div>
+			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
+				<div class="row no-gutters">
+					<div class="col-md-2">
+						<img src="${(i.index == 0) ? './image/first.png' : i.index == planerMap.size()-1 ?'./image/last.png':'./image/middle.png'  }" width="100%" height="100%"> 
+					</div>				
+					<div class="col">
+						<div class="card-head" id="heading"> 
+							<h5 class="mb-0">
+								<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse">Day ${dayPlan.day_count }</a>
+							</h5>
+						</div> 					
 					</div>
-				</c:forEach>
+				</div>
+				
+				<div id="collapse${i.count }" class="collapse" aria-labelledby="heading" >
+					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="t">
+						<div class="row no-gutters">
+							<div class="col-md-2"> 
+								<img src="./image/taxi.png" class="tran-img">
+							</div>				
+							<div class="col">
+								<div class="card-body">
+									${timePlan.start_time }<br>
+									${timePlan.location }<br>
+									${timePlan.transportation }<br>
+									${timePlan.expected_cost }<br>
+									${timePlan.content }<br>
+								</div>			
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
@@ -55,5 +85,17 @@
 <script>
 function btn_update(seq) {
 	location.href="dayPlaner.do?seq="+seq;
+}
+
+function day_show() {
+	$(".collapse").addClass("show");
+}
+
+function day_remove() {
+	$(".collapse").removeClass("show");
+}
+
+function day_all(seq) {
+	window.open("planDetailAll.do?seq="+seq, "_blank" );
 }
 </script>

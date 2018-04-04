@@ -76,7 +76,7 @@ a.nav_link:hover {
 </div>
 </div>
 
-<div style="height:2000px">
+<div style="height:500px">
 </div>
 <div id="floatMenu">
 <ul style="width:100%; list-style-type: none;" class="menu_">

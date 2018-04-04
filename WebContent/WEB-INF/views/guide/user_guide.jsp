@@ -46,11 +46,6 @@
 .title-div {
 	margin: 20px 0px;
 }
-
-li .list-title{
-	font-size: 20px;
-	top: 100px;
-}
 #floatMenu {
 	position: absolute;
 	width: 200px;
@@ -60,6 +55,11 @@ li .list-title{
 	background-color: #7DC3BB;
 	color: #fff;
 }
+
+.ti-link:link {text-decoration: none; color: #000000;}
+.ti-link:hover {text-decoration: underline; color: #7DC3BB;}
+.ti-link:visited {text-decoration: none; color: #000000;}
+
 </style>
 
 
@@ -74,33 +74,44 @@ li .list-title{
 	<hr>
 </div>
 
-<div class="user-guide-content">
-	<div class="row">
-		<div class="offset-md-2 col-md-8">
-			<c:if test="${empty planlist }">
-				<div class="col-md-12 text-center col-xs-12">
-					<p>작성된 글이 없습니다</p>
-				</div>
-			</c:if>
-			<div class="row no-gutters">
-				<c:forEach items="${planlist }" var="plan" varStatus="i">
-					<div class="card col-md-4 ">
-						<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
-							<div class="card-container">
-								<div class="row">
-									<h5 class="card-title">
-										<span data-feather="calendar"></span>&nbsp; <span>${plan.from_date }</span>~<span>${plan.to_date }</span>
-									</h5>
-								</div>
-								<div class="card-text">
-									<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a>									
-								</div>
-							</div>
-						</div>
+<div class="user-guide-table">
+	<div class="offset-md-2 col-md-8">
+		<table class="table">
+			<colgroup>
+				<col style="width:30px;" />
+				<col style="width:30px;" />
+				<col style="width:100px;" />
+				<col style="width:100px;" />
+				<col style="width:100px;" />
+			</colgroup>
+				<thead>
+				<tr>	
+					<th>번호</th><th>위치</th><th>제목</th><th>작성자</th><th>여행기간</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:if test="${empty planlist }">
+					<div class="col-md-12 text-center col-xs-12">
+						<p>작성된 글이 없습니다</p>
 					</div>
+				</c:if>	
+				
+				<c:forEach items="${planlist }" var="plan" varStatus="i">
+					<tr>
+						<td>${i.count }</td>
+						<td>${plan.location }</td>
+						<td>
+							<a href="planDetail.do?seq=${plan.seq }" class="ti-link">${plan.title }</a>
+						</td>
+						<td>${current_user.name }</td>	
+						<td>
+							${plan.from_date }&nbsp;~&nbsp;${plan.to_date }
+						</td>					
+					</tr>	
 				</c:forEach>
-			</div>						
-		</div>
+						
+			</tbody>
+		</table>					
 	</div>
 </div>
 

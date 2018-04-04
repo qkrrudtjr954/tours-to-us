@@ -20,7 +20,7 @@
 	
 	<!-- 투둥이 가이드북 -->
 	<select id="getUserPlanList">
-		SELECT * FROM PLANER
+		SELECT DISTINCT  * FROM PLANER
 	</select>
 	
 </mapper>

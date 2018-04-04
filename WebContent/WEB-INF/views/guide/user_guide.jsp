@@ -131,7 +131,7 @@ input.img_button {
 						<td>
 							<a href="planDetail.do?seq=${plan.seq }" class="ti-link">${plan.title }</a>
 						</td>
-						<td>${current_user.name }</td>	
+						<td>${plan.name }</td>	
 						<td>
 							${plan.from_date }&nbsp;~&nbsp;${plan.to_date }
 						</td>					

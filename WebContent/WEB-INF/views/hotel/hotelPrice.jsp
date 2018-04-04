@@ -115,33 +115,33 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 	
 		<div class="col-md-4">
 			<div class="card mb-4 box-shadow">
-			<img class="card-img-top" src="${item.pic }" height="300px">
-			<a href="${item.link }" target="_blank" style="text-decoration:none; color: black;">
-			<div class="card-body">				
-				<!-- <p class="card-text"> -->
-					<span style="font-size: 10px; color: rgb(155, 49, 67);">
-					<c:choose>
-						<c:when test="${item.desc eq '·' }"> 
-						개인실·침대 2개</span>
-						</c:when>
-						<c:otherwise>
-						${item.desc }</span>
-						</c:otherwise>
-					</c:choose>
-						<br><!-- </p> -->
-					
-					<span style="font-size: 15px; font-weight: bold;">${item.name }</span>
-					<br>
-					<span style="color: #484848; font-weight: 200;">
-					<c:choose>
-						<c:when test="${item.price eq '/박' }">
-						홈페이지 확인</span>
-						</c:when>
-						<c:otherwise>
-						${item.price }</span>		
-						</c:otherwise>
-					</c:choose>								
-			</div></a>
+				<img class="card-img-top" src="${item.pic }" height="300px">
+				
+					<div class="card-body" onclick="location.href='${item.link}'">				
+						<!-- <p class="card-text"> -->
+							<c:choose>
+								<c:when test="${item.desc eq '·' }"> 
+									<span style="font-size: 10px; color: rgb(155, 49, 67);">개인실·침대 2개</span>
+								</c:when>
+								<c:otherwise>
+									<span style="font-size: 10px; color: rgb(155, 49, 67);">${item.desc }</span>
+								</c:otherwise>
+							</c:choose>
+								<br><!-- </p> -->
+							
+							<span style="font-size: 15px; font-weight: bold;">${item.name }</span>
+							<br>
+							
+							<c:choose>
+								<c:when test="${item.price eq '/박' || item.price eq '/월'}">
+									<span style="color: #484848; font-weight: 200;">홈페이지 확인</span>
+								</c:when>
+								<c:otherwise>
+									<span style="color: #484848; font-weight: 200;">${item.price }</span>		
+								</c:otherwise>
+							</c:choose>								
+					</div>
+				
 			</div>
 		</div>
 
@@ -149,10 +149,12 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 		</div>
 <hr>
 	<div class="row offset-md-5">
-	<p style="color: rgb(155, 49, 67);">더 많은 숙소 정보 확인하러 가기</p></div>
+		<a href="https://www.airbnb.co.kr" style="color: rgb(155, 49, 67);">더 많은 숙소 정보 확인하러 가기</a>
+	</div>
 
 
 <script>
+
 
 
 function checktoday() {

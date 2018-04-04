@@ -18,4 +18,9 @@
 	ORDER BY E.REG_DATE DESC
 	</select>
 	
+	<!-- 투둥이 가이드북 -->
+	<select id="getUserPlanList">
+		SELECT * FROM PLANER
+	</select>
+	
 </mapper>

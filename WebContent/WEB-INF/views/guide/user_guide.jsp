@@ -46,7 +46,24 @@
 .title-div {
 	margin: 20px 0px;
 }
+
+li .list-title{
+	font-size: 20px;
+	top: 100px;
+}
+#floatMenu {
+	position: absolute;
+	width: 200px;
+	height: 300px;
+	left: 50px;
+	top: 200px;
+	background-color: #7DC3BB;
+	color: #fff;
+}
 </style>
+
+
+
 
 <div class="myplan-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
@@ -76,19 +93,28 @@
 									</h5>
 								</div>
 								<div class="card-text">
-									<div class="title-div">
-										<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a>
-									</div>
-									<div class="change-title-div input-group mb-3">
-										<input type="text" class="form-control" placeholder="${plan.title }">
-									</div>
+									<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a>									
 								</div>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
-			</div>			
-			
+			</div>						
 		</div>
+	</div>
+</div>
+
+
+<div id="floatMenu">
+<ul style="width:100%; list-style-type: none;" class="menu_">
+	<li class="title"><h2>투둥이<br>가이드북</h2></li>
+</ul>
+
+<div class="menu_table">
+		<ul style="list-style-type: none" >
+			<li class="list-title">투디터 pick</li>			
+			<li class="list-title">투둥이 가이드북</li>
+			<li class="list-title">투투 가이드북</li>			
+		</ul>
 	</div>
 </div>

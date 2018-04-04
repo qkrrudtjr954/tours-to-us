@@ -30,13 +30,13 @@
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
 	<div class="offset-md-9 btn-img">
-		<img src="./image/zoom-in.png" onclick="day_all(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
+		<img src="./image/zoom-in.png" onclick="day_all(${planer.seq})" style="cursor:pointer" title="크게보기" width="30px" height="30px">
 		&nbsp;
-		<img src="./image/indent-all.png" onclick="day_show()"  style="cursor:pointer" width="30px" height="30px">
+		<img src="./image/indent-all.png" onclick="day_show()"  style="cursor:pointer" title="전체보기" width="30px" height="30px">
 		&nbsp;
-		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" width="30px" height="30px">
+		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" title="전체접기" width="30px" height="30px">
 		&nbsp;
-		<img src="./image/updated.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
+		<img src="./image/updated.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" title="수정하기" width="30px" height="30px">
 	</div>
 		<hr>
 </div>

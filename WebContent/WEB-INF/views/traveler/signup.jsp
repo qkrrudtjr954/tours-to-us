@@ -152,7 +152,7 @@
 			<form class="needs-validation" id="signUpForm" method="POST" onsubmit="false">
 				<div class="d-flex justify-content-center">
 					<div class="text-center">
-						<img alt="test" src="${pageContext.request.contextPath }/image/no-profile.png" class="circle" id="user_image" width="150px">
+						<img alt="test" src="${pageContext.request.contextPath }/image/no-profile.png" class="circle" id="user_image" width="150px" height="150px">
 						<input type="file" class="form-control-file" id="user_profile1">
 						<input type="hidden" name="profile" class="form-control-file" value="no-profile.png">						
 					</div>
@@ -267,14 +267,13 @@
 	});
 
 
-	$('#user_profile').change(function() {
+	$('#user_profile1').change(function() {
 		sendFile(this.files[0]);
 	});
 
 	function sendFile(file, dom) {
 		formdata = new FormData();
 		formdata.append("userImage", file);
-
 		$.ajax({
 			data : formdata,
 			type : "POST",

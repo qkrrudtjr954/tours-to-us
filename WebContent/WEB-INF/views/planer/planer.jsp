@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="planer-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
@@ -22,11 +23,9 @@
 				<div class="form-group">
 					<label for="location">여행 지역</label> 
 					<select class="form-control" id="location" name="location">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+						<c:forEach var="part" items="${korea }">
+							<option>${part.name }</option>
+						</c:forEach>
 					</select>
 				</div>
 				<div class="form-group">

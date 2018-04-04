@@ -68,4 +68,8 @@
 		UPDATE PLANER SET TITLE=#{title}, LAST_UPDATED=sysdate WHERE SEQ=#{seq}
 	</update>
 
+	<select id="getKorea" resultType="www.tours2us.com.model.Korea">
+		SELECT * FROM KOREA
+	</select>
+
 </mapper>

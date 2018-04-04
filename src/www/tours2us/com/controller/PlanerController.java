@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.DayPlanerDto;
+import www.tours2us.com.model.Korea;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
 import www.tours2us.com.model.TravelerDto;
@@ -39,7 +40,9 @@ public class PlanerController {
 	public String planer(Model model, HttpServletRequest req) {
 
 		logger.info("PlanerController >>>> planer");
-
+		List<Korea> korea = planerService.getKoreaList();
+		model.addAttribute("korea", korea);
+		
 		return "planer.tiles";
 	}
 

@@ -3,6 +3,7 @@ package www.tours2us.com.dao;
 import java.util.List;
 
 import www.tours2us.com.model.DayPlanerDto;
+import www.tours2us.com.model.Korea;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
 
@@ -31,4 +32,6 @@ public interface PlanerDao {
 	boolean changeTitle(PlanerDto planer);
 
 	void updateCompletePlaner(PlanerDto planer);
+
+	List<Korea> getKoreaList();
 }

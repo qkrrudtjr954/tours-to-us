@@ -11,6 +11,7 @@ import www.tours2us.com.dao.PlanerDao;
 import www.tours2us.com.dao.TravelerDao;
 import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.DayPlanerDto;
+import www.tours2us.com.model.Korea;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
 import www.tours2us.com.model.TravelerDto;
@@ -91,6 +92,12 @@ public class PlanerServiceImpl implements PlanerService{
 
 	public void updateCompletePlaner(PlanerDto planer) {
 		planerDao.updateCompletePlaner(planer);
+	}
+
+
+	@Override
+	public List<Korea> getKoreaList() {
+		return planerDao.getKoreaList();
 	}
 
 

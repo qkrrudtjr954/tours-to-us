@@ -16,13 +16,10 @@
 	</insert>
 
 	<select id="getplanList" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
-		SELECT DISTINCT   A.SEQ, A.TARGET_USER_SEQ, A.TITLE, A.LOCATION, A.STATUS, A.TO_DATE, A.FROM_DATE,
-			A.TOTAL_COST, A.RANGE, A.PAPER, A.REG_DATE, A.LAST_UPDATED		
-		FROM PLANER A, COTRAVELER B
-		WHERE A.TARGET_USER_SEQ = B.TARGET_USER_SEQ 
-		AND A.TARGET_USER_SEQ=#{seq}
-		ORDER BY A.REG_DATE DESC
+		SELECT * FROM PLANER WHERE TARGET_USER_SEQ=#{seq}
+		ORDER BY REG_DATE DESC
 	</select>
+	
 
 	<select id="getDayplanList" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
 		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ=#{SEQ}

@@ -140,6 +140,7 @@ public class PlanerController {
 		// 플랜 select
 		List<PlanerDto> planlist = planerService.getplanList(seq);
 		System.out.println(planlist);
+		model.addAttribute("seq", seq);
 		model.addAttribute("planlist", planlist);
 		return "myplan.tiles";
 	}

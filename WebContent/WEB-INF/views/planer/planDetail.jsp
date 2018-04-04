@@ -38,7 +38,7 @@
 
 
 <div id="myplanDetail-content">
-	<div class="offset-md-3 col-md-5 col-xs-12">
+	<div class="offset-md-3 col-md-6 col-xs-12">
 		<div class="card">
 			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
 				<div class="row no-gutters">

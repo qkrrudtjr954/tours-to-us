@@ -4,6 +4,16 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+ <style type="text/css">
+
+.tran-img{
+	position:relative;
+	width: 35px;
+	height: 35px;
+	left: 30px;
+	top: 50px;
+}
+</style>
 
 <div class="myplanDetail-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
@@ -17,18 +27,29 @@
 
 
 <div id="myplanDetail-content">
-	<div class="offset-md-3 col-md-5 col-xs-12">
+	<div class="offset-md-3 col-md-6 col-xs-12">
 		<div class="card">
-			<c:forEach var="dayPlan" items="${planerMap.keySet() }">
-					<h5 class="mb-0">
-						Day ${dayPlan.day_count }
-					</h5>
-				<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="i">
-							${timePlan.start_time }<br>
-							${timePlan.location }<br>
-							${timePlan.transportation }<br>
-							${timePlan.expected_cost }<br>
-							${timePlan.content }<br><br>						
+			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
+				<div class="row no-gutters">
+					<div class="col-md-2">
+						<img
+							src="${(i.index == 0) ? './image/first.png' : i.index == planerMap.size()-1 ?'./image/last.png':'./image/middle.png'  }" width="100%" height="100%">
+					</div>
+					<h5 class="mb-0">Day ${dayPlan.day_count }</h5>
+				</div>
+				<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }"
+					varStatus="t">
+					<div class="row no-gutters">
+						<div class="col-md-2">
+							<img src="./image/taxi.png" class="tran-img">
+						</div>
+						<div class="col">
+							${timePlan.start_time }<br> ${timePlan.location }<br>
+							${timePlan.transportation }<br> ${timePlan.expected_cost }<br>
+							${timePlan.content }<br>
+							<br>
+						</div>
+					</div>
 				</c:forEach>
 			</c:forEach>
 		</div>

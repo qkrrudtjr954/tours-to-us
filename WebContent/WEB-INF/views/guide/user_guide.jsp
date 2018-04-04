@@ -60,10 +60,18 @@
 .ti-link:hover {text-decoration: underline; color: #7DC3BB;}
 .ti-link:visited {text-decoration: none; color: #000000;}
 
+.fl-link:link {text-decoration: none; color: #ffffff;}
+.fl-link:hover {text-decoration: underline; color: #7DC3BB;}
+.fl-link:visited {text-decoration: none; color: #ffffff;}
+
+input.img_button {
+	background: url(./image/search.png) no-repeat;
+	width: 40px;
+	height: 35px;
+	border: none; 
+	cursor: pointer;
+}
 </style>
-
-
-
 
 <div class="myplan-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
@@ -73,6 +81,24 @@
 <div class="offset-md-2  col-md-8 col-xs-12">
 	<hr>
 </div>
+
+<div class="row" style="margin:0 auto;width:900px;">
+	<div class="offset-md-2 input-group-prepend">
+		<select class="custom-select" id="inputGroupSelect01"name="Searchtype" style="width: 150px">
+			<option value="target_user_seq">작성자</option>
+			<option value="title">제목</option>
+			<option value="location">지역</option>
+		</select> 
+		<input type="text" class="form-control"
+			aria-label="Text input with segmented dropdown button" size="50"
+			name="SearchWord" id="text">
+	</div>
+	&nbsp;&nbsp;
+	<div class="serach">
+		<input type="button" class="img_button" id="btnsearch">
+	</div>
+</div>
+<br>
 
 <div class="user-guide-table">
 	<div class="offset-md-2 col-md-8">
@@ -123,8 +149,8 @@
 
 <div class="menu_table">
 		<ul style="list-style-type: none" >
-			<li class="list-title">투디터 pick</li>			
-			<li class="list-title">투둥이 가이드북</li>
+			<li class="list-title"><a href="editor_essay.do" class="fl-link">투디터 pick</a></li>
+			<li class="list-title"><a href="user_guide.do" class="fl-link">투둥이 가이드북</a></li>			
 			<li class="list-title">투투 가이드북</li>			
 		</ul>
 	</div>

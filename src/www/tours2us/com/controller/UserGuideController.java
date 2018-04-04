@@ -26,7 +26,7 @@ public class UserGuideController {
 	// 투둥이 가이드북
 		@RequestMapping(value="user_guide.do", method={RequestMethod.GET, RequestMethod.POST})
 		public String user_guide(HttpServletRequest req, Model model) {
-			logger.info("guidebookController >>>> user_guide");
+			logger.info("UserGuideController >>>> user_guide");
 			TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 			System.out.println(t_dto.getSeq());
 			int seq = t_dto.getSeq();

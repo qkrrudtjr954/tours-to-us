@@ -71,7 +71,7 @@ div.user-action a:hover {
 		</div>
 		<c:choose>
 			<c:when test="${current_user == null }">
-				<div class="offset-md-1 col-md-2 user-action">
+				<div class="offset-md-2 col-md-2 user-action">
 					<ul class="d-flex justify-content-end">	
 						<li>
 							<a class="user-action-item btn btn-sm" href="signin.do">로그인</a>

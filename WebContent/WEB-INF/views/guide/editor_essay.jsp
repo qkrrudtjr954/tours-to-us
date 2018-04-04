@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <style>
-    #floatMenu {
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+#floatMenu {
 	position: absolute;
 	width: 200px;
 	height: 300px;
@@ -12,113 +11,106 @@
 	color: black;
 }
 
-.best_edit{
-padding: 10px;
-margin: 20px;
-border-radius: 10px;
-background-color: rgb(224, 224, 224);
-padding-bottom: 20px;
+.best_edit {
+	padding: 10px;
+	margin: 20px;
+	border-radius: 10px;
+	background-color: rgb(224, 224, 224);
+	padding-bottom: 20px;
 }
 
-#best_edit_head{
-
- display: inline-block;
- font-size: 11px;
- letter-spacing: 0.2em;
-background: #444;
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgb(68, 68, 68);
-
-background-color: #444444;
-color: #ffffff;
-
-padding: 6px 12px;
-    padding-top: 6px;
-    padding-right: 12px;
-    padding-bottom: 6px;
-    padding-left: 12px;
-
-
+#best_edit_head {
+	display: inline-block;
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	background: #444;
+	background-image: initial;
+	background-position-x: initial;
+	background-position-y: initial;
+	background-size: initial;
+	background-repeat-x: initial;
+	background-repeat-y: initial;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: rgb(68, 68, 68);
+	background-color: #444444;
+	color: #ffffff;
+	padding: 6px 12px;
+	padding-top: 6px;
+	padding-right: 12px;
+	padding-bottom: 6px;
+	padding-left: 12px;
 }
 
-#location{
+#location {
 	margin-left: 5px;
 	font-size: 14px;
 }
 
-#best_content{
-padding-left: 15px;
-padding-right: 15px;
-
-}
-.card-img{
- position:relative;
- 
+#best_content {
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
-#like{
-position:absolute;
-top:13px;
-right:15px;
-color: #ffffff;
-text-shadow: 5px 5px 5px #444444;
+.card-img {
+	position: relative;
 }
 
+#like {
+	position: absolute;
+	top: 13px;
+	right: 15px;
+	color: #ffffff;
+	text-shadow: 5px 5px 5px #444444;
+}
 
-#hovereffect{
-  width: 100%;
-  height: 100%;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  cursor: default;
+#hovereffect {
+	width: 100%;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	cursor: default;
 }
 
 .overlay {
-  margin-left: 15px;
-  margin-right:15px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 92%;
-  opacity: 0;
-  transition: .5s ease;
-background-color: rgba(0, 0, 0, 0.63);
+	margin-left: 15px;
+	margin-right: 15px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 92%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: rgba(0, 0, 0, 0.63);
 }
 
 #hovereffect:hover .overlay {
-   opacity: 1;
+	opacity: 1;
 }
 
 #hovereffect img {
-  display: block;
-  position: relative;
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
+	display: block;
+	position: relative;
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
 }
 
-.overlay-content{
-position:absolute;
-top: 200px;
-left:15px;
-text-align: left;
-padding-left: 20px;
+.overlay-content {
+	position: absolute;
+	top: 200px;
+	left: 15px;
+	text-align: left;
+	padding-left: 20px;
 }
-.overlay-content span{
 
-color: #ffffff;
+.overlay-content span {
+	color: #ffffff;
 }
 
 /* hr{ 
@@ -128,12 +120,11 @@ color: #ffffff;
     height:         100vh;
     width:          1px;       
 } */
-    </style>
+</style>
 
 <div id="floatMenu">
 <ul style="width:100%; list-style-type: none;" class="menu_">
 	<li class="title"><h2>가이드북</h2></li>
-<hr>	
 </ul>
 
 <div class="menu_table">
@@ -280,33 +271,32 @@ color: #ffffff;
 
 
 <div class="row content">
-
-<c:forEach items="${list }" var="item" varStatus="i">
-<div class="col-md-4">
-			<div class="card mb-4 box-shadow">
+		<c:forEach items="${list }" var="item" varStatus="i">
+			<div class="col-md-4">
+				<div class="card mb-4 box-shadow">
 					<div class="card-img">
-					<c:choose>
-						<c:when test="${item.pic1 eq null }"> 
-						<img class="card-img-top" src="image/no-img.png" height="300px">
-						</c:when>
-						<c:otherwise>
-						<img class="card-img-top" src="${item.pic1 }" height="300px">
-						</c:otherwise>
-					</c:choose>
-					<span id="like"><img src="image/hearticon.png">100</span>
+						<c:choose>
+							<c:when test="${item.pic1 eq null }">
+								<img class="card-img-top" src="image/no-img.png" height="300px">
+							</c:when>
+							<c:otherwise>
+								<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">
+							</c:otherwise>
+						</c:choose>
+						<span id="like"><img src="image/hearticon.png">100</span>
 					</div>
-				<div class="card-body">
-					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span><span id="location">${item.category }</span><br>
-					<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
-					<span style="font-size: 14px; float:right;  color: #484848; font-weight: 200; ">Editor: ${item.name }</span>
-				
+					<div class="card-body">
+						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
+						<span id="location">${item.category }</span><br> 
+						<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
+						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor: ${item.name }</span>
+					</div>
 				</div>
-			</div>		
-	 </div>
-</c:forEach>	 
-	 
+			</div>
+		</c:forEach>
 
-</div>
+
+	</div>
 
 
 

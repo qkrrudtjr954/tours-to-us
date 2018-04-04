@@ -36,9 +36,9 @@
 		&nbsp;
 		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" width="30px" height="30px">
 		&nbsp;
-		<img src="./image/zoom-in.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
-		<hr>
+		<img src="./image/updated.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" width="30px" height="30px">
 	</div>
+		<hr>
 </div>
 
 

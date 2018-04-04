@@ -41,7 +41,7 @@
 	</div>
 
 </div>
-
+<%-- ${commList } --%>
 
 <div class="after-title">
 <div class="offset-md-2 col-md-6 col-xs-12">
@@ -58,13 +58,14 @@
 		<input type="text" class="form-control" name="content" id="content" size="90" placeholder="댓글을 입력해주세요">
 	</div>
 	
-<div class="col-md-2">
-			<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment()">
-</div>
+	<div class="col-md-2">
+		<button class="btn btn-outline-success" onclick="addComment()">comment</button>
+	</div>
 </div>
 <br><br> 
+<span id="commentCount">${comments.size() }</span>
 <div class="comment-area">
-					<span id="commentCount">${comments.size() }</span>
+					
 					<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
 						<div class="row">
 							<div class="comment-email col-md-2" style="height: 50px;">
@@ -91,30 +92,23 @@
 
 
 
-<script>
-function addComment() {
-	//alert("dddd");
+<script type="text/javascript">
+
+function addComment(seq) {
 	var seq = ${aftergetBbs.seq};
 	var user_seq = ${current_user.seq};
-	//alert("addComment seq = "  + seq);
-	//alert("addComment user = "  + user_seq);
 	$.ajax({
 		url:"AfterComentAf.do",
 		type:"post",
 		data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
 		success:function(data){
-			alert("data: " + data);		
-			
-			
-			var comments = JSON.parse(data);
-			altert("comments=" + comments);
-			$('#commentCount').html(comments.length);
-			for(var i=0; i <comments.length; i++){
-				printCommentHtml(comments[i]);
 				
-				
+			$('.comment-area').children().remove();
+
+			for(var i=0; i <data.length; i++){
+				printCommentHtml(data[i]);
 			}
-			$('#content').val("");
+			$('#content').val('');
 			
 			
 		},
@@ -124,12 +118,11 @@ function addComment() {
 	});
 }
 
-
-function printCommentHtml(current_user , comment ){
+function printCommentHtml(comment ){
 	var html = 
-		'<div class=row>'+
+		'<div class="row">'+
 			'<div class="comment-email col-md-2" style="height: 50px;">'+
-				current_user.email+
+				'${current_user.email }'+
 			'</div>'+
 			'<div class="comment-box col" style="height: 50px;">'+
 				'<div class="row">'+
@@ -139,13 +132,10 @@ function printCommentHtml(current_user , comment ){
 				'</div>'+
 			'</div>'+
 			'<div class="comment-date col-md-1" style="height: 50px;">'+
-				comment.reg_date+
+			comment.reg_date+
 			'</div>'+
 			'<hr>';
-			console.log(html);
 			$('.comment-area').append(html);
-				
-	
 } 
 
 	

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.PlanerDto;
@@ -24,7 +27,6 @@ import www.tours2us.com.service.CommuCommentService;
 import www.tours2us.com.service.CommuService;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.TravelerService;
-
 
 
 @Controller
@@ -82,6 +84,7 @@ public String afterbbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Mode
     System.out.println("b"+bbs.getTarget_user_seq());
     System.out.println(bbs.toString());
 
+    
    commuService.afterwriteBbs(bbs);
    return "redirect:/afterBbs.do";
 }
@@ -143,16 +146,15 @@ public String delete(Model model, int seq) {
 
 
 @ResponseBody
-@RequestMapping(value="AfterComentAf.do", 
-method={RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value="AfterComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
 public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
 	logger.info("CommuController >>>> AfterComentAf");
+	
 	System.out.println("coment" + comment.toString());
-	 TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+	TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 	comment.setTarget_user_seq(t_dto.getSeq());
 	
-	 List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
-	System.out.println(commList);
+	List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
 	
 	return commList;
 }

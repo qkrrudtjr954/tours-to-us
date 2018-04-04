@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     
    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
@@ -45,14 +46,15 @@
 <hr>
 
 <div class="offset-md-1 col-md-10">
-<form name="form1" action="CommuBbsController">
+<form name="form1" action="toditor_writeAf.do">
+<input type="hidden" name="target_user_seq" value="${current_user.seq }">
 <div class="row">
 	<div class="row col-md-3">
-	<select class="custom-select" id="category" name="category">
-			<option>지역을 골라주세요</option>
-			<option>2</option>
-			<option>3</option>
-	</select>
+	<select class="custom-select" id="target_category_seq" name="target_category_seq">
+			<c:forEach items="${categorylist }" var="category" varStatus="i">
+			<option value="${category.seq }">${category.title }</option>
+			</c:forEach>
+		</select>
 	</div>
 	<div class="col-md-8">
 		<input type="text" class="form-control" name="title" id="title" size="70"	placeholder="제목을 입력해주세요">
@@ -68,6 +70,7 @@
 	</div>
 	<br>
 	<div class="row">
+			<input type="hidden" name="pic1" value="" id="pic1"/>
 			<input class="btn btn-success offset-md-2 col-md-2" type="submit"
 								id="btnWrite" value="글쓰기"> &nbsp;&nbsp;
 			<button type="button" id="btnBack"
@@ -112,8 +115,32 @@
 
    });
     
-    
-   
+    function sendFile(file, editor) {
+		formdata = new FormData();
+		formdata.append("userImage", file);
+
+		$.ajax({
+			data: formdata,
+			type: "POST",
+			url: '${initParam.IMG_SERVER_PATH}/upload',
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				console.log(data);
+				var url = '${initParam.IMG_SERVER_PATH }/image/'+data.filename;
+
+				if($('#pic1').val() == ''){
+					$('#pic1').val(url);
+				}
+
+				alert(url);
+				$('#hello').html(url);
+				$(editor).summernote('editor.insertImage', url);
+				$('#imageDiv > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+	        }
+		});
+	}
    
     
 </script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <style>
     #floatMenu {
 	position: absolute;
@@ -65,8 +66,8 @@ padding-right: 15px;
 
 #like{
 position:absolute;
-top:15px;
-right:10px;
+top:13px;
+right:15px;
 color: #ffffff;
 text-shadow: 5px 5px 5px #444444;
 }
@@ -280,21 +281,29 @@ color: #ffffff;
 
 <div class="row content">
 
-
+<c:forEach items="${list }" var="item" varStatus="i">
 <div class="col-md-4">
 			<div class="card mb-4 box-shadow">
 					<div class="card-img">
-					<img class="card-img-top" src="image/example.jpg" height="300px">
+					<c:choose>
+						<c:when test="${item.pic1 eq null }"> 
+						<img class="card-img-top" src="image/no-img.png" height="300px">
+						</c:when>
+						<c:otherwise>
+						<img class="card-img-top" src="${item.pic1 }" height="300px">
+						</c:otherwise>
+					</c:choose>
 					<span id="like"><img src="image/hearticon.png">100</span>
 					</div>
 				<div class="card-body">
-					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span><span id="location">제주도</span><br>
-					<span style="font-size: 15px; font-weight: bold;">전복이 꽉 차있는 제주 [김만복 김밥]</span><br>
-					<span style="font-size: 14px; float:right;  color: #484848; font-weight: 200; ">Editor: 김아무개</span>
+					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span><span id="location">${item.category }</span><br>
+					<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
+					<span style="font-size: 14px; float:right;  color: #484848; font-weight: 200; ">Editor: ${item.name }</span>
+				
 				</div>
 			</div>		
 	 </div>
-	 
+</c:forEach>	 
 	 
 
 </div>
@@ -309,5 +318,6 @@ color: #ffffff;
 $('#btn_write').click(function () {
 	location.href="toditor_write.do";
 });
+
 
 </script>

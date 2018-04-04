@@ -19,8 +19,8 @@
 	</select>
 	
 	<!-- 투둥이 가이드북 -->
-	<select id="getUserPlanList">
-		SELECT DISTINCT  * FROM PLANER
+	<select id="getUserPlanList" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT DISTINCT  * FROM PLANER ORDER BY REG_DATE DESC
 	</select>
 	
 </mapper>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.PlanerService;
+import www.tours2us.com.service.UserGuideService;
 
 @Controller
 public class UserGuideController {
@@ -23,19 +24,35 @@ public class UserGuideController {
 	@Autowired
 	PlanerService planerService;
 	
+	@Autowired
+	UserGuideService userGuideService;
+	
 	// 투둥이 가이드북
-		@RequestMapping(value="user_guide.do", method={RequestMethod.GET, RequestMethod.POST})
-		public String user_guide(HttpServletRequest req, Model model) {
-			logger.info("UserGuideController >>>> user_guide");
-			TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-			System.out.println(t_dto.getSeq());
-			int seq = t_dto.getSeq();
-			
-			List<PlanerDto> planlist = planerService.getplanList(seq);
-			System.out.println(planlist);
-			model.addAttribute("seq", seq);
-			model.addAttribute("planlist", planlist);
-			
-			return "user_guide.tiles";
-		}
+	@RequestMapping(value="user_guide.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String user_guide(HttpServletRequest req, Model model) {
+		logger.info("UserGuideController >>>> user_guide");
+		
+		List<PlanerDto> planlist = userGuideService.getUserPlanList();
+		System.out.println(planlist);
+		model.addAttribute("planlist", planlist);
+		
+		return "user_guide.tiles";
+	}
+	
+	@RequestMapping(value="guideSearch.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String guideSearch(Model model, String Searchtype, String SearchWord) {
+		
+		return null;
+	}
+
+
 }
+
+
+
+
+
+
+
+
+

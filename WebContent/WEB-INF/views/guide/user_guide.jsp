@@ -82,22 +82,24 @@ input.img_button {
 	<hr>
 </div>
 
-<div class="row" style="margin:0 auto;width:900px;">
-	<div class="offset-md-2 input-group-prepend">
-		<select class="custom-select" id="inputGroupSelect01"name="Searchtype" style="width: 150px">
-			<option value="target_user_seq">작성자</option>
-			<option value="title">제목</option>
-			<option value="location">지역</option>
-		</select> 
-		<input type="text" class="form-control"
-			aria-label="Text input with segmented dropdown button" size="50"
-			name="SearchWord" id="text">
+<form action="guideSearch.do" method="get">
+	<div class="row" style="margin:0 auto;width:900px;">
+		<div class="offset-md-2 input-group-prepend">
+			<select class="custom-select" id="inputGroupSelect01" name="Searchtype" style="width: 150px">
+				<option value="target_user_seq">작성자</option>
+				<option value="title">제목</option>
+				<option value="location">지역</option>
+			</select> 
+			<input type="text" class="form-control"
+				aria-label="Text input with segmented dropdown button" size="50"
+				name="SearchWord" id="text">
+		</div>
+		&nbsp;&nbsp;
+		<div class="serach">
+			<input type="submit" class="img_button" id="btnsearch" value="">
+		</div>
 	</div>
-	&nbsp;&nbsp;
-	<div class="serach">
-		<input type="button" class="img_button" id="btnsearch">
-	</div>
-</div>
+</form>
 <br>
 
 <div class="user-guide-table">

@@ -43,7 +43,7 @@
 	
 	<!-- 댓글List -->
 	<select id="getAllComments" resultType="www.tours2us.com.model.CommuAfterCommentDto">
-			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE ASC
+			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
 	</select>
 	
 	<!-- 댓글 쓰기 -->

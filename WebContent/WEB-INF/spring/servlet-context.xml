@@ -48,6 +48,13 @@
 			<mvc:exclude-mapping path="/checkEmail.do" />
 			<bean class="www.tours2us.com.aop.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/**/dayPlaner.do" />
+			<mvc:mapping path="/**/planDetail.do" />
+			<mvc:mapping path="/**/planDetailAll.do" />
+			<bean class="www.tours2us.com.aop.PermissionInterceptor"></bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<bean id="echoHandler" class="www.tours2us.com.chat.EchoHandler" />

@@ -145,6 +145,15 @@
 	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
+	<div class="d-flex justify-content-center" style="margin: 15px 0px;">
+		<c:forEach begin="1" end="${planer.range }" varStatus="i">
+			<button class="btn btn-sm btn-secondary" style="margin: 0px 3px;" onclick="getDayPlaner(${i.index})">Day ${i.index }</button>
+			<c:if test="${i.index%15 == 0 }">
+				</div>
+				<div class="d-flex justify-content-center" style="margin: 5px 0px;">
+			</c:if>
+		</c:forEach>
+	</div>
 	<hr>
 </div>
    
@@ -274,9 +283,7 @@
 	<div class="row no-gutters">
 		<div class="offset-md-2 col-md-4">
 			<div class="d-flex justify-content-center">
-				<div class="btn-area">
-					<button id="addButton" class="btn btn-default commonBtn">일정 추가하기</button>			
-				</div>
+				<button id="addButton" class="btn btn-default commonBtn">일정 추가하기</button>			
 			</div>
 		</div>
 		<div class="col-md-4">

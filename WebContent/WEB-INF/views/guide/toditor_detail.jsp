@@ -14,7 +14,7 @@
 
 <div id="floatMenu">
 <ul style="width:100%; list-style-type: none;" class="menu_">
-	<li class="title"><h2>가이드북</h2></li>
+	<li class="title"><h2>가이드북</h2><hr></li>
 <hr>	
 </ul>
 

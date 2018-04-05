@@ -113,6 +113,9 @@
 	color: #ffffff;
 }
 
+.btn_write_div{
+padding-top:15px;
+}
 /* hr{ 
   
     border:         none;
@@ -251,27 +254,33 @@
 
 
 <div class="row search_menu">
-	<div class="col-md-2" id="serch_select">
-	<select class="custom-select">
-		<option>제목</option>
-		<option>아이디</option>
-	</select>
+	<div class="col-md-2 serch_select">	
+	<form name="frmForm1" id="_frmFormSearch" method="post" action="">	
+		<select class="custom-select" id="_s_category" name="s_category">
+			<option value="title">제목</option>
+			<option value="contents">내용</option>
+		</select>
 	</div>
-	<div class="input-group  col-md-5">
- 		 <input type="text" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+	<div class="input-group col-md-6">
+ 		 <input type="text" class="form-control" id="_s_keyword" name="s_keyword" value="${s_keyword}" placeholder="검색어를 입력해주세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
  		 <div class="input-group-append">
- 			   <button class="btn btn-outline-secondary" type="button"><span data-feather="search"></span></button>
+ 			   <button class="btn btn-outline-secondary" type="button" id="_btnSearch" ><span data-feather="search"></span></button>
+ 			   <input type="hidden" name="pageNumber" id="_pageNumber" value="0"/>						
+			   <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?9:recordCountPerPage}"/>		
  		 </div>
-	</div>
-	<div class="offset-md-2">
-		<button class="form-control" id="btn_write">에디터 글쓰기</button>
-	</div>
+	</div>	
+	</form>	
+	
+	
 </div>
+<div class="row btn_write_div">
+		<button class="form-control offset-md-9 col-md-2" id="btn_write">에디터 글쓰기</button>
+	</div>
 <br>
 
 
 <div class="row content">
-		<c:forEach items="${list }" var="item" varStatus="i">
+		<c:forEach items="${bbslist }" var="item" varStatus="i">
 			<div class="col-md-4">
 				<div class="card mb-4 box-shadow">
 					<div class="card-img">
@@ -285,7 +294,7 @@
 						</c:choose>
 						<span id="like"><img src="image/hearticon.png">100</span>
 					</div>
-					<div class="card-body">
+					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
 						<span id="location">${item.category }</span><br> 
 						<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
@@ -298,7 +307,19 @@
 
 	</div>
 
+<!-- 페이징처리 -->
 
+<div id="paging_wrap">
+<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
+	<jsp:param value="${pageNumber }" name="pageNumber"/>
+	<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
+	<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
+	<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
+</jsp:include>
+
+</div>
+
+<!-- 페이징처리 -->
 
 
 <!-- 내용 div 끝 -->
@@ -309,5 +330,20 @@ $('#btn_write').click(function () {
 	location.href="toditor_write.do";
 });
 
+$(document).ready(function() {
+	
+	$("#_s_category > option[value="+'<c:out value="${ pv.s_category }"/>'+"]").attr("selected","selected");
+	
+				
+});
+
+$("#_btnSearch").click(function() {
+	//alert('search');						
+	$("#_frmFormSearch").attr({ "target":"_self", "action":"editor_essay.do" }).submit();
+});
+function goPage(pageNumber) {	
+	$("#_pageNumber").val(pageNumber) ;
+	$("#_frmFormSearch").attr("target","_self").attr("action","editor_essay.do").submit();
+}
 
 </script>

@@ -28,6 +28,7 @@ public class ToditorBBS implements Serializable {
 	private Date last_date;
 	private String category;
 	private String name;
+	private String profile;
 	
 	public ToditorBBS() {
 		// TODO Auto-generated constructor stub
@@ -51,9 +52,8 @@ public class ToditorBBS implements Serializable {
 
 
 
-
 	public ToditorBBS(int seq, int target_user_seq, int target_category_seq, String title, String content, String pic1,
-			Date reg_date, Date last_date, String category, String name) {
+			Date reg_date, Date last_date, String category, String name, String profile) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -65,6 +65,7 @@ public class ToditorBBS implements Serializable {
 		this.last_date = last_date;
 		this.category = category;
 		this.name = name;
+		this.profile = profile;
 	}
 
 
@@ -156,12 +157,26 @@ public class ToditorBBS implements Serializable {
 	}
 
 
+	public String getProfile() {
+		return profile;
+	}
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ToditorBBS [seq=" + seq + ", target_user_seq=" + target_user_seq + ", target_category_seq="
 				+ target_category_seq + ", title=" + title + ", content=" + content + ", pic1=" + pic1 + ", reg_date="
-				+ reg_date + ", last_date=" + last_date + ", category=" + category + ", name=" + name + "]";
+				+ reg_date + ", last_date=" + last_date + ", category=" + category + ", name=" + name + ", profile="
+				+ profile + "]";
 	}
+
+
+
 
 
 	

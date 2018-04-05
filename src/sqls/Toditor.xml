@@ -18,6 +18,43 @@
 	ORDER BY E.REG_DATE DESC
 	</select>
 	
+	<select id="ToditorgetPagingList" parameterType="www.tours2us.com.model.PagingVo" resultType="www.tours2us.com.model.ToditorBBS" >
+	SELECT TITLE, SEQ, CONTENT, PIC1,CATEGORY, NAME
+	FROM 
+	( SELECT ROW_NUMBER() OVER (ORDER BY   E.REG_DATE DESC) as rnum,  
+		TITLE, E.SEQ, CONTENT, PIC1, 
+		(SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME
+		FROM EDITOR E, TRAVELER T
+		WHERE T.SEQ = E.TARGET_USER_SEQ 
+		<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>	
+		</if> 
+		) A
+		WHERE rnum between #{start} AND #{end}
+	</select>
+
+	
+	<select id="ToditorgetBbsCount" parameterType="www.tours2us.com.model.PagingVo" resultType="java.lang.Integer">
+	 
+			SELECT NVL(count(*),0) AS cnt
+			  FROM   EDITOR  WHERE 1 = 1
+		
+		<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>	
+		</if>
+	</select>	
+	
+	
+	
+	<select id="ToditorDetail" resultType="www.tours2us.com.model.ToditorBBS" parameterType="java.lang.Integer">
+		SELECT E.TITLE, E.CONTENT,  (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME,  E.REG_DATE,
+		T.PROFILE
+		FROM EDITOR E, TRAVELER T
+		WHERE T.SEQ = E.TARGET_USER_SEQ AND E.SEQ = #{seq}
+	</select>
+	
 	<!-- 투둥이 가이드북 DISTINCT -->
 	<select id="getUserPlanList" resultType="www.tours2us.com.model.PlanerDto">
 		SELECT P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE,

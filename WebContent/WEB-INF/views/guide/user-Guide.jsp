@@ -79,6 +79,7 @@ input.img_button {
 	margin: 10px;
 	width: 90%;
 	border-radius: 15px;
+	border: 1px solid #7DC3BB;
 }
 
 .gu-link{
@@ -197,15 +198,6 @@ text-align: center;
 	</div>
 </div>
 
+<script>
 
-<!-- 
-<div id="floatMenu">
-
-<div class="menu_table">
-		<ul style="list-style-type: none" >
-			<li class="list-title"></li>
-			<li class="list-title"></li>			
-			<li class="list-title">투투 가이드북</li>			
-		</ul>
-	</div>
-</div> -->
+</script>

@@ -43,14 +43,23 @@
 		<hr>
 </div>
 
+<style>
+.planer-progress-bar {
+	height: 200px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+</style>
+
 
 <div id="myplanDetail-content">
 	<div class="offset-md-3 col-md-6 col-xs-12">
 		<div class="card">
 			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
 				<div class="row no-gutters">
-					<div class="col-md-2">
-						<img src="${(i.index == 0) ? './image/first.png' : i.index == planerMap.size()-1 ?'./image/last.png':'./image/middle.png'  }" width="100%" height="100%"> 
+					<div class="col-md-4 planer-progress-bar" style="background-image: url('${(i.index == 0) ? './image/first.png' : (i.index == planerMap.size()-1) ? './image/last.png' : './image/middle.png'  }');">
+						<%-- <img src="${(i.index == 0) ? './image/first.png' : i.index == planerMap.size()-1 ?'./image/last.png':'./image/middle.png'  }" width="100%" height="100%"> --%> 
 					</div>				
 					<div class="col">
 						<div class="card-head" id="heading"> 
@@ -63,9 +72,24 @@
 				
 				<div id="collapse${i.count }" class="collapse" aria-labelledby="heading" >
 					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="t">
+						<c:choose>
+							<c:when test="${planerMap.get(dayPlan).size() == 1 }">
+								<c:set var="url" value="./image/has-one.png"/>							
+							</c:when>
+							<c:when test="${t.index == 0 }">
+								<c:set var="url" value="./image/sub-first.png"/>							
+							</c:when>
+							<c:when test="${t.index == planerMap.get(dayPlan).size()-1 }">
+								<c:set var="url" value="./image/sub-last.png"/>							
+							</c:when>
+							<c:otherwise>
+								<c:set var="url" value="./image/sub-middle.png"/>
+							</c:otherwise>
+						</c:choose>
+						
 						<div class="row no-gutters">
-							<div class="col-md-2"> 
-								<img src="./image/taxi.png" class="tran-img">
+							<div class="col-md-4 planer-progress-bar"  style="background-image: url('${url}');"> 
+								<!-- <img src="./image/taxi.png" class="tran-img"> -->
 							</div>				
 							<div class="col">
 								<div class="card-body">

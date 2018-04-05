@@ -117,6 +117,18 @@
 	margin-bottom: 30px;
 }
 
+.chat-info {
+	text-align: center;
+}
+.chat-info > p {
+    font-size: 12px;
+    color: darkslategray;
+}
+
+.buttonArea a.btn.btn-outline-danger {
+    border-radius: 50%;
+}
+
 </style>
 <div class="offset-md-3 col-md-6 col-xs-12 planer-title">
 	<div class="d-flex justify-content-around align-items-center">
@@ -133,6 +145,15 @@
 	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
+	<div class="d-flex justify-content-center" style="margin: 15px 0px;">
+		<c:forEach begin="1" end="${planer.range }" varStatus="i">
+			<button class="btn btn-sm btn-secondary" style="margin: 0px 3px;" onclick="getDayPlaner(${i.index})">Day ${i.index }</button>
+			<c:if test="${i.index%15 == 0 }">
+				</div>
+				<div class="d-flex justify-content-center" style="margin: 5px 0px;">
+			</c:if>
+		</c:forEach>
+	</div>
 	<hr>
 </div>
    
@@ -141,7 +162,7 @@
 		<div class="col-md-2 col-xs-12">
 			<div class="planer-info-over">
 				<p>
-					<span class="planer-label-icon" data-feather="briefcase"></span><br>
+					<span class="planer-label-icon" data-feather="briefcase">여행 이름</span><br>
 					<span class="planer-label-title">${planer.title }</span> 
 				</p>
 				<hr style="color:white; width:100%;">
@@ -262,23 +283,56 @@
 	<div class="row no-gutters">
 		<div class="offset-md-2 col-md-4">
 			<div class="d-flex justify-content-center">
-				<div class="btn-area">
-					<button id="addButton" class="btn btn-default commonBtn">일정 추가하기</button>			
-				</div>
+				<button id="addButton" class="btn btn-default commonBtn">일정 추가하기</button>			
 			</div>
 		</div>
-		<%-- <div class="col-md-4">
-			<div class="d-flex justify-content-around">
-				<button class="btn btn-default commonBtn" id="prevDayPlaner">prev</button>
-				<form action="myplan.do" method="POST">
-					<input type="hidden" name="status" value="2">
-					<input type="hidden" name="seq" value="${planer.seq }">
-					<input type="submit" class="btn btn-default commonBtn" id="completePlaner" style="display:none;" value="complete">
-				</form>
-				
-				<button class="btn btn-default commonBtn" id="nextDayPlaner">next</button>
+		<div class="col-md-4">
+			<div class="d-flex justify-content-center">
+				<button type="button" class="btn btn-default commonBtn" id="completePlaner" style="display:none;"  data-toggle="modal" data-target="#exampleModalCenter">
+				  일정 확정하기
+				</button>
 			</div>
-		</div> --%>
+		</div>
+	</div>
+</div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">일정 확정하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+			</div>
+			<form action="completePlaner.do" method="POST">
+				<div class="modal-body">
+					<p>
+						일정을 확정하면 상태가 '완료'로 변경됩니다.<br>
+						현재 화면을 닫아도 변경 사항은 저장되어 후에 확인할 수 있습니다.
+					</p>
+					<p>
+						해당 일정을 다른 투둥이들에게 공개하시겠습니까?
+					</p>
+					<div class="d-flex justify-content-center">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="1">
+							<label class="form-check-label" for="inlineRadio1">공개</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="2">
+							<label class="form-check-label" for="inlineRadio2">비공개</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="seq" value="${planer.seq }"> 
+					<input type="submit" class="btn btn-default commonBtn" value="complete">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 
@@ -418,20 +472,28 @@ function addChat(data) {
 	
 	if(name[0] == '${current_user.name}'){
 		drawSpan(name, 'chat-right');
+	} else if(name[0] == 'info'){
+		drawSpan(name, 'chat-info');
 	} else {
-		drawSpan(name, 'chat-left');		
+		drawSpan(name, 'chat-left');				
 	}
 }
 
 function drawSpan(name, align) {
 	var other = '<div class="'+align+'">'+'<span>'+name[0]+'</span>'+'<p>'+name[1]+'</p>'+'</div>';
 	var my = '<div class="'+align+'">'+'<p>'+name[1]+'</p>'+'</div>';
+	var info = '<div class="'+align+'">'+'<p>'+name[1]+'</p>'+'</div>';
 	
-	if($('#chat-data div:last-child').hasClass(align)){
-		$('#chat-data').append(my);		
+	if(align == 'chat-info'){
+		$('#chat-data').append(info);
 	} else {
-		$('#chat-data').append(other);				
+		if($('#chat-data div:last-child').hasClass(align)){
+			$('#chat-data').append(my);		
+		} else {
+			$('#chat-data').append(other);				
+		}
 	}
+	
 }
 
 function onClose(evt) {

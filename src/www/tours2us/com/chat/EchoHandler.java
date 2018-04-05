@@ -52,7 +52,7 @@ public class EchoHandler extends TextWebSocketHandler {
 			
 			if(Msg.roomSet.get(session.getId()) == msgVO.room && !msgVO.msg.equals("")) {
 				for (WebSocketSession sess : sessionList.get(msgVO.room)) {
-					sess.sendMessage(new TextMessage(Msg.nameSet.get(session.getId()) + "-ReturnSecretKeyParker-"+msgVO.msg+"님이 입장했습니다."));
+					sess.sendMessage(new TextMessage("info-ReturnSecretKeyParker-"+msgVO.msg+"님이 입장했습니다."));
 				}			
 			}
 		}else {			
@@ -73,9 +73,19 @@ public class EchoHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		//	방번호를 가져온다.
 		int roomnum = Msg.roomSet.get(session.getId());
+
+		for (WebSocketSession sess : sessionList.get(roomnum)) {
+			try {
+				sess.sendMessage(new TextMessage("info-ReturnSecretKeyParker-" +Msg.nameSet.get(session.getId())+ "님이 퇴장하셨습니다."));				
+			} catch(IllegalStateException e) {
+				logger.info(Msg.nameSet.get(session.getId())+" 방 나감.");
+			}
+		}
+		
 		//	집합에서 지운다.
 		Msg.roomSet.remove(session.getId());
 		Msg.nameSet.remove(session.getId());
+		
 		
 		//	session id와 같은 session을 list에서 지워줍니다.
 		IntStream.range(0, sessionList.get(roomnum).size())

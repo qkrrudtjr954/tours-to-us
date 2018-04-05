@@ -16,6 +16,6 @@ public class TestSingleton {
 		}
 		return instance;
 	}
-	// 로그인된 유저들의 아이디를 저장한다.
-	public static Set<String> logined = new HashSet<>();
+
+	
 }

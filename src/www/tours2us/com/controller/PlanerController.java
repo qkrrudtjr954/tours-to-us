@@ -124,20 +124,21 @@ public class PlanerController {
 		return returnDayPlaner;
 	}
 
-	@ResponseBody
 	@RequestMapping(value="completePlaner.do", method=RequestMethod.POST)
-	public void completePlaner(Model model, PlanerDto planer) {
-		//	status 가 2이면 완료, 0이면 작성중, 1이면 임시저장 
+	public String completePlaner(Model model, PlanerDto planer) {
+		//	status 0 is ing, 1 is complete, 2 is complete secret, 3 and 4 is delete 
 		logger.info("PlanerContoller >>>>> completePlaner : {}", planer);
 		planerService.updateCompletePlaner(planer);
+		
+		return "redirect:myplan.do";
 	}
 	
 
 	@RequestMapping(value = "myplan.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myplan(HttpServletRequest req, PlanerDto planer, Model model) throws Exception {
+	public String myplan(HttpServletRequest req, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> myplan");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		 System.out.println(t_dto.getSeq());
+		System.out.println(t_dto.getSeq());
 		int seq = t_dto.getSeq();
 
 		// 플랜 select

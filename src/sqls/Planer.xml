@@ -73,6 +73,10 @@
 	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">
 		UPDATE PLANER SET TITLE=#{title}, LAST_UPDATED=sysdate WHERE SEQ=#{seq}
 	</update>
+	
+	<update id="planDelete" parameterType="int">
+		UPDATE PLANER SET STATUS=3 WHERE SEQ=#{seq}
+	</update>
 
 	<select id="getKorea" resultType="www.tours2us.com.model.Korea">
 		SELECT * FROM KOREA

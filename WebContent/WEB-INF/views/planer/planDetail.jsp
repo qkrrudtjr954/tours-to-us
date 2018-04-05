@@ -37,6 +37,8 @@
 		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" title="전체접기" width="30px" height="30px">
 		&nbsp;
 		<img src="./image/updated.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" title="수정하기" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/garbage.png" onclick="btn_delete(${planer.seq})" style="cursor:pointer" title="삭제하기" width="30px" height="30px">
 	</div>
 		<hr>
 </div>
@@ -85,6 +87,14 @@
 <script>
 function btn_update(seq) {
 	location.href="dayPlaner.do?seq="+seq;
+}
+
+function btn_delete(seq) {
+	 if(confirm("정말 삭제하시겠습니까?")==true){
+		 location.href="planDelete.do?seq="+seq;	        
+	}else{
+		return;
+	}
 }
 
 function day_show() {

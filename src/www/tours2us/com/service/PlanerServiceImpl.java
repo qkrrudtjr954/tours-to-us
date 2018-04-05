@@ -89,6 +89,12 @@ public class PlanerServiceImpl implements PlanerService{
 
 		return planerDao.changeTitle(planer);
 	}
+	
+	@Override
+	public boolean planDelete(int seq) {
+		// TODO Auto-generated method stub
+		return planerDao.planDelete(seq);
+	}
 
 	public void updateCompletePlaner(PlanerDto planer) {
 		planerDao.updateCompletePlaner(planer);
@@ -99,6 +105,8 @@ public class PlanerServiceImpl implements PlanerService{
 	public List<Korea> getKoreaList() {
 		return planerDao.getKoreaList();
 	}
+
+
 
 
 

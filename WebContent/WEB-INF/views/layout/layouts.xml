@@ -78,7 +78,7 @@
 	
 	<!-- 투둥이 가이드북 -->
 	<definition name="user_guide.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/guide/user_guide.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/guide/user-Guide.jsp"/>
 	</definition>
 
 	<!-- 호텔최저가 -->

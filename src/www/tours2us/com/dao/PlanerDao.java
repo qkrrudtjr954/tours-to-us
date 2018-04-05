@@ -30,6 +30,8 @@ public interface PlanerDao {
 	List<TimePlanerDto> getAllTimePlanersByTargetDayPlanerSeq(int seq);
 
 	boolean changeTitle(PlanerDto planer);
+	
+	boolean planDelete(int seq);
 
 	void updateCompletePlaner(PlanerDto planer);
 

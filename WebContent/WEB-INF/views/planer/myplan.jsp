@@ -53,6 +53,10 @@
     top: 8px;
    
 }
+
+.card-body{
+	cursor:pointer;
+}
 </style>
 <div class="myplan-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
@@ -74,7 +78,7 @@
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
 					<div class="card col-md-6 ">
-						<div class="card-body"
+						<div class="card-body" onclick="location.href='planDetail.do?seq=${plan.seq}'"  
 							style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
 							&nbsp;
 							<c:if test="${plan.status == 0 }">
@@ -90,7 +94,7 @@
 								</div>
 								<div class="card-text">
 									<div class="title-div">
-										<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a>
+										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.title }</span>
 										<img class="change-pen" alt="pen" src="./image/pen1.png"
 											onclick="showTitleInput(this)" width="25px" height="25px">
 									</div>
@@ -145,5 +149,6 @@ function changeTitle(button, seq) {
 		}
 	})
 }
+
 
 </script>

@@ -424,13 +424,13 @@ function addChat(data) {
 }
 
 function drawSpan(name, align) {
-	var html1 = '<div class="'+align+'">'+ '<span>'+name[0]+'</span>'+ '<p>'+name[1]+'</p>'+ '</div>';
-	var html2 = '<div class="'+align+'">'+ '<p>'+name[1]+'</p>'+ '</div>';
+	var other = '<div class="'+align+'">'+'<span>'+name[0]+'</span>'+'<p>'+name[1]+'</p>'+'</div>';
+	var my = '<div class="'+align+'">'+'<p>'+name[1]+'</p>'+'</div>';
 	
-	if($('#chat-data div:last-child').hasClass('chat-right')){
-		$('#chat-data').append(html2);		
+	if($('#chat-data div:last-child').hasClass(align)){
+		$('#chat-data').append(my);		
 	} else {
-		$('#chat-data').append(html1);				
+		$('#chat-data').append(other);				
 	}
 }
 

@@ -33,21 +33,15 @@ public class EchoHandler extends TextWebSocketHandler {
 	 */
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-		
-		
 		String msg = message.getPayload();
 		Gson gson = new Gson();
 		Msg msgVO = gson.fromJson(msg, Msg.class);
-		
-		System.out.println(msgVO);
-		
+
 		if(msgVO.isFirst) {
 			//	처음 초기 
 			//	session id와 room number를 저장한다.
 			Msg.roomSet.put(session.getId(), msgVO.room);
 			Msg.nameSet.put(session.getId(), msgVO.msg);
-			
 			//	room number의 세션 리스트가 존재하는 지 확인한다.
 			if(sessionList.get(msgVO.room) == null) {
 				//	방이 없으면 빈 방을 만든다.
@@ -58,13 +52,13 @@ public class EchoHandler extends TextWebSocketHandler {
 			
 			if(Msg.roomSet.get(session.getId()) == msgVO.room && !msgVO.msg.equals("")) {
 				for (WebSocketSession sess : sessionList.get(msgVO.room)) {
-					sess.sendMessage(new TextMessage(Msg.nameSet.get(sess.getId()) + "-ReturnSecretKeyParker-"+msgVO.msg+"님이 입장했습니다."));
+					sess.sendMessage(new TextMessage(Msg.nameSet.get(session.getId()) + "-ReturnSecretKeyParker-"+msgVO.msg+"님이 입장했습니다."));
 				}			
 			}
 		}else {			
 			if(Msg.roomSet.get(session.getId()) == msgVO.room && !msgVO.msg.equals("")) {
 				for (WebSocketSession sess : sessionList.get(msgVO.room)) {
-					sess.sendMessage(new TextMessage(Msg.nameSet.get(sess.getId()) + "-ReturnSecretKeyParker-" + msgVO.msg));
+					sess.sendMessage(new TextMessage(Msg.nameSet.get(session.getId()) + "-ReturnSecretKeyParker-" + msgVO.msg));
 				}			
 			}
 		}
@@ -83,11 +77,6 @@ public class EchoHandler extends TextWebSocketHandler {
 		Msg.roomSet.remove(session.getId());
 		Msg.nameSet.remove(session.getId());
 		
-		
-		System.out.println("-------------- before -------------");
-		sessionList.get(roomnum).stream().forEach(System.out::println);
-		System.out.println("-------------- before -------------");
-		
 		//	session id와 같은 session을 list에서 지워줍니다.
 		IntStream.range(0, sessionList.get(roomnum).size())
 			.forEach(idx -> {
@@ -95,10 +84,6 @@ public class EchoHandler extends TextWebSocketHandler {
 					sessionList.get(roomnum).remove(idx);
 				}
 			});
-		
-		System.out.println("-------------- after -------------");
-		sessionList.get(roomnum).stream().forEach(System.out::println);
-		System.out.println("-------------- after -------------");
 		
 		logger.info("{} 연결 끊김", session.getId());
 	}

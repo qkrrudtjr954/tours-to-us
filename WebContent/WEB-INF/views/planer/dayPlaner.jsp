@@ -117,6 +117,18 @@
 	margin-bottom: 30px;
 }
 
+.chat-info {
+	text-align: center;
+}
+.chat-info > p {
+    font-size: 12px;
+    color: darkslategray;
+}
+
+.buttonArea a.btn.btn-outline-danger {
+    border-radius: 50%;
+}
+
 </style>
 <div class="offset-md-3 col-md-6 col-xs-12 planer-title">
 	<div class="d-flex justify-content-around align-items-center">
@@ -418,20 +430,28 @@ function addChat(data) {
 	
 	if(name[0] == '${current_user.name}'){
 		drawSpan(name, 'chat-right');
+	} else if(name[0] == 'info'){
+		drawSpan(name, 'chat-info');
 	} else {
-		drawSpan(name, 'chat-left');		
+		drawSpan(name, 'chat-left');				
 	}
 }
 
 function drawSpan(name, align) {
 	var other = '<div class="'+align+'">'+'<span>'+name[0]+'</span>'+'<p>'+name[1]+'</p>'+'</div>';
 	var my = '<div class="'+align+'">'+'<p>'+name[1]+'</p>'+'</div>';
+	var info = '<div class="'+align+'">'+'<p>'+name[1]+'</p>'+'</div>';
 	
-	if($('#chat-data div:last-child').hasClass(align)){
-		$('#chat-data').append(my);		
+	if(align == 'chat-info'){
+		$('#chat-data').append(info);
 	} else {
-		$('#chat-data').append(other);				
+		if($('#chat-data div:last-child').hasClass(align)){
+			$('#chat-data').append(my);		
+		} else {
+			$('#chat-data').append(other);				
+		}
 	}
+	
 }
 
 function onClose(evt) {

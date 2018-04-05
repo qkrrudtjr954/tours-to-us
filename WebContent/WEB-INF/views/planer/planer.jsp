@@ -166,6 +166,7 @@ button#next-step:hover {
 		let result = true;
 		
 		if($(dom).val() == ''){
+			removeSpan($(dom));
 			$(dom).parent().append('<span style="font-size:80%;color:#dc3545;">'+msg+'</span>');
 			$(dom).focus();
 			result = false;

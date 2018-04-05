@@ -313,7 +313,7 @@ function getDayPlaner(day_count) {
 		url: 'getDayPlaner.do',
 		method: 'GET',
 		data: { target_planer_seq : ${planer.seq}, day_count : day_count },
-		success: function (data) {
+		success: function (data) { 
 			console.log(data);
 			$('#day_count').text(data.day_count);
 			$('input[name="target_dayplaner_seq"]').val(data.seq);

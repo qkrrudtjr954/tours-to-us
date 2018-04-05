@@ -45,6 +45,14 @@
 .title-div {
 	margin: 20px 0px;
 }
+
+.status-img{
+	position: absolute;
+    border-radius: 50px;
+    left: 390px;
+    top: 8px;
+   
+}
 </style>
 <div class="myplan-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
@@ -66,24 +74,31 @@
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
 					<div class="card col-md-6 ">
-						<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
-						&nbsp;
-						<img src="${(plan.target_user_seq == current_user.seq) ? './image/my-check.png' : './image/check.png'}" width="25px" height="25px">
+						<div class="card-body"
+							style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
+							&nbsp;
+							<c:if test="${plan.status == 0 }">
+								<div class="ing-img">
+									<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+								</div>
+							</c:if>
 							<div class="card-container">
 								<div class="row">
 									<h5 class="card-title">
 										<span data-feather="calendar"></span>&nbsp;&nbsp; <span>${plan.from_date }</span>&nbsp;~&nbsp;<span>${plan.to_date }</span>
-									</h5>						
-
+									</h5>
 								</div>
 								<div class="card-text">
 									<div class="title-div">
 										<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a>
-										<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="15px" height="15px">
+										<img class="change-pen" alt="pen" src="./image/pen1.png"
+											onclick="showTitleInput(this)" width="25px" height="25px">
+									</div>
+									<div class="write-div">
+										<span>${plan.name }</span>
 									</div>
 									<div class="change-title-div input-group mb-3">
-										<input type="text" class="form-control"
-											placeholder="${plan.title }">
+										<input type="text" class="form-control" placeholder="${plan.title }">
 										<div class="input-group-append">
 											<button class="btn btn-primary"
 												onclick="changeTitle(this, ${plan.seq})">변경하기</button>
@@ -91,7 +106,10 @@
 										</div>
 									</div>
 								</div>
-								<a href="afterWrite.do?seq=${plan.seq }" class="btn btn-primary">후기쓰기</a>
+								<div class="offset-md-10 col-md-2 review-btn">
+									<a href="afterWrite.do?seq=${plan.seq }"
+										class="btn btn-primary">후기쓰기</a>
+								</div>
 							</div>
 						</div>
 					</div>

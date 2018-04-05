@@ -60,9 +60,9 @@
 .ti-link:hover {text-decoration: underline; color: #7DC3BB;}
 .ti-link:visited {text-decoration: none; color: #000000;}
 
-.fl-link:link {text-decoration: none; color: #ffffff;}
-.fl-link:hover {text-decoration: underline; color: #7DC3BB;}
-.fl-link:visited {text-decoration: none; color: #ffffff;}
+.gu-link:link {text-decoration: none; color: #000000;}
+.gu-link:hover {text-decoration: underline; color: #7DC3BB;}
+.gu-link:visited {text-decoration: none; color: #000000;}
 
 input.img_button {
 	background: url(./image/search.png) no-repeat;
@@ -71,6 +71,35 @@ input.img_button {
 	border: none; 
 	cursor: pointer;
 }
+
+.guide-info-over {
+	position: absolute;
+	background-color: #fff;
+	padding: 15px;
+	margin: 10px;
+	width: 90%;
+	border-radius: 15px;
+}
+
+.gu-link{
+	text-align: left;
+}
+
+.guide-label-icon{
+text-align: center;
+}
+
+.guide-info-top{
+	background-color: #7DC3BB;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.guide-label-atag{
+	line-height: 1.5;
+}
+
 </style>
 
 <div class="myplan-title">
@@ -80,6 +109,31 @@ input.img_button {
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
 	<hr>
+</div>
+
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="guide-info-over">
+			<div class="guide-info-top">
+				<p>
+					<span class="guide-label-icon" data-feather="book-open"></span>
+					<br>
+					<span class="guide-label-title">투둥이 가이드북</span> 
+				</p>
+			</div>
+				<hr style="color:white; width:100%;">		
+				<p>
+					<div class="guide-label-icon" style="text-align: center;">
+						<span data-feather="bookmark"></span><br>
+					</div>
+					<span class="guide-label-atag"><a href="editor_essay.do" class="gu-link">투디터 pick</a></span> 
+					<br>
+					<span class="guide-label-atag"><a href="user_guide.do" class="gu-link">투둥이 가이드북</a></span>
+					<br>
+					<span class="guide-label-atag"><a href="#" class="gu-link">투투 가이드북</a></span>	
+				</p>		
+		</div>
+	</div>
 </div>
 
 <form action="guideSearch.do" method="get">
@@ -107,7 +161,7 @@ input.img_button {
 		<table class="table">
 			<colgroup>
 				<col style="width:30px;" />
-				<col style="width:30px;" />
+				<col style="width:70px;" />
 				<col style="width:100px;" />
 				<col style="width:100px;" />
 				<col style="width:100px;" />
@@ -144,16 +198,14 @@ input.img_button {
 </div>
 
 
+<!-- 
 <div id="floatMenu">
-<ul style="width:100%; list-style-type: none;" class="menu_">
-	<li class="title"><h2>투둥이<br>가이드북</h2></li>
-</ul>
 
 <div class="menu_table">
 		<ul style="list-style-type: none" >
-			<li class="list-title"><a href="editor_essay.do" class="fl-link">투디터 pick</a></li>
-			<li class="list-title"><a href="user_guide.do" class="fl-link">투둥이 가이드북</a></li>			
+			<li class="list-title"></li>
+			<li class="list-title"></li>			
 			<li class="list-title">투투 가이드북</li>			
 		</ul>
 	</div>
-</div>
+</div> -->

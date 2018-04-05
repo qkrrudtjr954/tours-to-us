@@ -18,5 +18,7 @@ public interface TravelerDao {
 	CoTravelerDto getCoTraveler(CoTravelerDto coTraveler);
 	boolean deleteCoTraveler(CoTravelerDto coTraveler);
 	boolean myInfoUpd(TravelerDto dto);
+	
+	
 
 }

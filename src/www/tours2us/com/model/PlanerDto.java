@@ -16,7 +16,7 @@ public class PlanerDto implements Serializable {
 	private String reg_date;
 	private String last_updated;
 	
-	private String target_user_name;
+	private String name;
 
 	// 표지 url
 	private String paper;
@@ -25,8 +25,10 @@ public class PlanerDto implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public PlanerDto(int seq, int target_user_seq, String title, String location, int status, String to_date,
-			String from_date, int range, long total_cost, String reg_date, String last_updated, String paper) {
+			String from_date, int range, long total_cost, String reg_date, String last_updated, String paper,String name
+			) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -40,8 +42,8 @@ public class PlanerDto implements Serializable {
 		this.reg_date = reg_date;
 		this.last_updated = last_updated;
 		this.paper = paper;
+		this.name = name;
 	}
-
 
 	public int getSeq() {
 		return seq;
@@ -140,13 +142,24 @@ public class PlanerDto implements Serializable {
 	}
 	
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PlanerDto [seq=" + seq + ", target_user_seq=" + target_user_seq + ", title=" + title + ", location="
 				+ location + ", status=" + status + ", to_date=" + to_date + ", from_date=" + from_date + ", range="
 				+ range + ", total_cost=" + total_cost + ", reg_date=" + reg_date + ", last_updated=" + last_updated
-				+ ", paper=" + paper + "]";
+				+ ", target_user_name=" + name + ", paper=" + paper + "]";
 	}
+
+	
 
 
 }

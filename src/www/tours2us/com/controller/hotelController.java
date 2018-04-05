@@ -31,7 +31,6 @@ public class hotelController {
 		logger.info("TravelerController >>>> searchResult");
 		
 		FindHotel util = new FindHotel();
-		System.out.println(dto.toString());
 		
 		List<HotelResultDto> list = util.getAirSites(dto);
 		model.addAttribute("list", list);

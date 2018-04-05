@@ -49,7 +49,10 @@
 	<definition name="myplan.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/planer/myplan.jsp"/>
 	</definition>
-
+	
+	<definition name="planDetailAll.tiles" template="/WEB-INF/views/layout/layouts-plan-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/planer/planDetailAll.jsp"/>
+	</definition>
 
 	<definition name="afterBbs.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/commu/afterBbs.jsp"/>
@@ -62,14 +65,21 @@
 		<put-attribute name="main" value="/WEB-INF/views/event/event.jsp"/>
 	</definition>
 
-<!-- 가이드북 -->
+	<!-- 가이드북 -->
 	<definition name="editor_essay.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/editor_essay.jsp"/>
 	</definition>
 	<definition name="toditor_write.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/toditor_write.jsp"/>
 	</definition>
+	<definition name="toditor_detail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toditor_detail.jsp"/>
+	</definition>
 	
+	<!-- 투둥이 가이드북 -->
+	<definition name="user_guide.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/user_guide.jsp"/>
+	</definition>
 
 	<!-- 호텔최저가 -->
 	<definition name="hotelPrice.tiles" extends="main.tiles">
@@ -85,9 +95,7 @@
 	</definition>
 
 	
-	<definition name="planDetailAll.tiles" template="/WEB-INF/views/layout/layouts-plan-tiles.jsp">
-		<put-attribute name="main" value="/WEB-INF/views/planer/planDetailAll.jsp"/>
-	</definition>
+	
 
 
 

@@ -21,7 +21,6 @@ public class FindHotel {
 		try {
 		
 			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
-			System.out.println("https://www.airbnb.co.kr/s/"+dto.getCity()+"/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w");
 			Elements links = doc.select("div._1szwzht a:first-child");
 			Elements names = doc.select("div._1qp0hqb div._1rths372");
 			Elements descs = doc.select("div._saba1yg span");
@@ -30,8 +29,6 @@ public class FindHotel {
 
 			for (Element e : pic) {
 				String attr = e.attr("style");
-				System.out.println(attr);
-				System.out.println(attr.substring(attr.indexOf("https://"), attr.indexOf(")")));
 				e.text(attr.substring(attr.indexOf("https://"), attr.indexOf(")")));
 			}
 			for (Element e : links) {
@@ -40,11 +37,6 @@ public class FindHotel {
 				e.text("https://www.airbnb.co.kr"+attr);
 			}
 		
-			System.out.println("링크 사이즈 :" +links.size());
-			System.out.println("names 사이즈 :" +names.size());
-			System.out.println("링descs크 사이즈 :" +descs.size());
-			System.out.println("pic 사이즈 :" +pic.size());
-			System.out.println("price" +price.size());
 			
 			int size = 12;
 			
@@ -80,7 +72,6 @@ public class FindHotel {
 				hdto.desc = descs.get(i).text();
 				hdto.price = price.get(i).text();
 				hdto.pic = pic.get(i).text();
-				System.out.println("hdto" + hdto);
 				list.add(hdto);
 			}
 			
@@ -92,17 +83,5 @@ public class FindHotel {
 		return list;
 		
 	}
-	
-	/*
-	String html = "<html><head></head><body><div class=\"post_video\" style=\"background-image:url(http://img.youtube.com/vi/JFf3uazyXco/2.jpg);\"></body></html>";
 
-    Document doc = Jsoup.parse( html );
-    Elements elements = doc.getElementsByClass("post_video");
-
-    for( Element e : elements ) {
-        String attr = e.attr("style");
-        System.out.println( attr.substring( attr.indexOf("http://"), attr.indexOf(")") ) );
-    }
-}
-*/
 }

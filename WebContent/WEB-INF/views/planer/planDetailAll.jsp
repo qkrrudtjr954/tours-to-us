@@ -17,12 +17,12 @@
 
 <div class="row">
 	<div class="offset-md-2  myplanDetail-title">
-		<div class="col-md-4 col-xs-12">
+		<div class="col-md-10 col-xs-12">
 			<h2>${planer.title }</h2>
 		</div>
 	</div>
 	<div class="offset-md-2 col-md-8 col-xs-12">
-		<img src="./image/back.png" onclick="day_back(${planer.seq})" class="offset-md-11" style="cursor:pointer"  width="30px" height="30px">
+		<img src="./image/back.png" onclick="day_back(${planer.seq})" class="offset-md-11" style="cursor:pointer" title="돌아가기" width="30px" height="30px">
 		<hr>
 	</div>
 </div>

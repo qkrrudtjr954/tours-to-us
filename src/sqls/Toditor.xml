@@ -18,4 +18,13 @@
 	ORDER BY E.REG_DATE DESC
 	</select>
 	
+	<!-- 투둥이 가이드북 DISTINCT -->
+	<select id="getUserPlanList" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE,
+			P.RANGE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, T.NAME 
+		FROM TRAVELER T, PLANER P 
+		WHERE T.SEQ = P.TARGET_USER_SEQ
+		ORDER BY REG_DATE DESC
+	</select>
+	
 </mapper>

@@ -42,7 +42,6 @@ public class TravelerController {
 
         if(signin != null && !signin.getEmail().equals("")) {
             req.getSession().setAttribute("current_user", signin);
-	        signin.setPassword("secret");
         }
         return signin;
 	}

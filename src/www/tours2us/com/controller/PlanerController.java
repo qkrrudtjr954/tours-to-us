@@ -202,7 +202,7 @@ public class PlanerController {
 		logger.info("PlanerContoller >>>> planDetailAll");
 		System.out.println("planerseq:"+seq);
 		
-PlanerDto planer = planerService.getPlaner(seq);
+		PlanerDto planer = planerService.getPlaner(seq);
 		
 		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
 		Map<DayPlanerDto, List<TimePlanerDto>> planMap = new TreeMap<>(new Comparator<DayPlanerDto>() {

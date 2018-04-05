@@ -183,7 +183,7 @@ text-align: center;
 						<td>${i.count }</td>
 						<td>${plan.location }</td>
 						<td>
-							<a href="planDetail.do?seq=${plan.seq }" class="ti-link">${plan.title }</a>
+							<a href="guideDetail.do?seq=${plan.seq }" class="ti-link">${plan.title }</a>
 						</td>
 						<td>${plan.name }</td>	
 						<td>

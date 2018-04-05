@@ -1,12 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-</body>
-</html>
+ <style type="text/css">
+#floatMenu {
+	position: absolute;
+	width: 200px;
+	height: 1000px;
+	left: 50px;
+	top: 200px;
+	color: #000;
+}
+
+.tran-img{
+	position:relative;
+	width: 35px;
+	height: 35px;
+	left: 30px;
+	top: 50px;
+}
+</style>
+
+<div class="myplanDetail-title">
+	<div class="offset-md-2 col-md-4 col-xs-12">
+		<h2>${planer.title }</h2>
+	</div>
+</div>
+<div class="offset-md-2 col-md-8 col-xs-12">
+	<div class="offset-md-9 btn-img">
+		<img src="./image/zoom-in.png" onclick="day_all(${planer.seq})" style="cursor:pointer" title="크게보기" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/indent-all.png" onclick="day_show()"  style="cursor:pointer" title="전체보기" width="30px" height="30px">
+		&nbsp;
+		<img src="./image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" title="전체접기" width="30px" height="30px">
+	</div>
+		<hr>
+</div>
+
+
+<div id="myplanDetail-content">
+	<div class="offset-md-3 col-md-6 col-xs-12">
+		<div class="card">
+			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
+				<div class="row no-gutters">
+					<div class="col-md-2">
+						<img src="${(i.index == 0) ? './image/first.png' : i.index == planerMap.size()-1 ?'./image/last.png':'./image/middle.png'  }" width="100%" height="100%"> 
+					</div>				
+					<div class="col">
+						<div class="card-head" id="heading"> 
+							<h5 class="mb-0">
+								<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse">Day ${dayPlan.day_count }</a>
+							</h5>
+						</div> 					
+					</div>
+				</div>
+				
+				<div id="collapse${i.count }" class="collapse" aria-labelledby="heading" >
+					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="t">
+						<div class="row no-gutters">
+							<div class="col-md-2"> 
+								<img src="./image/taxi.png" class="tran-img">
+							</div>				
+							<div class="col">
+								<div class="card-body">
+									${timePlan.start_time }<br>
+									${timePlan.location }<br>
+									${timePlan.transportation }<br>
+									${timePlan.expected_cost }<br>
+									${timePlan.content }<br>
+								</div>			
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+</div>
+
+<script>
+function day_show() {
+	$(".collapse").addClass("show");
+}
+
+function day_remove() {
+	$(".collapse").removeClass("show");
+}
+
+function day_all(seq) {
+	window.open("guideDetailAll.do?seq="+seq, "_blank" );
+}
+</script>

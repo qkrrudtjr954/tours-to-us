@@ -1,41 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <style type="text/css">
-p {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
- .nav_link {
-	color: white;
-	padding: 0px 15px;
-}
-
-a.nav_link:hover {
-	color: gray;
-	padding: 0px 15px;
-}
-
-#floatMenu {
-	position: absolute;
-	width: 200px;
-	height: 300px;
-	left: 50px;
-	top: 200px;
-	background-color: #7DC3BB;
-	color: #fff;
-}
-
-
-.planer-info-over {
-	background-color: #7DC3BB;
-	padding: 15px;
-	margin: 10px;
-	width: 90%;
-	text-align: center;
-	border-radius: 15px;
-}
 
 .guide-info-over {
 	position: absolute;

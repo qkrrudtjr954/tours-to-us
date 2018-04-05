@@ -46,15 +46,6 @@
 .title-div {
 	margin: 20px 0px;
 }
-#floatMenu {
-	position: absolute;
-	width: 200px;
-	height: 300px;
-	left: 50px;
-	top: 200px;
-	background-color: #7DC3BB;
-	color: #fff;
-}
 
 .ti-link:link {text-decoration: none; color: #000000;}
 .ti-link:hover {text-decoration: underline; color: #7DC3BB;}

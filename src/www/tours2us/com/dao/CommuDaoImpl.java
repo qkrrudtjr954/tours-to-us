@@ -62,6 +62,19 @@ public boolean Afterdelete(int seq) throws Exception {
 	return count>0?true:false;
 }
 
+@Override
+public List<CommuAfterBbsDto> AftergetBbsPagingList(CommuAfterBbsDto afterparam) throws Exception {
+	List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
+	list = sqlSession.selectList(ns+"AftergetBbsPagingList", afterparam);
+	return list;
+}
+
+@Override
+public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
+		int num=0;
+		num= sqlSession.selectOne(ns+"AfterGetBbsCount", aftercontparam);
+	return num;
+}
 
 
 

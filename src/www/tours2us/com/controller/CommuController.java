@@ -45,13 +45,27 @@ CommuCommentService commucommentService;
 
 @RequestMapping(value="afterBbs.do",
 method= {RequestMethod.GET, RequestMethod.POST})
-public String afterBbs(Model model) throws Exception{
-
+public String afterBbs(Model model , CommuAfterBbsDto afterparam ) throws Exception{
 	logger.info("CommuController >>>> afterbbslist");
-	List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
-	list = commuService.getAfterBbslist();
-	model.addAttribute("afterBbslist", list);
-
+	int sn = afterparam.getPageNumber();
+	int start = (sn) * afterparam.getRecordCountPerPage() +1;
+	int end = (sn+1) * afterparam.getRecordCountPerPage();
+	System.out.println("start: " + start);
+	System.out.println("end: " + end);
+	afterparam.setStart(start);
+	afterparam.setEnd(end);
+	int totalRecordCount = commuService.AfterGetBbsCount(afterparam);
+	List<CommuAfterBbsDto> paging = commuService.AftergetBbsPagingList(afterparam);
+	
+	//List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
+	//list = commuService.getAfterBbslist();
+	model.addAttribute("afterBbslist", paging);
+	model.addAttribute("pageNumber", sn);
+	model.addAttribute("pageCountPerScreen", 10);
+	model.addAttribute("recordCountPerPage", afterparam.getRecordCountPerPage());
+	model.addAttribute("totalRecordCount", totalRecordCount);
+	model.addAttribute("s_category", afterparam.getS_category());
+	model.addAttribute("s_keyword", afterparam.getS_keyword());
 
 	return "afterBbs.tiles";
 

@@ -52,12 +52,17 @@ public boolean Afterdelete(int seq) throws Exception {
 	return commutDao.Afterdelete(seq);
 }
 
+@Override
+public List<CommuAfterBbsDto> AftergetBbsPagingList(CommuAfterBbsDto afterparam) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.AftergetBbsPagingList(afterparam);
+}
 
+@Override
+public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 
-
-
-
-
+	return commutDao.AfterGetBbsCount(aftercontparam);
+}
 
 
 }

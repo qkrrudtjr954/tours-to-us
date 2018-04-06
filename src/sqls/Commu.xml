@@ -51,13 +51,38 @@
 		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
 		VALUES(AFTERBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_bbs_seq},#{content},SYSDATE,SYSDATE,0)
 	</insert>
+<!--==============================paging가져오기======================================-->	
+<select id="AftergetBbsPagingList"
+	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
+	resultType="www.tours2us.com.model.CommuAfterBbsDto">
+	SELECT SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ, TITLE, 
+	CONTENT, REG_DATE, LAST_UPDATED, STATUS
+	FROM
+	(SELECT ROW_NUMBER() OVER (ORDER BY REG_DATE DESC) as rnum,
+	 SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ,CONTENT, TITLE, 
+	 REG_DATE, LAST_UPDATED, STATUS FROM AFTERBBS
+	WHERE STATUS=0
+	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+	</if>
+	) A
+	WHERE rnum between ${start} AND ${end}	
+</select>
+
+<select id="AfterGetBbsCount"
+	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
+	resultType="int">
 	
+	SELECT NVL(COUNT(*),0) AS cnt
+	FROM AFTERBBS WHERE 1 = 1
+	
+	<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+	</if>
+</select>	
 	
 
-
-	
-	
-	
-	
 	
 </mapper>

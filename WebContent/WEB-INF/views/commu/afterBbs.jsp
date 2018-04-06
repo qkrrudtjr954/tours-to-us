@@ -18,23 +18,41 @@
 <div class="search">
 <div class="row" style="margin:0 auto;width:1200px;">
 	<div class="offset-md-1 input-group-prepend">
-	<select class="custom-select" id="inputGroupSelect01"name="Searchtype" style="width: 150px">
-		<option value="target_user_seq">글쓴이</option>
-		<option value="title">제목</option>
-		<option value="location">지역</option>
-	</select> 
-	<input type="text" class="form-control"
-		aria-label="Text input with segmented dropdown button" size="10"
-		name="SearchWord" id="text">
-	</div>
-	<div class="serach">
-		<input type="button" class="btn btn-success" id="btnsearch" style="background-color: #28A745; color: #fff"
-			value="검색">
-	</div>
-	<div class="offset-md-6">
-		<input type="button" class="btn btn-success" id="btnwrite" style="background-color: #28A745; color: #fff"
-			value="글쓰기" onclick="writeAfBbs()">
-	</div>
+			<form name="frmForm1" id="_frmFormSearch" method="post" action="">
+				<select id="_s_category" name="s_category">
+
+					<!-- 검색했을 경우 -->
+					<option value="">선택</option>
+					<option value="title">제목</option>
+					<option value="contents">내용</option>
+
+					<c:choose>
+						<c:when test="${s_category eq 'title' }">
+							<option value="title" selected="selected">제목</option>
+						</c:when>
+						<c:when test="${s_category eq 'contents' }">
+							<option value="contents" selected="selected">내용</option>
+						</c:when>
+						<c:otherwise>
+							<option value="" selected="selected">선택</option>
+
+						</c:otherwise>
+
+
+					</c:choose>
+
+
+				</select> <input type="text" id="_s_keyword" name="s_keyword"
+					value="${s_keyword}" />
+				<button type="button" id="_btnSearch">검색</button>
+				<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
+				<input type="hidden" name="recordCountPerPage"
+					id="_recordCountPerPage"
+					value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
+
+			</form>
+
+		</div>
 </div>
 </div>
 
@@ -90,10 +108,36 @@
 </table>
 </div>
 
+<!-- 페이징 처리 -->
 
+<div id="paging_wrap">
+<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
+	<jsp:param value="${pageNumber }" name="pageNumber"/>
+	<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
+	<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
+	<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
+</jsp:include>
+</div>
+
+<!-- 페이징 처리 -->
 
 
 <script>
+$(document).ready(function() {
+	   
+	   $("#_s_category > option[value="+'<c:out value="${ param.s_category }"/>'+"]").attr("selected","selected");
+	   
+	            
+	});
+
+	$("#_btnSearch").click(function() {
+	   //alert('search');                  
+	   $("#_frmFormSearch").attr({ "target":"_self", "action":"afterBbs.do" }).submit();
+	});
+	function goPage(pageNumber) {   
+	   $("#_pageNumber").val(pageNumber) ;
+	   $("#_frmFormSearch").attr("target","_self").attr("action","afterBbs.do").submit();
+	}
 function writeAfBbs() {
 	
 	location.href="afterWrite.do";

@@ -17,7 +17,9 @@ public interface CommuService {
 	
 	boolean Afterdelete(int seq) throws Exception;
 	
+	public List<CommuAfterBbsDto> AftergetBbsPagingList(CommuAfterBbsDto afterparam) throws Exception;
 	
+	public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception;
 	
 
 }

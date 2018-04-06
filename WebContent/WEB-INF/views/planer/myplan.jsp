@@ -57,6 +57,11 @@
 .card-body{
 	cursor:pointer;
 }
+
+.detail-atag:link {text-decoration: none; color: #fff;}
+.detail-atag:hover {text-decoration: underline; color: #7DC3BB;}
+.detail-atag:visited {text-decoration: none; color: #fff;}
+
 </style>
 <div class="myplan-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
@@ -78,8 +83,7 @@
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
 					<div class="card col-md-6 ">
-						<div class="card-body" onclick="location.href='planDetail.do?seq=${plan.seq}'"  
-							style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
+						<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
 							&nbsp;
 							<c:if test="${plan.status == 0 }">
 								<div class="ing-img">
@@ -94,7 +98,7 @@
 								</div>
 								<div class="card-text">
 									<div class="title-div">
-										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.title }</span>
+										<a href="planDetail.do?seq=${plan.seq }" class="detail-atag"><span style="color: #fff; font-size: xx-large; font-weight: normal;">${plan.title }</span></a>
 										<img class="change-pen" alt="pen" src="./image/pen1.png"
 											onclick="showTitleInput(this)" width="25px" height="25px">
 									</div>
@@ -150,5 +154,8 @@ function changeTitle(button, seq) {
 	})
 }
 
+function detail(seq) {
+	location.href='planDetail.do?seq='+seq
+}
 
 </script>

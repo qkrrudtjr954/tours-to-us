@@ -99,7 +99,7 @@
 											onclick="showTitleInput(this)" width="25px" height="25px">
 									</div>
 									<div class="write-div">
-										<span>${plan.name }</span>
+										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.name }</span>
 									</div>
 									<div class="change-title-div input-group mb-3">
 										<input type="text" class="form-control" placeholder="${plan.title }">

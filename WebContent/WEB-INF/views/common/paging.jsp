@@ -65,11 +65,11 @@
 	}
 %>
 <div style="float:left; width:96%; text-align:center;"> 
-	<a href="#none" title="처음페이지" onclick="goPage('0');"><img src="image/arrow_first.gif" alt="처음페이지" style="width:9px; height:9px;"/></a>&nbsp;		
+	<a href="#none" title="처음페이지" onclick="goPage('0');"><img src="image/prev.png" alt="처음페이지" style="width:9px; height:9px;"/></a>&nbsp;		
 		<%
 		if (screenStartPageIndex > 1){
 			%>
-			<a href="#none" title="이전페이지" onclick="goPage('<%=screenStartPageIndex-1%>');"><img src="image/arrow_prev.gif" alt="이전페이지" style="width:9px; height:9px;"/></a>&nbsp;	
+			<a href="#none" title="이전페이지" onclick="goPage('<%=screenStartPageIndex-1%>');"><img src="image/prev.png" alt="이전페이지" style="width:9px; height:9px;"/></a>&nbsp;	
 			<%
 		}
 		    	
@@ -87,7 +87,7 @@
 		    	
 		if (screenEndPageIndex < totalPageCount){
 		    %>	
-			<a href="#none" title="다음페이지" onclick="goPage(<%=screenEndPageIndex %>);"><img src="image/arrow_next.gif" alt="다음페이지" style="width:9px; height:9px;"/></a>&nbsp;
+			<a href="#none" title="다음페이지" onclick="goPage(<%=screenEndPageIndex %>);"><img src="image/next.png" alt="다음페이지" style="width:9px; height:9px;"/></a>&nbsp;
 		    <%
 		} // end if
 		    
@@ -97,8 +97,10 @@
 		}
 		%>
 		        	
-	<a href="#none" title="마지막페이지" onclick="goPage(<%=end_page %>);" ><img src="image/arrow_end.gif" alt="마지막페이지" style="width:9px; height:9px;" /></a>
+	<a href="#none" title="마지막페이지" onclick="goPage(<%=end_page %>);" ><img src="image/next.png" alt="마지막페이지" style="width:9px; height:9px;" /></a>
 </div>		
+
+
 			
 <div style="float:left; width:4%; text-align:center;">		
 	<span style="font-size:1em; color:#000000;"><%=pageNumber+1%>/<%=totalPageCount%></span>		

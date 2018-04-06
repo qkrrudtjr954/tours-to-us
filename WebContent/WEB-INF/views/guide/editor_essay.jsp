@@ -292,7 +292,7 @@ padding-top:15px;
 								<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">
 							</c:otherwise>
 						</c:choose>
-						<span id="like"><img src="image/hearticon.png">100</span>
+						<span id="like"><img src="image/hearticon.png">${item.like_count }</span>
 					</div>
 					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>

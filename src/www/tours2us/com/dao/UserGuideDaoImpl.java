@@ -1,5 +1,6 @@
 package www.tours2us.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,6 +22,19 @@ public class UserGuideDaoImpl implements UserGuideDao {
 	public List<PlanerDto> getUserPlanList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(ns+"getUserPlanList");
+	}
+
+	@Override
+	public List<PlanerDto> guideSearch(PlanerDto plan) {
+		List<PlanerDto> list = new ArrayList<>();
+		list=sqlSession.selectList(ns+"guideSearch", plan);
+		return list;
+	}
+
+	@Override
+	public int guideCount(PlanerDto plan) {
+		int n = sqlSession.selectOne(ns+"guideCount", plan);
+		return n;
 	}
 
 }

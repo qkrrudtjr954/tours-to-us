@@ -33,13 +33,32 @@ public class UserGuideController {
 	
 	// 투둥이 가이드북
 	@RequestMapping(value="user_guide.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String user_guide(HttpServletRequest req, Model model) {
+	public String user_guide(HttpServletRequest req, PlanerDto plan, Model model) {
 		logger.info("UserGuideController >>>> user_guide");
 		
-		List<PlanerDto> planlist = userGuideService.getUserPlanList();
+
+		   int sn = plan.getPageNumber();
+		   int start = (sn) * plan.getRecordCountPerPage() +1;
+		   int end = (sn+1) * plan.getRecordCountPerPage();
+		   System.out.println("start: " + start);
+		   System.out.println("end: " + end);
+		   plan.setStart(start);
+		   plan.setEnd(end);
+		   int totalRecordCount = userGuideService.guideCount(plan);
+		   List<PlanerDto> paging = userGuideService.guideSearch(plan);
+
+		   model.addAttribute("planlist", paging);
+		   model.addAttribute("pageNumber", sn);
+		   model.addAttribute("pageCountPerScreen", 10);
+		   model.addAttribute("recordCountPerPage", plan.getRecordCountPerPage());
+		   model.addAttribute("totalRecordCount", totalRecordCount);
+		   model.addAttribute("s_category", plan.getS_category());
+		   model.addAttribute("s_keyword", plan.getS_keyword());
+		
+	/*	List<PlanerDto> planlist = userGuideService.getUserPlanList();
 		System.out.println(planlist);
 		model.addAttribute("planlist", planlist);
-		
+		*/
 		return "user_guide.tiles";
 	}
 	

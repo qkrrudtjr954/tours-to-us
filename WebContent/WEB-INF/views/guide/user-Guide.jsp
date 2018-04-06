@@ -128,21 +128,24 @@ text-align: center;
 	</div>
 </div>
 
-<form action="guideSearch.do" method="get">
+<form action="guideSearch.do" method="get" id="_frmFormSearch">
 	<div class="row" style="margin:0 auto;width:900px;">
 		<div class="offset-md-2 input-group-prepend">
-			<select class="custom-select" id="inputGroupSelect01" name="Searchtype" style="width: 150px">
-				<option value="target_user_seq">작성자</option>
+			<select class="custom-select" id="inputGroupSelect01" name="s_category" style="width: 150px">
 				<option value="title">제목</option>
 				<option value="location">지역</option>
 			</select> 
 			<input type="text" class="form-control"
 				aria-label="Text input with segmented dropdown button" size="50"
-				name="SearchWord" id="text">
+				name="s_keyword" id="text">
 		</div>
 		&nbsp;&nbsp;
 		<div class="serach">
-			<input type="submit" class="img_button" id="btnsearch" value="">
+			<input type="button" class="img_button" id="btnsearch" value="">
+			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
+            <input type="hidden" name="recordCountPerPage"
+               id="_recordCountPerPage"
+               value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
 		</div>
 	</div>
 </form>
@@ -189,6 +192,34 @@ text-align: center;
 	</div>
 </div>
 
+<!-- 페이징 처리 -->
+
+<div id="paging_wrap">
+<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
+   <jsp:param value="${pageNumber }" name="pageNumber"/>
+   <jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
+   <jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
+   <jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
+</jsp:include>
+</div>
+
+<!-- 페이징 처리 -->
+
 <script>
+$(document).ready(function() {
+    
+    $("#_s_category > option[value="+'<c:out value="${ param.s_category }"/>'+"]").attr("selected","selected");
+    
+             
+ });
+
+ $("#btnsearch").click(function() {
+    //alert('search');                  
+    $("#_frmFormSearch").attr({ "target":"_self", "action":"user_guide.do" }).submit();
+ });
+ function goPage(pageNumber) {   
+    $("#_pageNumber").val(pageNumber) ;
+    $("#_frmFormSearch").attr("target","_self").attr("action","user_guide.do").submit();
+ }
 
 </script>

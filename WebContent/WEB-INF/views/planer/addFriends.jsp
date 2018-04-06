@@ -59,6 +59,18 @@ button#next-step:hover {
 	height: 500px;
 	border-radius: 10px;
 }
+
+table tr td:nth-child(2) {
+	vertical-align: middle;
+}
+
+#findedFriendTable tbody tr td:first-child > img,
+#addedFriendTable tbody tr td:first-child > img{
+	width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #7dccb4;
+}
 </style>
 
 <div class="planer-title">
@@ -114,16 +126,14 @@ button#next-step:hover {
 			<div class="col-md-6 col-xs-12">
 				<table class="table" id="findedFriendTable">
 					<colgroup>
-						<col width="20%">
+						<col width="30%">
+						<col width="45%">
 						<col width="25%">
-						<col width="50%">
-						<col width="5%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th>pic</th>
 							<th>name</th>
-							<th>email</th>
 							<th>button</th>
 						</tr>
 					</thead>
@@ -136,16 +146,14 @@ button#next-step:hover {
 				<div class="added-friend">
 					<table class="table" id="addedFriendTable">
 					<colgroup>
-						<col width="20%">
+						<col width="30%">
+						<col width="45%">
 						<col width="25%">
-						<col width="50%">
-						<col width="5%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th>pic</th>
 							<th>name</th>
-							<th>email</th>
 							<th>button</th>
 						</tr>
 					</thead>
@@ -154,18 +162,16 @@ button#next-step:hover {
 							<c:choose>
 								<c:when test="${current_user.email == traveler.email }">
 									<tr>
-										<td>${traveler.seq }</td>
+										<td><img alt="profile" src="${initParam.IMG_SERVER_PATH }/image/${traveler.profile}"></td>
 										<td>${traveler.name }</td>
-										<td>${traveler.email }</td>
 										<td>나 </td>
 									</tr>
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td>${traveler.seq }</td>
+										<td><img alt="profile" src="${initParam.IMG_SERVER_PATH }/image/${traveler.profile}"></td>
 										<td>${traveler.name }</td>
-										<td>${traveler.email }</td>
-										<td><button onclick="deleteFriend(${traveler.seq }, this)">x</button></td>
+										<td><button class="btn btn-outline-danger" onclick="deleteFriend(${traveler.seq }, this)">x</button></td>
 									</tr>
 								</c:otherwise>
 							</c:choose>
@@ -251,10 +257,9 @@ function addFriend(seq, name){
 				} else {					
 					var tableElement = 
 						'<tr>' + 
-							'<td>' + data.seq + '</td>' + 
+							'<td><img alt="profile" src="${initParam.IMG_SERVER_PATH }/image/'+data.profile+'"></td>'+
 							'<td>' + data.name + '</td>' + 
-							'<td>' + data.email + '</td>' + 
-							'<td style="text-align:left;"><button class="addFriendBtn" onclick="deleteFriend('+ data.seq +', this)">x</button></td>' + 
+							'<td style="text-align:left;"><button class="btn btn-outline-danger" onclick="deleteFriend('+ data.seq +', this)">x</button></td>' + 
 						'</tr>';
 						
 					if(data.email != '${current_user.email}'){
@@ -270,10 +275,9 @@ function addFriend(seq, name){
 function drawFindedFriends(friend) {
 	var tableElement = 
 		'<tr>' + 
-			'<td>' + friend.seq + '</td>' + 
+			'<td><img alt="profile" src="${initParam.IMG_SERVER_PATH }/image/'+friend.profile+'"></td>'+
 			'<td>' + friend.name + '</td>' + 
-			'<td>' + friend.email + '</td>' + 
-			'<td style="text-align:left;"><button class="addFriendBtn" onclick="addFriend('+friend.seq+',\''+friend.name+'\')">+</button></td>' + 
+			'<td style="text-align:left;"><button class="btn btn-outline-primary" onclick="addFriend('+friend.seq+',\''+friend.name+'\')">+</button></td>' + 
 		'</tr>';
 		
 	if(friend.email != '${current_user.email}'){

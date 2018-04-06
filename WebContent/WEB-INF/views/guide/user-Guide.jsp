@@ -55,13 +55,13 @@
 .gu-link:hover {text-decoration: underline; color: #7DC3BB;}
 .gu-link:visited {text-decoration: none; color: #000000;}
 
-input.img_button {
+/* input.img_button {
 	background: url(./image/search.png) no-repeat;
 	width: 40px;
 	height: 35px;
 	border: none; 
 	cursor: pointer;
-}
+} */
 
 .guide-info-over {
 	position: absolute;
@@ -131,7 +131,7 @@ text-align: center;
 <form action="guideSearch.do" method="get" id="_frmFormSearch">
 	<div class="row" style="margin:0 auto;width:900px;">
 		<div class="offset-md-2 input-group-prepend">
-			<select class="custom-select" id="inputGroupSelect01" name="s_category" style="width: 150px">
+			<select class="custom-select" id="inputGroupSelect01" name="s_category" style="width: 150px; height: 45px;">
 				<option value="title">제목</option>
 				<option value="location">지역</option>
 			</select> 
@@ -139,10 +139,9 @@ text-align: center;
 				aria-label="Text input with segmented dropdown button" size="50"
 				name="s_keyword" id="text">
 		</div>
-		&nbsp;&nbsp;
 		<div class="serach">
 			<button class="btn btn-outline-secondary" type="button" id="btnSearch" ><span data-feather="search"></span></button>
-			<!-- <input type="button" class="img_button" id="btnsearch" value=""> -->
+			<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span></button>
 			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
             <input type="hidden" name="recordCountPerPage"
                id="_recordCountPerPage"
@@ -164,7 +163,7 @@ text-align: center;
 			</colgroup>
 				<thead>
 				<tr>	
-					<th>번호</th><th>위치</th><th>제목</th><th>작성자</th><th>여행기간</th>
+					<th>번호</th><th>지역</th><th>제목</th><th>작성자</th><th>여행기간</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -207,14 +206,12 @@ text-align: center;
 <!-- 페이징 처리 -->
 
 <script>
-$(document).ready(function() {
-    
+$(document).ready(function() {    
     $("#_s_category > option[value="+'<c:out value="${ param.s_category }"/>'+"]").attr("selected","selected");
-    
-             
+                 
  });
 
- $("#btnsearch").click(function() {
+ $("#btnSearch").click(function() {
     //alert('search');                  
     $("#_frmFormSearch").attr({ "target":"_self", "action":"user_guide.do" }).submit();
  });
@@ -223,4 +220,7 @@ $(document).ready(function() {
     $("#_frmFormSearch").attr("target","_self").attr("action","user_guide.do").submit();
  }
 
+ function user_guide() {
+	location.href="user_guide.do";
+}
 </script>

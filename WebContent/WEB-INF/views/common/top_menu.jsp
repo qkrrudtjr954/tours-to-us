@@ -133,7 +133,7 @@ div.user-action a:hover {
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">커뮤니티</a>
 	         <ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="afterBbs.do">여행후기</a></li>
-				<li class="dropdown-item"><a href="#">자유게시판</a></li>
+				<li class="dropdown-item"><a href="freeBbsList.do">자유게시판</a></li>
 				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
 			</ul>
        	</li>

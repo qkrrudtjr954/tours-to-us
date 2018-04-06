@@ -97,7 +97,7 @@ $('input[type="button"]#signInBtn').on('click', function () {
 		method : 'POST',
 		data : { email : $('#inputEmail').val(), password : $('#inputPassword').val() },
 		success : function (data) {
-			var user = data;
+			 var user = data;
 
 			if(user === ""){
 				alert('아이디와 비밀번호를 확인해주십시오.');

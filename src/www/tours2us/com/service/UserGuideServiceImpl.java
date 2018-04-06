@@ -19,4 +19,16 @@ public class UserGuideServiceImpl implements UserGuideService {
 		// TODO Auto-generated method stub
 		return userGuideDao.getUserPlanList();
 	}
+
+	@Override
+	public List<PlanerDto> guideSearch(PlanerDto plan) {
+		// TODO Auto-generated method stub
+		return userGuideDao.guideSearch(plan);
+	}
+
+	@Override
+	public int guideCount(PlanerDto plan) {
+		// TODO Auto-generated method stub
+		return userGuideDao.guideCount(plan);
+	}
 }

@@ -45,6 +45,23 @@
 .title-div {
 	margin: 20px 0px;
 }
+
+.status-img{
+	position: absolute;
+    border-radius: 50px;
+    left: 390px;
+    top: 8px;
+   
+}
+
+.card-body{
+	cursor:pointer;
+}
+
+.detail-atag:link {text-decoration: none; color: #fff;}
+.detail-atag:hover {text-decoration: underline; color: #7DC3BB;}
+.detail-atag:visited {text-decoration: none; color: #fff;}
+
 </style>
 <div class="myplan-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
@@ -67,23 +84,29 @@
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
 					<div class="card col-md-6 ">
 						<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
-						&nbsp;
-						<img src="${(plan.target_user_seq == current_user.seq) ? './image/my-check.png' : './image/check.png'}" width="25px" height="25px">
+							&nbsp;
+							<c:if test="${plan.status == 0 }">
+								<div class="ing-img">
+									<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+								</div>
+							</c:if>
 							<div class="card-container">
 								<div class="row">
 									<h5 class="card-title">
 										<span data-feather="calendar"></span>&nbsp;&nbsp; <span>${plan.from_date }</span>&nbsp;~&nbsp;<span>${plan.to_date }</span>
-									</h5>						
-
+									</h5>
 								</div>
 								<div class="card-text">
 									<div class="title-div">
-										<a id="plan-title" href="planDetail.do?seq=${plan.seq }">${plan.title }</a>
-										<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="15px" height="15px">
+										<a href="planDetail.do?seq=${plan.seq }" class="detail-atag"><span style="color: #fff; font-size: xx-large; font-weight: normal;">${plan.title }</span></a>
+										<img class="change-pen" alt="pen" src="./image/pen1.png"
+											onclick="showTitleInput(this)" width="25px" height="25px">
+									</div>
+									<div class="write-div">
+										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.name }</span>
 									</div>
 									<div class="change-title-div input-group mb-3">
-										<input type="text" class="form-control"
-											placeholder="${plan.title }">
+										<input type="text" class="form-control" placeholder="${plan.title }">
 										<div class="input-group-append">
 											<button class="btn btn-primary"
 												onclick="changeTitle(this, ${plan.seq})">변경하기</button>
@@ -91,7 +114,10 @@
 										</div>
 									</div>
 								</div>
-								<a href="afterWrite.do?seq=${plan.seq }" class="btn btn-primary">후기쓰기</a>
+								<div class="offset-md-10 col-md-2 review-btn">
+									<a href="afterWrite.do?seq=${plan.seq }"
+										class="btn btn-primary">후기쓰기</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -126,6 +152,10 @@ function changeTitle(button, seq) {
 			}
 		}
 	})
+}
+
+function detail(seq) {
+	location.href='planDetail.do?seq='+seq
 }
 
 </script>

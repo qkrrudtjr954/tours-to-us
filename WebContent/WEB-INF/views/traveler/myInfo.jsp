@@ -1,33 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <style type="text/css">
-p {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
 
- .nav_link {
-	color: white;
-	padding: 0px 15px;
-}
-
-a.nav_link:hover {
-	color: gray;
-	padding: 0px 15px;
-}
-
-#floatMenu {
+.guide-info-over {
 	position: absolute;
-	width: 200px;
-	height: 300px;
-	left: 50px;
-	top: 200px;
-	background-color: #7DC3BB;
-	color: #fff;
+	background-color: #fff;
+	padding: 15px;
+	margin: 10px;
+	width: 90%;
+	border-radius: 15px;
+	border: 1px solid #7DC3BB;
 }
+
+.gu-link{
+	text-align: left;
+}
+
+.guide-label-icon{
+text-align: center;
+}
+
+.guide-info-top{
+	background-color: #7DC3BB;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.guide-label-atag{
+	line-height: 1.5;
+}
+
+.ti-link:link {text-decoration: none; color: #000000;}
+.ti-link:hover {text-decoration: underline; color: #7DC3BB;}
+.ti-link:visited {text-decoration: none; color: #000000;}
+
+.gu-link:link {text-decoration: none; color: #000000;}
+.gu-link:hover {text-decoration: underline; color: #7DC3BB;}
+.gu-link:visited {text-decoration: none; color: #000000;}
+
 </style>
-    
+
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="guide-info-over">
+			<div class="guide-info-top">
+				<p>
+					<span class="guide-label-icon" data-feather="info"></span>
+					<br>
+					<span class="guide-label-title">My Page</span> 
+				</p>
+			</div>
+				<hr style="color:white; width:100%;">		
+				<p>
+					<div class="guide-label-icon" style="text-align: center;">
+						<span data-feather="tag"></span><br>
+					</div>
+					<span class="guide-label-atag"><a href="#" class="gu-link"onclick="url_myplan()" title="나의 플랜보기" >나의 플랜보기</a></span> 
+					<br>
+					<span class="guide-label-atag"><a href="mypage.do" class="gu-link" title="회원정보수정">회원정보수정</a></span>	
+				</p>		
+		</div>
+	</div>
+</div>
+
 <div class="mypage-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2>회원 정보 수정</h2>
@@ -76,7 +112,7 @@ a.nav_link:hover {
 </div>
 </div>
 
-<div style="height:500px">
+<!-- <div style="height:500px">
 </div>
 <div id="floatMenu">
 <ul style="width:100%; list-style-type: none;" class="menu_">
@@ -96,7 +132,7 @@ a.nav_link:hover {
 		</ul>
 	</div>
 </div>
-
+ -->
 <script>
 	document.getElementById('password').focus();
 </script>

@@ -141,7 +141,8 @@ text-align: center;
 		</div>
 		&nbsp;&nbsp;
 		<div class="serach">
-			<input type="button" class="img_button" id="btnsearch" value="">
+			<button class="btn btn-outline-secondary" type="button" id="btnSearch" ><span data-feather="search"></span></button>
+			<!-- <input type="button" class="img_button" id="btnsearch" value=""> -->
 			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
             <input type="hidden" name="recordCountPerPage"
                id="_recordCountPerPage"

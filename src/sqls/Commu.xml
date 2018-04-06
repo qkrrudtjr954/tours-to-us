@@ -83,7 +83,10 @@
 		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
 		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 	</if>
-</select>	
+</select>
+
+
+	
 	
 
 	

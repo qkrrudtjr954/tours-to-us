@@ -63,6 +63,12 @@
 	</definition>
 	
 	
+	<definition name="freeBbsList.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/commu/afterBbs.jsp"/>
+	</definition>
+	
+	
+	
 	<definition name="event.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/event.jsp"/>
 	</definition>

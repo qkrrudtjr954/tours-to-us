@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Like">
+	<select id="prevent_duplication" parameterType="www.tours2us.com.model.LikeDto" resultType="java.lang.Integer">
+		select NVL(COUNT(*), 0) from liketable 
+		where BBS_CATEGORY = #{bbs_category} AND target_user_seq = #{target_user_seq} and target_bbs_seq = #{target_bbs_seq}
+	</select>
+	
+	<insert id="insert_like" parameterType="www.tours2us.com.model.LikeDto">
+		INSERT INTO LIKETABLE (SEQ, BBS_CATEGORY, TARGET_USER_SEQ, TARGET_BBS_SEQ) 
+		VALUES(LIKE_SEQ.NEXTVAL, #{bbs_category}, #{target_user_seq}, #{target_bbs_seq})
+	</insert>
+	
+	<delete id="delete_like" parameterType="www.tours2us.com.model.LikeDto">
+	delete from liketable where BBS_CATEGORY =#{bbs_category} AND target_user_seq = #{target_user_seq} and target_bbs_seq = #{target_bbs_seq}
+	</delete>
+	
+	<select id="getLikeCount" parameterType="www.tours2us.com.model.LikeDto" resultType="java.lang.Integer">
+		select count(*) as likecount from liketable where BBS_CATEGORY = #{bbs_category} AND target_bbs_seq = #{target_bbs_seq}
+	</select>
+	
+</mapper>

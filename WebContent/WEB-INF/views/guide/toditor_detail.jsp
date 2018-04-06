@@ -143,8 +143,8 @@ padding-top:5px;
 		</div>
 		<hr>
 		<div class="detailBody_like" align="center">
-				<img class="hearticon" src="image/heart.png"><br>
-				<span>좋아요</span>&nbsp;<strong>200</strong>
+				<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br>
+				<span>좋아요</span>&nbsp;<strong id="like_count">${like_count }</strong>
 		</div>		
 	</div>
 	
@@ -179,3 +179,31 @@ padding-top:5px;
 </div>
 
 </div> <!-- 내용 끝 -->
+
+
+<script>
+$('#like_btn').click(function () {
+	
+	
+	$.ajax({
+		url:"likebtn_click.do",
+		data: {bbs_category: 3, target_user_seq: ${current_user.seq }, target_bbs_seq: ${bbs.seq }},
+		type:"post",
+		success : function (data) {
+			
+			var result = JSON.parse(data);
+			
+			if(result.status == 404){
+				
+				$('img.hearticon').attr('src', './image/empty_heart.png');
+			} else {
+				
+				$('img.hearticon').attr('src', './image/heart.png');
+			}
+			
+			$('strong#like_count').html(result.like_count);
+		}
+	})
+});
+
+</script>

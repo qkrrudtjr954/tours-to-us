@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:requestEncoding value="utf-8"/> 
     
-    <!-- Bootstrap core CSS -->
+
+
+ <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -10,36 +15,41 @@
     
  <div class="after-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
-      <h2>글 작성</h2>
+      <h2>여행 후기 수정</h2>
    </div>
 </div>
 
-<div class="planer-info">
+<%-- <div class="planer-info">
 	<div class="col-md-2 col-xs-12">
 		<p>
 			${planer }
 		</p>
 	</div>
-</div>
+</div> --%>
+
+<%-- ${planer.seq }
+${afterbbs.seq } --%>
+
 
 
 <div class="offset-md-2 col-md-8 col-xs-12">
    <hr>
 </div>
-<form action="afterWriteAf.do">
+<form action="afterUpdateAf.do">
+<input type="hidden" name="seq" value="${afterbbs.seq }">
 <input type="hidden" name="target_planer_seq" value="${planer.seq }">
 <div class="row">
    <div class=" offset-md-3 col-md-6 write-form">
       <div class="input-group-prepend">
          <span class="input-group-text">제목</span> 
          <input type="text" class="form-control" size="20" name="title" id="name"
-            placeholder="제목">
+            placeholder="제목" value="${afterbbs.title }">
       </div>   
    </div>
 
    <div class=" offset-md-3 col-md-6 write-form">
       <div class="input-group-prepend">
-         <textarea id="summernote" name="content"></textarea>
+         <textarea id="summernote" name="content">${afterbbs.content }</textarea>
       </div>   
    </div>
 
@@ -90,4 +100,4 @@
    
    
     
-</script>
+</script>   

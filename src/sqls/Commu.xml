@@ -6,11 +6,11 @@
 <mapper namespace="Commu">
 
 <select id="AfterBbslist" resultType="www.tours2us.com.model.CommuAfterBbsDto">
-		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
-         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
-      FROM AFTERBBS A, TRAVELER B
-      WHERE A.TARGET_USER_SEQ = B.SEQ
-      ORDER BY A.REG_DATE DESC    
+	SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+    	A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME
+    FROM AFTERBBS A, TRAVELER B
+    WHERE A.TARGET_USER_SEQ = B.SEQ
+    ORDER BY A.REG_DATE DESC    
 </select>
 
 <insert id="AfterWrite" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
@@ -21,10 +21,73 @@
 </insert>
 
 
+<select id="AftergetBbs"
+	parameterType="int"
+	resultType="www.tours2us.com.model.CommuAfterBbsDto">
+		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
+      	FROM AFTERBBS A, TRAVELER B
+		WHERE  A.TARGET_USER_SEQ = B.SEQ AND A.SEQ=#{seq} AND STATUS=0
+	</select>
+
+	<update id="AfterUpdateBbs" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
+		UPDATE AFTERBBS SET TITLE=#{title}, CONTENT=#{content}
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<!-- 삭제 -->
+	<update id="AfterdeleteBbs" parameterType="int">
+		UPDATE AFTERBBS SET STATUS=1
+		WHERE SEQ=#{seq} 	
+	</update>
+	
+	<!-- 댓글List -->
+	<select id="getAllComments" resultType="www.tours2us.com.model.CommuAfterCommentDto">
+			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
+	</select>
+	
+	<!-- 댓글 쓰기 -->
+	<insert id="AfterAddComent" parameterType="www.tours2us.com.model.CommuAfterCommentDto">
+		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(AFTERBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_bbs_seq},#{content},SYSDATE,SYSDATE,0)
+	</insert>
+<!--==============================paging가져오기======================================-->	
+<select id="AftergetBbsPagingList"
+	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
+	resultType="www.tours2us.com.model.CommuAfterBbsDto">
+	SELECT SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ, TITLE, 
+	CONTENT, REG_DATE, LAST_UPDATED, STATUS , NAME , EMAIL
+	FROM
+	(SELECT ROW_NUMBER() OVER (ORDER BY A.REG_DATE DESC) as rnum,
+	 A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
+      	FROM AFTERBBS A, TRAVELER B
+	WHERE A.TARGET_USER_SEQ = B.SEQ AND STATUS=0
+	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+		<if test="s_category == 'email'"> AND EMAIL like '%'||#{s_keyword}||'%'</if>
+	</if>
+	) A
+	WHERE rnum between ${start} AND ${end}	
+</select>
+
+<select id="AfterGetBbsCount"
+	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
+	resultType="int">
+	
+	SELECT NVL(COUNT(*),0) AS cnt
+	FROM AFTERBBS WHERE 1 = 1
+	
+	<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+	</if>
+</select>
+
 
 	
+	
 
-
-
-
+	
 </mapper>

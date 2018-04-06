@@ -1,5 +1,6 @@
 package www.tours2us.com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import www.tours2us.com.dao.CommuDao;
 import www.tours2us.com.model.CommuAfterBbsDto;
+import www.tours2us.com.model.CommuAfterCommentDto;
 
 @Service
 public class CommuServiceImpl implements CommuService {
@@ -32,12 +34,35 @@ public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
 	return commutDao.afterwriteBbs(bbs);
 }
 
+@Override
+public CommuAfterBbsDto getAfterBbs(int seq) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.getAfterBbs(seq);
+}
 
+@Override
+public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.AfterUpdate(bbs);
+}
 
+@Override
+public boolean Afterdelete(int seq) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.Afterdelete(seq);
+}
 
+@Override
+public List<CommuAfterBbsDto> AftergetBbsPagingList(CommuAfterBbsDto afterparam) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.AftergetBbsPagingList(afterparam);
+}
 
+@Override
+public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 
+	return commutDao.AfterGetBbsCount(aftercontparam);
+}
 
-	
 
 }

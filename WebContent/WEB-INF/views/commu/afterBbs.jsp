@@ -18,42 +18,24 @@
 <div class="search">
 <div class="row" style="margin:0 auto;width:1200px;">
 	<div class="offset-md-1 input-group-prepend">
-			<form name="frmForm1" id="_frmFormSearch" method="post" action="">
-				<select id="_s_category" name="s_category">
-
-					<!-- 검색했을 경우 -->
-					<option value="">선택</option>
-					<option value="title">제목</option>
-					<option value="contents">내용</option>
-
-					<c:choose>
-						<c:when test="${s_category eq 'title' }">
-							<option value="title" selected="selected">제목</option>
-						</c:when>
-						<c:when test="${s_category eq 'contents' }">
-							<option value="contents" selected="selected">내용</option>
-						</c:when>
-						<c:otherwise>
-							<option value="" selected="selected">선택</option>
-
-						</c:otherwise>
-
-
-					</c:choose>
-
-
-				</select> <input type="text" id="_s_keyword" name="s_keyword"
-					value="${s_keyword}" />
-				<button type="button" id="_btnSearch">검색</button>
-				<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
-				<input type="hidden" name="recordCountPerPage"
-					id="_recordCountPerPage"
-					value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
-
-			</form>
+			<form name="frmForm1" id="_frmFormSearch" method="post" action="">   
+      <select class="custom-select" id="_s_category" name="s_category">
+         <option value="title">제목</option>
+         <option value="contents">내용</option>
+         <option value="email">작성자</option>
+      </select>
+   </div>
+   <div class="input-group col-md-6">
+        <input type="text" class="form-control" id="_s_keyword" name="s_keyword" value="${s_keyword}" placeholder="검색어를 입력해주세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+             <button class="btn btn-outline-secondary" type="button" id="_btnSearch" ><span data-feather="search"></span></button>
+             <input type="hidden" name="pageNumber" id="_pageNumber" value="0"/>                  
+            <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?9:recordCountPerPage}"/>      
+        </div>
+   </div>   
+   </form>   
 
 		</div>
-</div>
 </div>
 
 
@@ -94,7 +76,7 @@
 		</td>
 		
 		<td>
-			${after.name }
+			${after.email }
 		</td>
 		
 		<td>

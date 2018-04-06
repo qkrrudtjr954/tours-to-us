@@ -41,10 +41,14 @@ button#next-step:hover {
 	position: relative;
 }
 
-.paper-image img {
-	width: 120px;
-    height: 70px;
+.paper-image {
+	width: 100%;
+    height: 100%;
     margin: 5px;
+}
+.paper-image img {
+	width: 100%;
+    height: 100%;
 }
 </style>
 <div class="planer-title">

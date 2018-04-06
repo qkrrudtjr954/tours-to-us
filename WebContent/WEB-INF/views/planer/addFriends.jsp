@@ -64,6 +64,11 @@ table tr td:nth-child(2) {
 	vertical-align: middle;
 }
 
+#findedFriendTable tbody td,
+#addedFriendTable tbody tr td{
+	text-align: center;
+}
+
 #findedFriendTable tbody tr td:first-child > img,
 #addedFriendTable tbody tr td:first-child > img{
 	width: 50px;

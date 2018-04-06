@@ -212,16 +212,16 @@
 				<div id="step1view" class="offset-md-2 col-md-8 col-xs-12">
 					<label for="likeBtn">
 						성향을 선택해주세요. 
-						<span style="font-size: 15px;">(3개)</span>
+						<span style="font-size: 15px;">(최대 3개)</span>
 					</label> 
 					<div class="mb-3">					
 						<div class="likeBtnArea">
-							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello1</button>
-							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello2</button>
-							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello3</button>
-							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello4</button>
-							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello5</button>
-							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">hello6</button>
+							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">활동적인</button>
+							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">뚜벅이인</button>
+							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">맛집을 찾아다니는</button>
+							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">사진 찍는걸 좋아하는</button>
+							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">대중교통을 이용하는</button>
+							<button class="btn btn-secondary likeBtn" onclick="addLike(this)">자가용을 선호하는</button>
 						</div>
 					</div>
 				

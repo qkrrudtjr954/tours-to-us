@@ -43,9 +43,12 @@
 	
 	<!-- 댓글List -->
 	<select id="getAllComments" resultType="www.tours2us.com.model.CommuAfterCommentDto">
-			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
+			SELECT  A.SEQ, A.TARGET_USER_SEQ, A.TARGET_BBS_SEQ, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME  
+			FROM AFTERBBSCOMMENT A, TRAVELER B 
+			WHERE A.TARGET_USER_SEQ = B.SEQ AND 
+			TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
 	</select>
-	
+		
 	<!-- 댓글 쓰기 -->
 	<insert id="AfterAddComent" parameterType="www.tours2us.com.model.CommuAfterCommentDto">
 		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)

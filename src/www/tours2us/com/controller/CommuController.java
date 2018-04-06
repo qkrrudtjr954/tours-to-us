@@ -65,6 +65,8 @@ CommuCommentService commucommentService;
 		model.addAttribute("totalRecordCount", totalRecordCount);
 		model.addAttribute("s_category", afterparam.getS_category());
 		model.addAttribute("s_keyword", afterparam.getS_keyword());
+		
+		return "afterBbs.tiles";
 	}
 
 	@RequestMapping(value = "afterWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})

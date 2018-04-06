@@ -4,6 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/> 
 
+<!-- <style>
+.comment-area{
+padding-left:150px;
+padding-right:150px;
+}
+</style> -->
+
+
 <div class="after-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2>여행 후기 보기</h2>
@@ -54,7 +62,7 @@
 
 <br>
 <div class="row">
-	<div class="offset-md-1 col-md-8">
+	<div class="offset-md-2 col-md-8">
 		<input type="text" class="form-control" name="content" id="content" size="90" placeholder="댓글을 입력해주세요">
 	</div>
 	
@@ -62,88 +70,70 @@
 		<button class="btn btn-outline-success" onclick="addComment()">comment</button>
 	</div>
 </div>
-<br><br> 
+<br><br>
+<%-- 이름 : ${comment.name } --%> 
 <span id="commentCount">${comments.size() }</span>
 <div class="comment-area">
-					
-					<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
-						<div class="row">
-							<div class="comment-email col-md-2" style="height: 50px;">
-								${current_user.email }
-							</div>
-							<div class="comment-box col" style="height: 50px;">
-								<div class="row">
-									<div class="col comment-content">
-										${comment.content }
-									</div>
-								</div>
-							</div>
-							<div class="comment-date col-md-1" style="height: 50px;">
-								${comment.reg_date }
-							</div>
-
-						</div>
-						<hr>
-					</c:forEach>
-					
-				
-
+	<c:forEach begin="0" items="${commentlist }" var="comment"
+		varStatus="i">
+		<div class="row">
+			<div class="offset-md-2 col-md-2 comment-email "
+				style="height: 50px;">${comment.name }</div>
+			<div class="col-md-5 comment-box" style="height: 50px;">
+				<div class="comment-content">${comment.content }</div>
 			</div>
+			<div class="col-md-2 comment-date" style="height: 50px;">
+				${comment.reg_date }</div>
+
+		</div>
+		<div class="offset-md-2 col-md-9">
+			<hr>
+		</div>
+	</c:forEach>
+</div>
 
 
 
 <script type="text/javascript">
-
-function addComment(seq) {
+	function addComment(seq) {
 	var seq = ${aftergetBbs.seq};
-	var user_seq = ${current_user.seq};
-	$.ajax({
-		url:"AfterComentAf.do",
-		type:"post",
-		data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
-		success:function(data){
-				
-			$('.comment-area').children().remove();
+   	var user_seq = ${current_user.seq};
+   	
+   	$.ajax({
+	      url:"AfterComentAf.do",
+	      type:"post",
+	      data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
+	      success:function(data){
+	            
+	         $('.comment-area').children().remove();
 
-			for(var i=0; i <data.length; i++){
-				printCommentHtml(data[i]);
-			}
-			$('#content').val('');
-			
-			
+	         for(var i=0; i <data.length; i++){
+	            printCommentHtml(data[i]);
+	         }
+	         $('#content').val('');
+
 		},
-		error:function(request, status, error){
+		error : function(request, status, error) {
 			alert("실패");
 		}
 	});
 }
 
-function printCommentHtml(comment ){
-	var html = 
-		'<div class="row">'+
-			'<div class="comment-email col-md-2" style="height: 50px;">'+
-				'${current_user.email }'+
-			'</div>'+
-			'<div class="comment-box col" style="height: 50px;">'+
-				'<div class="row">'+
-					'<div class="col comment-content">'+
-					comment.content+
-					'</div>'+
-				'</div>'+
-			'</div>'+
-			'<div class="comment-date col-md-1" style="height: 50px;">'+
-			comment.reg_date+
-			'</div>'+
-			'<hr>';
-			$('.comment-area').append(html);
-} 
-
-	
-	
-	 
-
-
-
+	function printCommentHtml(comment) {
+		var html = '<div class="row">'
+				+ '<div class="offset-md-2 col-md-2 comment-email "style="height: 50px;">'
+				+ comment.name + '</div>'
+				+ '<div class="col-md-5 comment-box" style="height: 50px;">'
+				+ '<div class="comment-content">'
+				+ comment.content + '</div>' + '</div>'
+				+ '<div class="col-md-2 comment-date" style="height: 50px;">'
+				+ comment.reg_date + '</div>'
+				+ '<div class="offset-md-2 col-md-9">'
+				+ '<hr>'
+				+'</div>';
+				
+		$('.comment-area').append(html);
+	}
 </script>
 
 

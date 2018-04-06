@@ -69,7 +69,7 @@
 		<if test="s_category == 'email'"> AND EMAIL like '%'||#{s_keyword}||'%'</if>
 	</if>
 	) A
-	WHERE rnum between ${start} AND ${end}	
+	WHERE rnum between #{start} AND #{end}	
 </select>
 
 <select id="AfterGetBbsCount"

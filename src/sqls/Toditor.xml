@@ -78,7 +78,7 @@
 		      <if test="s_category == 'location'"> AND LOCATION like '%'||#{s_keyword}||'%'</if>
 		   </if>
 		   ) A
-		   WHERE rnum between ${start} AND ${end} 
+		   WHERE rnum between #{start} AND #{end} 
            ORDER BY REG_DATE DESC
 	</select>
 	

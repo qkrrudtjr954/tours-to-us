@@ -87,6 +87,12 @@ public class PlanerDaoImpl implements PlanerDao{
 		return c>0?true:false;
 	}
 
+	@Override
+	public boolean planDelete(int seq) {
+		int n = sqlSession.update(namespace+"planDelete", seq);
+		return n>0?true:false;
+	}
+
 	public void updateCompletePlaner(PlanerDto planer) {
 		sqlSession.update(namespace+ "updateCompletePlaner", planer);
 	}
@@ -96,6 +102,7 @@ public class PlanerDaoImpl implements PlanerDao{
 		// 등록된 한국 행정구역을 가져온다.
 		return sqlSession.selectList(namespace + "getKorea");
 	}
+
 
 
 }

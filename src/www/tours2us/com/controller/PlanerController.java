@@ -203,7 +203,7 @@ public class PlanerController {
 		logger.info("PlanerContoller >>>> planDetailAll");
 		System.out.println("planerseq:"+seq);
 		
-PlanerDto planer = planerService.getPlaner(seq);
+		PlanerDto planer = planerService.getPlaner(seq);
 		
 		List<DayPlanerDto> dayPlanlist = planerService.getDayplanList(seq);
 		Map<DayPlanerDto, List<TimePlanerDto>> planMap = new TreeMap<>(new Comparator<DayPlanerDto>() {
@@ -242,6 +242,18 @@ PlanerDto planer = planerService.getPlaner(seq);
 			return dto;
 		}
 	}
-
-
+	
+	@RequestMapping(value = "planDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String planDelete(int seq, Model model)throws Exception{
+		logger.info("PlanerController >>>> changeTitle");
+		
+		boolean isS = planerService.planDelete(seq);
+		
+		if(isS) {
+			return "redirect:/myplan.do";			
+		}else {
+			return "redirect:/myplan.do";
+		}
+		
+	}
 }

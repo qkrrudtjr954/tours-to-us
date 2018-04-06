@@ -7,4 +7,8 @@ import www.tours2us.com.model.PlanerDto;
 public interface UserGuideDao {
 
 	List<PlanerDto> getUserPlanList(); 
+	
+	List<PlanerDto> guideSearch(PlanerDto plan);
+
+	int guideCount(PlanerDto plan);
 }

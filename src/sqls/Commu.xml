@@ -56,12 +56,13 @@
 	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
 	resultType="www.tours2us.com.model.CommuAfterBbsDto">
 	SELECT SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ, TITLE, 
-	CONTENT, REG_DATE, LAST_UPDATED, STATUS
+	CONTENT, REG_DATE, LAST_UPDATED, STATUS , NAME , EMAIL
 	FROM
-	(SELECT ROW_NUMBER() OVER (ORDER BY REG_DATE DESC) as rnum,
-	 SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ,CONTENT, TITLE, 
-	 REG_DATE, LAST_UPDATED, STATUS FROM AFTERBBS
-	WHERE STATUS=0
+	(SELECT ROW_NUMBER() OVER (ORDER BY A.REG_DATE DESC) as rnum,
+	 A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
+      	FROM AFTERBBS A, TRAVELER B
+	WHERE A.TARGET_USER_SEQ = B.SEQ AND STATUS=0
 	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
 		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
 		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>

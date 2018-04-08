@@ -303,8 +303,6 @@ padding-top:15px;
 				</div>
 			</div>
 		</c:forEach>
-
-
 	</div>
 
 <!-- 페이징처리 -->

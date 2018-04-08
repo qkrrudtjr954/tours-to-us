@@ -5,7 +5,7 @@
 <style>
 .card {
 	padding: 0;
-	border: 1px solid #7DC3BB;
+	/* border: 1px solid #7DC3BB; */
 }
 .card-body{
 	padding: 0;
@@ -13,7 +13,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	border: 1px solid #7DC3BB;
+	border: 1px solid gray;
 }
 
 .card-container {
@@ -130,30 +130,35 @@
 	</div>
 </div>
 
-
+<hr>
+<div class="row content">
+<div class="offset-md-2 col-md-8">
+<div class="row no-gutters">
+		<c:forEach items="${planlist }" var="plan" varStatus="i">
+				<div class="card col-md-4 col-xs-4 box-shadow">
+					<div class="card-img">
+						<img class="card-img-top" src="${plan.paper eq null ? 'image/no-img.png' : plan.paper}" height="300px" width="300px">
+						<span id="like"><img src="image/hearticon.png">100</span>
+					</div>
+					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${plan.seq }'" style="cursor: pointer;height: 100px;">
+						<span id="location">${item.category }</span><br> 
+						<span style="font-size: 15px; font-weight: bold;">${plan.title }</span><br>
+						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor: ${plan.name }</span>
+					</div>
+				</div>
+		</c:forEach>
+		</div>
+		</div>
+	</div>
 
 <script>
-
-<%-- <%
-//15자 이상되면 ... 를 이용하여 줄임표시
-public String dot3(String msg){
-	String s="";
-	if(msg.length()>=15){
-		s=msg.substring(0,15);
-		s+="...";
-	}else{
-		s=msg.trim();
-	}
-	return s;
-}
-
-%> --%>
                                      
-$(document).ready(function () {
-	var title= $(".span-title").text().substing(0, 4);
+/* $(document).ready(function () {
+	var title= $(".span-title").text().substr(0, 4);
 	title+= "...";
 	$(".span-title").after(title);
-});
+}); */
+
 function showTitleInput(img){	
 	$(img).parent().parent().find('.change-title-div').css('display', 'inline-flex');
 	$(img).parent().parent().find('.title-div').css('display', 'none'); 

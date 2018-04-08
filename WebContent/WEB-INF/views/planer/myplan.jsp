@@ -13,7 +13,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	border: 1px solid gray;
 }
 
 .card-container {
@@ -54,13 +53,12 @@
    
 }
 
-.card-body{
-	cursor:pointer;
-}
+
 
 .plan-detail:link {text-decoration: none; color: #fff;}
 .plan-detail:hover {text-decoration: underline; color: #fff;}
 .plan-detail:visited {text-decoration: none; color: #fff;}
+
 
 </style>
 
@@ -138,12 +136,16 @@
 				<div class="card col-md-4 col-xs-4 box-shadow">
 					<div class="card-img">
 						<img class="card-img-top" src="${plan.paper eq null ? 'image/no-img.png' : plan.paper}" height="300px" width="300px">
-						<span id="like"><img src="image/hearticon.png">100</span>
+						<%-- 진행중 이미지 
+						<c:if test="${plan.status == 0 }">
+							<div class="ing-img">
+								<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+							</div>
+						</c:if> --%>
 					</div>
-					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${plan.seq }'" style="cursor: pointer;height: 100px;">
-						<span id="location">${item.category }</span><br> 
-						<span style="font-size: 15px; font-weight: bold;">${plan.title }</span><br>
-						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor: ${plan.name }</span>
+					<div class="card-body" onclick="location.href='planDetail.do?seq=${plan.seq }'" style="cursor: pointer;height: 100px;">
+						<span style="font-size: 15px; font-weight: bold;" class="span-title">${plan.title }</span><br>
+						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">writer: ${plan.name }</span>
 					</div>
 				</div>
 		</c:forEach>

@@ -140,6 +140,11 @@ padding-left:5px;
 padding-left:5px;
 }
 
+.tag{
+font-size: 13px;
+color: #6e6e6e;
+}
+
 </style>
 
 <div id="floatMenu">
@@ -200,11 +205,15 @@ padding-left:5px;
 		<div class="detailBody_content">
 			${bbs.content }
 		</div>
+		<div class="tag">
+			<span>태그  #부산 #맛집 #먹방</span>
+		</div>	
 		<hr>
 		<div class="detailBody_like" align="center">
 				<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br>
 				<span>좋아요</span>&nbsp;<strong id="like_count">${like_count }</strong>
-		</div>		
+		</div>	
+				
 	</div>
 	
 	<div class="detailBottom">

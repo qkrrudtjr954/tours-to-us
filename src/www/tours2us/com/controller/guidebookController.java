@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.LikeDto;
 import www.tours2us.com.model.PagingVo;
 import www.tours2us.com.model.ToditorBBS;
 import www.tours2us.com.model.ToditorCategoryDto;
+import www.tours2us.com.model.ToditorCommentDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.LikeService;
 import www.tours2us.com.service.ToditorService;
@@ -58,6 +60,10 @@ public class guidebookController {
 		int totalRecordCount = toditorService.ToditorgetBbsCount(pv);
 		List<ToditorBBS> list = toditorService.ToditorgetPagingList(pv);
 		model.addAttribute("bbslist", list);
+		
+		List<ToditorBBS> b1list = toditorService.best123();	
+		model.addAttribute("b1list", b1list);
+	
 		
 		model.addAttribute("pageNumber", sn);
 		model.addAttribute("pageCountPerScreen", 10);
@@ -100,6 +106,8 @@ public class guidebookController {
 		bbs = toditorService.ToditorDetail(bbs.getSeq());
 		model.addAttribute("bbs", bbs);
 		
+		 List<ToditorCommentDto> commentlist = toditorService.getAllComments(bbs.getSeq());
+		 model.addAttribute("commentlist", commentlist);
 		int isLiked = 0;
 		int like_count = 0;
 		
@@ -118,6 +126,22 @@ public class guidebookController {
 		
 		return "toditor_detail.tiles";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="addcomment.do",method={RequestMethod.GET, RequestMethod.POST})
+	public List<ToditorCommentDto> addcomment(Model model, ToditorCommentDto comment ,HttpServletRequest req) throws Exception{
+		logger.info("CommuController >>>> AfterComentAf");
+		
+		System.out.println("coment" + comment.toString());
+		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		
+		List<ToditorCommentDto> commList = toditorService.addComment(comment);
+		
+		return commList;
+	}
+				
+				
 	
 
 }

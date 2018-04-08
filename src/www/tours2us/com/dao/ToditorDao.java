@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import www.tours2us.com.model.DayPlanerDto;
+
+
 import www.tours2us.com.model.PagingVo;
 import www.tours2us.com.model.ToditorBBS;
 import www.tours2us.com.model.ToditorCategoryDto;
+import www.tours2us.com.model.ToditorCommentDto;
 
 
 @Repository
@@ -55,4 +57,22 @@ public class ToditorDao {
 		return num;
 	}
 	
+	public List<ToditorBBS> best123(){
+		List<ToditorBBS> list = new ArrayList<>();
+		return list = sqlSession.selectList(ns+"best123");
+	}
+	
+	public List<ToditorCommentDto> getAllComments(int seq) throws Exception {
+		List<ToditorCommentDto> list = new ArrayList<ToditorCommentDto>();
+		list = sqlSession.selectList(ns + "getAllComments", seq); 
+		return list;
+	}
+
+	public boolean addComment(ToditorCommentDto comment) throws Exception {
+		sqlSession.insert(ns+"AddComent", comment);
+		return true;
+	}
+	
+	
+
 }

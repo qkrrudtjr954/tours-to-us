@@ -46,6 +46,8 @@
 			<mvc:exclude-mapping path="/signupAf.do" />
 			<mvc:exclude-mapping path="/event.do" />
 			<mvc:exclude-mapping path="/checkEmail.do" />
+			<mvc:exclude-mapping path="editor_essay.do" />
+			
 			<bean class="www.tours2us.com.aop.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 		
@@ -55,7 +57,7 @@
 			<mvc:mapping path="/**/planDetailAll.do" />
 			<bean class="www.tours2us.com.aop.PermissionInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> 
 
 	<bean id="echoHandler" class="www.tours2us.com.chat.EchoHandler" />
 	<websocket:handlers>

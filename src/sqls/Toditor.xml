@@ -56,13 +56,6 @@
 	</select>
 	
 	<!-- 투둥이 가이드북 DISTINCT -->
-	<!-- <select id="getUserPlanList" resultType="www.tours2us.com.model.PlanerDto">
-		SELECT P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE,
-			P.RANGE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, T.NAME 
-		FROM TRAVELER T, PLANER P 
-		WHERE T.SEQ = P.TARGET_USER_SEQ AND P.STATUS NOT IN(SELECT STATUS FROM PLANER WHERE STATUS=2 OR STATUS=3 OR STATUS=4)
-		ORDER BY REG_DATE DESC
-	</select> -->
 	
 	<select id="guideSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
 		 SELECT  SEQ, TARGET_USER_SEQ, TITLE, LOCATION, STATUS, TO_DATE, FROM_DATE,

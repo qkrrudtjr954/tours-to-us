@@ -44,7 +44,7 @@ CommuCommentService commucommentService;
 
 	@RequestMapping(value="afterBbs.do",
 	method= {RequestMethod.GET, RequestMethod.POST})
-	public String afterBbs(Model model , CommuAfterBbsDto afterparam ) throws Exception{
+	public String afterBbs(Model model , CommuAfterBbsDto afterparam) throws Exception{
 		logger.info("CommuController >>>> afterbbslist");
 		int sn = afterparam.getPageNumber();
 		int start = (sn) * afterparam.getRecordCountPerPage() +1;
@@ -65,6 +65,8 @@ CommuCommentService commucommentService;
 		model.addAttribute("totalRecordCount", totalRecordCount);
 		model.addAttribute("s_category", afterparam.getS_category());
 		model.addAttribute("s_keyword", afterparam.getS_keyword());
+		
+		return "afterBbs.tiles";
 	}
 
 	@RequestMapping(value = "afterWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})

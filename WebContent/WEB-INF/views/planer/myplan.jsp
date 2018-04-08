@@ -43,7 +43,7 @@
 }
 .change-title-div,
 .title-div {
-	margin: 20px 0px;
+	/* margin: 10px 0px; */
 }
 
 .status-img{
@@ -58,11 +58,13 @@
 	cursor:pointer;
 }
 
-.detail-atag:link {text-decoration: none; color: #fff;}
-.detail-atag:hover {text-decoration: underline; color: #7DC3BB;}
-.detail-atag:visited {text-decoration: none; color: #fff;}
+.plan-detail:link {text-decoration: none; color: #fff;}
+.plan-detail:hover {text-decoration: underline; color: #fff;}
+.plan-detail:visited {text-decoration: none; color: #fff;}
 
 </style>
+
+
 <div class="myplan-title">
    <div class="offset-md-2 col-md-4 col-xs-12">
       <h2>나의 플랜</h2> 
@@ -71,6 +73,7 @@
 <div class="offset-md-2  col-md-8 col-xs-12">
    <hr>
 </div>
+
 
 <div class="myplan-content">
 	<div class="row">
@@ -98,11 +101,11 @@
 								</div>
 								<div class="card-text">
 									<div class="title-div">
-										<a href="planDetail.do?seq=${plan.seq }" class="detail-atag"><span style="color: #fff; font-size: xx-large; font-weight: normal;">${plan.title }</span></a>
+										<a href="planDetail.do?seq=${plan.seq }" class="plan-detail"><span style="color: #fff; font-size: xx-large; font-weight: normal;" class="span-title">${plan.title }</span></a>
 										<img class="change-pen" alt="pen" src="./image/pen1.png"
 											onclick="showTitleInput(this)" width="25px" height="25px">
 									</div>
-									<div class="write-div">
+									<div class="writer">
 										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.name }</span>
 									</div>
 									<div class="change-title-div input-group mb-3">
@@ -127,10 +130,33 @@
 	</div>
 </div>
 
+
+
 <script>
+
+<%-- <%
+//15자 이상되면 ... 를 이용하여 줄임표시
+public String dot3(String msg){
+	String s="";
+	if(msg.length()>=15){
+		s=msg.substring(0,15);
+		s+="...";
+	}else{
+		s=msg.trim();
+	}
+	return s;
+}
+
+%> --%>
+                                     
+$(document).ready(function () {
+	var title= $(".span-title").text().substing(0, 4);
+	title+= "...";
+	$(".span-title").after(title);
+});
 function showTitleInput(img){	
 	$(img).parent().parent().find('.change-title-div').css('display', 'inline-flex');
-	$(img).parent().parent().find('.title-div').css('display', 'none');
+	$(img).parent().parent().find('.title-div').css('display', 'none'); 
 }
 function hideTitleInput(img) {
 	$(img).parent().parent().parent().find('.change-title-div').css('display', 'none');
@@ -152,10 +178,6 @@ function changeTitle(button, seq) {
 			}
 		}
 	})
-}
-
-function detail(seq) {
-	location.href='planDetail.do?seq='+seq
 }
 
 </script>

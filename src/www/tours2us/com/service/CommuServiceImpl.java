@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import www.tours2us.com.dao.CommuDao;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
+import www.tours2us.com.model.CommuFreeBbsDto;
 
 @Service
 public class CommuServiceImpl implements CommuService {
@@ -63,6 +64,35 @@ public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 
 	return commutDao.AfterGetBbsCount(aftercontparam);
 }
+
+//FreeBbs
+@Override
+@Transactional(readOnly=true)
+public List<CommuFreeBbsDto> getFreeBbslist() throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.getFreeBbslist();
+}
+
+@Override
+public boolean FreeBbsWrite(CommuFreeBbsDto freewrite) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.FreeBbsWrite(freewrite);
+}
+
+@Override
+public CommuFreeBbsDto FreeBbsDetail(int seq) throws Exception {
+	
+	return commutDao.FreeBbsDetail(seq);
+}
+
+@Override
+public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.FreeBbsUpdate(freebbsupdate);
+}
+
+
+
 
 
 }

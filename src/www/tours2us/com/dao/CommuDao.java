@@ -5,6 +5,7 @@ import java.util.List;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
+import www.tours2us.com.model.CommuFreeBbsDto;
 
 public interface CommuDao {
 	
@@ -22,6 +23,14 @@ public interface CommuDao {
 	
 	public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception;
 	
+	//FreeBbs
+	List<CommuFreeBbsDto> getFreeBbslist()throws Exception;
+	
+	boolean FreeBbsWrite(CommuFreeBbsDto freewrite)throws Exception;
+	
+	public CommuFreeBbsDto FreeBbsDetail(int seq) throws Exception;
+	
+	boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception;
 	
 	
 	

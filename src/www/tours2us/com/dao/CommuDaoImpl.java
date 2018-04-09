@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
+import www.tours2us.com.model.CommuFreeBbsDto;
 
 @Repository
 public class CommuDaoImpl implements CommuDao {
@@ -75,6 +76,38 @@ public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 		num= sqlSession.selectOne(ns+"AfterGetBbsCount", aftercontparam);
 	return num;
 }
+
+
+// 자유 게시판
+@Override
+public List<CommuFreeBbsDto> getFreeBbslist() throws Exception {
+	logger.info("CommuDaoImpl >>>> getFreeBbslist");
+	List<CommuFreeBbsDto> list = sqlSession.selectList(ns+"FreeBbsList");
+	return list;
+}
+
+@Override
+public boolean FreeBbsWrite(CommuFreeBbsDto freewrite) throws Exception {
+	logger.info("CommuDaoImpl >>>> FreeBbsWrite");
+	sqlSession.insert(ns+"FreeBbsWrite", freewrite);
+	return true;
+}
+
+@Override
+public CommuFreeBbsDto FreeBbsDetail(int seq) throws Exception {
+	logger.info("CommuDaoImpl >>>> FreeBbsDetail");
+	return sqlSession.selectOne(ns + "FreeBbsDetail", seq);
+}
+
+@Override
+public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
+	logger.info("CommuDaoImpl >>>> FreeBbsUpdate");
+	int n = sqlSession.update(ns+"FreeBbsUpdate", freebbsupdate);
+	System.out.println("freebbsupdate = "  +freebbsupdate);
+	return n>0?true:false;
+}
+
+
 
 
 

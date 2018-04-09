@@ -13,13 +13,13 @@
 <div class="after-title">
 <div class="offset-md-2 col-md-4 col-xs-12">
 <p>
-<h4>제목: ${aftergetBbs.title }</h4>
+<h4>제목: ${commufredetail.title }</h4>
 </p>
 </div>
 </div>
 <div class="myplan-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>여행후기</h2>
+		<h2>자유게시판</h2>
 	</div>
 </div>
 
@@ -30,27 +30,27 @@
 <div class="row offset-md-7">
 <p>
 	<b>작성자</b>
-	${aftergetBbs.email }
+	${commufredetail.name }
 	&nbsp;&nbsp;&nbsp;<b>작성일</b>
-	${aftergetBbs.reg_date }&nbsp;&nbsp;&nbsp;
+	${commufredetail.reg_date }&nbsp;&nbsp;&nbsp;
 	</p>
 </div>
 
 <div class="after-title">
 <div class="offset-md-2 col-md-4 col-xs-12">
 	<br> <br>
-	${aftergetBbs.content }
+	${commufredetail.content }
 		<br> <br>
 	</div>
 
 </div>
-<%-- ${commList } --%>
+
 
 <div class="after-title">
 <div class="offset-md-2 col-md-6 col-xs-12">
-<c:if test="${aftergetBbs.email eq current_user.email }">
-<a href="afterUpdate.do?seq=${aftergetBbs.seq }" id="_btnUpdate" title="글수정하기" class=" offset-md-6 col-md-2 btn btn-primary">글 수정하기</a>
-<a href="afterDelete.do?seq=${aftergetBbs.seq }" id="_btndelete" title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a> 
+<c:if test="${commufredetail.email eq current_user.email }">
+<a href="freeBbsUpdate.do?seq=${commufredetail.seq }" id="_btnUpdate" title="글수정하기" class=" offset-md-6 col-md-2 btn btn-primary">글 수정하기</a>
+<a href="afterDelete.do?seq=${commufredetail.seq }" id="_btndelete" title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a> 
 </c:if>
 </div>
 </div>
@@ -65,8 +65,7 @@
 		<button class="btn btn-outline-success" onclick="addComment()">comment</button>
 	</div>
 </div>
-<br><br>
-<%-- 이름 : ${comment.name } --%> 
+<br><br> 
 <span id="commentCount">${comments.size() }</span>
 <div class="comment-area">
 	<c:forEach begin="0" items="${commentlist }" var="comment"
@@ -85,7 +84,7 @@
 			<hr>
 		</div>
 	</c:forEach>
-</div>
+</div> 
 
 
 
@@ -134,3 +133,4 @@
 
 
 
+    

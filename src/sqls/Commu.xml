@@ -87,10 +87,38 @@
 		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 	</if>
 </select>
+<!--==============================FreeBbs======================================-->
+<select id="FreeBbsList" resultType="www.tours2us.com.model.CommuFreeBbsDto">
+	SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME
+    FROM FREEBBS F, TRAVELER T
+    WHERE F.TARGET_USER_SEQ = T.SEQ
+    ORDER BY F.REG_DATE DESC    
+</select>
 
 
-	
-	
+<insert id="FreeBbsWrite" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
+		INSERT INTO FREEBBS
+		(SEQ,TARGET_CATEGORY_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(FREEBBS_SEQ.NEXTVAL,2,#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0)		
+</insert>
 
-	
+<select id="FreeBbsDetail"
+	parameterType="int"
+	resultType="www.tours2us.com.model.CommuFreeBbsDto">
+		SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL
+    	FROM FREEBBS F, TRAVELER T
+		WHERE  F.TARGET_USER_SEQ = T.SEQ AND F.SEQ=#{seq} AND STATUS=0
+</select>
+
+<update id="FreeBbsUpdate" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
+		UPDATE FREEBBS SET TITLE=#{title}, CONTENT=#{content}
+		WHERE SEQ=#{seq}
+</update>
+
+
+
+
+
 </mapper>

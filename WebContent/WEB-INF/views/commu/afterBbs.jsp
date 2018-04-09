@@ -18,26 +18,32 @@
 <div class="search">
 <div class="row" style="margin:0 auto;width:1200px;">
 	<div class="offset-md-1 input-group-prepend">
-			<form name="frmForm1" id="_frmFormSearch" method="post" action="">   
-      <select class="custom-select" id="_s_category" name="s_category">
-         <option value="title">제목</option>
-         <option value="contents">내용</option>
-         <option value="email">작성자</option>
-      </select>
+			<form action="guideSearch.do" method="get" id="_frmFormSearch">
+   <div class="row" style="margin:0 auto;width:900px;">
+      <div class="input-group-prepend">
+         <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
+            <option value="title">제목</option>
+         	<option value="contents">내용</option>
+         	<option value="email">작성자</option>
+         </select> 
+         <input type="text" class="form-control"
+            aria-label="Text input with segmented dropdown button" size="50"
+            name="s_keyword" id="text">
+      </div>
+      <div class="serach">
+         <button class="btn btn-outline-secondary" type="button" id="btnSearch"><span data-feather="search"></span></button>
+         <button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span><span class="list-text">전체리스트</span></button>
+         <input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
+            <input type="hidden" name="recordCountPerPage"
+               id="_recordCountPerPage"
+               value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
+      </div>
    </div>
-   <div class="input-group col-md-6">
-        <input type="text" class="form-control" id="_s_keyword" name="s_keyword" value="${s_keyword}" placeholder="검색어를 입력해주세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-             <button class="btn btn-outline-secondary" type="button" id="_btnSearch" ><span data-feather="search"></span></button>
-             <input type="hidden" name="pageNumber" id="_pageNumber" value="0"/>                  
-            <input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?9:recordCountPerPage}"/>      
-        </div>
-   </div>   
-   </form>   
+</form>
 
-		</div>
 </div>
-
+</div>
+<br>
 
 
 
@@ -120,9 +126,9 @@ $(document).ready(function() {
 	   $("#_pageNumber").val(pageNumber) ;
 	   $("#_frmFormSearch").attr("target","_self").attr("action","afterBbs.do").submit();
 	}
-function writeAfBbs() {
+function user_guide() {
 	
-	location.href="afterWrite.do";
+	location.href="afterBbs.do";
 	
 }
 </script>

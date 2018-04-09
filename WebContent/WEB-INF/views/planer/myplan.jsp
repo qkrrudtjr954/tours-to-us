@@ -53,6 +53,17 @@
    
 }
 
+h2 {
+    display: block;
+    font-size: 2rem;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+   
+} 
+
+
 
 
 .plan-detail:link {text-decoration: none; color: #fff;}

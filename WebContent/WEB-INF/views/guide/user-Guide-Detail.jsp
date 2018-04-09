@@ -114,6 +114,6 @@ function day_remove() {
 }
 
 function day_all(seq) {
-	window.open("planDetailAll.do?seq="+seq, "_blank" );
+	window.open("guideDetailAll.do?seq="+seq, "_blank" );
 }
 </script>

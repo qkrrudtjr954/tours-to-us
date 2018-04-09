@@ -12,6 +12,16 @@ text-decoration: underline;
 color: #7DC3BB;
 }
 
+h2 {
+    display: block;
+    font-size: 2rem;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+   
+} 
+
 </style>
 
 <div class=event-title">

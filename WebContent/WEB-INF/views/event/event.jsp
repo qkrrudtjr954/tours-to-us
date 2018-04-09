@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-a .title{
-text-decoration:none;
-color: #000;
-}
-a .titile:hover {
-text-decoration: underline; 
-color: #7DC3BB;
-}
+
 
 h2 {
     display: block;
@@ -21,6 +14,10 @@ h2 {
     -webkit-margin-end: 0px;
    
 } 
+
+.title:link {text-decoration: none; color: #000000;}
+.title:hover {text-decoration: underline; color: #7DC3BB;}
+.title:visited {text-decoration: none; color: #000000;}
 
 </style>
 
@@ -53,7 +50,17 @@ h2 {
 					<td>${i.count }</td>
 				
 					<td> 
-						<span class="badge badge-pill" style="background-color: #7DC3BB; color: #fff">${event.category }</span>&nbsp;
+						<c:choose>
+							<c:when test="${event.category eq '항공'}">
+								<span class="badge badge-pill" style="background-color: #3CC2FF; color: #fff">${event.category }</span>&nbsp;								
+							</c:when>
+							<c:when test="${event.category eq '호텔'}">
+								<span class="badge badge-pill" style="background-color: #FF5050; color: #fff">${event.category }</span>&nbsp;
+							</c:when>
+							<c:otherwise>
+								<span class="badge badge-pill" style="background-color: #FFF064; color: #fff">${event.category }</span>&nbsp;
+							</c:otherwise>
+						</c:choose>
 						<a href="eventDetail.do?seq=${event.seq }" class="title">${event.title }</a>
 					</td>
 				

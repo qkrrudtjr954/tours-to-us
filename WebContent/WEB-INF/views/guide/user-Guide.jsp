@@ -148,7 +148,7 @@ h2 {
 <form action="guideSearch.do" method="get" id="_frmFormSearch">
 	<div class="row" style="margin:0 auto;width:900px;">
 		<div class="offset-md-1 input-group-prepend">
-			<select class="custom-select" id="inputGroupSelect01" name="s_category" style="width: 150px; height: 45px;">
+			<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;" >
 				<option value="title">제목</option>
 				<option value="location">지역</option>
 			</select> 

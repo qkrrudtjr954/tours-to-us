@@ -71,5 +71,17 @@ public class ToditorService {
 		
 		return list;
 	}
-
+	
+	public boolean ToditorUpdate(ToditorBBS bbs) throws Exception {		
+		return toditorDao.ToditorUpdate(bbs);
+	}
+	
+	public void updateReadCount(int seq) throws Exception{
+		
+		toditorDao.updateReadCount(seq);
+	}
+	
+	public void ToditorDelete(int seq) throws Exception{
+		toditorDao.ToditorDelete(seq);
+	}
 }

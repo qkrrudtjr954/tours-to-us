@@ -16,6 +16,7 @@
 .top_headline{
 padding-top:17px;
 padding-left:17px;
+
 }
 
 .writer_profile{
@@ -31,6 +32,7 @@ padding-left:17px;
 font-size: 15px;
 color: #6e6e6e;
 margin-right: 5px;
+
 }
 
 .toditor_title_bold{
@@ -145,6 +147,22 @@ font-size: 13px;
 color: #6e6e6e;
 }
 
+.update_delete_box{
+padding-top:20px;
+padding-left:200px;
+font-size:13px;
+color: #6e6e6e;
+
+}
+.update_delete_box a{
+color: #6e6e6e;
+}
+
+.delete_div{
+padding-left:10px;
+
+}
+
 </style>
 
 <div id="floatMenu">
@@ -194,7 +212,7 @@ color: #6e6e6e;
 				<div class="toditor_etc">
 					<span class="etc_writer">${bbs.name }</span>
 					<span class="etc_date"><fmt:formatDate value="${bbs.reg_date}" pattern="yyyy/MM/dd" /></span>
-					<span class="read_count">조회 : 00</span>
+					<span class="read_count">조회 : ${bbs.readcount }</span>
 					
 					
 				</div>
@@ -206,7 +224,7 @@ color: #6e6e6e;
 			${bbs.content }
 		</div>
 		<div class="tag">
-			<span>태그  #부산 #맛집 #먹방</span>
+			<span><b>태그</b>  #부산 #맛집 #먹방</span>
 		</div>	
 		<hr>
 		<div class="detailBody_like" align="center">
@@ -246,8 +264,8 @@ color: #6e6e6e;
 					
 				<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
 						<div class="row">
-							<div class="col-md-1 comment_profile">
-								<img  class="no_profile"  src="image/user.png" height="50px">
+							<div class="col-md-1 comment_profile">						
+								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }" height="50px">						
 							</div>
 							<div class="col-md-10">
 								<div class=row>
@@ -283,11 +301,35 @@ color: #6e6e6e;
 
 </div>
 
+<div class="update_delete_box">
+<div class="row">
+<div class="copyright">
+<span>Copyright(c)2018 by ${bbs.name } All pictures cannot be copied without permission. </span> 
+</div>
+<div class="update_div">
+	<span><a href="toditor_update.do?seq=${bbs.seq }">수정</a></span>
+</div>
+<div class="delete_div">
+	<span onclick="bbsDelete()">삭제</span>
+</div>
+</div>
+</div>
 
 </div> <!-- 내용 끝 -->
 
 
 <script>
+
+function bbsDelete() {
+	  if(confirm("정말 삭제하시겠습니까?")==true){
+		  location.href="toditor_delete.do?seq=${bbs.seq }";
+	         
+	        }else{
+	        	return;
+	        }
+	
+}
+
 $('#like_btn').click(function () {
 	
 	
@@ -336,23 +378,23 @@ function addComment(seq) {
 	});
 }
 
-function printCommentHtml(comment ){
-	var html = 			
-			'<div class="row">'+
-			'<div class="col-md-1 comment_profile">'+
-				'<img  class="no_profile"  src="image/user.png" height="50px">'+
-			'</div>'+
-			'<div class="col-md-10">'+
-				'<div class=row>'+
-						'<div class="comment_name">'+comment.name+'</div>'+
-						'<div class="comment_time">'+dateTest(comment.reg_date)+'</div>'+
+function printCommentHtml(comment ){		
+
+	var html ='<div class="row">'+
+					'<div class="col-md-1 comment_profile">'+
+						'<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/'+comment.profile+'" height="50px">'+
+					'</div>'+
+					'<div class="col-md-10">'+
+						'<div class=row>'+
+								'<div class="comment_name">'+comment.name+'</div>'+
+								'<div class="comment_time">'+dateTest(comment.reg_date)+'</div>'+
+						'</div>'+
+						'<div class=row>'+
+								'<div class="comment_content">'+comment.content+'</div>'+
+						'</div>'+
+					'</div>'+
 				'</div>'+
-				'<div class=row>'+
-						'<div class="comment_content">'+comment.content+'</div>'+
-				'</div>'+
-			'</div>'+
-		'</div>'+
-		'<hr>';
+				'<hr>';
 			$('.comment-area').append(html);
 } 
 function dateTest(date) {

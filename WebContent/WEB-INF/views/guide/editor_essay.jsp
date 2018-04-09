@@ -178,9 +178,9 @@ padding-top:15px;
     <div class="carousel-item active">
       <div class="row">
       <c:forEach items="${b1list }" var="item" begin="0" end="2" varStatus="i">
-      	 <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="${item.pic1 }" height="300px">			
-				<div class="overlay">
+      	 <div class="col-md-4" id="hovereffect" >
+						<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">			
+				<div class="overlay" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
 				<span id="like_best"><img src="image/hearticon.png"></span><span id="likecount">${item.like_count }</span>
 					<div class="overlay-content">					
 					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
@@ -197,8 +197,8 @@ padding-top:15px;
   <div class="row">
       	   <c:forEach items="${b1list }" var="item" begin="3" end="5"  varStatus="i">
       	 <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="${item.pic1 }" height="300px">			
-				<div class="overlay">
+						<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">			
+				<div class="overlay" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
 				<span id="like_best"><img src="image/hearticon.png"></span><span id="likecount">${item.like_count }</span>
 					<div class="overlay-content">
 					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>

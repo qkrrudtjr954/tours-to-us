@@ -73,6 +73,18 @@ public class ToditorDao {
 		return true;
 	}
 	
+	public boolean ToditorUpdate(ToditorBBS bbs) throws Exception {
+		sqlSession.update(ns+"ToditorUpdate", bbs);
+		return true;
+	}
+	
+	public void updateReadCount(int seq) throws Exception{
+		sqlSession.update(ns+"updateReadCount", seq);
+	}
+	
+	public void ToditorDelete(int seq) throws Exception{
+		sqlSession.update(ns+"ToditorDelete", seq);
+	}
 	
 
 }

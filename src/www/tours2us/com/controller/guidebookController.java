@@ -104,6 +104,7 @@ public class guidebookController {
 		logger.info("guidebookController >>>> toditor_detail");
 		
 		bbs = toditorService.ToditorDetail(bbs.getSeq());
+		toditorService.updateReadCount(bbs.getSeq());
 		model.addAttribute("bbs", bbs);
 		
 		 List<ToditorCommentDto> commentlist = toditorService.getAllComments(bbs.getSeq());
@@ -141,7 +142,35 @@ public class guidebookController {
 		return commList;
 	}
 				
-				
+	@RequestMapping(value="toditor_update.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String toditor_update(ToditorBBS bbs, Model model) throws Exception{
+		logger.info("guidebookController >>>> toditor_update");
+		
+		bbs = toditorService.ToditorDetail(bbs.getSeq());
+		model.addAttribute("bbs", bbs);
+		
+		return "toditor_update.tiles";
+	}
 	
-
+	@RequestMapping(value="toditor_updateAf.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String toditor_updateAf(ToditorBBS bbs, Model model) throws Exception{
+		logger.info("guidebookController >>>> toditor_updateAf");
+		
+		System.out.println(bbs.toString());
+		toditorService.ToditorUpdate(bbs);
+		
+		
+		return "redirect:/editor_essay.do";
+	}			
+	
+	@RequestMapping(value="toditor_delete.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String ToditorDelete(ToditorBBS bbs, Model model) throws Exception{
+		logger.info("guidebookController >>>> ToditorDelete");
+		
+		
+		toditorService.ToditorDelete(bbs.getSeq());
+		
+		
+		return "redirect:/editor_essay.do";
+	}	
 }

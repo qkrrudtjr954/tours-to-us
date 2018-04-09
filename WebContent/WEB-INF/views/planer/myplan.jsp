@@ -70,7 +70,7 @@ h2 {
 
 .myplan-title{
 	border-bottom: 2px solid #7cc4bb;
-    width: 30%;
+    width: 35%;
     margin-bottom: 10px;
 }
 

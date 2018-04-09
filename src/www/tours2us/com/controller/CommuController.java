@@ -250,20 +250,4 @@ public class CommuController {
 		return "redirect:/freeBbsList.do";
 	}
 
-
-	@ResponseBody
-	@RequestMapping(value = "AfterComentAf.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment, HttpServletRequest req)
-			throws Exception {
-		logger.info("CommuController >>>> AfterComentAf");
-
-		System.out.println("coment" + comment.toString());
-		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		comment.setTarget_user_seq(t_dto.getSeq());
-
-		List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
-
-		return commList;
-	}
-
 }

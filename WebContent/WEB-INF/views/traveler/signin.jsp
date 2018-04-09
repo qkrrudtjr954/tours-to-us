@@ -25,9 +25,11 @@ input#signInBtn:hover {
 		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" data-msg="ID를" required autofocus> 
 		
 		<label for="inputPassword" class="sr-only">Password</label> 
-		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" data-msg="PassWord를" required>
-		
-		
+		<input type="password" id="inputPassword" name="password"  onkeypress="caps_lock(event)" class="form-control" placeholder="Password" data-msg="PassWord를" required>
+		<p id="capslock" style="position:relative; border:1px solid #7cc4bb; width:450px; bottom:0px; display:none"> 
+    		&nbsp;<span style="font-family: 고딕;font-size: medium ; color: #191970; ">CapsLock키가 눌려있습니다.&nbsp;</span>
+		</p>
+
 		
 		<div class="checkbox mb-3">
 			<label> 
@@ -117,6 +119,28 @@ $(document).ready(function () {
 		$('input[type="checkbox"]').attr('checked', 'checked');
 	}
 });
+
+function caps_lock(e) {
+    var keyCode = 0;
+    var shiftKey = false;
+    keyCode = e.keyCode;
+    shiftKey = e.shiftKey;
+    if (((keyCode >= 65 && keyCode <= 90) && !shiftKey)
+            || ((keyCode >= 97 && keyCode <= 122) && shiftKey)) {
+        show_caps_lock();
+        setTimeout("hide_caps_lock()", 3500);
+    } else {
+        hide_caps_lock();
+    }
+}
+
+function show_caps_lock() {
+ $("#capslock").show();
+}
+
+function hide_caps_lock() {
+ $("#capslock").hide();
+}
 
 </script>
 

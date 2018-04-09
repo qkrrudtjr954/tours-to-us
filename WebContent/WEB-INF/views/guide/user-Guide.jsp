@@ -92,6 +92,21 @@ text-align: center;
 	line-height: 1.5;
 }
 
+h2 {
+    display: block;
+    font-size: 2rem;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+   
+} 
+.list-text{
+	height: 100%;
+    width: 100%;
+    vertical-align: super;
+}
+
 </style>
 
 <div class="myplan-title">
@@ -130,7 +145,7 @@ text-align: center;
 
 <form action="guideSearch.do" method="get" id="_frmFormSearch">
 	<div class="row" style="margin:0 auto;width:900px;">
-		<div class="offset-md-2 input-group-prepend">
+		<div class="offset-md-1 input-group-prepend">
 			<select class="custom-select" id="inputGroupSelect01" name="s_category" style="width: 150px; height: 45px;">
 				<option value="title">제목</option>
 				<option value="location">지역</option>
@@ -140,8 +155,8 @@ text-align: center;
 				name="s_keyword" id="text">
 		</div>
 		<div class="serach">
-			<button class="btn btn-outline-secondary" type="button" id="btnSearch" ><span data-feather="search"></span></button>
-			<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span></button>
+			<button class="btn btn-outline-secondary" type="button" id="btnSearch"><span data-feather="search"></span></button>
+			<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span><span class="list-text">전체리스트</span></button>
 			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
             <input type="hidden" name="recordCountPerPage"
                id="_recordCountPerPage"

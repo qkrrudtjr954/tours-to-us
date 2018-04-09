@@ -5,7 +5,7 @@
 <style>
 .card {
 	padding: 0;
-	border: 1px solid #7DC3BB;
+	/* border: 1px solid #7DC3BB; */
 }
 .card-body{
 	padding: 0;
@@ -13,7 +13,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	border: 1px solid #7DC3BB;
 }
 
 .card-container {
@@ -43,7 +42,7 @@
 }
 .change-title-div,
 .title-div {
-	margin: 20px 0px;
+	/* margin: 10px 0px; */
 }
 
 .status-img{
@@ -54,23 +53,39 @@
    
 }
 
-.card-body{
-	cursor:pointer;
+h2 {
+    display: block;
+    font-size: 2rem;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+   
+} 
+
+.plan-detail:link {text-decoration: none; color: #fff;}
+.plan-detail:hover {text-decoration: underline; color: #fff;}
+.plan-detail:visited {text-decoration: none; color: #fff;}
+
+
+.myplan-title{
+	border-bottom: 2px solid #7cc4bb;
+    width: 30%;
+    margin-bottom: 10px;
 }
 
-.detail-atag:link {text-decoration: none; color: #fff;}
-.detail-atag:hover {text-decoration: underline; color: #7DC3BB;}
-.detail-atag:visited {text-decoration: none; color: #fff;}
-
 </style>
-<div class="myplan-title">
+
+
+<div class="myplan-title-div">
    <div class="offset-md-2 col-md-4 col-xs-12">
-      <h2>나의 플랜</h2> 
+      <h2 class="myplan-title">나의 플랜</h2> 
    </div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
    <hr>
 </div>
+
 
 <div class="myplan-content">
 	<div class="row">
@@ -98,11 +113,11 @@
 								</div>
 								<div class="card-text">
 									<div class="title-div">
-										<a href="planDetail.do?seq=${plan.seq }" class="detail-atag"><span style="color: #fff; font-size: xx-large; font-weight: normal;">${plan.title }</span></a>
+										<a href="planDetail.do?seq=${plan.seq }" class="plan-detail"><span style="color: #fff; font-size: xx-large; font-weight: normal;" class="span-title">${plan.title }</span></a>
 										<img class="change-pen" alt="pen" src="./image/pen1.png"
 											onclick="showTitleInput(this)" width="25px" height="25px">
 									</div>
-									<div class="write-div">
+									<div class="writer">
 										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.name }</span>
 									</div>
 									<div class="change-title-div input-group mb-3">
@@ -127,10 +142,42 @@
 	</div>
 </div>
 
+<hr>
+<div class="row content">
+<div class="offset-md-2 col-md-8">
+<div class="row no-gutters">
+		<c:forEach items="${planlist }" var="plan" varStatus="i">
+				<div class="card col-md-4 col-xs-4 box-shadow">
+					<div class="card-img">
+						<img class="card-img-top" src="${plan.paper eq null ? 'image/no-img.png' : plan.paper}" height="300px" width="300px">
+						<%-- 진행중 이미지 
+						<c:if test="${plan.status == 0 }">
+							<div class="ing-img">
+								<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+							</div>
+						</c:if> --%>
+					</div>
+					<div class="card-body" onclick="location.href='planDetail.do?seq=${plan.seq }'" style="cursor: pointer;height: 100px;">
+						<span style="font-size: 15px; font-weight: bold;" class="span-title">${plan.title }</span><br>
+						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">writer: ${plan.name }</span>
+					</div>
+				</div>
+		</c:forEach>
+		</div>
+		</div>
+	</div>
+
 <script>
+                                     
+/* $(document).ready(function () {
+	var title= $(".span-title").text().substr(0, 4);
+	title+= "...";
+	$(".span-title").after(title);
+}); */
+
 function showTitleInput(img){	
 	$(img).parent().parent().find('.change-title-div').css('display', 'inline-flex');
-	$(img).parent().parent().find('.title-div').css('display', 'none');
+	$(img).parent().parent().find('.title-div').css('display', 'none'); 
 }
 function hideTitleInput(img) {
 	$(img).parent().parent().parent().find('.change-title-div').css('display', 'none');
@@ -152,10 +199,6 @@ function changeTitle(button, seq) {
 			}
 		}
 	})
-}
-
-function detail(seq) {
-	location.href='planDetail.do?seq='+seq
 }
 
 </script>

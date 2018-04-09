@@ -189,7 +189,6 @@ public class PlanerController {
 		
 		for(DayPlanerDto dayPlan : dayPlanlist) {
 			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
-			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 	
 		model.addAttribute("planer",planer);

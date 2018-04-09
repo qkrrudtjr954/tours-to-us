@@ -17,7 +17,7 @@
 
 <div class="row">
 	<div class="offset-md-2  myplanDetail-title">
-		<div class="col-md-10 col-xs-12">
+		<div class="col-md-12 col-xs-12">
 			<h2>${planer.title }</h2>
 		</div>
 	</div>

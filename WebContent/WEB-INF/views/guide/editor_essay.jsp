@@ -294,7 +294,7 @@ padding-top:15px;
 						</c:choose>
 						<span id="like"><img src="image/hearticon.png">100</span>
 					</div>
-					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
+					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'" style="cursor: pointer;">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
 						<span id="location">${item.category }</span><br> 
 						<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
@@ -303,8 +303,6 @@ padding-top:15px;
 				</div>
 			</div>
 		</c:forEach>
-
-
 	</div>
 
 <!-- 페이징처리 -->

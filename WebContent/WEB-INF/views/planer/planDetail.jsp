@@ -21,11 +21,18 @@
 	left: 30px;
 	top: 50px;
 }
+
+.card-head{
+	margin: auto;
+    margin-top: 70px;
+}
+
+
 </style>
 
 <div class="myplanDetail-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>${planer.title }</h2>
+	<div class="offset-md-2 col-md-4 col-xs-12">		
+		<h2 class="plan-label-title">${planer.title }</h2>
 	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
@@ -65,6 +72,8 @@
 						<div class="card-head" id="heading"> 
 							<h5 class="mb-0">
 								<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse">Day ${dayPlan.day_count }</a>
+									<br>
+								<span>${dayPlan.day }</span>
 							</h5>
 						</div> 					
 					</div>

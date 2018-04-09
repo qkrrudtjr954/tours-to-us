@@ -248,6 +248,18 @@ public String freeBbsUpdateAf(Model model, CommuFreeBbsDto freebbsupdate) throws
 	
 }
 
+@RequestMapping(value="freeBbsDelete.do", method={RequestMethod.GET, RequestMethod.POST})
+public String freeBbsDelete(Model model, int seq) {
+	logger.info("CommuController >>>> freeBbsDelete");
+	try {
+		commuService.FreeDelete(seq);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return "redirect:/freeBbsList.do";
+}
+
 
 
 

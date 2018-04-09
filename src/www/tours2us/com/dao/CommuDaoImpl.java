@@ -107,6 +107,13 @@ public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
 	return n>0?true:false;
 }
 
+@Override
+public boolean FreeDelete(int seq) throws Exception {
+	logger.info("CommuDaoImpl >>>> FreeDelete");
+	int count = sqlSession.update(ns + "FreeDeleteBbs", seq);
+	return count>0?true:false;
+}
+
 
 
 

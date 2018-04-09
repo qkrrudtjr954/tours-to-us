@@ -117,8 +117,9 @@
 		WHERE SEQ=#{seq}
 </update>
 
-
-
-
+<update id="FreeDeleteBbs" parameterType="int">
+		UPDATE FREEBBS SET STATUS=1
+		WHERE SEQ=#{seq} 	
+	</update>
 
 </mapper>

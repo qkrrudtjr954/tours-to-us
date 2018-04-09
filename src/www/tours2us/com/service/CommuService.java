@@ -31,5 +31,7 @@ public interface CommuService {
 	
 	boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception;
 	
+	boolean FreeDelete(int seq) throws Exception;
+	
 
 }

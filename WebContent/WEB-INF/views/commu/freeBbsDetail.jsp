@@ -50,7 +50,7 @@
 <div class="offset-md-2 col-md-6 col-xs-12">
 <c:if test="${commufredetail.email eq current_user.email }">
 <a href="freeBbsUpdate.do?seq=${commufredetail.seq }" id="_btnUpdate" title="글수정하기" class=" offset-md-6 col-md-2 btn btn-primary">글 수정하기</a>
-<a href="afterDelete.do?seq=${commufredetail.seq }" id="_btndelete" title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a> 
+<a href="freeBbsDelete.do?seq=${commufredetail.seq }" id="_btndelete" title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a> 
 </c:if>
 </div>
 </div>

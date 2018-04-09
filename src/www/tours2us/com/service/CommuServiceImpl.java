@@ -91,6 +91,13 @@ public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
 	return commutDao.FreeBbsUpdate(freebbsupdate);
 }
 
+@Override
+public boolean FreeDelete(int seq) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.FreeDelete(seq);
+}
+
+
 
 
 

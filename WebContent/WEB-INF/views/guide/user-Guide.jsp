@@ -112,6 +112,7 @@ h2 {
 <div class="myplan-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2>투둥이 가이드북</h2>
+		
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">

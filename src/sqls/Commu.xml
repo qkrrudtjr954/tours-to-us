@@ -43,9 +43,12 @@
 	
 	<!-- 댓글List -->
 	<select id="getAllComments" resultType="www.tours2us.com.model.CommuAfterCommentDto">
-			SELECT * FROM AFTERBBSCOMMENT WHERE TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
+			SELECT  A.SEQ, A.TARGET_USER_SEQ, A.TARGET_BBS_SEQ, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME  
+			FROM AFTERBBSCOMMENT A, TRAVELER B 
+			WHERE A.TARGET_USER_SEQ = B.SEQ AND 
+			TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
 	</select>
-	
+		
 	<!-- 댓글 쓰기 -->
 	<insert id="AfterAddComent" parameterType="www.tours2us.com.model.CommuAfterCommentDto">
 		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
@@ -84,10 +87,39 @@
 		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 	</if>
 </select>
+<!--==============================FreeBbs======================================-->
+<select id="FreeBbsList" resultType="www.tours2us.com.model.CommuFreeBbsDto">
+	SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME
+    FROM FREEBBS F, TRAVELER T
+    WHERE F.TARGET_USER_SEQ = T.SEQ
+    ORDER BY F.REG_DATE DESC    
+</select>
 
 
-	
-	
+<insert id="FreeBbsWrite" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
+		INSERT INTO FREEBBS
+		(SEQ,TARGET_CATEGORY_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(FREEBBS_SEQ.NEXTVAL,2,#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0)		
+</insert>
 
-	
+<select id="FreeBbsDetail"
+	parameterType="int"
+	resultType="www.tours2us.com.model.CommuFreeBbsDto">
+		SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL
+    	FROM FREEBBS F, TRAVELER T
+		WHERE  F.TARGET_USER_SEQ = T.SEQ AND F.SEQ=#{seq} AND STATUS=0
+</select>
+
+<update id="FreeBbsUpdate" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
+		UPDATE FREEBBS SET TITLE=#{title}, CONTENT=#{content}
+		WHERE SEQ=#{seq}
+</update>
+
+<update id="FreeDeleteBbs" parameterType="int">
+		UPDATE FREEBBS SET STATUS=1
+		WHERE SEQ=#{seq} 	
+	</update>
+
 </mapper>

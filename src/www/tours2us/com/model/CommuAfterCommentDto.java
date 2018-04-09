@@ -11,14 +11,16 @@ public class CommuAfterCommentDto implements Serializable {
 	private String reg_date;
 	private String last_updated;
 	private int status;
+	private String name;
 	
 	
 	public CommuAfterCommentDto() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
 	public CommuAfterCommentDto(int seq, int target_user_seq, int target_bbs_seq, String content, String reg_date,
-			String last_updated, int status) {
+			String last_updated, int status, String name) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -27,6 +29,7 @@ public class CommuAfterCommentDto implements Serializable {
 		this.reg_date = reg_date;
 		this.last_updated = last_updated;
 		this.status = status;
+		this.name = name;
 	}
 
 
@@ -100,22 +103,23 @@ public class CommuAfterCommentDto implements Serializable {
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CommuAfterCommentDto [seq=" + seq + ", target_user_seq=" + target_user_seq + ", target_bbs_seq="
 				+ target_bbs_seq + ", content=" + content + ", reg_date=" + reg_date + ", last_updated=" + last_updated
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", name=" + name + "]";
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

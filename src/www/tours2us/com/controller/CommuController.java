@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
+import www.tours2us.com.model.CommuFreeBbsDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuCommentService;
@@ -30,6 +32,7 @@ import www.tours2us.com.service.TravelerService;
 
 @Controller
 public class CommuController {
+
 	private static final Logger logger = LoggerFactory.getLogger(CommuController.class);
 
 	@Autowired
@@ -64,7 +67,7 @@ public class CommuController {
 		model.addAttribute("s_category", afterparam.getS_category());
 		model.addAttribute("s_keyword", afterparam.getS_keyword());
 
-		return "afterbbs.tiles";
+		return "afterBbs.tiles";
 	}
 
 	@RequestMapping(value = "afterWrite.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -134,6 +137,7 @@ public class CommuController {
 
 	}
 
+
 	// 지우기
 	@RequestMapping(value = "afterDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(Model model, int seq) {
@@ -146,6 +150,106 @@ public class CommuController {
 		}
 		return "redirect:/afterBbs.do";
 	}
+
+	@ResponseBody
+	@RequestMapping(value="AfterComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
+	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
+		logger.info("CommuController >>>> AfterComentAf");
+		
+		System.out.println("coment" + comment.toString());
+		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		
+		List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
+		
+		return commList;
+	}
+	/*-----------------------------------------------------------------------------------------------------------------*/
+	//자유게시판
+	@RequestMapping(value="freeBbsList.do",
+	method= {RequestMethod.GET, RequestMethod.POST})
+	public String freeBbsList(Model model , CommuFreeBbsDto freeparam ) throws Exception{
+		
+		List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
+		freelist = commuService.getFreeBbslist();
+		System.out.println("freelist = " + freelist);
+		model.addAttribute("freelist", freelist);
+		
+		return "freeBbsList.tiles";
+	}
+
+	@RequestMapping(value = "freeBbsWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})
+	public String freeBbsWrite(Model model) {
+		logger.info("CommuController >>>> freeBbsWrite");
+		
+		return "freeBbsWrite.tiles";
+		
+	}
+
+	@RequestMapping(value="freeBbsWriteAf.do", 
+	method= {RequestMethod.GET, RequestMethod.POST})
+	public String freeBbsWriteAf(Model model, CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
+		logger.info("CommuController >>>> freeBbsWriteAf");
+		
+		System.out.println("dddddd" + freewrite.toString());
+		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+		System.out.println("s"+t_dto.toString());
+
+		freewrite.setTarget_user_seq(t_dto.getSeq());
+		boolean isS = commuService.FreeBbsWrite(freewrite);
+		
+		return "redirect:/freeBbsList.do";
+		
+		
+	}
+
+
+	@RequestMapping(value = "freeBbsDetail.do",method = {RequestMethod.GET, RequestMethod.POST})
+	public String freeBbsDetail(int seq,Model model) throws Exception {
+		
+		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
+		
+		model.addAttribute("commufredetail", commufredetail);
+		System.out.println("c"+commufredetail.toString());
+		
+		return"freeBbsDetail.tiles";
+	}
+
+	@RequestMapping(value="freeBbsUpdate.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String freeBbsUpdate(Model model, int seq) throws Exception {
+		logger.info("CommuController >>>> freeBbsUpdate");
+		CommuFreeBbsDto freebbs = commuService.FreeBbsDetail(seq);
+		model.addAttribute("freebbs", freebbs);
+		return "freeBbsUpdate.tiles";
+	}
+
+	@RequestMapping(value="freeBbsUpdateAf.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String freeBbsUpdateAf(Model model, CommuFreeBbsDto freebbsupdate) throws Exception{
+		logger.info("CommuController >>>> freeBbsUpdateAf");
+		boolean isS = commuService.FreeBbsUpdate(freebbsupdate);
+		logger.info("isS" + isS);
+		if(isS) {
+			
+			return "redirect:/freeBbsDetail.do?seq=" + freebbsupdate.getSeq();
+		}else{
+			
+			return "redirect:/freeBbsDetail.do?seq=" + freebbsupdate.getSeq();
+		}
+		
+	}
+
+	@RequestMapping(value="freeBbsDelete.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String freeBbsDelete(Model model, int seq) {
+		logger.info("CommuController >>>> freeBbsDelete");
+		try {
+			commuService.FreeDelete(seq);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/freeBbsList.do";
+	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "AfterComentAf.do", method = { RequestMethod.GET, RequestMethod.POST })

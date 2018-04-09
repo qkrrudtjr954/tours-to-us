@@ -6,6 +6,7 @@
 	<select id="getEventList" resultType="www.tours2us.com.model.EventDto">
 		SELECT SEQ, CATEGORY, TITLE, CONTENT, FROM_DATE, TO_DATE, LAST_UPDATED, REG_DATE, STATUS
 		FROM EVENT
+		WHERE STATUS=0
 		ORDER BY REG_DATE DESC
 	</select>
 	

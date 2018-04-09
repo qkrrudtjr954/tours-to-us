@@ -63,20 +63,23 @@ h2 {
    
 } 
 
-
-
-
 .plan-detail:link {text-decoration: none; color: #fff;}
 .plan-detail:hover {text-decoration: underline; color: #fff;}
 .plan-detail:visited {text-decoration: none; color: #fff;}
 
 
+.myplan-title{
+	border-bottom: 2px solid #7cc4bb;
+    width: 30%;
+    margin-bottom: 10px;
+}
+
 </style>
 
 
-<div class="myplan-title">
+<div class="myplan-title-div">
    <div class="offset-md-2 col-md-4 col-xs-12">
-      <h2>나의 플랜</h2> 
+      <h2 class="myplan-title">나의 플랜</h2> 
    </div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">

@@ -21,6 +21,11 @@
 	left: 30px;
 	top: 50px;
 }
+
+.card-head{
+	margin: auto;
+    margin-top: 70px;
+}
 </style>
 
 <div class="myplanDetail-title">
@@ -61,6 +66,8 @@
 						<div class="card-head" id="heading"> 
 							<h5 class="mb-0">
 								<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse">Day ${dayPlan.day_count }</a>
+								<br>
+								<span>${dayPlan.day }</span>
 							</h5>
 						</div> 					
 					</div>

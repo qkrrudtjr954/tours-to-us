@@ -136,5 +136,43 @@
 	VALUES(FREEBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_free_seq},#{content},SYSDATE,SYSDATE,0)
 </insert>
 
+<!--==============================paging가져오기======================================-->	
+<select id="FreeGetBbsPagingList"
+	parameterType="www.tours2us.com.model.CommuFreeBbsDto"
+	resultType="www.tours2us.com.model.CommuFreeBbsDto">
+	SELECT SEQ, TARGET_CATEGORY_SEQ, TARGET_USER_SEQ, 
+    	TITLE, CONTENT, REG_DATE, LAST_UPDATED, STATUS, NAME, EMAIL
+	FROM
+	(SELECT ROW_NUMBER() OVER (ORDER BY F.REG_DATE DESC) as rnum,
+	 F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
+         F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL
+      	FROM FREEBBS F, TRAVELER T
+	WHERE F.TARGET_USER_SEQ = T.SEQ AND STATUS=0
+	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+		<if test="s_category == 'email'"> AND NAME like '%'||#{s_keyword}||'%'</if>
+	</if>
+	) A
+	WHERE rnum between #{start} AND #{end}	
+</select>
+
+<select id="FreeGetBbsCount"
+	parameterType="www.tours2us.com.model.CommuFreeBbsDto"
+	resultType="int">
+	
+	SELECT NVL(COUNT(*),0) AS cnt
+	FROM FREEBBS WHERE 1 = 1
+	
+	<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+	</if>
+</select>
+
+
+
+
+
 
 </mapper>

@@ -171,10 +171,27 @@ public class CommuController {
 	method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsList(Model model , CommuFreeBbsDto freeparam ) throws Exception{
 		
-		List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
-		freelist = commuService.getFreeBbslist();
+		int sn = freeparam.getPageNumber();
+		int start = (sn) * freeparam.getRecordCountPerPage() + 1;
+		int end = (sn + 1) * freeparam.getRecordCountPerPage();
+		System.out.println("start: " + start);
+		System.out.println("end: " + end);
+		freeparam.setStart(start);
+		freeparam.setEnd(end);
+		int totalRecordCount = commuService.FreeBbsGetCount(freeparam);
+		List<CommuFreeBbsDto> freelist = commuService.FreeBbsGetPagingList(freeparam);
+		
+		//List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
+		//freelist = commuService.getFreeBbslist();
 		System.out.println("freelist = " + freelist);
 		model.addAttribute("freelist", freelist);
+		model.addAttribute("pageNumber", sn);
+		model.addAttribute("pageCountPerScreen", 10);
+		model.addAttribute("recordCountPerPage", freeparam.getRecordCountPerPage());
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("s_category", freeparam.getS_category());
+		model.addAttribute("s_keyword", freeparam.getS_keyword());
+		
 		
 		return "freeBbsList.tiles";
 	}

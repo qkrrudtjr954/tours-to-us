@@ -91,7 +91,10 @@ text-align: center;
 					<label class="title">비밀번호</label>
 				</td>
 				<td>
-					<input type="password" name="password" id="password" title="비밀번호">
+					<input type="password" name="password" id="password" title="비밀번호" onkeypress="caps_lock(event)">
+					<p id="capslock" style="position:relative; border:1px solid #7cc4bb; width:220px; bottom:0px; display:none"> 
+			    		&nbsp;<span style="font-family: 고딕;font-size: medium ; color: #191970; ">CapsLock키가 눌려있습니다.&nbsp;</span>
+					</p>
 				</td>
 			</tr>
 			<tr>
@@ -112,27 +115,6 @@ text-align: center;
 </div>
 </div>
 
-<!-- <div style="height:500px">
-</div>
-<div id="floatMenu">
-<ul style="width:100%; list-style-type: none;" class="menu_">
-	<li class="title"><h2>My<br>Page</h2></li>
-</ul>
-
-<div class="menu_table">
-		<ul style="list-style-type: none">
-			<li class="title">나의 플랜</li>
-			<li class="menu_item">
-				<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기" >나의 플랜보기</a>
-			</li>
-			<li class="title">회원정보관리</li>
-			<li class="menu_item">
-				<a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a>
-			</li> 
-		</ul>
-	</div>
-</div>
- -->
 <script>
 	document.getElementById('password').focus();
 </script>
@@ -172,4 +154,27 @@ $(document).ready(function() {
 function url_myplan() {
 	location.href="myplan.do";
 }
+
+function caps_lock(e) {
+    var keyCode = 0;
+    var shiftKey = false;
+    keyCode = e.keyCode;
+    shiftKey = e.shiftKey;
+    if (((keyCode >= 65 && keyCode <= 90) && !shiftKey)
+            || ((keyCode >= 97 && keyCode <= 122) && shiftKey)) {
+        show_caps_lock();
+        setTimeout("hide_caps_lock()", 3500);
+    } else {
+        hide_caps_lock();
+    }
+}
+
+function show_caps_lock() {
+ $("#capslock").show();
+}
+
+function hide_caps_lock() {
+ $("#capslock").hide();
+}
+
 </script>

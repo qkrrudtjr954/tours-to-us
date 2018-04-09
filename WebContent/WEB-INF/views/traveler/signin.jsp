@@ -27,7 +27,7 @@ input#signInBtn:hover {
 		<label for="inputPassword" class="sr-only">Password</label> 
 		<input type="password" id="inputPassword" name="password"  onkeypress="caps_lock(event)" class="form-control" placeholder="Password" data-msg="PassWord를" required>
 		<p id="capslock" style="position:relative; border:1px solid #7cc4bb; width:450px; bottom:0px; display:none"> 
-    		&nbsp;<span style="font-family: 고딕;font-size: medium ; color: #191970; "><b>CapsLock</b> 키가 눌려있습니다.&nbsp;</span>
+    		&nbsp;<span style="font-family: 고딕;font-size: medium ; color: #191970; ">CapsLock키가 눌려있습니다.&nbsp;</span>
 		</p>
 
 		

@@ -120,6 +120,21 @@
 <update id="FreeDeleteBbs" parameterType="int">
 		UPDATE FREEBBS SET STATUS=1
 		WHERE SEQ=#{seq} 	
-	</update>
+</update>
+
+<!-- 댓글List -->
+<select id="FreeGetAllComments" resultType="www.tours2us.com.model.CommuFreeCommentDto">
+		SELECT  F.SEQ, F.TARGET_USER_SEQ, F.TARGET_FREE_SEQ, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME  
+		FROM FREEBBSCOMMENT F, TRAVELER T 
+		WHERE F.TARGET_USER_SEQ = T.SEQ AND 
+		TARGET_FREE_SEQ=#{target_free_seq} AND STATUS=0 ORDER BY REG_DATE DESC
+</select>
+
+<!-- 댓글 쓰기 -->
+<insert id="FreeAddComent" parameterType="www.tours2us.com.model.CommuFreeCommentDto">
+	INSERT INTO FREEBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_FREE_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+	VALUES(FREEBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_free_seq},#{content},SYSDATE,SYSDATE,0)
+</insert>
+
 
 </mapper>

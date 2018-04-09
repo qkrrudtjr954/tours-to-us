@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCommentDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuCommentService;
@@ -208,7 +209,9 @@ public class CommuController {
 	public String freeBbsDetail(int seq,Model model) throws Exception {
 		
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
+		List<CommuFreeCommentDto> commentlist = commucommentService.FreeGetAllComments(seq);
 		
+		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("commufredetail", commufredetail);
 		System.out.println("c"+commufredetail.toString());
 		
@@ -249,21 +252,23 @@ public class CommuController {
 		}
 		return "redirect:/freeBbsList.do";
 	}
-
-
+	
+	
 	@ResponseBody
-	@RequestMapping(value = "AfterComentAf.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment, HttpServletRequest req)
-			throws Exception {
-		logger.info("CommuController >>>> AfterComentAf");
-
+	@RequestMapping(value="freeBbsComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
+	public List<CommuFreeCommentDto> freeBbsComentAf(Model model, CommuFreeCommentDto comment ,HttpServletRequest req) throws Exception{
+		logger.info("CommuController >>>> freeBbsComentAf");
+		
 		System.out.println("coment" + comment.toString());
-		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
+		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
-
-		List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
-
+		
+		List<CommuFreeCommentDto> commList = commucommentService.FreeAddComent(comment);
+		
 		return commList;
 	}
+
+
+	
 
 }

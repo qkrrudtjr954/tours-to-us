@@ -90,13 +90,13 @@
 
 <script type="text/javascript">
 	function addComment(seq) {
-	var seq = ${aftergetBbs.seq};
+	var seq = ${commufredetail.seq};
    	var user_seq = ${current_user.seq};
    	
    	$.ajax({
-	      url:"AfterComentAf.do",
+	      url:"freeBbsComentAf.do",
 	      type:"post",
-	      data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
+	      data:{ target_free_seq : seq,target_user_seq:user_seq ,content : $('#content').val() },
 	      success:function(data){
 	            
 	         $('.comment-area').children().remove();

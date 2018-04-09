@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import www.tours2us.com.dao.CommuCommentDao;
 import www.tours2us.com.model.CommuAfterCommentDto;
+import www.tours2us.com.model.CommuFreeCommentDto;
 @Service
 public class CommuCommentServiceImpl implements CommuCommentService {
 	Logger logger = LoggerFactory.getLogger(CommuCommentServiceImpl.class);
@@ -39,11 +40,27 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		return commuCommentDao.getAllComments(seq);
 	}
 
-	
-	
-	
-	
-	
-	
+	@Override
+	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return commuCommentDao.FreeGetAllComments(seq);
+	}
 
+	@Override
+	public List<CommuFreeCommentDto> FreeAddComent(CommuFreeCommentDto freecomment) throws Exception {
+		boolean result = commuCommentDao.FreeAddComent(freecomment);
+		System.out.println("addComment = " + result);
+		List<CommuFreeCommentDto> list = new ArrayList<CommuFreeCommentDto>();
+		int seq = freecomment.getTarget_free_seq();
+		System.out.println("seq = " + seq);
+		
+		if(result) {
+			list = commuCommentDao.FreeGetAllComments(seq);
+			
+		}
+
+		return list;
+	}
+	
+	
 }

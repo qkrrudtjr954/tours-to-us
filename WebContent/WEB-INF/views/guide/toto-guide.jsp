@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
 #title-sub{
@@ -50,39 +51,22 @@ h2 {
     -webkit-margin-end: 0px;
    
 } 
-.list-text{
-	height: 100%;
-    width: 100%;
-    vertical-align: super;
-}
 
-.card {
+.book-card{
 	padding: 0;
-	/* border: 1px solid #7DC3BB; */
+    width: 211px;
+    height: 305px;
+    margin: 0px 5px 50px 2px;
+    border-top: 2px solid #7DC3BB;
 }
 
-.card-body{
-	padding: 0;
-	height: 300px;
-	width: 500px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+.book-img{
+	width: 211px;
+    height: 305px;
 }
 
-.card-pic{
-
-}
-
-.card-content{
-	padding: 0;
-	height: 100px;
-	width: 200px;
-	border-top: 1px solid #000;
-	border-top-width: thin;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+.title-sub-content{
+	padding: 0 400px 0 0;
 }
 
 </style>
@@ -116,38 +100,65 @@ h2 {
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2 class="guide-title">투투 가이드북</h2>
 	</div>
-	<div class="offset-md-2 col-md-4 col-xs-12" id="title-sub">
-		<span>투디터들과 투투 운영진이 엄선한 가이드북</span>
+	<div class="offset-md-2 col-md-12" id="title-sub">
+		<span class="title-sub-content">투디터들과 투투 운영진이 엄선한 가이드북</span>
+		<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;">100,000</b></span>
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
 	<hr>
 </div>
 
+<form action="toto_search.do" method="get" id="_frmFormSearch">
+	<div class="row" style="margin:0 auto;width:900px;">
+		<div class="offset-md-1 input-group-prepend">
+			<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;" >
+				<option value="title">제목</option>
+				<option value="location">지역</option>
+			</select> 
+			<input type="text" class="form-control"
+				aria-label="Text input with segmented dropdown button" size="50"
+				name="s_keyword" id="text">
+		</div>
+		<div class="serach">
+			<button class="btn btn-outline-secondary" type="button" id="btnSearch"><span data-feather="search"></span></button>
+			<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span><span class="list-text">전체리스트</span></button>
+			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
+            <input type="hidden" name="recordCountPerPage"
+               id="_recordCountPerPage"
+               value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
+		</div>
+	</div>
+</form>
+<br>
 
 <div class="myplan-content">
 	<div class="row">
-		<div class="offset-md-2">
+		<div class="offset-md-2 col-md-8">
 			<c:if test="${empty totolist }">
 				<div class="col-md-11 text-center col-xs-12">
 					<p>작성된 글이 없습니다</p>
 				</div>
 			</c:if>
 			<div class="row no-gutters">
-			<c:forEach items="${totolist }" var="toto" varStatus="i">
-				<div class="card col-md-6 col-md-4 col-xs-4 box-shadow">
-					<div class="card-body">
-						<img class="card-pic" src="${toto.pic eq null ? './image/no-img.png' : toto.pic}">
+				<c:forEach items="${totolist }" var="toto" varStatus="i">
+					<div class="book-card">
+						<div class="book-img">
+							<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="300px" height="300px">
+						</div>
+						<div class="book-info" onclick="location.href='toto_detail.do?seq=${toto.seq }'" style="height: 25px;width: 210px;text-align: center;">
+								<span style="font-size: 14px;color: #484848;">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
+						</div>
 					</div>
-					<div class="card-content">
-						<span class="toto-title">${toto.title }</span>
-						<span></span>
-					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
 			</div>
-			
+
+
 		</div>
 	</div>
 </div>
+
+<div class="row content">
+
+	</div>
 

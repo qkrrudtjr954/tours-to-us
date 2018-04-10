@@ -3,8 +3,8 @@
 
 <mapper namespace="TotoGuide">
 	
-	<select id="getTotoList">
-		
+	<select id="getTotoList" resultType="www.tours2us.com.model.TotoGuideDto">
+		SELECT * FROM TOTOGUIDE
 	</select>
 
 </mapper>

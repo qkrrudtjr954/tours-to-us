@@ -3,22 +3,42 @@
 
 <style>
 .main-container {
-	background-image: url('${pageContext.request.contextPath}/image/background.jpg');
+	/* background-image: url('${pageContext.request.contextPath}/image/background.jpg'); */
 	background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 </style>
+<section>
+		
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				  <ol class="carousel-indicators">
+					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				  </ol>
+				  <div class="carousel-inner">
+				   	 <div class="carousel-item active">
+				     	 <img class="d-block w-100" src="image/back01.jpg" alt="First slide">
+				   	 </div>
+				    <div class="carousel-item">
+				     	 <img class="d-block w-100" src="image/back02.jpg" alt="Second slide">
+				    </div>
+				    <div class="carousel-item">
+				      <img class="d-block w-100" src="image/background.jpg" alt="Third slide">
+				    </div>
+				  </div>
+				  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+			</div>
 
-<section class="jumbotron text-center main-container">
-	<div class="container">
-		<h1 class="jumbotron-heading">Tours To Us.</h1>
-		<p class="lead text-muted">
-			여행을 떠나자 
-		</p>
-	</div>
 </section>
-
 <%-- <img src="${initParam.IMG_SERVER_PATH }/image/${current_user.profile }" width="50" height="50"> --%>
 <div class="album py-5 bg-light">
 	<div class="container">

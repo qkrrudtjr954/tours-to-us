@@ -128,10 +128,8 @@ public class CommuController {
 		boolean isS = commuService.AfterUpdate(bbs);
 		logger.info("isS" + isS);
 		if (isS) {
-
 			return "redirect:/afterdetail.do?seq=" + bbs.getSeq();
 		} else {
-
 			return "redirect:/afterUpdate.do?seq=" + bbs.getSeq();
 		}
 
@@ -166,8 +164,7 @@ public class CommuController {
 	}
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	//자유게시판
-	@RequestMapping(value="freeBbsList.do",
-	method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsList(Model model , CommuFreeBbsDto freeparam ) throws Exception{
 		
 		List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
@@ -186,8 +183,7 @@ public class CommuController {
 		
 	}
 
-	@RequestMapping(value="freeBbsWriteAf.do", 
-	method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="freeBbsWriteAf.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsWriteAf(Model model, CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
 		logger.info("CommuController >>>> freeBbsWriteAf");
 		
@@ -206,7 +202,6 @@ public class CommuController {
 
 	@RequestMapping(value = "freeBbsDetail.do",method = {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsDetail(int seq,Model model) throws Exception {
-		
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
 		
 		model.addAttribute("commufredetail", commufredetail);
@@ -248,22 +243,6 @@ public class CommuController {
 			e.printStackTrace();
 		}
 		return "redirect:/freeBbsList.do";
-	}
-
-
-	@ResponseBody
-	@RequestMapping(value = "AfterComentAf.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment, HttpServletRequest req)
-			throws Exception {
-		logger.info("CommuController >>>> AfterComentAf");
-
-		System.out.println("coment" + comment.toString());
-		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		comment.setTarget_user_seq(t_dto.getSeq());
-
-		List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
-
-		return commList;
 	}
 
 }

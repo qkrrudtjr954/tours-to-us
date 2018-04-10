@@ -44,7 +44,7 @@ font-weight: bold;
 
 margin-left: 100px;
 margin-right: 100px;
-margin-top: 30px;
+margin-top: 5px;
 border: 1px solid #dcdcdc;
 padding: 10px;
 }
@@ -163,6 +163,23 @@ padding-left:10px;
 
 }
 
+.update_div{
+margin-top:20px;
+margin-right: 110px;
+color: #6e6e6e;
+font-size: 13px;
+
+}
+
+
+#deleteBBS:link { color: #6e6e6e;; text-decoration: none;}
+#deleteBBS:visited { color: #6e6e6e;; text-decoration: none;}
+#deleteBBS:hover { color: #6e6e6e;; text-decoration: underline;}
+
+#updateBBS:link { color: #6e6e6e;; text-decoration: none;}
+#updateBBS:visited { color: #6e6e6e;; text-decoration: none;}
+#updateBBS:hover { color: #6e6e6e;; text-decoration: underline;}
+
 </style>
 
 <div id="floatMenu">
@@ -193,6 +210,13 @@ padding-left:10px;
 <h1>투디터 pick!</h1>
 </div>
 <hr>
+
+	 <div class="d-flex justify-content-end">
+		<div class="update_div">
+			<span id="updateBBS" onclick="bbsUpdate()">수정</span>
+			<span id="deleteBBS" onclick="bbsDelete()">삭제</span>
+		</div>
+	</div>
 <div class="detailArea">
 	<div class="row detailHead">			
 				<div class="user_profileView">
@@ -237,7 +261,7 @@ padding-left:10px;
 	<div class="detailBottom">
 	<hr class="comment_hr">
 		<div class="commemt_size">
-			<span>댓글</span>&nbsp;<span style="color: rgb(125, 195, 187); font-weight: bold; ">${commentlist.size() }</span>
+			<span>댓글</span>&nbsp;<span id="commentCount" style="color: rgb(125, 195, 187); font-weight: bold; ">${commentlist.size() }</span>
 		</div>
 		
 		<div class="row comment_input">
@@ -301,19 +325,11 @@ padding-left:10px;
 
 </div>
 
-<div class="update_delete_box">
-<div class="row">
 <div class="copyright">
 <span>Copyright(c)2018 by ${bbs.name } All pictures cannot be copied without permission. </span> 
 </div>
-<div class="update_div">
-	<span><a href="toditor_update.do?seq=${bbs.seq }">수정</a></span>
-</div>
-<div class="delete_div">
-	<span onclick="bbsDelete()">삭제</span>
-</div>
-</div>
-</div>
+
+
 
 </div> <!-- 내용 끝 -->
 
@@ -330,6 +346,9 @@ function bbsDelete() {
 	
 }
 
+function bbsUpdate() {
+	location.href="toditor_update.do?seq=${bbs.seq}";
+}
 $('#like_btn').click(function () {
 	
 	
@@ -364,10 +383,14 @@ function addComment(seq) {
 		success:function(data){
 				
 			$('.comment-area').children().remove();
+			
+			
 
 			for(var i=0; i <data.length; i++){
 				printCommentHtml(data[i]);
+				
 			}
+			$('#commentCount').html(data.length);
 			$('#content0').val('');
 			
 			
@@ -397,6 +420,8 @@ function printCommentHtml(comment ){
 				'<hr>';
 			$('.comment-area').append(html);
 } 
+
+
 function dateTest(date) {
 	var date = new Date(date);
 	

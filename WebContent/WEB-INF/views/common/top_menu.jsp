@@ -134,7 +134,6 @@ div.user-action a:hover {
 	         <ul class="dropdown-menu">
 				<li class="dropdown-item"><a href="afterBbs.do">여행후기</a></li>
 				<li class="dropdown-item"><a href="freeBbsList.do">자유게시판</a></li>
-				<li class="dropdown-item"><a href="#">Page 1-3</a></li>
 			</ul>
        	</li>
 		<li class="dropdown">

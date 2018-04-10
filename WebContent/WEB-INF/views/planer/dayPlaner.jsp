@@ -43,13 +43,20 @@
     height: 500px;
     bottom: 100px;
     z-index: 500;
-    background-color: white;
+    background-color: brown;
     border: 1px solid #7DC3BB;
-    background-color: lightpink;
-    /* background-image: url("./image/chat-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; */
+}
+
+@media (max-width: 768px) {
+	.chat-container {
+		position: inherit;
+	    height: 200px;
+	    z-index: 500;
+	}
+	
+	button#toggleChat {
+		display: none;
+	}
 }
 #data {
 	font-size: 13px;
@@ -136,6 +143,7 @@
     width: 100%; 
     height: 670px;
     border: 1px solid gray;
+    margin: 5px;
 }
 .timePlanersList {
     width: 100%;
@@ -151,6 +159,16 @@
 }
 .timePlaner > ul {
 	margin-left: 0;
+}
+
+button#toggleChat {
+    position: absolute;
+    right: 0px;
+    top: -33px;
+}
+
+#timePlanerForm {
+	padding: 5px;
 }
 
 </style>
@@ -290,13 +308,12 @@
 					<div class="timePlanersList"></div>
 				</div>
 			</div>
-		</div>		
-
-		<div class="hiddenChat" style="position: fixed;right: 0px;top: 142px;">
-			<button class="btn btn-outline-secondary" id="toggleChat">채팅 접기</button>
 		</div>
 
 		<div class="col-md-2 chat-container">
+			<div class="hiddenChat">
+				<button class="btn-sm btn-outline-secondary" id="toggleChat">채팅 접기</button>
+			</div>
 			<div class="chat-container2">
 			    <div id="chat-data"></div>
 			</div>
@@ -309,6 +326,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="row no-gutters">
 		<div class="offset-md-2 col-md-4">
 			<div class="d-flex justify-content-center">
@@ -369,12 +388,14 @@
 var sock = new SockJS("${pageContext.request.contextPath}/echo");
 
 $("#toggleChat").click(function(){
-	if($(".chat-container").hasClass('closed')){
-	    $(".chat-container").animate({ width: "100%" }, 1000);
+	if($(".chat-container").hasClass('closed')){		
 	    $(".chat-container").removeClass('closed');		
+		$(this).html('채팅 접기');
+	    $(".chat-container").animate({ width: "100%" }, 1000);
 	} else {
-	    $(".chat-container").animate({ width: "0%" }, 1000);
 		$(".chat-container").addClass('closed');		
+		$(this).html('채팅 펼치기');
+	    $(".chat-container").animate({ width: "0%" }, 1000);
 	}
 });
 
@@ -443,20 +464,6 @@ function removeSpan(dom) {
 	$(dom).parent().find('span.error-msg').remove();
 }
 
-function checkDateRange() {
-	let result = true;
-	let from = new Date($('#start_time').val());
-	let to = new Date($('#start_time').val());
-		
-	if(from > to){
-		$('#start_time').parent().append('<span class="error-msg" style="font-size:80%;color:#dc3545;">출발 일자와 도착 일자를 확인해주세요.</span>');
-		$('#start_time').focus();
-		result = false;
-	} else {
-		removeSpan($('#from_date'));
-	}
-	return result;
-}
 
 function validation(dom, msg) {
 	let result = true;

@@ -40,18 +40,7 @@
 .change-title-div {
 	display: none;
 }
-.change-title-div,
-.title-div {
-	/* margin: 10px 0px; */
-}
 
-.status-img{
-	position: absolute;
-    border-radius: 50px;
-    left: 390px;
-    top: 8px;
-   
-}
 
 h2 {
     display: block;
@@ -67,6 +56,11 @@ h2 {
 .plan-detail:hover {text-decoration: underline; color: #fff;}
 .plan-detail:visited {text-decoration: none; color: #fff;}
 
+.ing-img {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
 
 .myplan-title{
 	border-bottom: 2px solid #7cc4bb;
@@ -97,7 +91,7 @@ h2 {
 			</c:if>
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
-					<div class="card col-md-6 ">
+					<div class="card offset-md-3 col-md-6 ">
 						<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
 							&nbsp;
 							<c:if test="${plan.status == 0 }">
@@ -147,16 +141,16 @@ h2 {
 <div class="offset-md-2 col-md-8">
 <div class="row no-gutters">
 		<c:forEach items="${planlist }" var="plan" varStatus="i">
-				<div class="card col-md-4 col-xs-4 box-shadow">
+				<div class="card offset-md-3 col-md-6 col-xs-4 box-shadow">
 					<div class="card-img">
-						<img class="card-img-top" src="${plan.paper eq null ? 'image/no-img.png' : plan.paper}" height="300px" width="300px">
-						<%-- 진행중 이미지 
-						<c:if test="${plan.status == 0 }">
-							<div class="ing-img">
-								<img src="./image/ing.png" class="status-img" width="100px" height="100px">
-							</div>
-						</c:if> --%>
+						<img class="card-img-top" src="${plan.paper eq null ? 'image/no-img.png' : plan.paper}" height="300px" width="300px"> 
 					</div>
+					
+					<c:if test="${plan.status == 0 }">
+						<div class="ing-img">
+							<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+						</div>
+					</c:if>
 					<div class="card-body" onclick="location.href='planDetail.do?seq=${plan.seq }'" style="cursor: pointer;height: 100px;">
 						<span style="font-size: 15px; font-weight: bold;" class="span-title">${plan.title }</span><br>
 						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">writer: ${plan.name }</span>

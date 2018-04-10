@@ -210,8 +210,8 @@ $('#next-step').on('click', function () {
 $('#friendName').on('keyup', function() {
 	var name = $('#friendName').val();
 
-	if (name == "" || name.length < 3) {
-		$('#notice').text('이름을 3글자 이상 입력해주세요.');
+	if (name == "") {
+		$('#notice').text('이름을 입력해주세요.');
 		$('#notice').css('color', 'red').css('font-size', '13px');
 		$('#friendName').focus();
 	} else {
@@ -264,7 +264,7 @@ function addFriend(seq, name){
 						'<tr>' + 
 							'<td><img alt="profile" src="${initParam.IMG_SERVER_PATH }/image/'+data.profile+'"></td>'+
 							'<td>' + data.name + '</td>' + 
-							'<td style="text-align:left;"><button class="btn btn-outline-danger" onclick="deleteFriend('+ data.seq +', this)">x</button></td>' + 
+							'<td style="text-align:center;"><button class="btn btn-outline-danger" onclick="deleteFriend('+ data.seq +', this)">x</button></td>' + 
 						'</tr>';
 						
 					if(data.email != '${current_user.email}'){

@@ -478,17 +478,23 @@ $('#addButton').on('click', function () {
 	$(this).attr('disabled', true);	
 	if(validation($('#location'), '지역을 입력해주세요.') && validation($('#start_time'), '출발 시간을 입력해주세요.') && validation($('#end_date'), '도착 시간을 입력해주세요.') && validation($('#transportation'), '이동 수단을 선택해주세요')){
 		if(checkDateRange()){
-			var formData = $('#timePlanerForm').serialize();
-			
 			$.ajax({
 				url : 'addTimePlaner.do',
-				data : formData,
+				data : { 
+					target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val(), 
+					start_time : $('select[name="start_time"]').val(),
+					end_time : $('select[name="end_time"]').val(),
+					location : $('input[name="location"]').val(),
+					expected_cost : $('input[name="expected_cost"]').val(),
+					transportation : $('select[name="transportation"]').val(),
+					types : $('select[name="types"]').val(),
+					content : $('textarea[name="content"]').val()
+				},
 				method : 'POST',
 				success : function (data) {
-					console.log(data);
 					drawTimePlaner(data);
 				}
-			})
+			});
 		}
 	}
 	$(this).attr('disabled', false);

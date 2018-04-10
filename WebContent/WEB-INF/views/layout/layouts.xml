@@ -106,6 +106,10 @@
 	<definition name="toditor_detail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/toditor_detail.jsp"/>
 	</definition>
+	<definition name="toditor_update.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toditor_update.jsp"/>
+	</definition>
+	
 	
 	<!-- 투둥이 가이드북 -->
 	<definition name="user_guide.tiles" extends="main.tiles">

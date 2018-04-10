@@ -155,20 +155,20 @@ public class CommuController {
 	@RequestMapping(value="AfterComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
 	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
 		logger.info("CommuController >>>> AfterComentAf");
-		
+
 		System.out.println("coment" + comment.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
-		
+
 		List<CommuAfterCommentDto> commList = commucommentService.addComment(comment);
-		
+
 		return commList;
 	}
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	//자유게시판
 	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsList(Model model , CommuFreeBbsDto freeparam ) throws Exception{
-		
+
 		int sn = freeparam.getPageNumber();
 		int start = (sn) * freeparam.getRecordCountPerPage() + 1;
 		int end = (sn + 1) * freeparam.getRecordCountPerPage();
@@ -178,7 +178,7 @@ public class CommuController {
 		freeparam.setEnd(end);
 		int totalRecordCount = commuService.FreeBbsGetCount(freeparam);
 		List<CommuFreeBbsDto> freelist = commuService.FreeBbsGetPagingList(freeparam);
-		
+
 		//List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
 		//freelist = commuService.getFreeBbslist();
 		System.out.println("freelist = " + freelist);
@@ -189,33 +189,33 @@ public class CommuController {
 		model.addAttribute("totalRecordCount", totalRecordCount);
 		model.addAttribute("s_category", freeparam.getS_category());
 		model.addAttribute("s_keyword", freeparam.getS_keyword());
-		
-		
+
+
 		return "freeBbsList.tiles";
 	}
 
 	@RequestMapping(value = "freeBbsWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})
 	public String freeBbsWrite(Model model) {
 		logger.info("CommuController >>>> freeBbsWrite");
-		
+
 		return "freeBbsWrite.tiles";
-		
+
 	}
 
 	@RequestMapping(value="freeBbsWriteAf.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsWriteAf(Model model, CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
 		logger.info("CommuController >>>> freeBbsWriteAf");
-		
+
 		System.out.println("dddddd" + freewrite.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		System.out.println("s"+t_dto.toString());
 
 		freewrite.setTarget_user_seq(t_dto.getSeq());
 		boolean isS = commuService.FreeBbsWrite(freewrite);
-		
+
 		return "redirect:/freeBbsList.do";
-		
-		
+
+
 	}
 
 
@@ -223,11 +223,11 @@ public class CommuController {
 	public String freeBbsDetail(int seq,Model model) throws Exception {
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
 		List<CommuFreeCommentDto> commentlist = commucommentService.FreeGetAllComments(seq);
-		
+
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("commufredetail", commufredetail);
 		System.out.println("c"+commufredetail.toString());
-		
+
 		return"freeBbsDetail.tiles";
 	}
 
@@ -245,13 +245,13 @@ public class CommuController {
 		boolean isS = commuService.FreeBbsUpdate(freebbsupdate);
 		logger.info("isS" + isS);
 		if(isS) {
-			
+
 			return "redirect:/freeBbsDetail.do?seq=" + freebbsupdate.getSeq();
 		}else{
-			
+
 			return "redirect:/freeBbsDetail.do?seq=" + freebbsupdate.getSeq();
 		}
-		
+
 	}
 
 	@RequestMapping(value="freeBbsDelete.do", method={RequestMethod.GET, RequestMethod.POST})
@@ -266,24 +266,24 @@ public class CommuController {
 		return "redirect:/freeBbsList.do";
 	}
 
-	
-	
+
+
 	@ResponseBody
 	@RequestMapping(value="freeBbsComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
 	public List<CommuFreeCommentDto> freeBbsComentAf(Model model, CommuFreeCommentDto comment ,HttpServletRequest req) throws Exception{
 		logger.info("CommuController >>>> freeBbsComentAf");
-		
+
 		System.out.println("coment" + comment.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
-		
+
 		List<CommuFreeCommentDto> commList = commucommentService.FreeAddComent(comment);
-		
+
 		return commList;
 	}
 
 
-	
+
 
 
 }

@@ -26,18 +26,39 @@ public class ToditorBBS implements Serializable {
 	private String pic1;
 	private Date reg_date;
 	private Date last_date;
+	private int readcount;
+	private int status;
+	
+	
+	
 	private String category;
 	private String name;
 	private String profile;
 	private int like_count;
 	
+	
+	private int next_seq;
+	private int prev_seq;
+	private String next_title;
+	private String prev_title;
+	
+	
+	
 	public ToditorBBS() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
+
+
+
+
 
 	public ToditorBBS(int seq, int target_user_seq, int target_category_seq, String title, String content, String pic1,
-			Date reg_date, Date last_date, String category, String name, String profile, int like_count) {
+			Date reg_date, Date last_date, String category, String name, String profile, int like_count, int next_seq,
+			int prev_seq, String next_title, String prev_title) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -51,7 +72,12 @@ public class ToditorBBS implements Serializable {
 		this.name = name;
 		this.profile = profile;
 		this.like_count = like_count;
+		this.next_seq = next_seq;
+		this.prev_seq = prev_seq;
+		this.next_title = next_title;
+		this.prev_title = prev_title;
 	}
+
 
 
 
@@ -75,6 +101,39 @@ public class ToditorBBS implements Serializable {
 		this.name = name;
 		this.profile = profile;
 	}
+
+	
+	
+	public ToditorBBS(int seq, int target_user_seq, int target_category_seq, String title, String content, String pic1,
+			Date reg_date, Date last_date, int readcount, int status, String category, String name, String profile,
+			int like_count, int next_seq, int prev_seq, String next_title, String prev_title) {
+		super();
+		this.seq = seq;
+		this.target_user_seq = target_user_seq;
+		this.target_category_seq = target_category_seq;
+		this.title = title;
+		this.content = content;
+		this.pic1 = pic1;
+		this.reg_date = reg_date;
+		this.last_date = last_date;
+		this.readcount = readcount;
+		this.status = status;
+		this.category = category;
+		this.name = name;
+		this.profile = profile;
+		this.like_count = like_count;
+		this.next_seq = next_seq;
+		this.prev_seq = prev_seq;
+		this.next_title = next_title;
+		this.prev_title = prev_title;
+	}
+
+
+
+
+
+
+
 
 
 	public int getSeq() {
@@ -185,14 +244,174 @@ public class ToditorBBS implements Serializable {
 		this.like_count = like_count;
 	}
 
+	
+	public int getNext_seq() {
+		return next_seq;
+	}
+
+
+
+
+
+
+
+
+
+	public void setNext_seq(int next_seq) {
+		this.next_seq = next_seq;
+	}
+
+
+
+
+
+
+
+
+
+	public int getPrev_seq() {
+		return prev_seq;
+	}
+
+
+
+
+
+
+
+
+
+	public void setPrev_seq(int prev_seq) {
+		this.prev_seq = prev_seq;
+	}
+
+
+
+
+
+
+
+
+
+	public String getNext_title() {
+		return next_title;
+	}
+
+
+
+
+
+
+
+
+
+	public void setNext_title(String next_title) {
+		this.next_title = next_title;
+	}
+
+
+
+
+
+
+
+
+
+	public String getPrev_title() {
+		return prev_title;
+	}
+
+
+
+
+
+
+
+
+
+	public void setPrev_title(String prev_title) {
+		this.prev_title = prev_title;
+	}
+
+
+
+
+
+
+
+
+
+	public int getReadcount() {
+		return readcount;
+	}
+
+
+
+
+
+
+
+
+
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+
+
+
+
+
+
+
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+
+
+
+
+
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
+
+
+
+
+
+
 
 	@Override
 	public String toString() {
 		return "ToditorBBS [seq=" + seq + ", target_user_seq=" + target_user_seq + ", target_category_seq="
 				+ target_category_seq + ", title=" + title + ", content=" + content + ", pic1=" + pic1 + ", reg_date="
-				+ reg_date + ", last_date=" + last_date + ", category=" + category + ", name=" + name + ", profile="
-				+ profile + ", like_count=" + like_count + "]";
+				+ reg_date + ", last_date=" + last_date + ", readcount=" + readcount + ", status=" + status
+				+ ", category=" + category + ", name=" + name + ", profile=" + profile + ", like_count=" + like_count
+				+ ", next_seq=" + next_seq + ", prev_seq=" + prev_seq + ", next_title=" + next_title + ", prev_title="
+				+ prev_title + "]";
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

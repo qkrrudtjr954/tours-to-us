@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.tours2us.com.dao.ToditorDao;
+import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.PagingVo;
 import www.tours2us.com.model.ToditorBBS;
 import www.tours2us.com.model.ToditorCategoryDto;
+import www.tours2us.com.model.ToditorCommentDto;
 
 
 
@@ -42,5 +44,44 @@ public class ToditorService {
 	public int ToditorgetBbsCount(PagingVo pv) throws Exception{
 		
 		return toditorDao.ToditorgetBbsCount(pv);
+	}
+	
+	public List<ToditorBBS> best123(){
+		
+		return toditorDao.best123();
+	}
+	
+	public List<ToditorCommentDto> getAllComments(int seq) throws Exception {
+		
+		return toditorDao.getAllComments(seq);
+	}
+
+	public  List<ToditorCommentDto>  addComment(ToditorCommentDto comment) throws Exception {
+		boolean result = toditorDao.addComment(comment);
+		System.out.println("addComment = " + result);
+		List<ToditorCommentDto> list = new ArrayList<ToditorCommentDto>();
+		System.out.println("comment = " +  comment);
+		int seq = comment.getTarget_editor_seq();
+		System.out.println("seq = " + seq);
+		if(result) {
+			
+			list = toditorDao.getAllComments(seq);
+			
+		}
+		
+		return list;
+	}
+	
+	public boolean ToditorUpdate(ToditorBBS bbs) throws Exception {		
+		return toditorDao.ToditorUpdate(bbs);
+	}
+	
+	public void updateReadCount(int seq) throws Exception{
+		
+		toditorDao.updateReadCount(seq);
+	}
+	
+	public void ToditorDelete(int seq) throws Exception{
+		toditorDao.ToditorDelete(seq);
 	}
 }

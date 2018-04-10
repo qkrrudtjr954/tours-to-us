@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 #floatMenu {
 	position: absolute;
@@ -61,6 +62,20 @@
 	position: absolute;
 	top: 13px;
 	right: 15px;
+	color: #ffffff;
+	text-shadow: 5px 5px 5px #444444;
+}
+
+#like_best{
+	position: absolute;
+	top: 5px;
+	left: 240px;
+	
+}
+#likecount{
+	position: absolute;
+	top: 17px;
+	left: 290px;
 	color: #ffffff;
 	text-shadow: 5px 5px 5px #444444;
 }
@@ -162,81 +177,38 @@ padding-top:15px;
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="row">
-      	 <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="image/example.jpg" height="300px">			
-				<div class="overlay">
-					<div class="overlay-content">
+      <c:forEach items="${b1list }" var="item" begin="0" end="2" varStatus="i">
+      	 <div class="col-md-4" id="hovereffect" >
+						<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">			
+				<div class="overlay" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
+				<span id="like_best"><img src="image/hearticon.png"></span><span id="likecount">${item.like_count }</span>
+					<div class="overlay-content">					
 					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
-					<span>제주도<br>
-					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
-					Editor: 김아무개</span>
+					<span>${item.category }<br>
+					<b>${item.title }</b><br>
+					Editor: ${item.name }</span>
 					</div>
 				</div>
 		  </div>
-		 
-		 <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="image/example.jpg" height="300px">			
-				<div class="overlay">
-					<div class="overlay-content">
-					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
-					<span>제주도<br>
-					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
-					Editor: 김아무개</span>
-					</div>
-				</div>
-		  </div>
-		  
-		  <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="image/example.jpg" height="300px">			
-				<div class="overlay">
-					<div class="overlay-content">
-					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
-					<span>제주도<br>
-					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
-					Editor: 김아무개</span>
-					</div>
-				</div>
-		  </div>
-	
+		  	</c:forEach>	
       </div>
     </div>
     <div class="carousel-item">
   <div class="row">
+      	   <c:forEach items="${b1list }" var="item" begin="3" end="5"  varStatus="i">
       	 <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="image/example.jpg" height="300px">			
-				<div class="overlay">
+						<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">			
+				<div class="overlay" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
+				<span id="like_best"><img src="image/hearticon.png"></span><span id="likecount">${item.like_count }</span>
 					<div class="overlay-content">
 					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
-					<span>제주도<br>
-					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
-					Editor: 김아무개</span>
+					<span>${item.category }<br>
+					<b>${item.title }</b><br>
+					Editor: ${item.name }</span>
 					</div>
 				</div>
 		  </div>
-		 
-		 <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="image/example.jpg" height="300px">			
-				<div class="overlay">
-					<div class="overlay-content">
-					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
-					<span>제주도<br>
-					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
-					Editor: 김아무개</span>
-					</div>
-				</div>
-		  </div>
-		  
-		  <div class="col-md-4" id="hovereffect">
-						<img class="card-img-top" src="image/example.jpg" height="300px">			
-				<div class="overlay">
-					<div class="overlay-content">
-					<span data-feather="map-pin" style="color: rgb(26, 188, 156);  "></span>
-					<span>제주도<br>
-					<b>전복이 꽉 차있는 제주 [김만복 김밥]</b><br>
-					Editor: 김아무개</span>
-					</div>
-				</div>
-		  </div>
+		</c:forEach>	
 	
       </div>
     </div>
@@ -292,7 +264,7 @@ padding-top:15px;
 								<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">
 							</c:otherwise>
 						</c:choose>
-						<span id="like"><img src="image/hearticon.png">100</span>
+						<span id="like"><img src="image/hearticon.png">${item.like_count }</span>
 					</div>
 					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'" style="cursor: pointer;">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>

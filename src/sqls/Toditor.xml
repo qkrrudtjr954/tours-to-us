@@ -8,83 +8,124 @@
 	</select>
 
 	<insert id="Toditorwrite" parameterType="www.tours2us.com.model.ToditorBBS">
-	INSERT INTO EDITOR VALUES(EDITOR_SEQ.NEXTVAL, #{target_user_seq}, #{target_category_seq}, #{title}, #{content}, #{pic1}, sysdate, sysdate)
+	INSERT INTO EDITOR VALUES(EDITOR_SEQ.NEXTVAL, #{target_user_seq}, #{target_category_seq}, #{title}, #{content}, #{pic1}, sysdate, sysdate, 0, 0)
 	</insert>
-	
+
 	<select id="ToditorgetList" resultType="www.tours2us.com.model.ToditorBBS">
 	SELECT TITLE, E.SEQ, CONTENT, PIC1, (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME
 	FROM EDITOR E, TRAVELER T
 	WHERE T.SEQ = E.TARGET_USER_SEQ
 	ORDER BY E.REG_DATE DESC
 	</select>
-	
+
 	<select id="ToditorgetPagingList" parameterType="www.tours2us.com.model.PagingVo" resultType="www.tours2us.com.model.ToditorBBS" >
-	SELECT TITLE, SEQ, CONTENT, PIC1,CATEGORY, NAME
-	FROM 
-	( SELECT ROW_NUMBER() OVER (ORDER BY   E.REG_DATE DESC) as rnum,  
-		TITLE, E.SEQ, CONTENT, PIC1, 
-		(SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME
+	SELECT TITLE, SEQ, CONTENT, PIC1,CATEGORY, NAME, like_count
+	FROM
+	( SELECT ROW_NUMBER() OVER (ORDER BY  E.REG_DATE DESC) as rnum,
+		TITLE, E.SEQ, CONTENT, PIC1,
+		(SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME,
+		(select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=3) as like_count
 		FROM EDITOR E, TRAVELER T
-		WHERE T.SEQ = E.TARGET_USER_SEQ 
+		WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 0
 		<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
-			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
-			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>	
-		</if> 
+			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>
+			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+		</if>
 		) A
 		WHERE rnum between #{start} AND #{end}
 	</select>
 
-	
+
 	<select id="ToditorgetBbsCount" parameterType="www.tours2us.com.model.PagingVo" resultType="java.lang.Integer">
-	 
+
 			SELECT NVL(count(*),0) AS cnt
 			  FROM   EDITOR  WHERE 1 = 1
-		
+
 		<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
-			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
-			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>	
+			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>
+			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 		</if>
-	</select>	
-	
-	
-	
-	<select id="ToditorDetail" resultType="www.tours2us.com.model.ToditorBBS" parameterType="java.lang.Integer">
-		SELECT E.SEQ, E.TITLE, E.CONTENT,  (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME,  E.REG_DATE,
-		T.PROFILE
-		FROM EDITOR E, TRAVELER T
-		WHERE T.SEQ = E.TARGET_USER_SEQ AND E.SEQ = #{seq}
 	</select>
-	
+
+
+
+	<select id="ToditorDetail" resultType="www.tours2us.com.model.ToditorBBS" parameterType="java.lang.Integer">
+		 SELECT*FROM
+        (SELECT E.SEQ, E.TITLE, E.CONTENT,  (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME,  E.REG_DATE,
+		T.PROFILE,  E.READCOUNT,
+        LEAD(E.TITLE,1) OVER(ORDER BY E.reg_date DESC) NEXT_TITLE,
+     	LEAD(E.SEQ,1,0) OVER(ORDER BY E.reg_date DESC) NEXT_SEQ,
+     	Lag(E.TITLE,1) OVER(ORDER BY E.reg_date DESC) PREV_TITLE,
+     	Lag(E.SEQ,1,0) OVER(ORDER BY E.reg_date DESC) PREV_SEQ
+		FROM EDITOR E, TRAVELER T
+		WHERE T.SEQ = E.TARGET_USER_SEQ ) WHERE SEQ = #{seq}
+	</select>
+
 	<!-- 투둥이 가이드북 DISTINCT -->
-	
+
 	<select id="guideSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
 		 SELECT  SEQ, TARGET_USER_SEQ, TITLE, LOCATION, STATUS, TO_DATE, FROM_DATE,
 			RANGE, TOTAL_COST, REG_DATE, LAST_UPDATED, PAPER, NAME
-		   FROM 
+		   FROM
 		   (SELECT ROW_NUMBER() OVER (ORDER BY P.REG_DATE DESC) as rnum,
 		    P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE,
-			P.RANGE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, T.NAME 
-            FROM TRAVELER T, PLANER P 
+			P.RANGE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, T.NAME
+            FROM TRAVELER T, PLANER P
 		   WHERE  T.SEQ = P.TARGET_USER_SEQ AND P.STATUS NOT IN(SELECT STATUS FROM PLANER WHERE STATUS=2 OR STATUS=3 OR STATUS=4)
 		    <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
-		      <if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>   
+		      <if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>
 		      <if test="s_category == 'location'"> AND LOCATION like '%'||#{s_keyword}||'%'</if>
 		   </if>
 		   ) A
-		   WHERE rnum between #{start} AND #{end} 
+		   WHERE rnum between #{start} AND #{end}
            ORDER BY REG_DATE DESC
 	</select>
-	
+
 	<select id="guideCount"  parameterType="www.tours2us.com.model.PlanerDto" resultType="int">
-   
+
 	   SELECT NVL(COUNT(*),0) AS cnt
 	   FROM PLANER WHERE 1 = 1
-	   
+
 	   <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
-	      <if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>   
+	      <if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>
 	      <if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 	   </if>
-	</select>  
-	
-	
+	</select>
+
+	<select id="best123" resultType="www.tours2us.com.model.ToditorBBS">
+		SELECT RNUM, TITLE, SEQ, CONTENT, PIC1, CATEGORY, NAME, LIKE_COUNT
+		FROM
+		(	select ROW_NUMBER() OVER (ORDER BY LIKE_COUNT DESC) AS RNUM, TITLE, SEQ, CONTENT, PIC1, CATEGORY, NAME, LIKE_COUNT
+			from (
+				select TITLE, E.SEQ, CONTENT, PIC1, (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME, (select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=3) as like_count
+				FROM EDITOR E, TRAVELER T
+				WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 0
+				ORDER BY LIKE_COUNT DESC
+			) SUB
+		) A
+		WHERE RNUM BETWEEN 1 AND 6
+	</select>
+
+	<select id="getAllComments" resultType="www.tours2us.com.model.ToditorCommentDto">
+		SELECT T.NAME, T.PROFILE, E.CONTENT, E.REG_DATE FROM TRAVELER T, EDITORCOMMENT E WHERE TARGET_EDITOR_SEQ=#{target_editor_seq} AND STATUS = 0 AND T.SEQ = E.TARGET_USER_SEQ ORDER BY REG_DATE DESC
+	</select>
+
+	<!-- 댓글 쓰기 -->
+	<insert id="AddComent" parameterType="www.tours2us.com.model.ToditorCommentDto">
+		INSERT INTO EDITORCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_EDITOR_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
+		VALUES(EDITORCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_editor_seq},#{content},SYSDATE,SYSDATE,0)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="ToditorUpdate" parameterType="www.tours2us.com.model.ToditorBBS">
+		UPDATE EDITOR SET TITLE=#{title}, CONTENT=#{content}, LAST_UPDATED=SYSDATE WHERE SEQ = #{seq}
+	</update>
+
+	<update id="updateReadCount" parameterType="java.lang.Integer">
+		UPDATE EDITOR SET READCOUNT=READCOUNT+1 WHERE SEQ = #{seq}
+	</update>
+
+	<update id="ToditorDelete" parameterType="java.lang.Integer">
+		UPDATE EDITOR SET STATUS=1 WHERE SEQ = #{seq}
+	</update>
 </mapper>

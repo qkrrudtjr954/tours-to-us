@@ -3,6 +3,27 @@
 --------------------------------------------------------
 
 --------------------------------------------------------
+-- Table TOTOGUIDE
+--------------------------------------------------------
+
+DROP TABLE TOTOGUIDE	CASCADE CONSTRAINTS;
+
+DROP SEQUENCE SEQ_TOTOGUIDE;
+
+CREATE TABLE TOTOGUIDE(
+	SEQ NUMBER(8) PRIMARY KEY,
+	TITLE VARCHAR2(200) NOT NULL,
+	CONTENT VARCHAR2(4000) NOT NULL,
+	FILENAME VARCHAR2(50) NOT NULL,
+	READCOUNT NUMBER(8) NOT NULL,
+	DOWNCOUNT NUMBER(8) NOT NULL,
+	REG_DATE DATE NOT NULL
+);
+
+CREATE SEQUENCE TOTOGUIDE_SEQ START WITH 1 INCREMENT BY 1;
+
+
+--------------------------------------------------------
 --  DDL for Table TRAVELER
 --------------------------------------------------------
 

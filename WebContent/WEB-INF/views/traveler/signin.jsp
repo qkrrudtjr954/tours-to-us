@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 #signInBtn {
@@ -7,6 +8,7 @@
     border-radius: 10px;
     width: 100%;
     color: #7cc4bb;
+    background: white;
     transition: color 1s, background-color 1s;
 }
 
@@ -16,8 +18,15 @@ input#signInBtn:hover {
     transition: color 1s, background-color 1s;
 }
 </style>
+
+
 <div class="d-flex justify-content-center text-center row no-gutters">
 	<form class="form-signin" name="frmForm">
+		<c:if test="${param.error eq 400 }">
+			<div class="alert alert-danger" role="alert" style="margin-bottom:25px;">
+			  	<span>로그인 후 이용 가능한 서비스입니다.</span>
+			</div>	
+		</c:if>
 		<img class="mb-4" src="./image/signimg.png" alt="" width="150px" height="150px">
 		<h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
 		
@@ -33,7 +42,7 @@ input#signInBtn:hover {
 		
 		<div class="checkbox mb-3">
 			<label> 
-				<input type="checkbox" value="remember-me"> Remember me
+				<input type="checkbox" value="remember-me"> 이메일 기억하기
 			</label>
 		</div>
 		<input class="btn btn-lg btn-defalut btn-block" type="button" id="signInBtn" value="Sign in">
@@ -41,9 +50,10 @@ input#signInBtn:hover {
 	</form>
 </div>
 
+
 <script type="text/javascript">
 $("#signInBtn").click(function() {
-	//alert("SigninBtn");
+	$(this).attr('disabled', true);
 	if($("#inputEmail").val()==""){
 		alert($("#inputEmail").attr("data-msg")+" 입력해 주십시요");
 		$("#inputEmail").focus();
@@ -54,7 +64,8 @@ $("#signInBtn").click(function() {
 	}
 	else{
 		$("#frmForm").attr("target","_self").submit();
-	} 
+	}
+	$(this).attr('disabled', false);
 });
 
 $("#inputEmail").keypress(function(event) {

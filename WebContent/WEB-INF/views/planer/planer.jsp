@@ -53,7 +53,7 @@ button#next-step:hover {
 </style>
 <div class="planer-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>여행 계획</h2>
+		<h2>여행 계획 만들기</h2>
 	</div>	
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">

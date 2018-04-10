@@ -129,6 +129,30 @@
     border-radius: 50%;
 }
 
+
+.timePlanerContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%; 
+    height: 670px;
+    border: 1px solid gray;
+}
+.timePlanersList {
+    width: 100%;
+    padding: 5px;
+}
+.timePlaner {
+	border: 2px solid black;
+	font-size: 13px;
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 5px;
+	width: 100%;
+}
+.timePlaner > ul {
+	margin-left: 0;
+}
+
 </style>
 <div class="offset-md-3 col-md-6 col-xs-12 planer-title">
 	<div class="d-flex justify-content-around align-items-center">
@@ -267,6 +291,11 @@
 				</div>
 			</div>
 		</div>		
+
+		<div class="hiddenChat" style="position: fixed;right: 0px;top: 142px;">
+			<button class="btn btn-outline-secondary" id="toggleChat">채팅 접기</button>
+		</div>
+
 		<div class="col-md-2 chat-container">
 			<div class="chat-container2">
 			    <div id="chat-data"></div>
@@ -339,6 +368,16 @@
 <script type="text/javascript">
 var sock = new SockJS("${pageContext.request.contextPath}/echo");
 
+$("#toggleChat").click(function(){
+	if($(".chat-container").hasClass('closed')){
+	    $(".chat-container").animate({ width: "100%" }, 1000);
+	    $(".chat-container").removeClass('closed');		
+	} else {
+	    $(".chat-container").animate({ width: "0%" }, 1000);
+		$(".chat-container").addClass('closed');		
+	}
+});
+
 $(document).ready(function () {
 	$("#sendBtn").click(function() {
         sendMessage();
@@ -400,20 +439,60 @@ function getTimePlaners(seq) {
 	})
 }
 
-$('#addButton').on('click', function () {
-	var FormData = $('#timePlanerForm').serialize();
-	
-	$.ajax({
-		url : 'addTimePlaner.do',
-		data : FormData,
-		method : 'POST',
-		success : function (data) {
-			console.log(data);
-			drawTimePlaner(data);
-		}
-	})
-})
+function removeSpan(dom) {
+	$(dom).parent().find('span.error-msg').remove();
+}
 
+function checkDateRange() {
+	let result = true;
+	let from = new Date($('#start_time').val());
+	let to = new Date($('#start_time').val());
+		
+	if(from > to){
+		$('#start_time').parent().append('<span class="error-msg" style="font-size:80%;color:#dc3545;">출발 일자와 도착 일자를 확인해주세요.</span>');
+		$('#start_time').focus();
+		result = false;
+	} else {
+		removeSpan($('#from_date'));
+	}
+	return result;
+}
+
+function validation(dom, msg) {
+	let result = true;
+	
+	if($(dom).val() == ''){
+		removeSpan($(dom));
+		$(dom).parent().append('<span class="error-msg" style="font-size:80%;color:#dc3545;">'+msg+'</span>');
+		$(dom).focus();
+		result = false;
+	} else{
+		removeSpan($(dom));
+		result = true;
+	}
+	return result;
+}
+
+
+$('#addButton').on('click', function () {
+	$(this).attr('disabled', true);	
+	if(validation($('#location'), '지역을 입력해주세요.') && validation($('#start_time'), '출발 시간을 입력해주세요.') && validation($('#end_date'), '도착 시간을 입력해주세요.') && validation($('#transportation'), '이동 수단을 선택해주세요')){
+		if(checkDateRange()){
+			var formData = $('#timePlanerForm').serialize();
+			
+			$.ajax({
+				url : 'addTimePlaner.do',
+				data : formData,
+				method : 'POST',
+				success : function (data) {
+					console.log(data);
+					drawTimePlaner(data);
+				}
+			})
+		}
+	}
+	$(this).attr('disabled', false);
+})
 
 function drawTimePlaner(data) {
 	var html = 

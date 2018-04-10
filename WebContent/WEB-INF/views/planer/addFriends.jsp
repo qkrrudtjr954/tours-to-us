@@ -210,7 +210,7 @@ $('#next-step').on('click', function () {
 $('#friendName').on('keyup', function() {
 	var name = $('#friendName').val();
 
-	if (name == "" /* || name.length < 3 */) {
+	if (name == "" || name.length < 3) {
 		$('#notice').text('이름을 3글자 이상 입력해주세요.');
 		$('#notice').css('color', 'red').css('font-size', '13px');
 		$('#friendName').focus();

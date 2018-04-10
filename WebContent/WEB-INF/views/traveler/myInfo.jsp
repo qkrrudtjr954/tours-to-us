@@ -10,6 +10,7 @@
 	width: 90%;
 	border-radius: 15px;
 	border: 1px solid #7DC3BB;
+	top: 100px;
 }
 
 .gu-link{

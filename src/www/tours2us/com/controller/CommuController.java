@@ -58,6 +58,7 @@ public class CommuController {
 		int totalRecordCount = commuService.AfterGetBbsCount(afterparam);
 		List<CommuAfterBbsDto> paging = commuService.AftergetBbsPagingList(afterparam);
 
+		System.out.println( afterparam.getS_category()+"="+afterparam.getS_keyword());
 		// List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
 		// list = commuService.getAfterBbslist();
 		model.addAttribute("afterBbslist", paging);

@@ -2,6 +2,8 @@ package www.tours2us.com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,29 @@ public class TotoGuideController {
 		
 		List<TotoGuideDto> list = totoGuideService.getTotoList();
 		model.addAttribute("totolist", list);
+		System.out.println(list);
 		
 		return "toto-guide .tiles";
 	}
 	
+	@RequestMapping(value="toto_detail.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String toto_detail(int seq, Model model)throws Exception{
+		logger.info("TotoGuideController >>>> toto_detail");
+		
+		System.out.println(""+seq);
+		//TotoGuideDto toto = 
+				
+		return "";
+	}
+	
+	@RequestMapping(value="toto_download.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String toto_download(int seq, String filename, HttpServletRequest req, Model model)throws Exception{
+		logger.info("TotoGuideController >>>> toto_download");
+		
+		System.out.println(""+seq);
+		System.out.println(filename);
+		
+		
+		return "downloadView";
+	}
 }

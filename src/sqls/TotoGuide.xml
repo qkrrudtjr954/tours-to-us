@@ -6,5 +6,10 @@
 	<select id="getTotoList" resultType="www.tours2us.com.model.TotoGuideDto">
 		SELECT * FROM TOTOGUIDE
 	</select>
+	
+	<select id="getTotoDetail" parameterType="int" resultType="www.tours2us.com.model.TotoGuideDto">
+		SELECT * FROM TOTOGUIDE 
+		WHERE SEQ=#{seq}
+	</select>
 
 </mapper>

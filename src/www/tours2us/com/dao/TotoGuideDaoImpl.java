@@ -23,4 +23,10 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 		list = sqlSession.selectList(ns+"getTotoList");
 		return list;
 	}
+
+	@Override
+	public TotoGuideDto getTotoDetail(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ns+"getTotoDetail", seq);
+	}
 }

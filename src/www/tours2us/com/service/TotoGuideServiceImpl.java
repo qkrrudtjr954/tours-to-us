@@ -19,4 +19,10 @@ public class TotoGuideServiceImpl implements TotoGuideService {
 		// TODO Auto-generated method stub
 		return totoGuideDao.getTotoList();
 	}
+
+	@Override
+	public TotoGuideDto getTotoDetail(int seq) {
+		// TODO Auto-generated method stub
+		return totoGuideDao.getTotoDetail(seq);
+	}
 }

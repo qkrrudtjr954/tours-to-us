@@ -7,4 +7,5 @@ import www.tours2us.com.model.TotoGuideDto;
 public interface TotoGuideDao {
 
 	List<TotoGuideDto> getTotoList();
+	TotoGuideDto getTotoDetail(int seq);
 }

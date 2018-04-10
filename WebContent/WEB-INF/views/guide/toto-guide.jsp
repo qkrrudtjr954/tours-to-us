@@ -4,65 +4,9 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-.card {
-	padding: 0;
-	border: 1px solid #7DC3BB;
+#title-sub{
+	top: -20px;
 }
-.card-body{
-	padding: 0;
-	height: 400px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	border: 1px solid #7DC3BB;
-}
-
-.card-container {
-	background-color: rgb(0,0,0,0.5);
-	position: absolute;
-	padding: 20px 50px;
-	bottom: 0;
-	width: 100%;
-}
-#plan-title{
-	font-size: 20px;
-	font-weight: 500;
-	text-decoration:none;
-}
-#plan-title,
-.card-title {
-	color: #fff;
-}
-
-#plan-title:hover {
-	text-decoration: underline;
-	color: #7DC3BB;
-} 
-
-.change-title-div {
-	display: none;
-}
-.change-title-div,
-.title-div {
-	margin: 20px 0px;
-}
-
-.ti-link:link {text-decoration: none; color: #000000;}
-.ti-link:hover {text-decoration: underline; color: #7DC3BB;}
-.ti-link:visited {text-decoration: none; color: #000000;}
-
-.gu-link:link {text-decoration: none; color: #000000;}
-.gu-link:hover {text-decoration: underline; color: #7DC3BB;}
-.gu-link:visited {text-decoration: none; color: #000000;}
-
-/* input.img_button {
-	background: url(./image/search.png) no-repeat;
-	width: 40px;
-	height: 35px;
-	border: none; 
-	cursor: pointer;
-} */
-
 .guide-info-over {
 	position: absolute;
 	background-color: #fff;
@@ -71,6 +15,7 @@
 	width: 90%;
 	border-radius: 15px;
 	border: 1px solid #7DC3BB;
+	top: 100px;
 }
 
 .gu-link{
@@ -78,7 +23,7 @@
 }
 
 .guide-label-icon{
-text-align: center;
+	text-align: center;
 }
 
 .guide-info-top{
@@ -91,6 +36,10 @@ text-align: center;
 .guide-label-atag{
 	line-height: 1.5;
 }
+
+.gu-link:link {text-decoration: none; color: #000000;}
+.gu-link:hover {text-decoration: underline; color: #7DC3BB;}
+.gu-link:visited {text-decoration: none; color: #000000;}
 
 h2 {
     display: block;
@@ -107,6 +56,34 @@ h2 {
     vertical-align: super;
 }
 
+.card {
+	padding: 0;
+	/* border: 1px solid #7DC3BB; */
+}
+
+.card-body{
+	padding: 0;
+	height: 300px;
+	width: 500px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.card-pic{
+
+}
+
+.card-content{
+	padding: 0;
+	height: 100px;
+	width: 200px;
+	border-top: 1px solid #000;
+	border-top-width: thin;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
 
 </style>
 
@@ -115,7 +92,7 @@ h2 {
 		<div class="guide-info-over">
 			<div class="guide-info-top">
 				<p>
-					<span class="guide-label-icon" data-feather="file"></span>
+					<span class="guide-label-icon" data-feather="download"></span>
 					<br>
 					<span class="guide-label-title">투투 가이드북</span> 
 				</p>
@@ -138,17 +115,39 @@ h2 {
 <div class="myplan-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2 class="guide-title">투투 가이드북</h2>
-		
+	</div>
+	<div class="offset-md-2 col-md-4 col-xs-12" id="title-sub">
+		<span>투디터들과 투투 운영진이 엄선한 가이드북</span>
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
 	<hr>
 </div>
 
-<div class="offset-md-1">
-	<c:if test="${empty totolist }">
-		<div class="col-md-12 text-center col-xs-12">
-			<p>작성된 글이 없습니다</p>
+
+<div class="myplan-content">
+	<div class="row">
+		<div class="offset-md-2">
+			<c:if test="${empty totolist }">
+				<div class="col-md-11 text-center col-xs-12">
+					<p>작성된 글이 없습니다</p>
+				</div>
+			</c:if>
+			<div class="row no-gutters">
+			<c:forEach items="${totolist }" var="toto" varStatus="i">
+				<div class="card col-md-6 col-md-4 col-xs-4 box-shadow">
+					<div class="card-body">
+						<img class="card-pic" src="${toto.pic eq null ? './image/no-img.png' : toto.pic}">
+					</div>
+					<div class="card-content">
+						<span class="toto-title">${toto.title }</span>
+						<span></span>
+					</div>
+				</div>
+			</c:forEach>
+			</div>
+			
 		</div>
-	</c:if>	
+	</div>
 </div>
+

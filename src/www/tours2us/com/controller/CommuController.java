@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCommentDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuCommentService;
@@ -57,6 +58,7 @@ public class CommuController {
 		int totalRecordCount = commuService.AfterGetBbsCount(afterparam);
 		List<CommuAfterBbsDto> paging = commuService.AftergetBbsPagingList(afterparam);
 
+		System.out.println( afterparam.getS_category()+"="+afterparam.getS_keyword());
 		// List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
 		// list = commuService.getAfterBbslist();
 		model.addAttribute("afterBbslist", paging);
@@ -167,10 +169,27 @@ public class CommuController {
 	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsList(Model model , CommuFreeBbsDto freeparam ) throws Exception{
 		
-		List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
-		freelist = commuService.getFreeBbslist();
+		int sn = freeparam.getPageNumber();
+		int start = (sn) * freeparam.getRecordCountPerPage() + 1;
+		int end = (sn + 1) * freeparam.getRecordCountPerPage();
+		System.out.println("start: " + start);
+		System.out.println("end: " + end);
+		freeparam.setStart(start);
+		freeparam.setEnd(end);
+		int totalRecordCount = commuService.FreeBbsGetCount(freeparam);
+		List<CommuFreeBbsDto> freelist = commuService.FreeBbsGetPagingList(freeparam);
+		
+		//List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
+		//freelist = commuService.getFreeBbslist();
 		System.out.println("freelist = " + freelist);
 		model.addAttribute("freelist", freelist);
+		model.addAttribute("pageNumber", sn);
+		model.addAttribute("pageCountPerScreen", 10);
+		model.addAttribute("recordCountPerPage", freeparam.getRecordCountPerPage());
+		model.addAttribute("totalRecordCount", totalRecordCount);
+		model.addAttribute("s_category", freeparam.getS_category());
+		model.addAttribute("s_keyword", freeparam.getS_keyword());
+		
 		
 		return "freeBbsList.tiles";
 	}
@@ -203,7 +222,9 @@ public class CommuController {
 	@RequestMapping(value = "freeBbsDetail.do",method = {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsDetail(int seq,Model model) throws Exception {
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
+		List<CommuFreeCommentDto> commentlist = commucommentService.FreeGetAllComments(seq);
 		
+		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("commufredetail", commufredetail);
 		System.out.println("c"+commufredetail.toString());
 		
@@ -244,5 +265,25 @@ public class CommuController {
 		}
 		return "redirect:/freeBbsList.do";
 	}
+
+	
+	
+	@ResponseBody
+	@RequestMapping(value="freeBbsComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
+	public List<CommuFreeCommentDto> freeBbsComentAf(Model model, CommuFreeCommentDto comment ,HttpServletRequest req) throws Exception{
+		logger.info("CommuController >>>> freeBbsComentAf");
+		
+		System.out.println("coment" + comment.toString());
+		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		
+		List<CommuFreeCommentDto> commList = commucommentService.FreeAddComent(comment);
+		
+		return commList;
+	}
+
+
+	
+
 
 }

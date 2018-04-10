@@ -97,6 +97,18 @@ public boolean FreeDelete(int seq) throws Exception {
 	return commutDao.FreeDelete(seq);
 }
 
+@Override
+public List<CommuFreeBbsDto> FreeBbsGetPagingList(CommuFreeBbsDto freeparam) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.FreeBbsGetPagingList(freeparam);
+}
+
+@Override
+public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.FreeBbsGetCount(freecontparam);
+}
+
 
 
 

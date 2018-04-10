@@ -114,8 +114,19 @@ public boolean FreeDelete(int seq) throws Exception {
 	return count>0?true:false;
 }
 
+@Override
+public List<CommuFreeBbsDto> FreeBbsGetPagingList(CommuFreeBbsDto freeparam) throws Exception {
+	List<CommuFreeBbsDto> list = new ArrayList<CommuFreeBbsDto>();
+	list = sqlSession.selectList(ns+"FreeGetBbsPagingList", freeparam);
+	return list;
+}
 
-
+@Override
+public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception {
+	int num=0;
+	num= sqlSession.selectOne(ns+"FreeGetBbsCount", freecontparam);
+return num;
+}
 
 
 

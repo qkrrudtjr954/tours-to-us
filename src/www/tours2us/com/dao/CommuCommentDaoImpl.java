@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import www.tours2us.com.model.CommuAfterCommentDto;
+import www.tours2us.com.model.CommuFreeCommentDto;
 @Repository
 public class CommuCommentDaoImpl implements CommuCommentDao {
 	Logger logger = LoggerFactory.getLogger(CommuCommentDaoImpl.class);
@@ -34,6 +35,23 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		sqlSession.insert(ns+"AfterAddComent", comment);
 		return true;
 	}
+
+	@Override
+	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> FreeGetAllComments");
+		List<CommuFreeCommentDto> list = new ArrayList<CommuFreeCommentDto>();
+		list = sqlSession.selectList(ns + "FreeGetAllComments", seq);
+		return list;
+	}
+
+	@Override
+	public boolean FreeAddComent(CommuFreeCommentDto freecomment) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> FreeAddComent");
+		sqlSession.insert(ns + "FreeAddComent", freecomment);
+		return true;
+	}
+	
+	
 
 	
 	

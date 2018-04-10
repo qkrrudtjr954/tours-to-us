@@ -33,5 +33,9 @@ public interface CommuService {
 	
 	boolean FreeDelete(int seq) throws Exception;
 	
+	public List<CommuFreeBbsDto> FreeBbsGetPagingList(CommuFreeBbsDto freeparam) throws Exception;
+	
+	public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception;
+	
 
 }

@@ -29,7 +29,7 @@ public class TotoGuideController {
 		model.addAttribute("totolist", list);
 		System.out.println(list);
 		
-		return "toto-guide .tiles";
+		return "toto_guide.tiles";
 	}
 	
 	@RequestMapping(value="toto_detail.do", method={RequestMethod.GET, RequestMethod.POST})
@@ -37,9 +37,11 @@ public class TotoGuideController {
 		logger.info("TotoGuideController >>>> toto_detail");
 		
 		System.out.println(""+seq);
-		//TotoGuideDto toto = 
+		TotoGuideDto toto = totoGuideService.getTotoDetail(seq);
+		
+		model.addAttribute("toto", toto);
 				
-		return "";
+		return "toto_guide_detail.tiles";
 	}
 	
 	@RequestMapping(value="toto_download.do", method={RequestMethod.GET, RequestMethod.POST})

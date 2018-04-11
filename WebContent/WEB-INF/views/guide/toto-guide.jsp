@@ -54,9 +54,9 @@ h2 {
 
 .book-card{
 	padding: 0;
-    width: 211px;
+    width: 138px;
     height: 305px;
-    margin: 0px 5px 50px 2px;
+    margin: 2px 40px -30px 2px;
     border-top: 2px solid #7DC3BB;
 }
 
@@ -69,6 +69,14 @@ h2 {
 	padding: 0 400px 0 0;
 }
 
+.book-info{
+    margin: -90px 0px 5px -40px;
+}
+
+.update-text{
+	font-size: 13px;
+	color: #484848;
+}
 </style>
 
 <div class="row no-gutters">
@@ -113,7 +121,6 @@ h2 {
 	<div class="row" style="margin:0 auto;width:900px;">
 		<div class="offset-md-1 input-group-prepend">
 			<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;" >
-				<option value="title">제목</option>
 				<option value="location">지역</option>
 			</select> 
 			<input type="text" class="form-control"
@@ -143,11 +150,11 @@ h2 {
 			<div class="row no-gutters">
 				<c:forEach items="${totolist }" var="toto" varStatus="i">
 					<div class="book-card">
-						<div class="book-img">
-							<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="300px" height="300px">
+						<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
+							<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="300px" height="200px">
 						</div>
-						<div class="book-info" onclick="location.href='toto_detail.do?seq=${toto.seq }'" style="height: 25px;width: 210px;text-align: center;">
-								<span style="font-size: 14px;color: #484848;">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
+						<div class="book-info" style="height: 25px; width: 210px; text-align: center;">
+								<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
 						</div>
 					</div>
 				</c:forEach>

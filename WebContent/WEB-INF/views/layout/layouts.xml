@@ -133,10 +133,15 @@
 	<definition name="eventDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
+	
 
 	<!-- 투투 가이드북  -->
-	<definition name="toto-guide .tiles" extends="main.tiles">
+	<definition name="toto_guide.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/guide/toto-guide.jsp"/>
+	</definition>
+	
+	<definition name="toto_guide_detail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toto-guide-detail.jsp"/>
 	</definition>
 	
 	

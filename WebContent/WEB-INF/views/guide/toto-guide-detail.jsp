@@ -91,7 +91,7 @@ h2 {
 				<span class="toto-content" style="fo">추가 설명 : ${toto.content }</span>
 			</div>
 			<div class="row toto-downBtn">
-				<button class="btn btn-outline-secondary" style="width: 300px" onclick="filedown('${toto.filename}','${toto.seq}')"><span data-feather="download"></span><span>다운로드</button>
+				<button class="btn btn-outline-secondary" style="width: 300px" onclick="filedown('${toto.filename}','${toto.seq}')"><span data-feather="download"></span><span>다운로드</span></button>
 			</div>
 		</div>
 	</div>

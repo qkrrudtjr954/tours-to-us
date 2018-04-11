@@ -484,25 +484,27 @@ function validation(dom, msg) {
 $('#addButton').on('click', function () {
 	$(this).attr('disabled', true);	
 	if(validation($('#location'), '지역을 입력해주세요.') && validation($('#start_time'), '출발 시간을 입력해주세요.') && validation($('#end_date'), '도착 시간을 입력해주세요.') && validation($('#transportation'), '이동 수단을 선택해주세요')){
-		if(checkDateRange()){
-			$.ajax({
-				url : 'addTimePlaner.do',
-				data : { 
-					target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val(), 
-					start_time : $('select[name="start_time"]').val(),
-					end_time : $('select[name="end_time"]').val(),
-					location : $('input[name="location"]').val(),
-					expected_cost : $('input[name="expected_cost"]').val(),
-					transportation : $('select[name="transportation"]').val(),
-					types : $('select[name="types"]').val(),
-					content : $('textarea[name="content"]').val()
-				},
-				method : 'POST',
-				success : function (data) {
-					drawTimePlaner(data);
+		$.ajax({
+			url : 'addTimePlaner.do',
+			data : { 
+				s_target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val(), 
+				start_time : $('select[name="start_time"]').val(),
+				end_time : $('select[name="end_time"]').val(),
+				location : $('input[name="location"]').val(),
+				s_expected_cost : $('input[name="expected_cost"]').val(),
+				transportation : $('select[name="transportation"]').val(),
+				types : $('select[name="types"]').val(),
+				content : $('textarea[name="content"]').val()
+			},
+			method : 'POST',
+			success : function (data) {
+				if(parseInt(data.seq) < 0 ){
+					alert('입력값을 확인해주세요.');
+				} else {
+					drawTimePlaner(data);					
 				}
-			});
-		}
+			}
+		});
 	}
 	$(this).attr('disabled', false);
 })

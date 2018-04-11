@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.DayPlanerDto;
@@ -192,6 +193,13 @@ public class PlanerController {
 			}
 		}
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "deleteTimePlaner.do", method = RequestMethod.POST)
+	public boolean deleteTimePlaner(@RequestParam("seq") int seq, @RequestParam("target_dayplaner_seq") int target_dayplaner_seq) throws Exception {
+		logger.info("PlanerController >>>> deleteTimePlaner");
+		return planerService.deleteTimePlaner(seq, target_dayplaner_seq);
+	}
 	
 	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String planDetail(HttpServletRequest req, int seq, Model model) throws Exception {
@@ -263,6 +271,7 @@ public class PlanerController {
 			return dto;
 		}
 	}
+
 	
 	@RequestMapping(value = "planDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String planDelete(int seq, Model model)throws Exception{

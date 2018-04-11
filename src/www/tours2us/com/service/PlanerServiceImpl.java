@@ -107,8 +107,15 @@ public class PlanerServiceImpl implements PlanerService{
 	}
 
 
-
-
-
-
+	@Override
+	public boolean deleteTimePlaner(int seq, int target_dayplaner_seq) {
+		TimePlanerDto timePlaner = planerDao.getTimePlanerBySeq(seq);
+		if(timePlaner.getTarget_dayplaner_seq() == target_dayplaner_seq) {
+			boolean result = planerDao.deleteTimePlaner(seq);
+			logger.info("delete timePlaner {}", result);
+			return result;
+		} else {
+			return false;
+		}
+	}
 }

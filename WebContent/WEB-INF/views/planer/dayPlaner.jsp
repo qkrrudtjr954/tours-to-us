@@ -132,10 +132,11 @@
     color: darkslategray;
 }
 
-.buttonArea a.btn.btn-outline-danger {
-    border-radius: 50%;
+.buttonArea {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
-
 
 .timePlanerContainer {
     overflow-y: scroll;
@@ -156,6 +157,7 @@
 	padding: 5px;
 	margin-bottom: 5px;
 	width: 100%;
+	position: relative;
 }
 .timePlaner > ul {
 	margin-left: 0;
@@ -171,6 +173,14 @@ button#toggleChat {
 	padding: 5px;
 }
 
+.deleteTimePlanerBtn {
+	padding: 5px;
+	text-decoration: none;
+	color: black;
+}
+.deleteTimePlanerBtn:hover {
+	color: red;
+}
 </style>
 <div class="offset-md-3 col-md-6 col-xs-12 planer-title">
 	<div class="d-flex justify-content-around align-items-center">
@@ -501,7 +511,7 @@ $('#addButton').on('click', function () {
 				if(parseInt(data.seq) < 0 ){
 					alert('입력값을 확인해주세요.');
 				} else {
-					drawTimePlaner(data);					
+					drawTimePlaner(data);
 				}
 			}
 		});
@@ -521,15 +531,31 @@ function drawTimePlaner(data) {
 					'<li>'+data.types+'</li>'+
 					'<li>'+data.content+'</li>'+
 				'</ul>'+	
-			'</div>'+
-			'<div class="buttonArea">'+
-				'<a href="deleteTimePlaner.do" class="btn btn-outline-danger">X</a>'+
+				'<div class="buttonArea">'+
+					'<span onclick="deleteTimePlaner('+data.seq+', this)" class="deleteTimePlanerBtn">X</a>'+			
+					'<a href="deleteTimePlaner.do" class="upTimePlanerBtn">Up</a>'+			
+					'<a href="deleteTimePlaner.do" class="downTimePlanerBtn">Down</a>'+			
+				'</div>'+
 			'</div>'+
 		'</div>';
 	
 	$('.timePlanersList').append(html);	
 }
 
+function deleteTimePlaner(seq, DOM) {
+	$.ajax({
+		url : 'deleteTimePlaner.do',
+		data : { seq : seq, target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val() },
+		method : 'POST',
+		success : function (data) {
+			if(data) {
+				$(DOM).parent().parent().remove();
+			} else {
+				alert('삭제할 수 없습니다. 잠시후 다시 시도해주세요.');
+			}
+		}
+	})
+}
 
 //자바스크립트 안에 function을 집어넣을 수 있음
 //데이터가 나한테 전달되읐을 때 자동으로 실행되는 function

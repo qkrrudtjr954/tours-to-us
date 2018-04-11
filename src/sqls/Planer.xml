@@ -56,6 +56,10 @@
 			SELECT TIMEPLANER_SEQ.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
+	
+	<delete id="deleteTimePlaner" parameterType="int">
+		DELETE FROM TIMEPLANER WHERE SEQ = #{seq}
+	</delete>
 
 	<select id="getTimePlaner" parameterType="int" resultType="www.tours2us.com.model.TimePlanerDto">
 		SELECT * FROM TIMEPLANER WHERE SEQ = #{seq}

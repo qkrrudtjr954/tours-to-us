@@ -36,4 +36,6 @@ public interface PlanerDao {
 	void updateCompletePlaner(PlanerDto planer);
 
 	List<Korea> getKoreaList();
+
+	boolean deleteTimePlaner(int seq);
 }

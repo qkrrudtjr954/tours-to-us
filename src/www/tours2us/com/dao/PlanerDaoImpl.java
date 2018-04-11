@@ -103,6 +103,12 @@ public class PlanerDaoImpl implements PlanerDao{
 		return sqlSession.selectList(namespace + "getKorea");
 	}
 
+	@Override
+	public boolean deleteTimePlaner(int seq) {
+		int result = sqlSession.delete(namespace + "deleteTimePlaner", seq);
+		return (result > 0) ? true : false;
+	}
+
 
 
 }

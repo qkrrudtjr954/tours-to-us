@@ -56,7 +56,7 @@ h2 {
 	padding: 0;
     width: 138px;
     height: 305px;
-    margin: 2px 40px -30px 2px;
+    margin: 2px 60px -30px 2px;
     border-top: 2px solid #7DC3BB;
 }
 
@@ -114,6 +114,7 @@ h2 {
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
+	<!-- location 버튼 <a></a> -->
 	<hr>
 </div>
 

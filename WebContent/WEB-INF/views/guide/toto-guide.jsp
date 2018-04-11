@@ -104,7 +104,7 @@ h2 {
 	</div>
 </div>
 
-<div class="myplan-title">
+<div class="toto-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2 class="guide-title">투투 가이드북</h2>
 	</div>

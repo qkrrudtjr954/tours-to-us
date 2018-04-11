@@ -8,4 +8,7 @@ public interface TotoGuideService {
 
 	public List<TotoGuideDto> getTotoList();
 	public TotoGuideDto getTotoDetail(int seq);
+	public void totoUpload(TotoGuideDto totodto);
+	public boolean downCount(int seq);
+	public void readCount(int seq);
 }

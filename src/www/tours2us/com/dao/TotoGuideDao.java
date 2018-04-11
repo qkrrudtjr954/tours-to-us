@@ -8,4 +8,7 @@ public interface TotoGuideDao {
 
 	List<TotoGuideDto> getTotoList();
 	TotoGuideDto getTotoDetail(int seq);
+	void totoUpload(TotoGuideDto totodto);
+	boolean downCount(int seq);
+	void readCount(int seq);
 }

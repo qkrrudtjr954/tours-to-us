@@ -11,5 +11,20 @@
 		SELECT * FROM TOTOGUIDE 
 		WHERE SEQ=#{seq}
 	</select>
+	
+	<insert id="totoUpload" parameterType="www.tours2us.com.model.TotoGuideDto">
+		INSERT INTO TOTOGUIDE(SEQ, TITLE, CONTENT, PIC, LOCATION, FILENAME, READCOUNT, DOWNCOUNT, REG_DATE, LAST_UPDATED)
+		VALUES(SEQ_TOTOGUIDE.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE)
+	</insert>
+	
+	<update id="downCount" parameterType="int">
+		UPDATE TOTOGUIDE SET DOWNCOUNT= DOWNCOUNT+1
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<update id="readCount" parameterType="int">
+		UPDATE TOTOGUIDE SET READCOUNT=READCOUNT+1
+		WHERE SEQ=#{seq}
+	</update>
 
 </mapper>

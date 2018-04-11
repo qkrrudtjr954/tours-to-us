@@ -144,5 +144,9 @@
 		<put-attribute name="main" value="/WEB-INF/views/guide/toto-guide-detail.jsp"/>
 	</definition>
 	
+	<definition name="toto_write.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toto-write.jsp"/>
+	</definition>
+	
 	
 </tiles-definitions>

@@ -29,4 +29,22 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(ns+"getTotoDetail", seq);
 	}
+
+	@Override
+	public void totoUpload(TotoGuideDto totodto) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(ns+"totoUpload", totodto);
+	}
+
+	@Override
+	public boolean downCount(int seq) {
+		int n = sqlSession.update(ns="downCount", seq);
+		return n>0?true:false;
+	}
+
+	@Override
+	public void readCount(int seq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(ns+"readCount", seq);
+	}
 }

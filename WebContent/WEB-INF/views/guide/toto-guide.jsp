@@ -105,7 +105,7 @@ h2 {
 </div>
 
 <div class="toto-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
+	<div class="offset-md-2 col-md-6 col-xs-12">
 		<h2 class="guide-title">투투 가이드북</h2>
 	</div>
 	<div class="offset-md-2 col-md-12" id="title-sub">
@@ -118,9 +118,13 @@ h2 {
 	<hr>
 </div>
 
+<div class="row offset-md-2 ">
+	<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
+</div>
 <form action="toto_search.do" method="get" id="_frmFormSearch">
 	<div class="row" style="margin:0 auto;width:900px;">
 		<div class="offset-md-1 input-group-prepend">
+		
 			<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;" >
 				<option value="location">지역</option>
 			</select> 

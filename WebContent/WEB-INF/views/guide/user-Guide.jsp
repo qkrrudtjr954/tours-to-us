@@ -144,7 +144,7 @@ h2 {
 					<br>
 					<span class="guide-label-atag"><a href="user_guide.do" class="gu-link">투둥이 가이드북</a></span>
 					<br>
-					<span class="guide-label-atag"><a href=toto_guide.do" class="gu-link">투투 가이드북</a></span>	
+					<span class="guide-label-atag"><a href="toto_guide.do" class="gu-link">투투 가이드북</a></span>	
 				</p>		
 		</div>
 	</div>

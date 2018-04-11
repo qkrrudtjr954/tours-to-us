@@ -19,9 +19,8 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 
 	@Override
 	public List<TotoGuideDto> getTotoList() {
-		List<TotoGuideDto> list = new ArrayList<TotoGuideDto>();
-		list = sqlSession.selectList(ns+"getTotoList");
-		return list;
+		return sqlSession.selectList(ns+"getTotoList");
+		
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 
 	@Override
 	public boolean downCount(int seq) {
-		int n = sqlSession.update(ns="downCount", seq);
+		int n = sqlSession.update(ns+"downCount", seq);
 		return n>0?true:false;
 	}
 

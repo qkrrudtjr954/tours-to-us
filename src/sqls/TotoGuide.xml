@@ -4,7 +4,8 @@
 <mapper namespace="TotoGuide">
 	
 	<select id="getTotoList" resultType="www.tours2us.com.model.TotoGuideDto">
-		SELECT * FROM TOTOGUIDE
+		<!-- SELECT * FROM TOTOGUIDE ORDER BY REG_DATE DESC -->
+		SELECT * FROM TOTOGUIDE ORDER BY REG_DATE DESC
 	</select>
 	
 	<select id="getTotoDetail" parameterType="int" resultType="www.tours2us.com.model.TotoGuideDto">
@@ -14,7 +15,7 @@
 	
 	<insert id="totoUpload" parameterType="www.tours2us.com.model.TotoGuideDto">
 		INSERT INTO TOTOGUIDE(SEQ, TITLE, CONTENT, PIC, LOCATION, FILENAME, READCOUNT, DOWNCOUNT, REG_DATE, LAST_UPDATED)
-		VALUES(SEQ_TOTOGUIDE.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE)
+		VALUES(TOTOGUIDE_SEQ.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE)
 	</insert>
 	
 	<update id="downCount" parameterType="int">

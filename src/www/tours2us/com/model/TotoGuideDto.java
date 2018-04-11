@@ -15,10 +15,13 @@ public class TotoGuideDto implements Serializable{
 	private String reg_date;
 	private String last_updated;
 	
+	private String total_downcount;
+	
 	public TotoGuideDto() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public TotoGuideDto(int seq, String title, String content, String pic, String location, String filename,
 			int readcount, int downcount, String reg_date, String last_updated) {
 		super();
@@ -33,6 +36,7 @@ public class TotoGuideDto implements Serializable{
 		this.reg_date = reg_date;
 		this.last_updated = last_updated;
 	}
+
 
 	public int getSeq() {
 		return seq;
@@ -113,6 +117,8 @@ public class TotoGuideDto implements Serializable{
 	public void setLast_updated(String last_updated) {
 		this.last_updated = last_updated;
 	}
+	
+
 
 	@Override
 	public String toString() {

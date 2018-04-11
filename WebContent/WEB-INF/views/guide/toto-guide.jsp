@@ -110,7 +110,7 @@ h2 {
 	</div>
 	<div class="offset-md-2 col-md-12" id="title-sub">
 		<span class="title-sub-content">투디터들과 투투 운영진이 엄선한 가이드북</span>
-		<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;">100,000</b></span>
+		<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;"></b></span>
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">

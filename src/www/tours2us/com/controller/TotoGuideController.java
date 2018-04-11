@@ -66,7 +66,7 @@ public class TotoGuideController {
 		return "toto_write.tiles";
 	}
 	
-	@RequestMapping(value="toto_upload.do", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="toto_upload.do", method=RequestMethod.POST)
 	public String toto_upload(Model model, TotoGuideDto totodto, HttpServletRequest req, @RequestParam(value="fileload", required=false)MultipartFile fileload){
 		logger.info("TotoGuideController >>>> toto_upload");
 		System.out.println(totodto.toString());		
@@ -83,6 +83,7 @@ public class TotoGuideController {
 		String fupload = "c:\\test";
 		
 		String f = totodto.getFilename();
+		// 이름변경
 		//String newFile = FUpUtil.getNewFile(f);
 		totodto.setFilename(f);
 		System.out.println(fupload+"\\"+f);
@@ -107,9 +108,16 @@ public class TotoGuideController {
 	public String toto_download(int seq, String filename, HttpServletRequest req, Model model)throws Exception{
 		logger.info("TotoGuideController >>>> toto_download");
 		
-		System.out.println(""+seq);
-		System.out.println(filename);
+		System.out.println("s:"+seq+"f:"+filename);
 		
+		// 서버저장
+		//String fupload = req.getServletContext().getRealPath("/upload");
+		
+		// 폴더저장
+		String fupload = "c:\\test";
+		File downloadFile = new File(fupload+"/"+filename);
+		model.addAttribute("downloadFile", downloadFile);
+		model.addAttribute("seq", seq);
 		
 		return "downloadView";
 	}

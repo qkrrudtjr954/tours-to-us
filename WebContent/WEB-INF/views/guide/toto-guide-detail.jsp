@@ -21,6 +21,18 @@
 	color: #484848;
 }
 
+.toto-downcount{
+	font-size: 13px;
+	color: #484848;
+	margin-left: 140px;
+}
+
+.toto-readcount{
+	font-size: 13px;
+	color: #484848;
+	margin-left: 900px;
+}
+
 .toto-content{
 	font-size: 13px;
 	color: #000;
@@ -65,6 +77,7 @@ h2 {
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
+	<span class="toto-readcount">조회수 : ${toto.readcount }</span>
 	<hr>
 </div>
 
@@ -83,6 +96,7 @@ h2 {
 			</div>
 			<div class="row toto-content-sub">
 				<span class="toto-updated">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
+				<span class="toto-downcount">다운로드 수 : ${toto.downcount }</span>
 			</div>
 			<div class="row col-md-8" id="under-line">
 				<hr>
@@ -96,7 +110,40 @@ h2 {
 		</div>
 	</div>
 </div>
+<form name="delfileup" action="toto_download.do" method="post">
+<input type="hidden" name="filename" />
+<input type="hidden" name="seq" />
+</form>
 
 <script>
+function filedown(filename,seq){
+	//alert(filename+'  '+seq);
+	var doc=document.delfileup;
+	doc.filename.value=filename;
+	doc.seq.value=seq;
+	doc.submit();
+}
 
+//'저장' 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+function submitContents(elClickedObj) {
+   // 에디터의 내용이 textarea에 적용된다.
+   oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
+ 
+   // 에디터에 입력된 내용의 검증은 이곳에서
+   // document.getElementById("ir1").value 값을 이용해서 처리한다.
+   //alert(ares+'------------------------');
+   try{
+       // 이 라인은 현재 사용 중인 폼에 따라 달라질 수 있다.
+       //elClickedObj.action.value=ares;
+       elClickedObj.submit();
+   }catch(e){}
+}
+
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+    oAppRef: oEditors,
+    elPlaceHolder: "_content",
+    sSkinURI: "./se2/SmartEditor2Skin.html",
+    fCreator: "createSEditor2"
+});
 </script>

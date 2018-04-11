@@ -9,6 +9,8 @@ public interface CommuCommentService {
 		
 public List<CommuAfterCommentDto> addComment(CommuAfterCommentDto comment) throws Exception;
 public List<CommuAfterCommentDto> getAllComments(int seq) throws Exception;
+public List<CommuAfterCommentDto>  AfterCommentDelete(int seq)throws Exception;
+
 
 //자유게시판
 public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception;

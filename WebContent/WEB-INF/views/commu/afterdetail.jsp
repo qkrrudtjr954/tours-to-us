@@ -250,7 +250,7 @@ font-size: 13px;
 					<input type="text" class="form-control"  name="content" id="content0" size="90" placeholder="댓글을 입력해주세요"> 
 				</div>
 				<div class="col-md-2 user_comment_btn">
-					<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment()">
+					<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment(${comment.seq})">
 				</div>
 		</div>
 		<div class="comment_content">
@@ -269,6 +269,10 @@ font-size: 13px;
 								<div class=row>
 										<div class="comment_content">${comment.content }</div>
 								</div>
+								
+								<div class="comment-email col-md-1" style="height: 50px;">
+								<input type="button" id="delBtn" onclick="delete_Comment(${comment.seq})" style="size: 2em; color: #696969" value="삭제">
+								</div>		
 							</div>
 						</div>
 						<hr>
@@ -281,14 +285,15 @@ font-size: 13px;
 
 
 
-<script type="text/javascript">
+<script>
 	function addComment(seq) {
+		alert("dadddd");
 	var seq = ${aftergetBbs.seq};
    	var user_seq = ${current_user.seq};
    	
    	$.ajax({
 	      url:"AfterComentAf.do",
-	      type:"post",
+	      method:"post",
 	      data:{ target_bbs_seq : seq,target_user_seq:user_seq ,content : $('#content0').val() },
 	      success:function(data){
 	            
@@ -320,6 +325,9 @@ font-size: 13px;
 		+'<div class=row>'
 		+'<div class="comment_content">'+comment.content+'</div>'
 		+'</div>'
+		+'<div class="comment-email col-md-1" style="height: 50px;">'
+		+'<input type="button" id="delBtn" onclick="delete_Comment('+comment.seq+')" style="size: 2em; color: #696969" value="삭제">'
+		+'</div>'
 		+'</div>'
 		+'</div>'
 		+'<hr>';
@@ -331,9 +339,43 @@ font-size: 13px;
 	    ((date.getMonth()+1)<10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1))+'/'+
 	    (date.getDate()<10 ? '0'+date.getDate() : date.getDate() ) ;
 		return result;
-	}	
+	}
 	
 	
+	
+	
+	
+</script>
+
+<script>
+function delete_Comment(seq) {
+	alert("deleteComment" + seq);
+    	var user_seq = ${current_user.seq};
+	$.ajax({
+	      url:"AfterComentDelete.do",
+	      method:"post",
+	      data:{seq : seq, target_user_seq : user_seq},
+	      success:function(data){
+	    	  if(data=="false"){
+	    		  alert('본인만 삭제가 가능합니다.');
+	    	  }else{
+	    		  $('.comment-area').children().remove();
+	    		  
+	    		  for(var i=0; i <data.length; i++){
+			            printCommentHtml(data[i]);
+			         }
+			         $('#commentCount').html(data.length);
+	    		  
+	    	  }
+	
+		},
+		error : function(request, status, error) {
+			alert("실패");
+		} 
+	}); 
+	
+	
+}
 </script>
 
 

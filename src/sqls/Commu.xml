@@ -54,6 +54,14 @@
 		INSERT INTO AFTERBBSCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_BBS_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
 		VALUES(AFTERBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_bbs_seq},#{content},SYSDATE,SYSDATE,0)
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<update id="AfterComentDelete" parameterType="int">
+		UPDATE AFTERBBSCOMMENT SET STATUS=1
+		WHERE SEQ=#{seq} 	
+	</update>
+	
+	
 <!--==============================paging가져오기======================================-->	
 <select id="AftergetBbsPagingList"
 	parameterType="www.tours2us.com.model.CommuAfterBbsDto"

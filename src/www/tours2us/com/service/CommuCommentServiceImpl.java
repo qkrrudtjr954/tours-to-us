@@ -39,6 +39,18 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		// TODO Auto-generated method stub
 		return commuCommentDao.getAllComments(seq);
 	}
+	
+	@Override
+	public List<CommuAfterCommentDto> AfterCommentDelete(int seq) throws Exception {
+		
+		boolean result = commuCommentDao.AfterCommentDelete(seq);
+		
+		List<CommuAfterCommentDto> list = new ArrayList<>();
+		if(result) {
+			list = commuCommentDao.getAllComments(seq);
+		}
+		return list;
+	}
 
 	@Override
 	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {

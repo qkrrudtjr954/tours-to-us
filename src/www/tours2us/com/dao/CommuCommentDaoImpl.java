@@ -35,6 +35,13 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		sqlSession.insert(ns+"AfterAddComent", comment);
 		return true;
 	}
+	
+	@Override
+	public boolean AfterCommentDelete(int seq) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> AfterCommentDelete");
+		int count = sqlSession.update(ns + "AfterComentDelete", seq);
+		return count>0?true:false;
+	}
 
 	@Override
 	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {

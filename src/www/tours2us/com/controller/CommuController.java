@@ -164,6 +164,23 @@ public class CommuController {
 
 		return commList;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "AfterComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<CommuAfterCommentDto> AfterComentDelete(Model model, int seq)throws Exception {
+	logger.info("CommuController >>>> AfterComentDelete");
+		
+	List<CommuAfterCommentDto> commentlist = commucommentService.AfterCommentDelete(seq);
+		
+		return commentlist;
+		
+	}
+	
+	
+	
+	
+	
+	
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	//자유게시판
 	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})

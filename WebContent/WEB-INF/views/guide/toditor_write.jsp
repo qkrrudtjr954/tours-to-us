@@ -75,6 +75,7 @@
 <!-- 내용 div  끝-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+<script src="js/summernote-map.js"></script>
 <script>
     $(document).ready(function() {
 	    	$('#summernote').summernote({
@@ -83,19 +84,33 @@
 				maxHeight : null, // set maximum height of editor
 				focus : true, // set focus to editable area after initializing summernote
 				lang : 'ko-KR',
+				map: {
+				        apiKey: 'AIzaSyDg3RVWDevoGPmAxPHOtH0PVh1daHZJK5o',
+				        // This will be used when map is initialized in the dialog.
+				        center: {
+				          lat: -33.8688,
+				          lng: 151.2195
+				        },
+				        zoom: 13
+				    },
 				callbacks : {
 					onImageUpload : function(files, editor,welEditable) {
 						sendFile(files[0], this);
 					},
-				},toolbar : [['style',['bold', 'italic', 'underline', 'clear' ] ],
-							['font',['strikethrough', 'superscript', 'subscript' ] ],
-							[ 'fontsize',[ 'fontsize' ] ],
-							[ 'color', [ 'color' ] ],
-							['para',[ 'ul', 'ol','paragraph' ] ],
-							[ 'height',[ 'height' ] ],
-							[ 'insert',[ 'picture' ] ] ]
+				},toolbar : [
+						['style',['bold', 'italic', 'underline', 'clear' ] 
+					],
+					['font',['strikethrough', 'superscript', 'subscript' ] ],
+					[ 'fontsize',[ 'fontsize' ] ],
+					[ 'color', [ 'color' ] ],
+					['para',[ 'ul', 'ol','paragraph' ] ],
+					[ 'height',[ 'height' ] ],
+					[ 'insert',[ 'picture'  ] ] 
+				]
 		});
 	});
+    
+    
     
     function sendFile(file, editor) {
 		formdata = new FormData();

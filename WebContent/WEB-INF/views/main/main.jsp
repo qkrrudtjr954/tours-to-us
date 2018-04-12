@@ -82,6 +82,23 @@ padding-right: 200px;
 font-size: 13px;
 }
 
+ .main_cover_right button{
+    z-index: 2;
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 34px;
+    font: 0/0 arial;
+    line-height: 0;
+    overflow: visible;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    font-family: "NanumBarunGothic", "Arial", "돋움";
+    outline: none;
+}
+
+
 </style>
 <section>
 			
@@ -120,7 +137,8 @@ font-size: 13px;
 </div>
 
 <div class="main_cover_right">
-	<img src="image/main_map.png" height="540px;">
+	<button>히히</button>
+	<img src="image/map_ver2.png" height="540px;">
 </div>
 
 

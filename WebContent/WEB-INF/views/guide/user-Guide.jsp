@@ -107,13 +107,18 @@ h2 {
     vertical-align: super;
 }
 
+#title-sub{
+	top: -20px;
+}
 
 </style>
 
 <div class="myplan-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2 class="guide-title">투둥이 가이드북</h2>
-		
+	</div>
+	<div class="offset-md-2 col-md-4 col-xs-12" id="title-sub">
+		<span>투둥이 유저들의 여행 플랜들</span>
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
@@ -139,7 +144,7 @@ h2 {
 					<br>
 					<span class="guide-label-atag"><a href="user_guide.do" class="gu-link">투둥이 가이드북</a></span>
 					<br>
-					<span class="guide-label-atag"><a href="#" class="gu-link">투투 가이드북</a></span>	
+					<span class="guide-label-atag"><a href="toto_guide.do" class="gu-link">투투 가이드북</a></span>	
 				</p>		
 		</div>
 	</div>

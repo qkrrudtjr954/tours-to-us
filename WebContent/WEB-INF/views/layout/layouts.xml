@@ -91,10 +91,6 @@
 		<put-attribute name="main" value="/WEB-INF/views/commu/freeBbsUpdate.jsp"/>
 	</definition>
 	
-	
-	<definition name="event.tiles" extends="main.tiles">
-		<put-attribute name="main" value="/WEB-INF/views/event/event.jsp"/>
-	</definition>
 
 	<!-- 가이드북 -->
 	<definition name="editor_essay.tiles" extends="main.tiles">
@@ -130,17 +126,27 @@
 		<put-attribute name="main" value="/WEB-INF/views/hotel/hotelPrice.jsp"/>
 	</definition>
 
-
-
-
-
+	<!-- event -->
+	<definition name="event.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/event/event.jsp"/>
+	</definition>
 	<definition name="eventDetail.tiles" extends="main.tiles">
 		<put-attribute name="main" value="/WEB-INF/views/event/eventDetail.jsp"/>
 	</definition>
-
-	
 	
 
+	<!-- 투투 가이드북  -->
+	<definition name="toto_guide.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toto-guide.jsp"/>
+	</definition>
+	
+	<definition name="toto_guide_detail.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toto-guide-detail.jsp"/>
+	</definition>
+	
+	<definition name="toto_write.tiles" extends="main.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/guide/toto-write.jsp"/>
+	</definition>
 	
 	
 </tiles-definitions>

@@ -61,7 +61,7 @@
 		WHERE T.SEQ = E.TARGET_USER_SEQ ) WHERE SEQ = #{seq}
 	</select>
 
-	<!-- 투둥이 가이드북 DISTINCT -->
+	<!-- 투둥이 가이드북 -->
 
 	<select id="guideSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
 		 SELECT  SEQ, TARGET_USER_SEQ, TITLE, LOCATION, STATUS, TO_DATE, FROM_DATE,

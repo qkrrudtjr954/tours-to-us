@@ -171,25 +171,25 @@ h2 {
 	<div class="tag-location">
 		<ul>
 			<li class="active">
-				<a href="#" class="cur">전체</a>
+				<a href="toto_guide.do" class="cur">전체</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="">서울</a>
+				<a href="#" class="cur" onclick="location_search()">서울</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur">강원도</a>
+				<a href="#" class="cur" onclick="location_search()">강원도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur">충청도</a>
+				<a href="#" class="cur" onclick="location_search()">충청도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur">경상도</a>
+				<a href="#" class="cur" onclick="location_search()">경상도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur">전라도</a>
+				<a href="#" class="cur" onclick="location_search()">전라도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur">제주도</a>
+				<a href="#" class="cur" onclick="location_search()">제주도</a>
 			</li>
 		</ul>
 	</div>
@@ -235,5 +235,4 @@ h2 {
 			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
 		})
 	});	
-	
 </script>

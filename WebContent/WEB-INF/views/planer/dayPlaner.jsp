@@ -272,13 +272,13 @@ button#toggleChat {
 				<div class="form-group">
 					<label for="transportation"><span class="time-planer-icon" data-feather="truck"></span><span class="time-planer-title">이동 수단</span></label> 
 					<select class="form-control" id="exampleFormControlSelect1" name="transportation">
-						<option>자동차 </option>
-						<option>대중 교통 </option>
-						<option>택시 </option>
-						<option>기차 </option>
-						<option>자전거 </option>
-						<option>도보 </option>
-						<option>기타 </option>
+						<option value="car.png">자동차 </option>
+						<option value="bus.png">대중 교통 </option>
+						<option value="taxi.png">택시 </option>
+						<option value="train.png">기차 </option>
+						<option value="bicycle.png">자전거 </option>
+						<option value="walking.png">도보 </option>
+						<option value="no-transportation.png">기타 </option>
 					</select>
 				</div>
 				

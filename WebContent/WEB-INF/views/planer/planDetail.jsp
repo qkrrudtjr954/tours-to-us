@@ -39,7 +39,7 @@
 
 
 <div class="row no-gutters title-container">
-	<div class="offset-md-3 col-md-3 col-xs-12">		
+	<div class="offset-md-3 col-md-4 col-xs-12">		
 		<div class="myplanDetail-title">
 			<h2 class="plan-label-title">${planer.title }</h2>
 		</div>
@@ -67,11 +67,21 @@
 	background-size: cover;
 	background-position: center;
 }
+
+#time-info-table{
+	width: 80%;
+	border: 1px solid #1ce7ce;
+	height: 80%;
+}
+#time-info-table td{
+	padding: 1px;
+	text-align: center;
+}
 </style>
 
 
 <div id="myplanDetail-content">
-	<div class="offset-md-3 col-md-6 col-xs-12">
+	<div class="offset-md-2 col-md-8 col-xs-12">
 		<div class="card">
 			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
 				<div class="row no-gutters">
@@ -88,19 +98,17 @@
 						</c:otherwise>
 					</c:choose>
 					<div class="col">
-						<div class="card-head" id="heading"> 
-							<h5 class="mb-0">
-								<c:choose>
-									<c:when test="${i.index == last_index }">
-										<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" onclick="changeLastBG()"aria-controls="collapse">Day ${dayPlan.day_count }</a>
-									</c:when>
-									<c:otherwise>
-										<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse">Day ${dayPlan.day_count }</a>
-									</c:otherwise>								
-								</c:choose>
-								<br>
-								<span>${dayPlan.day }</span>
-							</h5>
+						<div class="card-head d-flex justify-content-around align-items-center" id="heading"> 
+							<c:choose>
+								<c:when test="${i.index == last_index }">
+									<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" onclick="changeLastBG()" aria-controls="collapse"><h1 class="mb-0">Day ${dayPlan.day_count }</h1></a>
+								</c:when>
+								<c:otherwise>
+									<a class="btn" data-toggle="collapse" data-target="#collapse${i.count }" aria-controls="collapse"><h1 class="mb-0">Day ${dayPlan.day_count }</h1></a>
+								</c:otherwise>								
+							</c:choose>
+							<br>
+							<span>${dayPlan.day }</span>
 						</div> 					
 					</div>
 				</div>
@@ -137,15 +145,18 @@
 							</c:otherwise>
 						</c:choose>
 						<div class="row no-gutters">
-							<div class="col-md-4 planer-progress-bar"  style="background-image: url('${url}');"> 
-							</div>				
-							<div class="col">
+							<div class="col-md-4 planer-progress-bar"  style="background-image: url('${url}');"></div>		
+							<div class="col-md-1 d-flex align-items-center">
+								<img src="${initParam.IMG_SERVER_PATH }/image/${timePlan.transportation}" alt="${timePlan.transportation}" width="50px"/>
+							</div>		
+							<div class="col d-flex align-items-center">
 								<div class="card-body">
-									${timePlan.start_time }<br>
-									${timePlan.location }<br>
-									${timePlan.transportation }<br>
-									${timePlan.expected_cost }<br>
-									${timePlan.content }<br>
+									<table id="time-info-table">
+										<tr><td>${timePlan.start_time } ~ ${timePlan.end_time }</td></tr>
+										<tr><td>${timePlan.location }</td></tr>
+										<tr><td>${timePlan.expected_cost }</td></tr>
+										<tr><td>${timePlan.content }</td></tr>
+									</table>
 								</div>			
 							</div>
 						</div>

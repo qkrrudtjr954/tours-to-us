@@ -167,15 +167,26 @@ public class CommuController {
 	
 	@ResponseBody
 	@RequestMapping(value = "AfterComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<CommuAfterCommentDto> AfterComentDelete(Model model, int seq)throws Exception {
-	logger.info("CommuController >>>> AfterComentDelete");
+	public boolean AfterComentDelete(Model model, int seq ,HttpServletRequest req , CommuAfterCommentDto comment)throws Exception {
+		logger.info("CommuController >>>> AfterComentDelete");
+		System.out.println("seq" + seq);
+		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		 //commucommentService.AftereDeleteCheck(seq);
+		//System.out.println("check = " + check);
 		
-	List<CommuAfterCommentDto> commentlist = commucommentService.AfterCommentDelete(seq);
+		int target_user_seq = comment.getTarget_user_seq();
+		int user_seq = t_dto.getSeq();
+		System.out.println("target user = "  + target_user_seq);
+		System.out.println("user_seq = " + user_seq);
 		
-		return commentlist;
-		
+
+		if (target_user_seq==user_seq) {
+			return  commucommentService.AfterCommentDelete(seq);
+		}else {
+			return false;
+		}
 	}
-	
 	
 	
 	

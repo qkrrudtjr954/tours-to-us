@@ -42,7 +42,15 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		int count = sqlSession.update(ns + "AfterComentDelete", seq);
 		return count>0?true:false;
 	}
+	
+	
+	@Override
+	public int AftereDeleteCheck(int seq) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> AftereDeleteCheck");
+		return sqlSession.selectOne(ns + "AfterCommentgetUserSeq", seq);
+	}
 
+	// 자유 게시판
 	@Override
 	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {
 		logger.info("CommuCommentDaoImpl >>>> FreeGetAllComments");

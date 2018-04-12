@@ -55,6 +55,14 @@
 		VALUES(AFTERBBSCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_bbs_seq},#{content},SYSDATE,SYSDATE,0)
 	</insert>
 	
+	<select id="AfterCommentgetUserSeq"
+	parameterType="int"
+	resultType="www.tours2us.com.model.CommuAfterCommentDto">
+	SELECT TARGET_USER_SEQ FROM AFTERBBSCOMMENT WHERE SEQ=#{seq}
+	</select>
+	
+	
+	
 	<!-- 댓글 삭제 -->
 	<update id="AfterComentDelete" parameterType="int">
 		UPDATE AFTERBBSCOMMENT SET STATUS=1

@@ -89,6 +89,10 @@ h2 {
     bottom: 10px;
 }
 
+.plan-container {
+	margin-bottom: 50px;
+}
+
 </style>
 
 
@@ -112,7 +116,7 @@ h2 {
 			</c:if>
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
-					<div class="card offset-md-3 col-md-6 ">
+					<div class="card offset-md-3 col-md-6 plan-container">
 						<div class="card-body" style="background-image:url('${initParam.IMG_SERVER_PATH }/image/${plan.paper eq null ? 'no-img.png' : plan.paper}'); background-size: contain;">
 							&nbsp;
 							<c:if test="${plan.status == 0 }">

@@ -272,6 +272,7 @@ public class PlanerController {
 		}
 	}
 
+
 	
 	@RequestMapping(value = "planDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String planDelete(int seq, Model model)throws Exception{

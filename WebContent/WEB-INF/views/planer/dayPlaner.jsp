@@ -401,11 +401,11 @@ $("#toggleChat").click(function(){
 	if($(".chat-container").hasClass('closed')){		
 	    $(".chat-container").removeClass('closed');		
 		$(this).html('채팅 접기');
-	    $(".chat-container").animate({ width: "100%" }, 1000);
+	    $(".chat-container").animate({ width: "100%" });
 	} else {
 		$(".chat-container").addClass('closed');		
 		$(this).html('채팅 펼치기');
-	    $(".chat-container").animate({ width: "0%" }, 1000);
+	    $(".chat-container").animate({ width: "0%" });
 	}
 });
 
@@ -456,12 +456,12 @@ function getDayPlaner(day_count) {
 }
 
 function getTimePlaners(seq) {
+	$('.timePlanersList').children().remove();
 	$.ajax({
 		url : 'getTimePlaners.do',
 		data : { seq : seq },
 		method : 'GET',
 		success : function (data) {
-			console.log(data);
 			
 			for(var i=0; i<data.length; i++){
 				drawTimePlaner(data[i]);
@@ -532,9 +532,7 @@ function drawTimePlaner(data) {
 					'<li>'+data.content+'</li>'+
 				'</ul>'+	
 				'<div class="buttonArea">'+
-					'<span onclick="deleteTimePlaner('+data.seq+', this)" class="deleteTimePlanerBtn">X</a>'+			
-					'<a href="deleteTimePlaner.do" class="upTimePlanerBtn">Up</a>'+			
-					'<a href="deleteTimePlaner.do" class="downTimePlanerBtn">Down</a>'+			
+					'<span onclick="deleteTimePlaner('+data.seq+', this)" class="deleteTimePlanerBtn">X</span>'+							
 				'</div>'+
 			'</div>'+
 		'</div>';
@@ -542,19 +540,22 @@ function drawTimePlaner(data) {
 	$('.timePlanersList').append(html);	
 }
 
+
 function deleteTimePlaner(seq, DOM) {
-	$.ajax({
-		url : 'deleteTimePlaner.do',
-		data : { seq : seq, target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val() },
-		method : 'POST',
-		success : function (data) {
-			if(data) {
-				$(DOM).parent().parent().remove();
-			} else {
-				alert('삭제할 수 없습니다. 잠시후 다시 시도해주세요.');
+	if(confirm('삭제하시겠습니까?')){		
+		$.ajax({
+			url : 'deleteTimePlaner.do',
+			data : { seq : seq, target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val() },
+			method : 'POST',
+			success : function (data) {
+				if(data) {
+					$(DOM).parent().parent().remove();
+				} else {
+					alert('삭제할 수 없습니다. 잠시후 다시 시도해주세요.');
+				}
 			}
-		}
-	})
+		})
+	}
 }
 
 //자바스크립트 안에 function을 집어넣을 수 있음

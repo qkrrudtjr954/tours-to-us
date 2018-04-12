@@ -109,6 +109,4 @@ public class PlanerDaoImpl implements PlanerDao{
 		return (result > 0) ? true : false;
 	}
 
-
-
 }

@@ -35,8 +35,7 @@ button#next-step:hover {
 }
 
 .preview-container {
-	background-image:
-		url('${pageContext.request.contextPath }/image/planer.jpg');
+	background-image: url('${initParam.IMG_SERVER_PATH }/image/planer.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -109,30 +108,24 @@ button#next-step:hover {
 						class="planer-label-title">표지</span></label>
 					<div class="d-flex justify-content-center">
 						<div class="paper-image">
-							<img alt=""
-								src="${pageContext.request.contextPath }/image/paper1.jpeg">
+							<img alt="" src="${initParam.IMG_SERVER_PATH }/image/paper1.jpeg">
 						</div>
 						<div class="paper-image">
-							<img alt=""
-								src="${pageContext.request.contextPath }/image/paper2.jpeg">
+							<img alt="" src="${initParam.IMG_SERVER_PATH }/image/paper2.jpeg">
 						</div>
 						<div class="paper-image">
-							<img alt=""
-								src="${pageContext.request.contextPath }/image/paper3.jpeg">
+							<img alt="" src="${initParam.IMG_SERVER_PATH }/image/paper3.jpeg">
 						</div>
 					</div>
 					<div class="d-flex justify-content-center">
 						<div class="paper-image">
-							<img alt=""
-								src="${pageContext.request.contextPath }/image/paper4.jpeg">
+							<img alt="" src="${initParam.IMG_SERVER_PATH }/image/paper4.jpeg">
 						</div>
 						<div class="paper-image">
-							<img alt=""
-								src="${pageContext.request.contextPath }/image/paper5.jpeg">
+							<img alt="" src="${initParam.IMG_SERVER_PATH }/image/paper5.jpeg">
 						</div>
 						<div class="paper-image">
-							<img alt=""
-								src="${pageContext.request.contextPath }/image/paper6.jpeg">
+							<img alt="" src="${initParam.IMG_SERVER_PATH }/image/paper6.jpeg">
 						</div>
 					</div>
 				</div>
@@ -147,25 +140,20 @@ button#next-step:hover {
 </div>
 
 <script type="text/javascript">
-	$('div.paper-image img').on(
-			'click',
-			function() {
-				for (var i = 0; i < $('div.paper-image img').length; i++) {
-					$('div.paper-image img').css('border', 'none');
-				}
+	$('div.paper-image img').on( 'click', function() {
+		for (var i = 0; i < $('div.paper-image img').length; i++) {
+			$('div.paper-image img').css('border', 'none');
+		}
 
-				var url = $(this).attr('src');
-				var temp = url.substring(19);
+		var url = $(this).attr('src');
+		var temp = url.split('/');
+		var filename = temp[temp.length-1];
+		$(this).css('border', '2px solid #7cc4bb');
+		$('.preview-container').css('background-image', 'url("${initParam.IMG_SERVER_PATH}/image/' + filename + '")');
+		$('.preview-container').css('background-size', 'contain');
 
-				$(this).css('border', '2px solid #7cc4bb');
-				$('.preview-container').css(
-						'background-image',
-						'url("${pageContext.request.contextPath}/image/' + temp
-								+ '")');
-				$('.preview-container').css('background-size', 'contain');
-
-				$('input[name="paper"]').val(temp);
-			})
+		$('input[name="paper"]').val(filename);
+	})
 
 	$('#next-step').on(
 			'click',

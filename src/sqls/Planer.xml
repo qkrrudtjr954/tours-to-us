@@ -50,8 +50,8 @@
 	</insert>
 
 	<insert id="addTimePlaner" parameterType="www.tours2us.com.model.TimePlanerDto">
-		INSERT INTO TIMEPLANER(SEQ, TARGET_DAYPLANER_SEQ, START_TIME, END_TIME, LOCATION, EXPECTED_COST, TRANSPORTATION, REG_DATE, LAST_UPDATED, TYPES, CONTENT)
-		VALUES(TIMEPLANER_SEQ.NEXTVAL, #{target_dayplaner_seq}, #{start_time}, #{end_time}, #{location}, #{expected_cost}, #{transportation}, SYSDATE, SYSDATE, #{types}, #{content})
+		INSERT INTO TIMEPLANER(SEQ, TARGET_DAYPLANER_SEQ, START_TIME, END_TIME, LOCATION, EXPECTED_COST, TRANSPORTATION, REG_DATE, LAST_UPDATED, TYPES, CONTENT, STEP)
+		VALUES(TIMEPLANER_SEQ.NEXTVAL, #{target_dayplaner_seq}, #{start_time}, #{end_time}, #{location}, #{expected_cost}, #{transportation}, SYSDATE, SYSDATE, #{types}, #{content}, (SELECT NVL(MAX(STEP)+1, 0) FROM TIMEPLANER WHERE TARGET_DAYPLANER_SEQ = #{target_dayplaner_seq}))
 		<selectKey keyProperty="seq" resultType="int" order="AFTER">
 			SELECT TIMEPLANER_SEQ.CURRVAL FROM DUAL
 		</selectKey>

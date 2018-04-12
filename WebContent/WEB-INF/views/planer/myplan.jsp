@@ -16,7 +16,7 @@
 }
 
 .card-container {
-	background-color: rgb(0,0,0,0.5);
+	background-color: rgb(0,0,0,0.7);
 	position: absolute;
 	padding: 20px 50px;
 	bottom: 0;
@@ -62,10 +62,31 @@ h2 {
 	right: 5px;
 }
 
+.ing-img img {
+	border-radius: 50%;
+}
+
 .myplan-title{
 	border-bottom: 2px solid #7cc4bb;
     width: 35%;
     margin-bottom: 10px;
+}
+
+.span-title {
+	color: #fff; 
+	font-size: xx-large; 
+	font-weight: normal; 
+}
+
+.change-pen {
+	vertical-align: inherit;
+	padding-left: 30px;
+}
+
+.review-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
 
 </style>
@@ -92,7 +113,7 @@ h2 {
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
 					<div class="card offset-md-3 col-md-6 ">
-						<div class="card-body" style="background-image:url('${pageContext.request.contextPath }/${plan.paper eq null ? 'image/no-img.png' : plan.paper}');">
+						<div class="card-body" style="background-image:url('${initParam.IMG_SERVER_PATH }/image/${plan.paper eq null ? 'no-img.png' : plan.paper}'); background-size: contain;">
 							&nbsp;
 							<c:if test="${plan.status == 0 }">
 								<div class="ing-img">
@@ -107,9 +128,8 @@ h2 {
 								</div>
 								<div class="card-text">
 									<div class="title-div">
-										<a href="planDetail.do?seq=${plan.seq }" class="plan-detail"><span style="color: #fff; font-size: xx-large; font-weight: normal;" class="span-title">${plan.title }</span></a>
-										<img class="change-pen" alt="pen" src="./image/pen1.png"
-											onclick="showTitleInput(this)" width="25px" height="25px">
+										<a href="planDetail.do?seq=${plan.seq }" class="plan-detail"><span class="span-title">${plan.title }</span></a>
+										<img class="change-pen" alt="pen" src="./image/pen1.png" onclick="showTitleInput(this)" width="25px" height="25px">
 									</div>
 									<div class="writer">
 										<span style="color: #fff; font-size: large; font-weight: normal;">${plan.name }</span>
@@ -123,9 +143,8 @@ h2 {
 										</div>
 									</div>
 								</div>
-								<div class="offset-md-10 col-md-2 review-btn">
-									<a href="afterWrite.do?seq=${plan.seq }"
-										class="btn btn-primary">후기쓰기</a>
+								<div class="review-btn">
+									<a href="afterWrite.do?seq=${plan.seq }" class="btn btn-primary">후기쓰기</a>
 								</div>
 							</div>
 						</div>
@@ -135,31 +154,6 @@ h2 {
 		</div>
 	</div>
 </div>
-
-<hr>
-<div class="row content">
-<div class="offset-md-2 col-md-8">
-<div class="row no-gutters">
-		<c:forEach items="${planlist }" var="plan" varStatus="i">
-				<div class="card offset-md-3 col-md-6 col-xs-4 box-shadow">
-					<div class="card-img">
-						<img class="card-img-top" src="${plan.paper eq null ? 'image/no-img.png' : plan.paper}" height="300px" width="300px"> 
-					</div>
-					
-					<c:if test="${plan.status == 0 }">
-						<div class="ing-img">
-							<img src="./image/ing.png" class="status-img" width="100px" height="100px">
-						</div>
-					</c:if>
-					<div class="card-body" onclick="location.href='planDetail.do?seq=${plan.seq }'" style="cursor: pointer;height: 100px;">
-						<span style="font-size: 15px; font-weight: bold;" class="span-title">${plan.title }</span><br>
-						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">writer: ${plan.name }</span>
-					</div>
-				</div>
-		</c:forEach>
-		</div>
-		</div>
-	</div>
 
 <script>
                                      

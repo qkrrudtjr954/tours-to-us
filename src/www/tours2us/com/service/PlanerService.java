@@ -36,4 +36,5 @@ public interface PlanerService {
 	List<Korea> getKoreaList();
 
 	boolean deleteTimePlaner(int seq, int target_dayplaner_seq);
+
 }

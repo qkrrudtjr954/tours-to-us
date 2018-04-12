@@ -161,14 +161,36 @@ public class PlanerController {
 	}
 	@ResponseBody
 	@RequestMapping(value="addTimePlaner.do", method=RequestMethod.POST)
-	public TimePlanerDto addTimePlaner(TimePlanerDto timePlaner) {
+	public TimePlanerDto addTimePlaner(String s_target_dayplaner_seq, String start_time, String end_time, String location, String s_expected_cost, String transportation, String types, String content) {
+		TimePlanerDto paramTimePlaner = new TimePlanerDto();
 		
-		logger.info("PlanerContoller >>>>>> addTimePlaner : {}", timePlaner);
-		
-		//	add time planer
-		TimePlanerDto addedTimePlaner = planerService.addTimePlaner(timePlaner);
+		if(s_target_dayplaner_seq==null || start_time==null || end_time==null || location==null || transportation==null || types==null || content==null) {
+			//	incorrect value
+			paramTimePlaner.setSeq(-10);
+			return paramTimePlaner;
+		}else {
+			if(s_target_dayplaner_seq.equals("") || start_time.equals("") || end_time.equals("") || location.equals("") || transportation.equals("") || types.equals("") || content.equals("")) {
+				paramTimePlaner.setSeq(-10);
+				return paramTimePlaner;
+			} else {
+				int expected_cost = (s_expected_cost.trim().equals("")) ? 0 : Integer.parseInt(s_expected_cost);
 
-		return addedTimePlaner;
+				paramTimePlaner.setContent(content);
+				paramTimePlaner.setEnd_time(end_time);
+				paramTimePlaner.setExpected_cost(expected_cost);
+				paramTimePlaner.setLocation(location);
+				paramTimePlaner.setStart_time(start_time);
+				paramTimePlaner.setTarget_dayplaner_seq(Integer.parseInt(s_target_dayplaner_seq));
+				paramTimePlaner.setTransportation(transportation);
+				paramTimePlaner.setTypes(types);
+				
+				//	add time planer
+				TimePlanerDto addedTimePlaner = planerService.addTimePlaner(paramTimePlaner);
+				logger.info("PlanerContoller >>>>>> addedTimePlaner : {}", addedTimePlaner);
+
+				return addedTimePlaner;
+			}
+		}
 	}
 	
 	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })

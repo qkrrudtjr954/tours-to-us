@@ -43,13 +43,20 @@
     height: 500px;
     bottom: 100px;
     z-index: 500;
-    background-color: white;
+    background-color: brown;
     border: 1px solid #7DC3BB;
-    background-color: lightpink;
-    /* background-image: url("./image/chat-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; */
+}
+
+@media (max-width: 768px) {
+	.chat-container {
+		position: inherit;
+	    height: 200px;
+	    z-index: 500;
+	}
+	
+	button#toggleChat {
+		display: none;
+	}
 }
 #data {
 	font-size: 13px;
@@ -127,6 +134,41 @@
 
 .buttonArea a.btn.btn-outline-danger {
     border-radius: 50%;
+}
+
+
+.timePlanerContainer {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%; 
+    height: 670px;
+    border: 1px solid gray;
+    margin: 5px;
+}
+.timePlanersList {
+    width: 100%;
+    padding: 5px;
+}
+.timePlaner {
+	border: 2px solid black;
+	font-size: 13px;
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 5px;
+	width: 100%;
+}
+.timePlaner > ul {
+	margin-left: 0;
+}
+
+button#toggleChat {
+    position: absolute;
+    right: 0px;
+    top: -33px;
+}
+
+#timePlanerForm {
+	padding: 5px;
 }
 
 </style>
@@ -266,8 +308,12 @@
 					<div class="timePlanersList"></div>
 				</div>
 			</div>
-		</div>		
+		</div>
+
 		<div class="col-md-2 chat-container">
+			<div class="hiddenChat">
+				<button class="btn-sm btn-outline-secondary" id="toggleChat">채팅 접기</button>
+			</div>
 			<div class="chat-container2">
 			    <div id="chat-data"></div>
 			</div>
@@ -280,6 +326,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="row no-gutters">
 		<div class="offset-md-2 col-md-4">
 			<div class="d-flex justify-content-center">
@@ -338,6 +386,18 @@
 
 <script type="text/javascript">
 var sock = new SockJS("${pageContext.request.contextPath}/echo");
+
+$("#toggleChat").click(function(){
+	if($(".chat-container").hasClass('closed')){		
+	    $(".chat-container").removeClass('closed');		
+		$(this).html('채팅 접기');
+	    $(".chat-container").animate({ width: "100%" }, 1000);
+	} else {
+		$(".chat-container").addClass('closed');		
+		$(this).html('채팅 펼치기');
+	    $(".chat-container").animate({ width: "0%" }, 1000);
+	}
+});
 
 $(document).ready(function () {
 	$("#sendBtn").click(function() {
@@ -400,20 +460,54 @@ function getTimePlaners(seq) {
 	})
 }
 
-$('#addButton').on('click', function () {
-	var FormData = $('#timePlanerForm').serialize();
-	
-	$.ajax({
-		url : 'addTimePlaner.do',
-		data : FormData,
-		method : 'POST',
-		success : function (data) {
-			console.log(data);
-			drawTimePlaner(data);
-		}
-	})
-})
+function removeSpan(dom) {
+	$(dom).parent().find('span.error-msg').remove();
+}
 
+
+function validation(dom, msg) {
+	let result = true;
+	
+	if($(dom).val() == ''){
+		removeSpan($(dom));
+		$(dom).parent().append('<span class="error-msg" style="font-size:80%;color:#dc3545;">'+msg+'</span>');
+		$(dom).focus();
+		result = false;
+	} else{
+		removeSpan($(dom));
+		result = true;
+	}
+	return result;
+}
+
+
+$('#addButton').on('click', function () {
+	$(this).attr('disabled', true);	
+	if(validation($('#location'), '지역을 입력해주세요.') && validation($('#start_time'), '출발 시간을 입력해주세요.') && validation($('#end_date'), '도착 시간을 입력해주세요.') && validation($('#transportation'), '이동 수단을 선택해주세요')){
+		$.ajax({
+			url : 'addTimePlaner.do',
+			data : { 
+				s_target_dayplaner_seq : $('input[name="target_dayplaner_seq"]').val(), 
+				start_time : $('select[name="start_time"]').val(),
+				end_time : $('select[name="end_time"]').val(),
+				location : $('input[name="location"]').val(),
+				s_expected_cost : $('input[name="expected_cost"]').val(),
+				transportation : $('select[name="transportation"]').val(),
+				types : $('select[name="types"]').val(),
+				content : $('textarea[name="content"]').val()
+			},
+			method : 'POST',
+			success : function (data) {
+				if(parseInt(data.seq) < 0 ){
+					alert('입력값을 확인해주세요.');
+				} else {
+					drawTimePlaner(data);					
+				}
+			}
+		});
+	}
+	$(this).attr('disabled', false);
+})
 
 function drawTimePlaner(data) {
 	var html = 

@@ -17,15 +17,11 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			TravelerDto current_user = (TravelerDto) request.getSession().getAttribute("current_user");
 			if (current_user == null || current_user.getEmail().equals("")) {
 				if (isAjaxRequest(request)) {
-					
 					response.sendError(400);
 					return false;
-					
 				} else {
-					
-					response.sendRedirect(webRoot + "/signin.do");
+					response.sendRedirect(webRoot + "/signin.do?error=400");
 					result = false;
-					
 				}
 			} else {
 				result = true;

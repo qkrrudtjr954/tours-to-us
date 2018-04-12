@@ -36,6 +36,7 @@
 .toto-content{
 	font-size: 13px;
 	color: #000;
+    width: 370px;
 }
 
 .row-content{
@@ -64,7 +65,7 @@ h2 {
 
 #toto-box{
 	margin-left: -30px;
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 .toto-downBtn{
@@ -74,7 +75,12 @@ h2 {
 #toto-pic-box{
     margin-right: 90px;
     margin-left: 0;
-    border-right: 1px solid #DCDCDC;
+    /* border-right: 1px solid #DCDCDC; */
+}
+
+#downBtn{
+	width: 300px;
+	margin-left: 30px;
 }
 
 </style>
@@ -100,11 +106,11 @@ h2 {
 		</div>
 		<div class="col-md-5" id="toto-box">
 			<div class="row toto-body">
-				<span class="toto-title" style="font-weight: bold; font-size: large;">${toto.title }</span>
+				<span class="toto-title" style="font-weight: bold; font-size: 20px;">${toto.title }</span>
 			</div>
 			<div class="row toto-content-sub">
-				<span class="toto-updated">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
-				<span class="toto-downcount">다운로드 수 : ${toto.downcount }</span>
+				<span class="toto-updated" style="font-weight: bold;">업데이트 : </span>&nbsp;<span class="toto-updated">${fn:substring(toto.last_updated, 0, 10) }</span>
+				<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated">${toto.downcount }</span>
 			</div>
 			<div class="row col-md-8" id="under-line">
 				<hr>
@@ -113,7 +119,7 @@ h2 {
 				<span class="toto-content" style="fo">추가 설명 : ${toto.content }</span>
 			</div>
 			<div class="row toto-downBtn">
-				<button class="btn btn-outline-secondary" style="width: 300px" onclick="filedown('${toto.filename}','${toto.seq}')"><span data-feather="download"></span><span>다운로드</span></button>
+				<button class="btn btn-outline-secondary" id="downBtn" onclick="filedown('${toto.filename}','${toto.seq}')"><span data-feather="download"></span><span>다운로드</span></button>
 			</div>
 		</div>
 	</div>

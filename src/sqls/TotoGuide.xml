@@ -31,5 +31,10 @@
 		UPDATE TOTOGUIDE SET READCOUNT=READCOUNT+1
 		WHERE SEQ=#{seq}
 	</update>
+	
+	<select id="totoSearch" parameterType="String" resultType="www.tours2us.com.model.TotoGuideDto">
+		SELECT * FROM TOTOGUIDE
+		WHERE LOCATION LIKE '${location}'
+	</select>
 
 </mapper>

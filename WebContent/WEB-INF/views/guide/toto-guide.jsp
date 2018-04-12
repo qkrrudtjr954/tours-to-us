@@ -77,6 +77,57 @@ h2 {
 	font-size: 13px;
 	color: #484848;
 }
+
+.toto-title{
+	margin-bottom: -20px;
+}
+
+.tag-location{
+	float: left;
+	display: inline-block;
+    height: 49px;
+    margin-left: -50px;
+}
+
+.tag-location ul {
+    display: block;
+    height: 39px;
+}
+
+.tag-location li {
+    float: left;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.tag-location li a {
+    display: inline-block;
+    height: 100%;
+    font-size: 15px;
+    line-height: 39px;
+    padding: 0 10px;
+}
+
+.tag-location li a:hover {
+    height: 37px;
+    line-height: 39px;
+    text-decoration: none;
+    color: #7DC3BB;
+    border-bottom: 3px solid #7DC3BB;
+}
+
+.tag-location .active a.cur {
+    height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none; 
+    color: #000000;
+}
+
+.cur:link {text-decoration: none; color: #000000;}
+.cur:hover {text-decoration: none; color: #7DC3BB;}
+.cur:visited {text-decoration: none; color: #000000;}
 </style>
 
 <div class="row no-gutters">
@@ -114,34 +165,40 @@ h2 {
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">
-	<!-- location 버튼 <a></a> -->
 	<hr>
+</div>
+<div class="offset-md-2 col-md-10">
+	<div class="tag-location">
+		<ul>
+			<li class="active">
+				<a href="#" class="cur">전체</a>
+			</li>
+			<li class="">
+				<a href="#" class="cur" onclick="">서울</a>
+			</li>
+			<li class="">
+				<a href="#" class="cur">강원도</a>
+			</li>
+			<li class="">
+				<a href="#" class="cur">충청도</a>
+			</li>
+			<li class="">
+				<a href="#" class="cur">경상도</a>
+			</li>
+			<li class="">
+				<a href="#" class="cur">전라도</a>
+			</li>
+			<li class="">
+				<a href="#" class="cur">제주도</a>
+			</li>
+		</ul>
+	</div>
 </div>
 
 <div class="row offset-md-9">
 	<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
 </div>
-<form action="toto_search.do" method="get" id="_frmFormSearch">
-	<div class="row" style="margin:0 auto;width:900px;">
-		<div class="offset-md-1 input-group-prepend">
-		
-			<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;" >
-				<option value="location">지역</option>
-			</select> 
-			<input type="text" class="form-control"
-				aria-label="Text input with segmented dropdown button" size="50"
-				name="s_keyword" id="text">
-		</div>
-		<div class="serach">
-			<button class="btn btn-outline-secondary" type="button" id="btnSearch"><span data-feather="search"></span></button>
-			<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span><span class="list-text">전체리스트</span></button>
-			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
-            <input type="hidden" name="recordCountPerPage"
-               id="_recordCountPerPage"
-               value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
-		</div>
-	</div>
-</form>
+
 <br>
 
 <div class="myplan-content">
@@ -170,7 +227,13 @@ h2 {
 	</div>
 </div>
 
-<div class="row content">
-
-	</div>
-
+<script>
+	$(function() {
+		var sBtn = $("li");
+		sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+			sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+		})
+	});	
+	
+</script>

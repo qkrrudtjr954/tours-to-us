@@ -121,4 +121,14 @@ public class TotoGuideController {
 		
 		return "downloadView";
 	}
+	
+	@RequestMapping(value="toto_search.do", method={RequestMethod.GET, RequestMethod.POST})
+	public String toto_search(Model model )throws Exception {
+		logger.info("TotoGuideController >>>> toto_search");
+		
+		//System.out.println("s:"+seq+"f:"+filename);
+		
+		
+		return "";
+	}
 }

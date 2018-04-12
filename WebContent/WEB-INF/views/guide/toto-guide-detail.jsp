@@ -63,12 +63,20 @@ h2 {
 }
 
 #toto-box{
-	margin-left: -10px;
+	margin-left: -30px;
+    margin-top: 70px;
 }
 
 .toto-downBtn{
     margin-top: 50px;
 }
+
+#toto-pic-box{
+    margin-right: 90px;
+    margin-left: 0;
+    border-right: 1px solid #DCDCDC;
+}
+
 </style>
 
 <div class="toto-location">
@@ -84,7 +92,7 @@ h2 {
 <div class="toto-div">
 	<div class="row">
 		<div class="offset-md-3 col-md-4 ">
-			<div class="row no-gutters">
+			<div class="row no-gutters" id="toto-pic-box">
 				<div class="toto-img">
 					<img class="toto-img-top"  src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" width="300px" height="355px">
 				</div>

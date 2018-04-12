@@ -118,7 +118,7 @@ h2 {
 	<hr>
 </div>
 
-<div class="row offset-md-2 ">
+<div class="row offset-md-9">
 	<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
 </div>
 <form action="toto_search.do" method="get" id="_frmFormSearch">

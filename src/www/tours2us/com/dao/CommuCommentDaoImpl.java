@@ -43,10 +43,10 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		return count>0?true:false;
 	}
 	
-	
+
 	@Override
-	public int AftereDeleteCheck(int seq) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> AftereDeleteCheck");
+	public int AfterCommentGgtUserSeq(int seq) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> AfterCommentGgtUserSeq");
 		return sqlSession.selectOne(ns + "AfterCommentgetUserSeq", seq);
 	}
 

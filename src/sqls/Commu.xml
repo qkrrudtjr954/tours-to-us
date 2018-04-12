@@ -56,12 +56,10 @@
 	</insert>
 	
 	<select id="AfterCommentgetUserSeq"
-	parameterType="int"
-	resultType="www.tours2us.com.model.CommuAfterCommentDto">
+	parameterType="www.tours2us.com.model.CommuAfterCommentDto"
+	resultType="int">
 	SELECT TARGET_USER_SEQ FROM AFTERBBSCOMMENT WHERE SEQ=#{seq}
 	</select>
-	
-	
 	
 	<!-- 댓글 삭제 -->
 	<update id="AfterComentDelete" parameterType="int">

@@ -10,7 +10,7 @@ public interface CommuCommentDao {
 public List<CommuAfterCommentDto> getAllComments(int seq) throws Exception;	
 public boolean addComment(CommuAfterCommentDto comment) throws Exception;
 public boolean AfterCommentDelete(int seq)throws Exception;
-public int AftereDeleteCheck(int seq) throws Exception;
+public int AfterCommentGgtUserSeq(int seq)throws Exception;
 
 
 //자유게시판

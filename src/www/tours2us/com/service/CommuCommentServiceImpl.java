@@ -46,9 +46,9 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 	}
 	
 	@Override
-	public int AftereDeleteCheck(int seq) throws Exception {
-		// TODO Auto-generated method stub
-		return commuCommentDao.AftereDeleteCheck(seq);
+	public boolean AfterCommentDeleteCheck(int seq, int current_user_seq) throws Exception {
+		int target_user_seq = commuCommentDao.AfterCommentGgtUserSeq(seq);
+		return(target_user_seq==current_user_seq)?true:false;
 	}
 
 	//자유게시판

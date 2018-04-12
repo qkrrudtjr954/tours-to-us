@@ -15,14 +15,14 @@
 		</selectKey>
 	</insert>
 
-	<select id="getplanList" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">				
-		SELECT P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, P.RANGE, P.TARGET_USER_SEQ, (SELECT T.NAME FROM TRAVELER T WHERE T.SEQ = P.TARGET_USER_SEQ) AS NAME 
+	<select id="getplanList" parameterType="int" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, P.RANGE, P.TARGET_USER_SEQ, (SELECT T.NAME FROM TRAVELER T WHERE T.SEQ = P.TARGET_USER_SEQ) AS NAME
 		FROM PLANER P, COTRAVELER C
 		WHERE (P.SEQ = C.TARGET_PLANER_SEQ AND C.TARGET_USER_SEQ=#{seq})
-		AND P.STATUS NOT IN(3, 4) 
+		AND P.STATUS NOT IN(3, 4)
 		ORDER BY P.REG_DATE DESC
 	</select>
-	
+
 
 	<select id="getDayplanList" parameterType="int" resultType="www.tours2us.com.model.DayPlanerDto">
 		SELECT * FROM DAYPLANER WHERE TARGET_PLANER_SEQ=#{SEQ}
@@ -69,7 +69,7 @@
 	<update id="changeTitle" parameterType="www.tours2us.com.model.PlanerDto">
 		UPDATE PLANER SET TITLE=#{title}, LAST_UPDATED=sysdate WHERE SEQ=#{seq}
 	</update>
-	
+
 	<update id="planDelete" parameterType="int">
 		UPDATE PLANER SET STATUS=3 WHERE SEQ=#{seq}
 	</update>

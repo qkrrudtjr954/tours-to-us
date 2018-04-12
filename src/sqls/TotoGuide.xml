@@ -34,7 +34,7 @@
 	
 	<select id="totoSearch" parameterType="String" resultType="www.tours2us.com.model.TotoGuideDto">
 		SELECT * FROM TOTOGUIDE
-		WHERE LOCATION LIKE '${location}'
+		WHERE  LOCATION like '%'||#{location}||'%'
 	</select>
 
 </mapper>

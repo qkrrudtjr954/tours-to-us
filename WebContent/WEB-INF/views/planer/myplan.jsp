@@ -69,7 +69,8 @@ h2 {
 .myplan-title{
 	border-bottom: 2px solid #7cc4bb;
     width: 35%;
-    margin-bottom: 10px;
+    margin-top: 50px;
+
 }
 
 .span-title {
@@ -121,7 +122,7 @@ h2 {
 							&nbsp;
 							<c:if test="${plan.status == 0 }">
 								<div class="ing-img">
-									<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+									<img src="${initParam.IMG_SERVER_PATH }/image/ing.png" class="status-img" width="100px" height="100px">
 								</div>
 							</c:if>
 							<div class="card-container">

@@ -32,7 +32,7 @@
 		WHERE SEQ=#{seq}
 	</update>
 	
-	<select id="totoSearch" parameterType="String" resultType="www.tours2us.com.model.TotoGuideDto">
+	<select id="totoSearch" parameterType="www.tours2us.com.model.TotoGuideDto" resultType="www.tours2us.com.model.TotoGuideDto">
 		SELECT * FROM TOTOGUIDE
 		WHERE  LOCATION like '%'||#{location}||'%'
 	</select>

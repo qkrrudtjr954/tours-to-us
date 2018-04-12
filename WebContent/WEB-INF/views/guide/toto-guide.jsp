@@ -174,22 +174,22 @@ h2 {
 				<a href="toto_guide.do" class="cur">전체</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="location_search()">서울</a>
+				<a href="#" class="cur" value="서울">서울</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="location_search()">강원도</a>
+				<a href="#" class="cur" value="강원도">강원도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="location_search()">충청도</a>
+				<a href="#" class="cur" value="충청도">충청도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="location_search()">경상도</a>
+				<a href="#" class="cur" value="경상도">경상도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="location_search()">전라도</a>
+				<a href="#" class="cur" value="전라도">전라도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" onclick="location_search()">제주도</a>
+				<a href="#" class="cur" value="서울">제주도</a>
 			</li>
 		</ul>
 	</div>
@@ -201,15 +201,15 @@ h2 {
 
 <br>
 
-<div class="myplan-content">
+<div class="toto-content">
 	<div class="row">
-		<div class="offset-md-2 col-md-8">
+		<div class="offset-md-2 col-md-8 ">
 			<c:if test="${empty totolist }">
 				<div class="col-md-11 text-center col-xs-12">
 					<p>작성된 글이 없습니다</p>
 				</div>
 			</c:if>
-			<div class="row no-gutters">
+			<div class="row no-gutters toContent">
 				<c:forEach items="${totolist }" var="toto" varStatus="i">
 					<div class="book-card">
 						<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
@@ -221,8 +221,6 @@ h2 {
 					</div>
 				</c:forEach>
 			</div>
-
-
 		</div>
 	</div>
 </div>
@@ -234,5 +232,39 @@ h2 {
 			sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
 			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
 		})
-	});	
+	});
+	
+	$(".cur").click(function () {
+		var local = $(this).attr('value');
+		//alert("local"+location);
+		
+		$.ajax({
+			url:"toto_search.do",
+			method:"post",
+			data:{location:local},
+			success:function(data){
+				alert("d"+data);
+				$(".toContent").children().remove();
+				
+				for(var i=0; i<data.length; i++ ){
+					printTotolistHtml(data[i]);
+				}
+			},
+			error : function(req, sta, err){
+				alert("error");
+			}
+		})
+	});
+	
+	function printTotolistHtml(toto) {
+		var html = '<div class="book-card">'
+			+'<div class="book-img" onclick="location.href="toto_detail.do?seq=${toto.seq }"">'
+			+'<img class=book-img-top" src="${toto.pic eq null ? "image/no-img.png" : toto.pic}" style="cursor: pointer; width="300px" height="200px">'
+			+'</div>'
+			+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
+			+'<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>'			
+			+'</div>'
+			+'</div>';
+			$(".toContent").append(html);
+	}
 </script>

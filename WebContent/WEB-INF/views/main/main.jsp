@@ -146,7 +146,7 @@ font-size: 13px;
 </section>
 
 
-<div class="offset-md-2 col-md-10"><!--  하단부 내용 -->
+<%-- <div class="offset-md-2 col-md-10"><!--  하단부 내용 -->
 	
 	<div class="first_best_head">
 		<p>BEST Toditor's Pick!</p>
@@ -181,4 +181,4 @@ font-size: 13px;
 		</c:forEach>
 	</div>
 	</div>
-</div><!--  하단부 내용 -->
+</div><!--  하단부 내용 --> --%>

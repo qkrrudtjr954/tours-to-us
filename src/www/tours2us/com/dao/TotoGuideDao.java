@@ -11,4 +11,5 @@ public interface TotoGuideDao {
 	void totoUpload(TotoGuideDto totodto);
 	boolean downCount(int seq);
 	void readCount(int seq);
+	List<TotoGuideDto> totoSearch(String location);
 }

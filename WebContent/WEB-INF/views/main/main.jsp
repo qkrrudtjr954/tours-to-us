@@ -195,10 +195,10 @@ font-size: 13px;
 		<div class="offset-md-9 move_to_" id="move_to_afterbbs">
 			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
 		</div>
-		<div class="2nd_best_content">
-			
+		<div class="2nd_best_content">		
 		
-				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">					
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
+						
 						<table class="col-md-6">
 						<colgroup>
 							<col style="width:50%" />
@@ -210,7 +210,7 @@ font-size: 13px;
 						</c:forEach>
 						</tbody>
 						</table>	
-									
+						
 						<table class="col-md-6">
 						<colgroup>
 							<col style="width:50%" />

@@ -263,10 +263,11 @@
 						</div>
 						<div class=row>
 							<div class="comment_content">${comment.content }</div>
-						</div>
-
-						<div class="comment-email col-md-1" style="height: 50px;">
-							<input type="button" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969" value="삭제">
+						</div>						
+					</div>
+					<div class="col-md-1">
+					<div class="comment-email col-md-1" style="height: 50px;">
+							<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969" value="삭제">
 						</div>
 					</div>
 				</div>
@@ -283,6 +284,7 @@
 		alert("dadddd");
 	var seq = ${aftergetBbs.seq};
    	var user_seq = ${current_user.seq};
+   	//var text = 
    	
    	$.ajax({
 	      url:"AfterComentAf.do",
@@ -318,8 +320,11 @@
 		+'<div class=row>'
 		+'<div class="comment_content">'+comment.content+'</div>'
 		+'</div>'
+		+'</div>'
+		+'<div class="col-md-1">'
 		+'<div class="comment-email col-md-1" style="height: 50px;">'
-		+'<input type="button" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969" value="삭제">'
+		+'<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969" value="삭제">'
+		+'</div>'
 		+'</div>'
 		+'</div>'
 		+'</div>';

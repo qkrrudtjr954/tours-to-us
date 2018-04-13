@@ -48,9 +48,9 @@
 		<div class="d-flex justify-content-end align-items-centers plan-menu">
 			<img src="${initParam.IMG_SERVER_PATH}/image/zoom-in.png" onclick="day_all(${planer.seq})" style="cursor:pointer" title="크게보기" width="30px" height="30px">
 			&nbsp;
-			<img src="${initParam.IMG_SERVER_PATH}/image/indent-all.png" onclick="day_show()"  style="cursor:pointer" title="전체보기" width="30px" height="30px">
+			<img src="${initParam.IMG_SERVER_PATH}/image/indent-all.png" onclick="day_show(); openLastBG();"  style="cursor:pointer" title="전체보기" width="30px" height="30px">
 			&nbsp;
-			<img src="${initParam.IMG_SERVER_PATH}/image/dedent-all.png" onclick="day_remove()" style="cursor:pointer" title="전체접기" width="30px" height="30px">
+			<img src="${initParam.IMG_SERVER_PATH}/image/dedent-all.png" onclick="day_remove(); closeLastBG();" style="cursor:pointer" title="전체접기" width="30px" height="30px">
 			&nbsp;
 			<img src="${initParam.IMG_SERVER_PATH}/image/updated.png" onclick="btn_update(${planer.seq})" style="cursor:pointer" title="수정하기" width="30px" height="30px">
 			&nbsp;
@@ -77,6 +77,12 @@
 	padding: 1px;
 	text-align: center;
 }
+#myplanDetail-content {
+	padding: 20px;
+	background-image: url("${initParam.IMG_SERVER_PATH }/image/planer-detail.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 </style>
 
 
@@ -91,7 +97,7 @@
 							<div class="col-md-4 planer-progress-bar" style="background-image: url('${initParam.IMG_SERVER_PATH }/image/first.png');"></div>
 						</c:when>
 						<c:when test="${i.index == last_index }">
-							<div class="col-md-4 planer-progress-bar" id="last-progress-bar" style="background-image: url('${initParam.IMG_SERVER_PATH }/image/last.png');"></div>							
+							<div class="col-md-4 planer-progress-bar is-closed" id="last-progress-bar" style="background-image: url('${initParam.IMG_SERVER_PATH }/image/last.png');"></div>							
 						</c:when>
 						<c:otherwise>
 							<div class="col-md-4 planer-progress-bar" style="background-image: url('${initParam.IMG_SERVER_PATH }/image/middle.png');"></div>
@@ -116,10 +122,11 @@
 				<div id="collapse${i.count }" class="collapse" aria-labelledby="heading" >
 					<c:set value="${planerMap.get(dayPlan).size()-1 }" var="last_sub_index"/>
 					<c:forEach var="timePlan" items="${planerMap.get(dayPlan) }" varStatus="t">
+						
 						<c:choose>
 							<c:when test="${planerMap.get(dayPlan).size() == 1 }">
 								<c:choose>
-									<c:when test="${t.index == last_sub_index }">
+									<c:when test="${i.index == last_index }">
 										<c:set var="url" value="${initParam.IMG_SERVER_PATH }/image/has-one-final.png"/>																								
 									</c:when>
 									<c:otherwise>
@@ -174,12 +181,25 @@ function btn_update(seq) {
 
 function changeLastBG() {
 	if($('#last-progress-bar').hasClass('is-opend')){
-		//	열려있는걸 닫아야한다.
-		$('#last-progress-bar').css('background-image', 'url("${initParam.IMG_SERVER_PATH}/image/last.png")');
-		$('#last-progress-bar').removeClass('is-opend');
-	} else {
+		closeLastBG();
+	} else if($('#last-progress-bar').hasClass('is-closed')){
+		openLastBG();
+	}
+}
+
+function openLastBG() {
+	if($('#last-progress-bar').hasClass('is-closed')){
 		$('#last-progress-bar').addClass('is-opend');
+		$('#last-progress-bar').removeClass('is-closed');
 		$('#last-progress-bar').css('background-image', 'url("${initParam.IMG_SERVER_PATH}/image/middle.png")');
+	}
+}
+
+function closeLastBG() {
+	if($('#last-progress-bar').hasClass('is-opend')){
+		$('#last-progress-bar').addClass('is-closed');
+		$('#last-progress-bar').removeClass('is-opend');
+		$('#last-progress-bar').css('background-image', 'url("${initParam.IMG_SERVER_PATH}/image/last.png")');
 	}
 }
 

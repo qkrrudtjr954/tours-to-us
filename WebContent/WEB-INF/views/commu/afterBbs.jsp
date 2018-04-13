@@ -18,7 +18,7 @@
 <div class="search">
 <div class="row" style="margin:0 auto;width:1200px;">
 	<div class="offset-md-1 input-group-prepend">
-			<form action="guideSearch.do" method="get" id="_frmFormSearch">
+			<form action="afterBbs.do" method="get" id="_frmFormSearch">
    <div class="row" style="margin:0 auto;width:900px;">
       <div class="input-group-prepend">
          <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
@@ -119,8 +119,17 @@ $(document).ready(function() {
 	});
 
 	$("#btnSearch").click(function() {
-	   //alert('search');                  
-	   $("#_frmFormSearch").attr({ "target":"_self", "action":"afterBbs.do" }).submit();
+	   //alert('search'); 
+	   var text = $("#text").val();
+	   if(text===""){
+		   alert("검색창이 비웠습니다");
+			$("#text").focus();
+		   
+	   }else{
+		   $("#_frmFormSearch").attr({ "target":"_self", "action":"afterBbs.do" }).submit(); 
+		   
+	   }
+	   
 	});
 	function goPage(pageNumber) {   
 	   $("#_pageNumber").val(pageNumber) ;

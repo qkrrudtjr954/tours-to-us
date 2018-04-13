@@ -236,15 +236,20 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-
+		
 		<div class="col-md-9 user_comment_text">
 			<input type="text" class="form-control" name="content" id="content0"
 				size="90" placeholder="댓글을 입력해주세요">
 		</div>
+		
 		<div class="col-md-2 user_comment_btn">
-			<input type="button" class="btn btn-outline-success" value="comment"
+			<input type="button" id="addComment" class="btn btn-outline-success" value="comment"
 				onclick="addComment(${comment.seq})">
 		</div>
+		
+		
+	
+		
 	</div>
 	<div class="comment_content">
 		<div class="comment-area">
@@ -312,8 +317,18 @@
 		}
 	});
   }
-   	
+	 	
 }
+	$("#content0").keypress(function(event) {
+		if(event.which == "13"){
+			event.preventDefault();
+			//버튼클릭부분으로 이동시킴
+			$("#addComment").click();
+		}
+	});	
+
+	
+	
 
 	function printCommentHtml(comment) {
 		var html ='<div class="row comment-item">'
@@ -354,7 +369,7 @@
 
 <script>
 function delete_Comment(seq, dom) {
-	alert("deleteComment" + seq);
+	//alert("deleteComment" + seq);
    	var user_seq = ${current_user.seq};
 	//var target_test_seq =${comment.target_user_seq};
 	var dom2 = dom;

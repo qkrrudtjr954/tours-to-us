@@ -172,6 +172,11 @@ font-size: 13px;
 }
 
 
+.comment_delete{
+font-size: 12px;}
+
+
+
 #deleteBBS:link { color: #6e6e6e;; text-decoration: none;}
 #deleteBBS:visited { color: #6e6e6e;; text-decoration: none;}
 #deleteBBS:hover { color: #6e6e6e;; text-decoration: underline;}
@@ -294,11 +299,15 @@ font-size: 13px;
 							<div class="col-md-10">
 								<div class=row>
 										<div class="comment_name">${comment.name }</div>
-										<div class="comment_time"><fmt:formatDate value="${comment.reg_date}" pattern="yyyy/MM/dd" /></div>
+										<div class="comment_time"><fmt:formatDate value="${comment.reg_date}" pattern="yyyy/MM/dd" /></div>										
 								</div>
+								
 								<div class=row>
 										<div class="comment_content">${comment.content }</div>
 								</div>
+							</div>
+							<div class="col-md-1">
+								<div class="comment_delete">삭제</div>
 							</div>
 						</div>
 						<hr>

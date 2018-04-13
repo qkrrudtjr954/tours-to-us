@@ -4,6 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<style>
+.thead{
+font-size: 12px;
+}
+
+.comment_count{
+font-size: 12px;
+color: #f37720;
+}
+
+#freebbs_title:link { color: black; text-decoration: none;}
+#freebbs_title:visited { color: black; text-decoration: none;}
+#freebbs_title:hover { color: black; text-decoration: underline;}
+</style>
  <div class="after-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
 		<h2>자유 게시판</h2>
@@ -47,16 +61,17 @@
 <div class="offset-md-2">
 <table style="width:85%;" class="table">
 <colgroup>
-		<col style="width:100px;" />
-		<col style="width:100px;" />
-		<col style="width:100px;" />
-		<col style="width:100px;" />
+		<col style="width:10%" />
+		<col style="width:60%" />
+		<col style="width:10%" />
+		<col style="width:10%" />
+		<col style="width:10%" />
 </colgroup>
 
 
 <thead>
-	<tr>
-		<th>번호</th><th>제목</th> <th>작성자</th> <th>작성일</th>  
+	<tr align="center">
+		<th>번호</th><th>제목</th> <th>추천수</th><th>작성자</th> <th>작성일</th>  
 	</tr>
 </thead>
 <tbody>	
@@ -70,22 +85,26 @@
 	<c:if test="${free.status==0 }">
 	<tr>
 		
-		<td>
-			${i.count }
+		<td align="center">
+			<span  style="font-size: 14px; color: black;">${i.count }</span>
 		</td>
 	
-		<td>
-			<a href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>
+		<td >
+			<a id="freebbs_title" href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>&nbsp;<span class="comment_count">[${free.comment_count }]</span>
 		</td>
 		
-		<td>
+		<td align="center">
+			<span  style="font-size: 13px; color: black;">${free.like_count }</span>
+		</td>
+		
+		<td align="center">
 			${free.name }
 		</td>
 		
-		<td>
-			${free.reg_date }
-		</td>	
-		
+		<td align="center"  style="font-size: 13px; color: color: #6e6e6e;">
+			<fmt:parseDate value="${free.reg_date }" var="date" pattern="yyyy-MM-dd"/>
+			<fmt:formatDate value="${date}" pattern="yyyy/MM/dd"/>
+		</td>			
 	</tr>
 	</c:if>
 	</c:forEach>

@@ -109,6 +109,12 @@ public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception {
 	return commutDao.FreeBbsGetCount(freecontparam);
 }
 
+@Override
+public List<CommuAfterBbsDto> bestAfter() throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.bestAfter();
+}
+
 
 
 

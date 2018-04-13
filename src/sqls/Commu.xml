@@ -24,10 +24,15 @@
 <select id="AftergetBbs"
 	parameterType="int"
 	resultType="www.tours2us.com.model.CommuAfterBbsDto">
-		SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
-         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
+		SELECT*FROM
+		(SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL, B.PROFILE,
+          LEAD(A.TITLE,1) OVER(ORDER BY A.reg_date DESC) NEXT_TITLE,
+     	LEAD(A.SEQ,1,0) OVER(ORDER BY A.reg_date DESC) NEXT_SEQ,
+     	Lag(A.TITLE,1) OVER(ORDER BY A.reg_date DESC) PREV_TITLE,
+     	Lag(A.SEQ,1,0) OVER(ORDER BY A.reg_date DESC) PREV_SEQ         
       	FROM AFTERBBS A, TRAVELER B
-		WHERE  A.TARGET_USER_SEQ = B.SEQ AND A.SEQ=#{seq} AND STATUS=0
+		WHERE  A.TARGET_USER_SEQ = B.SEQ) WHERE SEQ=#{seq} AND STATUS=0
 	</select>
 
 	<update id="AfterUpdateBbs" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
@@ -73,11 +78,13 @@
 	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
 	resultType="www.tours2us.com.model.CommuAfterBbsDto">
 	SELECT SEQ, TARGET_PLANER_SEQ, TARGET_USER_SEQ, TITLE, 
-	CONTENT, REG_DATE, LAST_UPDATED, STATUS , NAME , EMAIL
+	CONTENT, REG_DATE, LAST_UPDATED, STATUS , NAME , EMAIL, LIKE_COUNT, COMMENT_COUNT
 	FROM
 	(SELECT ROW_NUMBER() OVER (ORDER BY A.REG_DATE DESC) as rnum,
 	 A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
-         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL,
+         (select count(*) from liketable C where A.seq = C.target_bbs_seq and C.bbs_category=1) as like_count,
+        (SELECT COUNT(*) FROM AFTERBBSCOMMENT D WHERE D.TARGET_BBS_SEQ = A.SEQ  and d.status=0 ) AS COMMENT_COUNT
       	FROM AFTERBBS A, TRAVELER B
 	WHERE A.TARGET_USER_SEQ = B.SEQ AND STATUS=0
 	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
@@ -88,6 +95,8 @@
 	) A
 	WHERE rnum between #{start} AND #{end}	
 </select>
+
+
 
 <select id="AfterGetBbsCount"
 	parameterType="www.tours2us.com.model.CommuAfterBbsDto"
@@ -101,6 +110,24 @@
 		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 	</if>
 </select>
+
+<select id="bestAfter" resultType="www.tours2us.com.model.CommuAfterBbsDto">
+SELECT RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
+		FROM
+		(	select ROW_NUMBER() OVER (ORDER BY LIKE_COUNT DESC) AS RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
+			from (
+				select TITLE, E.SEQ, CONTENT, T.NAME, (select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=1) as like_count,
+				(SELECT COUNT(*) FROM AFTERBBSCOMMENT D WHERE D.TARGET_BBS_SEQ = E.SEQ  and d.status=0 ) AS COMMENT_COUNT
+				FROM AFTERBBS E, TRAVELER T
+				WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 0
+				ORDER BY LIKE_COUNT DESC
+			) SUB
+		) A
+		WHERE RNUM BETWEEN 1 AND 10
+</select>
+
+
+
 <!--==============================FreeBbs======================================-->
 <select id="FreeBbsList" resultType="www.tours2us.com.model.CommuFreeBbsDto">
 	SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
@@ -120,10 +147,15 @@
 <select id="FreeBbsDetail"
 	parameterType="int"
 	resultType="www.tours2us.com.model.CommuFreeBbsDto">
-		SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
-    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL
-    	FROM FREEBBS F, TRAVELER T
-		WHERE  F.TARGET_USER_SEQ = T.SEQ AND F.SEQ=#{seq} AND STATUS=0
+		SELECT*FROM
+		(SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
+    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, T.PROFILE,
+    	 LEAD(F.TITLE,1) OVER(ORDER BY F.reg_date DESC) NEXT_TITLE,
+     	LEAD(F.SEQ,1,0) OVER(ORDER BY F.reg_date DESC) NEXT_SEQ,
+     	Lag(F.TITLE,1) OVER(ORDER BY F.reg_date DESC) PREV_TITLE,
+     	Lag(F.SEQ,1,0) OVER(ORDER BY F.reg_date DESC) PREV_SEQ         
+      	FROM FREEBBS F, TRAVELER T
+		WHERE  F.TARGET_USER_SEQ = T.SEQ AND STATUS=0)WHERE  SEQ=#{seq}
 </select>
 
 <update id="FreeBbsUpdate" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
@@ -155,11 +187,13 @@
 	parameterType="www.tours2us.com.model.CommuFreeBbsDto"
 	resultType="www.tours2us.com.model.CommuFreeBbsDto">
 	SELECT SEQ, TARGET_CATEGORY_SEQ, TARGET_USER_SEQ, 
-    	TITLE, CONTENT, REG_DATE, LAST_UPDATED, STATUS, NAME, EMAIL
+    	TITLE, CONTENT, REG_DATE, LAST_UPDATED, STATUS, NAME, EMAIL, LIKE_COUNT, COMMENT_COUNT
 	FROM
 	(SELECT ROW_NUMBER() OVER (ORDER BY F.REG_DATE DESC) as rnum,
 	 F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
-         F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL
+         F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, 
+          (select count(*) from liketable C where F.seq = C.target_bbs_seq and C.bbs_category=4) as like_count,
+        (SELECT COUNT(*) FROM FREEBBSCOMMENT D WHERE D.TARGET_FREE_SEQ = F.SEQ  and d.status=0 ) AS COMMENT_COUNT
       	FROM FREEBBS F, TRAVELER T
 	WHERE F.TARGET_USER_SEQ = T.SEQ AND STATUS=0
 	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
@@ -183,6 +217,8 @@
 		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
 	</if>
 </select>
+
+
 
 
 

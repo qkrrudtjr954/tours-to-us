@@ -269,7 +269,7 @@ padding-top:15px;
 					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'" style="cursor: pointer;">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
 						<span id="location">${item.category }</span><br> 
-						<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
+						<span style="font-size: 15px; font-weight: bold;">${item.title }</span>&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span><br>
 						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor: ${item.name }</span>
 					</div>
 				</div>

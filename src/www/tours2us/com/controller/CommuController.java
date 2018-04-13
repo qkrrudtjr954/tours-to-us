@@ -164,6 +164,32 @@ public class CommuController {
 
 		return commList;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "AfterComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean AfterComentDelete(int seq ,HttpServletRequest req , CommuAfterCommentDto comment)throws Exception {
+		logger.info("CommuController >>>> AfterComentDelete");
+		System.out.println("seq" + seq);
+		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		
+		boolean check = commucommentService.AfterCommentDeleteCheck(seq, t_dto.getSeq());
+		System.out.println("check = " + check);
+		
+		//System.out.println("check = " + check);
+		
+
+		if (check) {
+			return  commucommentService.AfterCommentDelete(seq);
+		}else {
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	//자유게시판
 	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})

@@ -65,10 +65,18 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		sqlSession.insert(ns + "FreeAddComent", freecomment);
 		return true;
 	}
-	
-	
 
-	
+	@Override
+	public boolean FreeCommentDelete(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int FreeCommentGgtUserSeq(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 

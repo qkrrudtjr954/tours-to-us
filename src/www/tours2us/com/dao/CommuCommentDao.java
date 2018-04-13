@@ -15,9 +15,9 @@ public int AfterCommentGgtUserSeq(int seq)throws Exception;
 
 //자유게시판
 public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception;
-
 public boolean FreeAddComent(CommuFreeCommentDto freecomment) throws Exception;
-
+public boolean FreeCommentDelete(int seq)throws Exception;
+public int FreeCommentGgtUserSeq(int seq)throws Exception;
 
 
 

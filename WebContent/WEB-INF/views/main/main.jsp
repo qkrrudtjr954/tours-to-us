@@ -228,6 +228,10 @@ font-size: 13px;
 		</div>
 	</div>
 	
-	
+	<div class="guidebook_part">
+		<div class="head_title">
+			<p>가이드북</p>
+		</div>
+	</div>
 	
 </div><!--  하단부 내용 -->

@@ -39,7 +39,19 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		// TODO Auto-generated method stub
 		return commuCommentDao.getAllComments(seq);
 	}
+	
+	@Override
+	public boolean AfterCommentDelete(int seq) throws Exception {
+		return commuCommentDao.AfterCommentDelete(seq);
+	}
+	
+	@Override
+	public boolean AfterCommentDeleteCheck(int seq, int current_user_seq) throws Exception {
+		int target_user_seq = commuCommentDao.AfterCommentGgtUserSeq(seq);
+		return(target_user_seq==current_user_seq)?true:false;
+	}
 
+	//자유게시판
 	@Override
 	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {
 		// TODO Auto-generated method stub
@@ -61,6 +73,8 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 
 		return list;
 	}
+	
+	
 	
 	
 }

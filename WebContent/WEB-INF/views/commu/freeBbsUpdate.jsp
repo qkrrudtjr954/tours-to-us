@@ -22,14 +22,14 @@
 <div class="offset-md-2 col-md-8 col-xs-12">
    <hr>
 </div>
-<form action="freeBbsUpdateAf.do">
+<form action="freeBbsUpdateAf.do" method="post" id="myform">
 <input type="hidden" name="seq" value="${freebbs.seq }">
 <input type="hidden" name="target_planer_seq" value="${freebbs.seq }">
 <div class="row">
    <div class=" offset-md-3 col-md-6 write-form">
       <div class="input-group-prepend">
          <span class="input-group-text">제목</span> 
-         <input type="text" class="form-control" size="20" name="title" id="name"
+         <input type="text" class="form-control" size="20" name="title" id="title"
             placeholder="제목" value="${freebbs.title }">
       </div>   
    </div>
@@ -78,10 +78,54 @@
          ]
           });
 
-
-      sendMasterTableSet();
-
    });
+    
+    
+    function sendFile(file, editor) {
+		formdata = new FormData();
+		formdata.append("userImage", file);
+
+		$.ajax({
+			data: formdata,
+			type: "POST",
+			url: '${initParam.IMG_SERVER_PATH}/upload',
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {
+				console.log(data);
+				var url = '${initParam.IMG_SERVER_PATH }/image/'+data.filename;
+
+				if($('#pic1').val() == 'no-img.png'){
+					$('#pic1').val(data.filename);
+				}
+
+				alert(url);
+				$('#hello').html(url);
+				$(editor).summernote('editor.insertImage', url);
+				$('#imageDiv > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+	        }
+		});
+	}
+    
+    $("#btnwrite").click(function() {
+		var title = $("#title").val();
+		var content = $("#summernote").val();
+
+		if (title === "") {
+			alert("제목을 입력해주세요 ");
+			$("#title").focus();
+			return false;
+		} else if (content === "") {
+			alert("내용을 입력해주세요 ");
+			$("#summernote").focus();
+			return false;
+
+		} else {
+			$("#myform").submit();
+
+		}
+	});
     
     
    

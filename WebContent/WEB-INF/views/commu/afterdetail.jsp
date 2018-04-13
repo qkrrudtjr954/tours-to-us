@@ -370,15 +370,20 @@ ${commList }
 				</c:otherwise>
 			</c:choose>
 		</div>
-
+		
 		<div class="col-md-9 user_comment_text">
 			<input type="text" class="form-control" name="content" id="content0"
 				size="90" placeholder="댓글을 입력해주세요">
 		</div>
+		
 		<div class="col-md-2 user_comment_btn">
-			<input type="button" class="btn btn-outline-success" value="comment"
+			<input type="button" id="addComment" class="btn btn-outline-success" value="comment"
 				onclick="addComment(${comment.seq})">
 		</div>
+		
+		
+	
+		
 	</div>
 	<div class="comment_content">
 		<div class="comment-area">
@@ -397,10 +402,11 @@ ${commList }
 						</div>
 						<div class=row>
 							<div class="comment_content">${comment.content }</div>
-						</div>
-
-						<div class="comment-email col-md-1" style="height: 50px;">
-							<input type="button" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969" value="삭제">
+						</div>						
+					</div>
+					<div class="col-md-1">
+					<div class="comment-email col-md-1" style="height: 50px;">
+							<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969" value="삭제">
 						</div>
 					</div>
 				</div>
@@ -457,10 +463,15 @@ $('#like_btn').click(function () {
 
 
 	function addComment(seq) {
-		alert("dadddd");
+	//alert("dadddd");
 	var seq = ${aftergetBbs.seq};
    	var user_seq = ${current_user.seq};
-   	
+   	var text = $("#content0").val();
+	if(text==""){
+  		alert("댓글을 입력해 주세요");
+		$("#content0").focus();
+   		
+ 	}else{
    	$.ajax({
 	      url:"AfterComentAf.do",
 	      method:"post",
@@ -468,19 +479,33 @@ $('#like_btn').click(function () {
 	      success:function(data){
 	            
 	         $('.comment-area').children().remove();
-
+			
 	         for(var i=0; i <data.length; i++){
 	            printCommentHtml(data[i]);
 	         }
-	         $('#commentCount').html(data.length);
+	         
+			 $('#commentCount').html(data.length);
 			$('#content0').val('');
+			
 
 		},
 		error : function(request, status, error) {
 			alert("실패");
 		}
 	});
+  }
+	 	
 }
+	$("#content0").keypress(function(event) {
+		if(event.which == "13"){
+			event.preventDefault();
+			//버튼클릭부분으로 이동시킴
+			$("#addComment").click();
+		}
+	});	
+
+	
+	
 
 	function printCommentHtml(comment) {
 		var html ='<div class="row comment-item">'
@@ -495,8 +520,11 @@ $('#like_btn').click(function () {
 		+'<div class=row>'
 		+'<div class="comment_content">'+comment.content+'</div>'
 		+'</div>'
+		+'</div>'
+		+'<div class="col-md-1">'
 		+'<div class="comment-email col-md-1" style="height: 50px;">'
-		+'<input type="button" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969" value="삭제">'
+		+'<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969" value="삭제">'
+		+'</div>'
 		+'</div>'
 		+'</div>'
 		+'</div>';
@@ -518,7 +546,7 @@ $('#like_btn').click(function () {
 
 <script>
 function delete_Comment(seq, dom) {
-	alert("deleteComment" + seq);
+	//alert("deleteComment" + seq);
    	var user_seq = ${current_user.seq};
 	//var target_test_seq =${comment.target_user_seq};
 	var dom2 = dom;

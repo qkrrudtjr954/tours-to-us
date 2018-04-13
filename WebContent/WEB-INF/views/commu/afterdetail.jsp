@@ -281,11 +281,15 @@
 
 <script>
 	function addComment(seq) {
-		alert("dadddd");
+	//alert("dadddd");
 	var seq = ${aftergetBbs.seq};
    	var user_seq = ${current_user.seq};
-   	//var text = 
-   	
+   	var text = $("#content0").val();
+	if(text==""){
+  		alert("댓글을 입력해 주세요");
+		$("#content0").focus();
+   		
+ 	}else{
    	$.ajax({
 	      url:"AfterComentAf.do",
 	      method:"post",
@@ -293,18 +297,22 @@
 	      success:function(data){
 	            
 	         $('.comment-area').children().remove();
-
+			
 	         for(var i=0; i <data.length; i++){
 	            printCommentHtml(data[i]);
 	         }
-	         $('#commentCount').html(data.length);
+	         
+			 $('#commentCount').html(data.length);
 			$('#content0').val('');
+			
 
 		},
 		error : function(request, status, error) {
 			alert("실패");
 		}
 	});
+  }
+   	
 }
 
 	function printCommentHtml(comment) {

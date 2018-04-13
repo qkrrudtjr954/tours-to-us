@@ -39,7 +39,7 @@ public interface CommuDao {
 	public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception;
 	
 	
-	
+	public List<CommuAfterBbsDto> bestAfter() throws Exception;
 	
 	
 

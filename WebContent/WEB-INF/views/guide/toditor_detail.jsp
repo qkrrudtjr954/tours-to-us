@@ -173,7 +173,7 @@
 #deleteBBS:hover,
 #updateBBS:hover {
 	color: #6e6e6e;;
-	border-bottom: 2px solid #7db4cc; 
+	border-bottom: 2px solid #7db4cc;
 }
 
 .editor-title-container {
@@ -252,7 +252,7 @@
 	<div class="col-md-8">
 		<div class="d-flex justify-content-end">
 			<div class="d-flex justify-content-end">
-				<span id="updateBBS" onclick="bbsUpdate()">수정</span> 
+				<span id="updateBBS" onclick="bbsUpdate()">수정</span>
 				<span id="deleteBBS" onclick="bbsDelete()">삭제</span>
 			</div>
 		</div>
@@ -268,8 +268,8 @@
 					<span class="toditor_category">#${bbs.category }</span> <span
 						class="toditor_title_bold">${bbs.title }</span>
 					<div class="toditor_etc">
-						<span class="etc_writer">${bbs.name }</span> 
-						<span class="etc_date">s<fmt:formatDate value="${bbs.reg_date}" pattern="yyyy/MM/dd" /></span> 
+						<span class="etc_writer">${bbs.name }</span>
+						<span class="etc_date">s<fmt:formatDate value="${bbs.reg_date}" pattern="yyyy/MM/dd" /></span>
 						<span class="read_count">조회 : ${bbs.readcount }</span>
 					</div>
 				</div>
@@ -391,35 +391,35 @@
 function bbsDelete() {
 	  if(confirm("정말 삭제하시겠습니까?")==true){
 		  location.href="toditor_delete.do?seq=${bbs.seq }";
-	         
+
 	        }else{
 	        	return;
 	        }
-	
+
 }
 
 function bbsUpdate() {
 	location.href="toditor_update.do?seq=${bbs.seq}";
 }
 $('#like_btn').click(function () {
-	
-	
+
+
 	$.ajax({
 		url:"likebtn_click.do",
 		data: {bbs_category: 3, target_user_seq: ${current_user.seq }, target_bbs_seq: ${bbs.seq }},
 		type:"post",
 		success : function (data) {
-			
+
 			var result = JSON.parse(data);
-			
+
 			if(result.status == 404){
-				
+
 				$('img.hearticon').attr('src', './image/empty_heart.png');
 			} else {
-				
+
 				$('img.hearticon').attr('src', './image/heart.png');
 			}
-			
+
 			$('strong#like_count').html(result.like_count);
 		}
 	})
@@ -433,19 +433,19 @@ function addComment(seq) {
 		type:"post",
 		data:{ target_editor_seq : seq, target_user_seq:user_seq ,content : $('#content0').val() },
 		success:function(data){
-				
+
 			$('.comment-area').children().remove();
-			
-			
+
+
 
 			for(var i=0; i <data.length; i++){
 				printCommentHtml(data[i]);
-				
+
 			}
 			$('#commentCount').html(data.length);
 			$('#content0').val('');
-			
-			
+
+
 		},
 		error:function(request, status, error){
 			alert("실패");
@@ -453,7 +453,7 @@ function addComment(seq) {
 	});
 }
 
-function printCommentHtml(comment ){		
+function printCommentHtml(comment ){
 
 	var html ='<div class="row">'+
 					'<div class="col-md-1 comment_profile">'+
@@ -471,12 +471,12 @@ function printCommentHtml(comment ){
 				'</div>'+
 				'<hr>';
 			$('.comment-area').append(html);
-} 
+}
 
 
 function dateTest(date) {
 	var date = new Date(date);
-	
+
 
 	var result =date.getFullYear()+'/'+
     ((date.getMonth()+1)<10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1))+'/'+

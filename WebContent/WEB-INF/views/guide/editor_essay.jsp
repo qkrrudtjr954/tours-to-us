@@ -188,7 +188,7 @@
 				<div id="header" align="center" style="padding: 10px;">
 					<span id="best_edit_head">TO-ditor's BEST PICK</span>
 				</div>
-		
+
 				<div id="carouselExampleControls" class="carousel slide"
 					data-ride="carousel">
 					<div class="carousel-inner">
@@ -197,11 +197,11 @@
 								<c:forEach items="${b1list }" var="item" begin="0" end="2" varStatus="i">
 									<div class="col-md-4" style="padding: 0px 5px; height: 300px;"  id="hovereffect">
 										<img class="card-img-top" src="${initParam.IMG_SERVER_PATH }/image/${item.pic1 }" height="300px">
-										
+
 										<div class="overlay" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
 											<div class="overlay-like-info d-flex justify-content-end align-items-center">
 												<img src="image/hearticon.png">
-												<span id="likecount">${item.like_count }</span>	
+												<span id="likecount">${item.like_count }</span>
 											</div>
 											<div class="overlay-content">
 												<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
@@ -222,7 +222,7 @@
 										<div class="overlay" onclick="location.href='toditor_detail.do?seq=${item.seq }'">
 											<div class="overlay-like-info d-flex justify-content-end align-items-center">
 												<img src="image/hearticon.png">
-												<span id="likecount">${item.like_count }</span>	
+												<span id="likecount">${item.like_count }</span>
 											</div>
 											<div class="overlay-content">
 												<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
@@ -233,16 +233,16 @@
 										</div>
 									</div>
 								</c:forEach>
-		
+
 							</div>
 						</div>
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span></a> 
+					<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span></a>
 					<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span></a>
 				</div>
 			</div>
 		</div>
-	
+
 		<div class="row no-gutters">
 			<div class="col-md-12 col-xs-12 search_menu">
 				<form name="frmForm1" id="_frmFormSearch" method="post" action="">
@@ -265,17 +265,17 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<button class="btn btn-outline-secondary" id="btn_write">에디터 글쓰기</button>
-						
+
 					</div>
 				</form>
 			</div>
 		</div>
-		
+
 		<br>
-	
-	
+
+
 		<div class="row">
 			<c:forEach items="${bbslist }" var="item" varStatus="i">
 				<div class="col-md-4">
@@ -298,7 +298,7 @@
 							style="cursor: pointer;">
 							<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
 							<span id="location">${item.category }</span><br> <span
-								style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
+								style="font-size: 15px; font-weight: bold;">${item.title }</span>&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span><br>
 							<span
 								style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor:
 								${item.name }</span>
@@ -307,9 +307,9 @@
 				</div>
 			</c:forEach>
 		</div>
-	
+
 		<!-- 페이징처리 -->
-	
+
 		<div id="paging_wrap">
 			<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
 				<jsp:param value="${pageNumber }" name="pageNumber" />
@@ -318,10 +318,10 @@
 				<jsp:param value="${totalRecordCount }" name="totalRecordCount" />
 			</jsp:include>
 		</div>
-	
+
 		<!-- 페이징처리 -->
-	
-	
+
+
 		<!-- 내용 div 끝 -->
 	</div>
 </div>
@@ -336,7 +336,7 @@
 	});
 
 	$("#_btnSearch").click(function() {
-		//alert('search');						
+		//alert('search');
 		$("#_frmFormSearch").attr({
 			"target" : "_self",
 			"action" : "editor_essay.do"

@@ -19,4 +19,6 @@ public List<CommuFreeCommentDto> FreeAddComent(CommuFreeCommentDto freecomment) 
 
 
 
+
+
 }

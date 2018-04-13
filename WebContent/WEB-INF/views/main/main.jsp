@@ -32,7 +32,7 @@ left:600px;
     
 }
 
-.first_best_head p{
+.head_title p{
 	font: normal 25px/40px "NanumBarunGothicBold";
     color: #444;   
     padding-top:10px;
@@ -40,6 +40,8 @@ left:600px;
     letter-spacing: -1px;
     margin-bottm:5px;
 }
+
+
 
 .bg_maincopy{
 padding-bottom:10px;
@@ -99,6 +101,9 @@ font-size: 13px;
 }
 
 
+
+
+
 </style>
 <section>
 			
@@ -147,8 +152,8 @@ font-size: 13px;
 
 
 <div class="offset-md-2 col-md-10"><!--  하단부 내용 -->
-	
-	<div class="first_best_head">
+<!-- 투디터 인기글 -->
+	<div class="head_title">
 		<p>BEST Toditor's Pick!</p>
 	</div>
 	<div class="offset-md-9 move_to_toditor" id="move_to_toditor">
@@ -173,7 +178,7 @@ font-size: 13px;
 					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'" style="cursor: pointer;">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
 						<span id="location">${item.category }</span><br> 
-						<span style="font-size: 15px; font-weight: bold;">${item.title }</span><br>
+						<span style="font-size: 15px; font-weight: bold;">${item.title }</span>&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span><br>
 						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor: ${item.name }</span>
 					</div>
 				</div>
@@ -181,4 +186,52 @@ font-size: 13px;
 		</c:forEach>
 	</div>
 	</div>
+	
+	<!-- 커뮤니티 인기글 -->
+	<div class="commu_part">
+		<div class="head_title">
+			<p>투둥이 인기 여행플랜</p>
+		</div>
+		<div class="offset-md-9 move_to_" id="move_to_afterbbs">
+			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
+		</div>
+		<div class="2nd_best_content">		
+		
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
+						
+						<table class="col-md-6">
+						<colgroup>
+							<col style="width:50%" />
+							<col style="width:10%" />
+						</colgroup>
+						<tbody>
+						<c:forEach items="${commulist }" begin="0" end="4" var="item" varStatus="i">
+							<tr><td>[지역]<a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+						</c:forEach>
+						</tbody>
+						</table>	
+						
+						<table class="col-md-6">
+						<colgroup>
+							<col style="width:50%" />
+							<col style="width:10%" />
+						</colgroup>
+						<tbody>
+						<c:forEach items="${commulist }" begin="5" end="9" var="item" varStatus="i">
+							<tr><td>[지역]<a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+						</c:forEach>
+						</tbody>
+						</table>
+					</div>
+		
+				
+		</div>
+	</div>
+	
+	<div class="guidebook_part">
+		<div class="head_title">
+			<p>가이드북</p>
+		</div>
+	</div>
+	
 </div><!--  하단부 내용 -->

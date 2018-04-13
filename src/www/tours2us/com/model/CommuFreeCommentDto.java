@@ -14,12 +14,16 @@ public class CommuFreeCommentDto implements Serializable {
 	private int status;
 	private String name;
 	
+	private String profile;
+	
 	public CommuFreeCommentDto() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public CommuFreeCommentDto(int seq, int target_user_seq, int target_free_seq, String content, Date reg_date,
-			Date last_updated, int status, String name) {
+			Date last_updated, int status, String name, String profile) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -29,7 +33,10 @@ public class CommuFreeCommentDto implements Serializable {
 		this.last_updated = last_updated;
 		this.status = status;
 		this.name = name;
+		this.profile = profile;
 	}
+
+
 
 	public int getSeq() {
 		return seq;
@@ -94,6 +101,19 @@ public class CommuFreeCommentDto implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public String getProfile() {
+		return profile;
+	}
+
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
 
 	@Override
 	public String toString() {

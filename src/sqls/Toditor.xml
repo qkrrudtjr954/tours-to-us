@@ -19,12 +19,13 @@
 	</select>
 
 	<select id="ToditorgetPagingList" parameterType="www.tours2us.com.model.PagingVo" resultType="www.tours2us.com.model.ToditorBBS" >
-	SELECT TITLE, SEQ, CONTENT, PIC1,CATEGORY, NAME, like_count
+	SELECT TITLE, SEQ, CONTENT, PIC1,CATEGORY, NAME, like_count, COMMENT_COUNT
 	FROM
 	( SELECT ROW_NUMBER() OVER (ORDER BY  E.REG_DATE DESC) as rnum,
 		TITLE, E.SEQ, CONTENT, PIC1,
 		(SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME,
-		(select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=3) as like_count
+		(select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=3) as like_count,
+		(SELECT COUNT(*) FROM EDITORCOMMENT D WHERE D.TARGET_EDITOR_SEQ = E.SEQ and d.status=0  ) AS COMMENT_COUNT
 		FROM EDITOR E, TRAVELER T
 		WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 0
 		<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">

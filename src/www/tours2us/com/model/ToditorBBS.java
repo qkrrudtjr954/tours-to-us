@@ -42,6 +42,7 @@ public class ToditorBBS implements Serializable {
 	private String next_title;
 	private String prev_title;
 	
+	private int comment_count;
 	
 	
 	public ToditorBBS() {
@@ -57,8 +58,8 @@ public class ToditorBBS implements Serializable {
 
 
 	public ToditorBBS(int seq, int target_user_seq, int target_category_seq, String title, String content, String pic1,
-			Date reg_date, Date last_date, String category, String name, String profile, int like_count, int next_seq,
-			int prev_seq, String next_title, String prev_title) {
+			Date reg_date, Date last_date, int readcount, int status, String category, String name, String profile,
+			int like_count, int next_seq, int prev_seq, String next_title, String prev_title, int comment_count) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -68,6 +69,8 @@ public class ToditorBBS implements Serializable {
 		this.pic1 = pic1;
 		this.reg_date = reg_date;
 		this.last_date = last_date;
+		this.readcount = readcount;
+		this.status = status;
 		this.category = category;
 		this.name = name;
 		this.profile = profile;
@@ -76,6 +79,7 @@ public class ToditorBBS implements Serializable {
 		this.prev_seq = prev_seq;
 		this.next_title = next_title;
 		this.prev_title = prev_title;
+		this.comment_count = comment_count;
 	}
 
 
@@ -382,6 +386,30 @@ public class ToditorBBS implements Serializable {
 	}
 
 
+	
+
+
+
+
+
+
+	public int getComment_count() {
+		return comment_count;
+	}
+
+
+
+
+
+
+
+
+
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
+	}
+
+
 
 
 
@@ -396,8 +424,15 @@ public class ToditorBBS implements Serializable {
 				+ reg_date + ", last_date=" + last_date + ", readcount=" + readcount + ", status=" + status
 				+ ", category=" + category + ", name=" + name + ", profile=" + profile + ", like_count=" + like_count
 				+ ", next_seq=" + next_seq + ", prev_seq=" + prev_seq + ", next_title=" + next_title + ", prev_title="
-				+ prev_title + "]";
+				+ prev_title + ", comment_count=" + comment_count + "]";
 	}
+
+
+
+
+
+
+
 
 
 

@@ -128,6 +128,12 @@ public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception {
 return num;
 }
 
+@Override
+public List<CommuAfterBbsDto> bestAfter() throws Exception {
+	
+	return sqlSession.selectList(ns+"bestAfter");
+}
+
 
 
 

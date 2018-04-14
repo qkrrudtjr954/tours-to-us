@@ -66,7 +66,7 @@ div.user-action a:hover {
 		</div>
 		<div class="col-md-4 text-center">
 			<a class="blog-header-logo text-dark" href="main.do"> 
-				<img alt="Tours To Us" src="${pageContext.request.contextPath }/image/logo.png" width="250" height="70">
+				<img alt="Tours To Us" src="${initParam.IMG_SERVER_PATH }/image/logo.png" width="250" height="70">
 			</a>
 		</div>
 		<c:choose>

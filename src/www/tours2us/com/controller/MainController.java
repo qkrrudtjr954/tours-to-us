@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.ToditorBBS;
+import www.tours2us.com.service.CommuService;
 import www.tours2us.com.service.ToditorService;
 
 @Controller
@@ -21,13 +23,19 @@ public class MainController {
 	@Autowired
 	ToditorService toditorService;
 	
+	@Autowired
+	CommuService commuService;
+	
 	@RequestMapping(value="main.do", method=RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model) throws Exception {
 		
 		logger.info("access");
 		
 		List<ToditorBBS> b1list = toditorService.best123();	
 		model.addAttribute("b1list", b1list);
+		
+		List<CommuAfterBbsDto> commulist = commuService.bestAfter();
+		model.addAttribute("commulist", commulist);
 		
 		return "main.tiles";
 	}

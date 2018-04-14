@@ -24,10 +24,12 @@ import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
 import www.tours2us.com.model.CommuFreeCommentDto;
+import www.tours2us.com.model.LikeDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TravelerDto;
 import www.tours2us.com.service.CommuCommentService;
 import www.tours2us.com.service.CommuService;
+import www.tours2us.com.service.LikeService;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.TravelerService;
 
@@ -44,6 +46,8 @@ public class CommuController {
 	TravelerService travelerService;
 	@Autowired
 	CommuCommentService commucommentService;
+	@Autowired
+	LikeService likeService;
 
 	@RequestMapping(value = "afterBbs.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterBbs(Model model, CommuAfterBbsDto afterparam) throws Exception {
@@ -102,12 +106,29 @@ public class CommuController {
 	}
 
 	@RequestMapping(value = "afterdetail.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String afterbbsdetail(int seq, Model model) throws Exception {
+	public String afterbbsdetail(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("CommuController >>>> commuafterdetail");
 
 		CommuAfterBbsDto aftergetBbs = null;
 		aftergetBbs = commuService.getAfterBbs(seq);
 		List<CommuAfterCommentDto> commentlist = commucommentService.getAllComments(seq);
+		
+		int isLiked = 0;
+		int like_count = 0;
+		HttpSession session = req.getSession();
+		TravelerDto userInfo = (TravelerDto) session.getAttribute("current_user");
+		
+		int target_user_seq = userInfo.getSeq();
+		
+		LikeDto dto = new LikeDto(1, target_user_seq, seq);
+		
+		isLiked = likeService.prevent_duplication(dto);
+		like_count = likeService.getLikeCount(dto);
+		
+		model.addAttribute("like_count", like_count);
+		model.addAttribute("isLiked", isLiked);
+		
+		
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("aftergetBbs", aftergetBbs);
 		return "afterdetail.tiles";
@@ -164,6 +185,32 @@ public class CommuController {
 
 		return commList;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "AfterComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean AfterComentDelete(int seq ,HttpServletRequest req , CommuAfterCommentDto comment)throws Exception {
+		logger.info("CommuController >>>> AfterComentDelete");
+		System.out.println("seq" + seq);
+		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		
+		boolean check = commucommentService.AfterCommentDeleteCheck(seq, t_dto.getSeq());
+		System.out.println("check = " + check);
+		
+		//System.out.println("check = " + check);
+		
+
+		if (check) {
+			return  commucommentService.AfterCommentDelete(seq);
+		}else {
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	//자유게시판
 	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})
@@ -220,13 +267,30 @@ public class CommuController {
 
 
 	@RequestMapping(value = "freeBbsDetail.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public String freeBbsDetail(int seq,Model model) throws Exception {
+	public String freeBbsDetail(HttpServletRequest req, int seq,Model model) throws Exception {
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
 		List<CommuFreeCommentDto> commentlist = commucommentService.FreeGetAllComments(seq);
 
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("commufredetail", commufredetail);
 		System.out.println("c"+commufredetail.toString());
+		
+		int isLiked = 0;
+		int like_count = 0;
+		HttpSession session = req.getSession();
+		TravelerDto userInfo = (TravelerDto) session.getAttribute("current_user");
+		
+		int target_user_seq = userInfo.getSeq();
+		
+		LikeDto dto = new LikeDto(4, target_user_seq, seq);
+		
+		isLiked = likeService.prevent_duplication(dto);
+		like_count = likeService.getLikeCount(dto);
+		
+		model.addAttribute("like_count", like_count);
+		model.addAttribute("isLiked", isLiked);
+		
+		
 
 		return"freeBbsDetail.tiles";
 	}

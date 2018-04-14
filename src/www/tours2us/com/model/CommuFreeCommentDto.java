@@ -1,6 +1,7 @@
 package www.tours2us.com.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class CommuFreeCommentDto implements Serializable {
 	
@@ -8,17 +9,21 @@ public class CommuFreeCommentDto implements Serializable {
 	private int target_user_seq;
 	private int target_free_seq;
 	private String content;
-	private String reg_date;
-	private String last_updated;
+	private Date reg_date;
+	private Date last_updated;
 	private int status;
 	private String name;
+	
+	private String profile;
 	
 	public CommuFreeCommentDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CommuFreeCommentDto(int seq, int target_user_seq, int target_free_seq, String content, String reg_date,
-			String last_updated, int status, String name) {
+	
+
+	public CommuFreeCommentDto(int seq, int target_user_seq, int target_free_seq, String content, Date reg_date,
+			Date last_updated, int status, String name, String profile) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -28,7 +33,10 @@ public class CommuFreeCommentDto implements Serializable {
 		this.last_updated = last_updated;
 		this.status = status;
 		this.name = name;
+		this.profile = profile;
 	}
+
+
 
 	public int getSeq() {
 		return seq;
@@ -62,19 +70,19 @@ public class CommuFreeCommentDto implements Serializable {
 		this.content = content;
 	}
 
-	public String getReg_date() {
+	public Date getReg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(String reg_date) {
+	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
 
-	public String getLast_updated() {
+	public Date getLast_updated() {
 		return last_updated;
 	}
 
-	public void setLast_updated(String last_updated) {
+	public void setLast_updated(Date last_updated) {
 		this.last_updated = last_updated;
 	}
 
@@ -93,6 +101,19 @@ public class CommuFreeCommentDto implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public String getProfile() {
+		return profile;
+	}
+
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -100,9 +121,6 @@ public class CommuFreeCommentDto implements Serializable {
 				+ target_free_seq + ", content=" + content + ", reg_date=" + reg_date + ", last_updated=" + last_updated
 				+ ", status=" + status + ", name=" + name + "]";
 	}
-
-	
-	
 	
 	
 	

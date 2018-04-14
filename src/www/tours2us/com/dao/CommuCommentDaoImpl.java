@@ -35,7 +35,22 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		sqlSession.insert(ns+"AfterAddComent", comment);
 		return true;
 	}
+	
+	@Override
+	public boolean AfterCommentDelete(int seq) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> AfterCommentDelete");
+		int count = sqlSession.update(ns + "AfterComentDelete", seq);
+		return count>0?true:false;
+	}
+	
 
+	@Override
+	public int AfterCommentGgtUserSeq(int seq) throws Exception {
+		logger.info("CommuCommentDaoImpl >>>> AfterCommentGgtUserSeq");
+		return sqlSession.selectOne(ns + "AfterCommentgetUserSeq", seq);
+	}
+
+	// 자유 게시판
 	@Override
 	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {
 		logger.info("CommuCommentDaoImpl >>>> FreeGetAllComments");
@@ -50,10 +65,18 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		sqlSession.insert(ns + "FreeAddComent", freecomment);
 		return true;
 	}
-	
-	
 
-	
+	@Override
+	public boolean FreeCommentDelete(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int FreeCommentGgtUserSeq(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 

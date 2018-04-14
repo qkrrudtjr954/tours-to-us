@@ -69,7 +69,8 @@ h2 {
 .myplan-title{
 	border-bottom: 2px solid #7cc4bb;
     width: 35%;
-    margin-bottom: 10px;
+    margin-top: 50px;
+
 }
 
 .span-title {
@@ -87,6 +88,10 @@ h2 {
     position: absolute;
     right: 10px;
     bottom: 10px;
+}
+
+.plan-container {
+	margin-bottom: 50px;
 }
 
 </style>
@@ -112,12 +117,12 @@ h2 {
 			</c:if>
 			<div class="row no-gutters">
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
-					<div class="card offset-md-3 col-md-6 ">
+					<div class="card offset-md-3 col-md-6 plan-container">
 						<div class="card-body" style="background-image:url('${initParam.IMG_SERVER_PATH }/image/${plan.paper eq null ? 'no-img.png' : plan.paper}'); background-size: contain;">
 							&nbsp;
 							<c:if test="${plan.status == 0 }">
 								<div class="ing-img">
-									<img src="./image/ing.png" class="status-img" width="100px" height="100px">
+									<img src="${initParam.IMG_SERVER_PATH }/image/ing.png" class="status-img" width="100px" height="100px">
 								</div>
 							</c:if>
 							<div class="card-container">

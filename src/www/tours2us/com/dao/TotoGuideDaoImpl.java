@@ -49,7 +49,8 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 
 	@Override
 	public List<TotoGuideDto> totoSearch(String location) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(ns+"totoSearch", location);
+		List<TotoGuideDto> list =new ArrayList<>();
+		list = sqlSession.selectList(ns+"totoSearch", location);
+		return list;
 	}
 }

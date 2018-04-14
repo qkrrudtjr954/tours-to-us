@@ -130,7 +130,7 @@ public class TotoGuideController {
 		
 		System.out.println("l:"+location);
 		List<TotoGuideDto> totolist = totoGuideService.totoSearch(location);
-		
+		System.out.println(totolist);
 		return totolist;
 	}
 }

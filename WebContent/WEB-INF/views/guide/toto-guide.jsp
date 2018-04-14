@@ -177,19 +177,19 @@ h2 {
 				<a href="#" class="cur" value="서울">서울</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" value="강원도">강원도</a>
+				<a href="#" class="cur" value="강원">강원도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" value="충청도">충청도</a>
+				<a href="#" class="cur" value="충청">충청도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" value="경상도">경상도</a>
+				<a href="#" class="cur" value="경상">경상도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" value="전라도">전라도</a>
+				<a href="#" class="cur" value="전라">전라도</a>
 			</li>
 			<li class="">
-				<a href="#" class="cur" value="서울">제주도</a>
+				<a href="#" class="cur" value="제주">제주도</a>
 			</li>
 		</ul>
 	</div>
@@ -258,8 +258,8 @@ h2 {
 	
 	function printTotolistHtml(toto) {
 		var html = '<div class="book-card">'
-			+'<div class="book-img" onclick="location.href="toto_detail.do?seq=${toto.seq }"">'
-			+'<img class=book-img-top" src="${toto.pic eq null ? "image/no-img.png" : toto.pic}" style="cursor: pointer; width="300px" height="200px">'
+			+'<div class="book-img" onclick="location.href=toto_detail.do?seq=${toto.seq }">'
+			+'<img class="book-img-top" src="${toto.pic eq null ? "image/no-img.png" : toto.pic}" style="cursor: pointer;" width="300px" height="200px">'
 			+'</div>'
 			+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
 			+'<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>'			

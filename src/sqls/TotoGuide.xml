@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="getTotalDownCount" resultType="string">
-		SELECT COUNT(DOWNCOUNT)AS DOWNCOUNT FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0 
+		SELECT SUM(DOWNCOUNT) AS DOWNCOUNT FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0
 	</select>
 	
 	<select id="getTotoDetail" parameterType="int" resultType="www.tours2us.com.model.TotoGuideDto">

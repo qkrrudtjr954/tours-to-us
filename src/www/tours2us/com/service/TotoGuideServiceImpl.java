@@ -49,4 +49,10 @@ public class TotoGuideServiceImpl implements TotoGuideService {
 		// TODO Auto-generated method stub
 		return totoGuideDao.totoSearch(location);
 	}
+
+	@Override
+	public String getTotalDownCount() {
+		// TODO Auto-generated method stub
+		return totoGuideDao.getTotalDownCount();
+	}
 }

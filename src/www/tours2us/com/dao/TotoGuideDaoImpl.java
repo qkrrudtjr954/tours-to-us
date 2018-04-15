@@ -54,4 +54,10 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 		list = sqlSession.selectList(ns+"totoSearch", location);
 		return list;
 	}
+
+	@Override
+	public String getTotalDownCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ns+"getTotalDownCount");
+	}
 }

@@ -195,9 +195,9 @@ h2 {
 	</div>
 </div>
 
-<div class="row offset-md-9">
+<!-- <div class="row offset-md-9">
 	<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
-</div>
+</div> -->
 
 <br>
 

@@ -95,7 +95,7 @@ public class TotoGuideController {
 			
 			// db insert
 			totoGuideService.totoUpload(totodto);
-			
+		
 			System.out.println("upload success");
 		} catch (IOException e) {
 			System.out.println("upload fail");

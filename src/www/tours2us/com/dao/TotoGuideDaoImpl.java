@@ -19,8 +19,9 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 
 	@Override
 	public List<TotoGuideDto> getTotoList() {
-		return sqlSession.selectList(ns+"getTotoList");
-		
+		List<TotoGuideDto> list = new ArrayList<>();
+		list = sqlSession.selectList(ns+"getTotoList");	
+		return list;
 	}
 
 	@Override

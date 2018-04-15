@@ -86,7 +86,7 @@ h2 {
 	float: left;
 	display: inline-block;
     height: 49px;
-    margin-left: -50px;
+    margin-left: -30px;
 }
 
 .tag-location ul {
@@ -167,36 +167,34 @@ h2 {
 <div class="offset-md-2  col-md-8 col-xs-12">
 	<hr>
 </div>
-<div class="offset-md-2 col-md-10">
-	<div class="tag-location">
-		<ul>
-			<li class="active">
-				<a href="toto_guide.do" class="cur">전체</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="서울">서울</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="강원">강원도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="충청">충청도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="경상">경상도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="전라">전라도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="제주">제주도</a>
-			</li>
-		</ul>
+<div class="row">
+	<div class="offset-md-2 col-md-10">
+		<div class="tag-location">
+			<ul>
+				<li class="active">
+					<a href="toto_guide.do" class="cur">전체</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="서울">서울</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="강원">강원도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="충청">충청도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="경상">경상도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="전라">전라도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="제주">제주도</a>
+				</li>
+			</ul>
+		</div>
 	</div>
-</div>
-
-<div class="row offset-md-9">
-	<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
 </div>
 
 <br>
@@ -234,37 +232,40 @@ h2 {
 		})
 	});
 	
-	$(".cur").click(function () {
-		var local = $(this).attr('value');
-		//alert("local"+location);
-		
-		$.ajax({
-			url:"toto_search.do",
-			method:"post",
-			data:{location:local},
-			success:function(data){
-				alert("d"+data);
-				$(".toContent").children().remove();
-				
-				for(var i=0; i<data.length; i++ ){
-					printTotolistHtml(data[i]);
-				}
-			},
-			error : function(req, sta, err){
-				alert("error");
-			}
-		})
-	});
+</script>
+
+<script>
+$(".cur").click(function () {
+	var local = $(this).attr('value');
+	//alert("local"+location);
 	
-	function printTotolistHtml(toto) {
-		var html = '<div class="book-card">'
-			+'<div class="book-img" onclick="location.href=toto_detail.do?seq=${toto.seq }">'
-			+'<img class="book-img-top" src="${toto.pic eq null ? "image/no-img.png" : toto.pic}" style="cursor: pointer;" width="300px" height="200px">'
-			+'</div>'
-			+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
-			+'<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>'			
-			+'</div>'
-			+'</div>';
-			$(".toContent").append(html);
-	}
+	$.ajax({
+		url:"toto_search.do",
+		method:"post",
+		data:{location:local},
+		success:function(data){
+			alert("toto"+data);
+			$(".toContent").children().remove();
+			
+			for(var i=0; i<data.length; i++ ){
+				printTotolistHtml(data[i]);
+			}
+		},
+		error : function(req, sta, err){
+			alert("error");
+		}
+	})
+});
+
+function printTotolistHtml(toto) {
+	var html = '<div class="book-card">'
+		+'<div class="book-img" onclick="location.href=toto_detail.do?seq='+toto.seq+'">'
+		+'<img class="book-img-top" src="${'+toto.pic+' eq null ? "image/no-img.png" : '+toto.pic+'}" style="cursor: pointer;" width="300px" height="200px">'
+		+'</div>'
+		+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
+		+'<span class="update-text">업데이트 : ${fn:substring('+toto.last_updated+', 0, 10) }</span>'			
+		+'</div>'
+		+'</div>';
+		$(".toContent").append(html);
+}
 </script>

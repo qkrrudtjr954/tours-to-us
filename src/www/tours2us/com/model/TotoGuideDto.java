@@ -14,6 +14,7 @@ public class TotoGuideDto implements Serializable{
 	private int downcount;
 	private String reg_date;
 	private String last_updated;
+	private int status;
 	
 	private String total_downcount;
 	
@@ -23,7 +24,7 @@ public class TotoGuideDto implements Serializable{
 
 	
 	public TotoGuideDto(int seq, String title, String content, String pic, String location, String filename,
-			int readcount, int downcount, String reg_date, String last_updated) {
+			int readcount, int downcount, String reg_date, String last_updated, int status) {
 		super();
 		this.seq = seq;
 		this.title = title;
@@ -35,6 +36,7 @@ public class TotoGuideDto implements Serializable{
 		this.downcount = downcount;
 		this.reg_date = reg_date;
 		this.last_updated = last_updated;
+		this.status = status;
 	}
 
 
@@ -118,6 +120,24 @@ public class TotoGuideDto implements Serializable{
 		this.last_updated = last_updated;
 	}
 	
+	public int getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
+	public String getTotal_downcount() {
+		return total_downcount;
+	}
+
+
+	public void setTotal_downcount(String total_downcount) {
+		this.total_downcount = total_downcount;
+	}
 
 
 	@Override

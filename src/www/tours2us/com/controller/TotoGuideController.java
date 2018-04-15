@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -94,7 +95,7 @@ public class TotoGuideController {
 			
 			// db insert
 			totoGuideService.totoUpload(totodto);
-			
+		
 			System.out.println("upload success");
 		} catch (IOException e) {
 			System.out.println("upload fail");
@@ -122,13 +123,14 @@ public class TotoGuideController {
 		return "downloadView";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="toto_search.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String toto_search(Model model )throws Exception {
+	public List<TotoGuideDto> toto_search(Model model, String location)throws Exception {
 		logger.info("TotoGuideController >>>> toto_search");
 		
-		//System.out.println("s:"+seq+"f:"+filename);
-		
-		
-		return "";
+		System.out.println("l:"+location);
+		List<TotoGuideDto> totolist = totoGuideService.totoSearch(location);
+		System.out.println(totolist);
+		return totolist;
 	}
 }

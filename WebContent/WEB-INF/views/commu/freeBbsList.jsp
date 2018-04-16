@@ -30,7 +30,7 @@ color: #f37720;
 </div>
 <br>
 <div class="offset-md-1">
-	<form action="guideSearch.do" method="get" id="_frmFormSearch">
+	<form action="freeBbsList.do" method="get" id="_frmFormSearch">
    <div class="row" style="margin:0 auto;width:900px;">
       <div class="input-group-prepend">
          <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
@@ -136,9 +136,35 @@ $(document).ready(function() {
 });
 
 $("#btnSearch").click(function() {
-   //alert('search');                  
-   $("#_frmFormSearch").attr({ "target":"_self", "action":"freeBbsList.do" }).submit();
+	   //alert('search'); 
+	   var text = $("#text").val();
+	   if(text===""){
+		   alert("검색창이 비웠습니다");
+			$("#text").focus();
+		   
+	   }else{
+		   $("#_frmFormSearch").attr({ "target":"_self", "action":"afterBbs.do" }).submit(); 
+		   
+	   }
+	   
 });
+
+$("#text").keypress(function(event) {
+	var text = $("#text").val();
+
+	if (event.which == "13") {
+		event.preventDefault();
+		if (text === "") {
+			alert("검색창이 비웠습니다");
+			$("#text").focus();
+		} else {
+			$("#btnSearch").click();
+		}
+
+	}
+});
+	
+	
 function goPage(pageNumber) {   
    $("#_pageNumber").val(pageNumber) ;
    $("#_frmFormSearch").attr("target","_self").attr("action","freeBbsList.do").submit();

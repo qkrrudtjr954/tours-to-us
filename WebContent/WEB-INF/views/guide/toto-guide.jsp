@@ -258,7 +258,7 @@ $(".cur").click(function () {
 	})
 });
 
-function printTotolistHtml(toto) {
+function printTotolistHtml(toto) {	
 	var html = '<div class="book-card">'
 		+'<div class="book-img" onclick="location.href=toto_detail.do?seq='+toto.seq+'">'
 		+'<img class="book-img-top" src="${'+toto.pic+' eq null ? "image/no-img.png" : '+toto.pic+'}" style="cursor: pointer;" width="300px" height="200px">'

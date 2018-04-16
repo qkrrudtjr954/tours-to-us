@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.DayPlanerDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
+import www.tours2us.com.model.TotoGuideDto;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.UserGuideService;
 
@@ -120,6 +122,16 @@ public class UserGuideController {
 		model.addAttribute("planerMap", planMap);
 		
 		return "user_guide_detailAll.tiles";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="user_search.do", method={RequestMethod.GET, RequestMethod.POST})
+	public List<PlanerDto> user_search(Model model, String location)throws Exception {
+		
+		System.out.println("l:"+location);
+		List<PlanerDto> planlist = userGuideService.userSearch(location);
+		System.out.println(planlist);
+		return planlist;
 	}
 
 }

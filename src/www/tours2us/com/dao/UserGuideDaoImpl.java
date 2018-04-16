@@ -37,4 +37,11 @@ public class UserGuideDaoImpl implements UserGuideDao {
 		return n;
 	}
 
+	@Override
+	public List<PlanerDto> userSearch(String location) {
+		List<PlanerDto> list = new ArrayList<>();
+		list = sqlSession.selectList(ns+"userSearch", location);
+		return list;
+	}
+
 }

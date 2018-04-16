@@ -111,6 +111,69 @@ h2 {
 	top: -20px;
 }
 
+
+.tag-location{
+	float: left;
+	display: inline-block;
+    height: 49px;
+    margin-left: -30px;
+}
+
+.tag-location ul {
+    display: block;
+    height: 39px;
+}
+
+.tag-location li {
+    float: left;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.tag-location li a {
+    display: inline-block;
+    height: 100%;
+    font-size: 15px;
+    line-height: 39px;
+    padding: 0 10px;
+}
+
+.tag-location li a:hover {
+    height: 37px;
+    line-height: 39px;
+    text-decoration: none;
+    color: #7DC3BB;
+    border-bottom: 3px solid #7DC3BB;
+}
+
+.tag-location .active a.cur {
+    height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none; 
+    color: #000000;
+}
+
+.active{
+	 height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none; 
+    color: #000000;
+}
+
+
+.cur:link {text-decoration: none; color: #000000;}
+.cur:hover {text-decoration: none; color: #7DC3BB;}
+.cur:visited {text-decoration: none; color: #000000;}
+
+
+.cur-all:link {text-decoration: none; color: #000000;}
+.cur-all:hover {text-decoration: none; color: #7DC3BB;}
+.cur-all:visited {text-decoration: none; color: #000000;}
+
 </style>
 
 <div class="myplan-title">
@@ -146,6 +209,36 @@ h2 {
 					<br>
 					<span class="guide-label-atag"><a href="toto_guide.do" class="gu-link">투투 가이드북</a></span>	
 				</p>		
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="offset-md-2 col-md-10">
+		<div class="tag-location">
+			<ul>
+				<li class="active">
+					<a href="user_guide.do" class="cur-all">전체</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="서울">서울</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="강원">강원도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="충청">충청도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="경상">경상도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="전라">전라도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="제주">제주도</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -188,7 +281,7 @@ h2 {
 					<th>번호</th><th>지역</th><th>제목</th><th>작성자</th><th>여행기간</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="table-ajax">
 				<c:if test="${empty planlist }">
 					<div class="col-md-12 text-center col-xs-12">
 						<p>작성된 글이 없습니다</p>
@@ -244,5 +337,55 @@ $(document).ready(function() {
 
  function user_guide() {
 	location.href="user_guide.do";
+}
+</script>
+
+<script>
+	$(function() {
+		var sBtn = $("li");
+		sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+			sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+		})
+	});
+	
+</script>
+
+<script>
+$(".cur").click(function () {
+	var local = $(this).attr('value');
+	//alert("local"+location);
+	
+	$.ajax({
+		url:"user_search.do",
+		method:"post",
+		data:{location:local},
+		success:function(data){
+			alert("user"+data);
+			$(".table-ajax").children().remove();
+			
+			for(var i=0; i<data.length; i++ ){
+				printUserlistHtml(data[i]);
+			}
+		},
+		error : function(req, sta, err){
+			//alert("error");
+		}
+	})
+});
+
+function printUserlistHtml(plan) {	
+	
+	var html = '<tr>'
+		+'<td>'+plan.count+'</td>'
+		+'<td>'+plan.location+'</td>'
+		+'<td>'
+		+'<a href="guideDetail.do?seq='+plan.seq+'" class="ti-link">'+plan.title+'</a>'
+		+'</td>'
+		+'<td>'+plan.name+'</td>'	
+		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date
+		+'</td>'					
+		+'</tr>'	
+		$(".table-ajax").append(html);
 }
 </script>

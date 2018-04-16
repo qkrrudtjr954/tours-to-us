@@ -88,7 +88,7 @@ public class CommuController {
 
 	}
 
-	@RequestMapping(value = "afterWriteAf.do", method = RequestMethod.GET)
+	@RequestMapping(value = "afterWriteAf.do",  method = {RequestMethod.GET,RequestMethod.POST})
 	public String afterbbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model model) throws Exception {
 		if (bbs.getContent().equals("") || bbs.getTitle().equals("")) {
 			return "afterWrite.tiles";
@@ -345,9 +345,28 @@ public class CommuController {
 
 		return commList;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "FreeComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean FreeComentDelete(int seq ,HttpServletRequest req , CommuFreeCommentDto freecomment)throws Exception {
+		logger.info("CommuController >>>> FreeComentDelete");
+		System.out.println("seq" + seq);
+		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
+		freecomment.setTarget_user_seq(t_dto.getSeq());
+		
+		boolean check = commucommentService.FreeCommentDeleteCheck(seq, t_dto.getSeq());
+		System.out.println("check = " + check);
+		
+		//System.out.println("check = " + check);
+		
 
-
-
-
+		if (check) {
+			return  commucommentService.FreeCommentDelete(seq);
+		}else {
+			return false;
+		}
+	}
+	
+	
 
 }

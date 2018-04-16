@@ -74,7 +74,16 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		return list;
 	}
 
+	@Override
+	public boolean FreeCommentDelete(int seq) throws Exception {
+		return commuCommentDao.FreeCommentDelete(seq);
+	}
 
+	@Override
+	public boolean FreeCommentDeleteCheck(int seq, int current_user_seq) throws Exception {
+		int target_user_seq = commuCommentDao.FreeCommentGgtUserSeq(seq);
+		return(target_user_seq==current_user_seq)?true:false;
+	}
 	
 	
 	

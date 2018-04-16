@@ -157,11 +157,13 @@
 	color: #6e6e6e;
 	font-size: 13px;
 }
-
 .comment-item {
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #dcdcdc;
 	padding-top: 15px
 }
+
+
+
 </style>
 
 
@@ -269,14 +271,15 @@
 					<input type="text" class="form-control"  name="content" id="content0" size="90" placeholder="댓글을 입력해주세요"> 
 				</div>
 				<div class="col-md-2 user_comment_btn">
-					<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment()">
+					<input type="button" id="addCommetn" class="btn btn-outline-success" value="comment" onclick="addComment()">
 				</div>
 		</div>
 		<div class="comment_content">
 	<div class="comment-area">
 					
 				<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
-						<div class="row">
+					<div class="offset-ms-1 col-md-12">
+					<div class="row comment-item">
 							<div class="col-md-1 comment_profile">						
 								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }" height="50px">						
 							</div>
@@ -291,10 +294,10 @@
 								</div>
 							</div>
 							<div class="col-md-1">
-								<div class="comment_delete">삭제</div>
+								<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">
 							</div>
 						</div>
-						<hr>
+						</div>
 					</c:forEach>
 					
 				
@@ -317,104 +320,7 @@
 
 
 </div>
- <!-- -->
 
-<%-- <div class="offset-md-2 col-md-8 col-xs-12">
-	<hr>
-</div>
-<div class="row offset-md-7">
-	<p>
-		<b>작성자</b> ${aftergetBbs.email } &nbsp;&nbsp;&nbsp;<b>작성일</b>
-		${aftergetBbs.reg_date }&nbsp;&nbsp;&nbsp;
-	</p>
-</div>
-
-<div class="after-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<br> <br> ${aftergetBbs.content } <br> <br>
-	</div>
-
-</div>
-${commList }
-
-<div class="after-title">
-	<div class="offset-md-2 col-md-6 col-xs-12">
-		<c:if test="${aftergetBbs.email eq current_user.email }">
-			<a href="afterUpdate.do?seq=${aftergetBbs.seq }" id="_btnUpdate"
-				title="글수정하기" class=" offset-md-6 col-md-2 btn btn-primary">글
-				수정하기</a>
-			<a href="afterDelete.do?seq=${aftergetBbs.seq }" id="_btndelete"
-				title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a>
-		</c:if>
-	</div>
-</div>
-
-<br>
-<div class="offset-md-2 col-md-8 detailBottom">
-	<hr class="comment_hr">
-	<div class="commemt_size">
-		<span>댓글</span>&nbsp;<span id="commentCount"
-			style="color: rgb(125, 195, 187); font-weight: bold;">${commentlist.size() }</span>
-	</div>
-
-	<div class="row comment_input">
-		<div class="col-md-1 user_comment_profile">
-			<c:choose>
-				<c:when test="${current_user eq 'no-profile.png' }">
-					<img class="no_profile" src="image/user.png" height="50px">
-				</c:when>
-				<c:otherwise>
-					<img class="writer_profile"
-						src="${initParam.IMG_SERVER_PATH }/image/${current_user.profile }"
-						height="50px">
-				</c:otherwise>
-			</c:choose>
-		</div>
-		
-		<div class="col-md-9 user_comment_text">
-			<input type="text" class="form-control" name="content" id="content0"
-				size="90" placeholder="댓글을 입력해주세요">
-		</div>
-		
-		<div class="col-md-2 user_comment_btn">
-			<input type="button" id="addComment" class="btn btn-outline-success" value="comment"
-				onclick="addComment(${comment.seq})">
-		</div>
-		
-		
-	
-		
-	</div>
-	<div class="comment_content">
-		<div class="comment-area">
-
-			<c:forEach begin="0" items="${commentlist }" var="comment" >
-				<div class="row comment-item">
-					<div class="col-md-1 comment_profile">
-						<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }" height="50px">
-					</div>
-					<div class="col-md-10">
-						<div class=row>
-							<div class="comment_name">${comment.name }</div>
-							<div class="comment_time">
-								<fmt:formatDate value="${comment.reg_date}" pattern="yyyy/MM/dd" />
-							</div>
-						</div>
-						<div class=row>
-							<div class="comment_content">${comment.content }</div>
-						</div>						
-					</div>
-					<div class="col-md-1">
-					<div class="comment-email col-md-1" style="height: 50px;">
-							<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969" value="삭제">
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-
-	</div>
-</div> --%>
 
 
 
@@ -500,15 +406,15 @@ $('#like_btn').click(function () {
 		if(event.which == "13"){
 			event.preventDefault();
 			//버튼클릭부분으로 이동시킴
-			$("#addComment").click();
+			$("#addCommetn").click();
 		}
 	});	
 
 	
-	
 
 	function printCommentHtml(comment) {
-		var html ='<div class="row comment-item">'
+		var html ='<div class="offset-ms-1 col-md-12">'
+		+'<div class="row comment-item">'
 		+'<div class="col-md-1 comment_profile">'
 		+'<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/'+comment.profile+'" height="50px">'
 		+'</div>'
@@ -523,7 +429,8 @@ $('#like_btn').click(function () {
 		+'</div>'
 		+'<div class="col-md-1">'
 		+'<div class="comment-email col-md-1" style="height: 50px;">'
-		+'<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969" value="삭제">'
+		+'<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">'
+		+'</div>'
 		+'</div>'
 		+'</div>'
 		+'</div>'

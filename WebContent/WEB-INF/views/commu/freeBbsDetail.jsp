@@ -167,109 +167,13 @@ color: #6e6e6e;
 font-size: 13px;
 
 }
+.comment-item {
+	border-bottom: 1px solid #dcdcdc;
+	padding-top: 15px
+}
 
 </style>
-<%-- <div class="offset-md-2 col-md-8 col-xs-12">
-	<hr>
-</div>
 
-<div class="after-title">
-<div class="offset-md-2 col-md-4 col-xs-12">
-<p>
-<h4>제목: ${commufredetail.title }</h4>
-</p>
-</div>
-</div>
-<div class="myplan-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>자유게시판</h2>
-	</div>
-</div>
-
-
-<div class="offset-md-2 col-md-8 col-xs-12">
-<hr>
-</div>
-<div class="row offset-md-7">
-<p>
-	<b>작성자</b>
-	${commufredetail.name }
-	&nbsp;&nbsp;&nbsp;<b>작성일</b>
-	${commufredetail.reg_date }&nbsp;&nbsp;&nbsp;
-	</p>
-</div>
-
-<div class="after-title">
-<div class="offset-md-2 col-md-4 col-xs-12">
-	<br> <br>
-	${commufredetail.content }
-		<br> <br>
-	</div>
-
-</div>
-
-
-<div class="after-title">
-<div class="offset-md-2 col-md-6 col-xs-12">
-<c:if test="${commufredetail.email eq current_user.email }">
-<a href="freeBbsUpdate.do?seq=${commufredetail.seq }" id="_btnUpdate" title="글수정하기" class=" offset-md-6 col-md-2 btn btn-primary">글 수정하기</a>
-<a href="freeBbsDelete.do?seq=${commufredetail.seq }" id="_btndelete" title="삭제하기" class="col-md-2 btn btn-primary">글 삭제하기</a> 
-</c:if>
-</div>
-</div>
-
-<br>
-<div class="offset-md-2 col-md-8 detailBottom">
-	<hr class="comment_hr">
-		<div class="commemt_size">
-			<span>댓글</span>&nbsp;<span id="commentCount" style="color: rgb(125, 195, 187); font-weight: bold; ">${commentlist.size() }</span>
-		</div>
-		
-		<div class="row comment_input">
-			<div class="col-md-1 user_comment_profile">
-					<c:choose>
-							<c:when test="${current_user eq 'no-profile.png' }">
-								<img class="no_profile" src="image/user.png" height="50px">
-							</c:when>
-							<c:otherwise>
-								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${current_user.profile }" height="50px">
-							</c:otherwise>
-						</c:choose>
-				</div>
-				
-				<div class="col-md-9 user_comment_text">
-					<input type="text" class="form-control"  name="content" id="content0" size="90" placeholder="댓글을 입력해주세요"> 
-				</div>
-				<div class="col-md-2 user_comment_btn">
-					<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment()">
-				</div>
-		</div>
-		<div class="comment_content">
-	<div class="comment-area">
-					
-				<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
-						<div class="row">
-							<div class="col-md-1 comment_profile">						
-								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }" height="50px">						
-							</div>
-							<div class="col-md-10">
-								<div class=row>
-										<div class="comment_name">${comment.name }</div>
-										<div class="comment_time"><fmt:formatDate value="${comment.reg_date}" pattern="yyyy/MM/dd" /></div>
-								</div>
-								<div class=row>
-										<div class="comment_content">${comment.content }</div>
-								</div>
-							</div>
-						</div>
-						<hr>
-					</c:forEach>
-
-			</div>
-			
-		</div>
-	</div> --%>
-<!--  -->
 <div id="floatMenu">
 <ul style="width:100%; list-style-type: none;" class="menu_">
 	<li class="title"><h2>가이드북</h2><hr></li>
@@ -372,14 +276,15 @@ font-size: 13px;
 					<input type="text" class="form-control"  name="content" id="content0" size="90" placeholder="댓글을 입력해주세요"> 
 				</div>
 				<div class="col-md-2 user_comment_btn">
-					<input type="button" class="btn btn-outline-success" value="comment" onclick="addComment()">
+					<input type="button" id="addCommetn" class="btn btn-outline-success" value="comment" onclick="addComment()">
 				</div>
 		</div>
 		<div class="comment_content">
 	<div class="comment-area">
 					
 				<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
-						<div class="row">
+						<div class="offset-ms-1 col-md-12">
+						<div class="row comment-item">
 							<div class="col-md-1 comment_profile">						
 								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }" height="50px">						
 							</div>
@@ -394,10 +299,10 @@ font-size: 13px;
 								</div>
 							</div>
 							<div class="col-md-1">
-								<div class="comment_delete">삭제</div>
+								<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">
 							</div>
 						</div>
-						<hr>
+					</div>
 					</c:forEach>
 					
 				
@@ -452,7 +357,12 @@ $('#like_btn').click(function () {
 	function addComment(seq) {
 	var seq = ${commufredetail.seq};
    	var user_seq = ${current_user.seq};
-   	
+   	var text = $("#content0").val();
+	if(text==""){
+  		alert("댓글을 입력해 주세요");
+		$("#content0").focus();
+   		
+ 	}else{
    	$.ajax({
 	      url:"freeBbsComentAf.do",
 	      type:"post",
@@ -472,23 +382,40 @@ $('#like_btn').click(function () {
 			alert("실패");
 		}
 	});
+ }	
 }
+	$("#content0").keypress(function(event) {
+		if(event.which == "13"){
+			event.preventDefault();
+			//버튼클릭부분으로 이동시킴
+			$("#addCommetn").click();
+		}
+	});	
+	
+	
 	function printCommentHtml(comment) {
-		var html ='<div class="row">'
-		+'<div class="col-md-1 comment_profile">'
-		+'<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/'+comment.profile+'" height="50px">'
-		+'</div>'
-		+'<div class="col-md-10">'
-		+'<div class=row>'
-		+'<div class="comment_name">'+comment.name+'</div>'
-		+'<div class="comment_time">'+dateTest(comment.reg_date)+'</div>'
-		+'</div>'
-		+'<div class=row>'
-		+'<div class="comment_content">'+comment.content+'</div>'
-		+'</div>'
-		+'</div>'
-		+'</div>'
-		+'<hr>';
+		var html ='<div class="offset-ms-1 col-md-12">'
+			+'<div class="row comment-item">'
+			+'<div class="col-md-1 comment_profile">'
+			+'<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/'+comment.profile+'" height="50px">'
+			+'</div>'
+			+'<div class="col-md-10">'
+			+'<div class=row>'
+			+'<div class="comment_name">'+comment.name+'</div>'
+			+'<div class="comment_time">'+dateTest(comment.reg_date)+'</div>'
+			+'</div>'
+			+'<div class=row>'
+			+'<div class="comment_content">'+comment.content+'</div>'
+			+'</div>'
+			+'</div>'
+			+'<div class="col-md-1">'
+			+'<div class="comment-email col-md-1" style="height: 50px;">'
+			+'<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'</div>';
 		$('.comment-area').append(html);
 	}
 	function dateTest(date) {
@@ -499,6 +426,44 @@ $('#like_btn').click(function () {
 		return result;
 	}	
 </script>
+
+<script>
+function delete_Comment(seq, dom) {
+	//alert("deleteComment" + seq);
+   	var user_seq = ${current_user.seq};
+	//var target_test_seq =${comment.target_user_seq};
+	var dom2 = dom;
+	
+	$.ajax({
+	      url:"FreeComentDelete.do",
+	      method:"post",
+	      data:{seq : seq, target_user_seq : user_seq},
+	      success:function(data){
+	    	  //alert("data"+date);
+	    	  if(data){
+	    		  $('#commentCount').html(parseInt($('#commentCount').html()) -1)
+	    		  
+	    		  var count = parseInt($('#commentCount').html());
+	    		  
+	    		  if(count < 1){
+	    			  $('#commentCount').html(0);
+	    		  } else {
+	    			  $('#commentCount').html(count-1);
+	    		  }
+	    		  $(dom2).parent().parent().parent().remove();
+	    	  }else{
+	         	alert('본인만 삭제가 가능합니다.');
+	    	  }
+		},
+		error : function(request, status, error) {
+			alert("실패");
+		} 
+	}); 
+	
+	
+}
+</script>
+
 
 
 

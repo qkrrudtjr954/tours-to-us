@@ -68,14 +68,15 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 
 	@Override
 	public boolean FreeCommentDelete(int seq) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		logger.info("CommuCommentDaoImpl >>>> FreeCommentDelete");
+		int count = sqlSession.update(ns + "FreeComentDelete", seq);
+		return count>0?true:false;
 	}
 
 	@Override
 	public int FreeCommentGgtUserSeq(int seq) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		logger.info("CommuCommentDaoImpl >>>> FreeCommentGgtUserSeq");
+		return sqlSession.selectOne(ns + "FreeCommentgetUserSeq", seq);
 	}
 	
 	

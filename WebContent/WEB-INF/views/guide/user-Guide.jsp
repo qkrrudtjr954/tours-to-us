@@ -361,7 +361,7 @@ $(".cur").click(function () {
 		method:"post",
 		data:{location:local},
 		success:function(data){
-			alert("user"+data);
+			//alert("user"+data);
 			$(".table-ajax").children().remove();
 			
 			for(var i=0; i<data.length; i++ ){

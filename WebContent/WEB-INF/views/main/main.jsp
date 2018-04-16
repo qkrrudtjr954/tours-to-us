@@ -19,10 +19,106 @@ left:100px;
 }
 
 .main_cover_right{
-position: absolute;
-top:200px;
-left:600px;
+	position: absolute;
+	top:200px;
+	left:600px;
 }
+
+
+.map_background{
+	z-index: 3;
+    position: absolute;
+}
+
+.main_cover_right button{
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    font-family: "NanumBarunGothic", "Arial", "돋움";
+    outline: none;
+     z-index: 4;
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 34px;
+    font: 0/0 arial;
+    line-height: 0;
+    overflow: visible;
+} 
+
+
+.main_cover_right button:hover{
+    border: 3px solid #FFF;
+}
+
+.main_cover_right span:hover{
+   top: -2px;
+   left: 0;
+}
+
+.seoul{
+    top: 95px;
+    left: 20px;
+}
+
+.busan{
+  top: 320px;
+  left: 380px;
+
+}
+
+.gangwondo{
+  top: 50px;
+  left: 360px;
+}
+
+.junla{
+	top: 350px;
+}
+.jeju{
+  top: 460px;
+  left: 190px;
+}
+ .continents {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+	cursor: pointer;
+    font: normal 16px/33px "NanumBarunGothicBold";
+    font-weight:bold;
+    text-align: center;
+    color: #FFF;
+}
+.cover{
+	z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+     cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.4;
+}
+
+.span_seoul{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font: normal 16px/33px "NanumBarunGothicBold";
+    text-align: center;
+    color: #FFF;
+}
+
 
 #main_copy{
     font: normal 40px/40px "NanumBarunGothicBold";
@@ -47,6 +143,7 @@ left:600px;
 padding-bottom:10px;
 padding-left:8px;
 }
+
 .main_cover a{
 	display: inline-block;
     height: 32px;
@@ -83,7 +180,7 @@ padding-right: 200px;
 .view_toditor{
 font-size: 13px;
 }
-
+/* 
  .main_cover_right button{
     z-index: 2;
     position: absolute;
@@ -98,7 +195,7 @@ font-size: 13px;
     cursor: pointer;
     font-family: "NanumBarunGothic", "Arial", "돋움";
     outline: none;
-}
+} */
 
 
 
@@ -142,8 +239,38 @@ font-size: 13px;
 </div>
 
 <div class="main_cover_right">
-	<button>히히</button>
-	<img src="image/map_ver2.png" height="540px;">
+	<div class="map_background">
+		<img src="image/map_ver2.png" width="480px">
+		
+	</div>
+	<button type="button" class="seoul" title="서울 자세히 보기">
+					<span class="continents">서울</span>
+					<span class="cover"></span>
+	</button> 
+	
+	<button type="button" class="busan" title="부산 자세히 보기">
+					<span class="continents">부산</span>
+					<span class="cover"></span>
+	</button> 
+	
+	<button type="button" class="gangwondo" title="강원도 자세히 보기">
+					<span class="continents">강원도</span>
+					<span class="cover"></span>
+	</button> 
+	
+	<button type="button" class="jeju" title="제주 자세히 보기">
+					<span class="continents">제주</span>
+					<span class="cover"></span>
+	</button> 
+	
+	<button type="button" class="junla" title="전라도 자세히 보기">
+					<span class="continents">전라도</span>
+					<span class="cover"></span>
+	</button> 
+	
+
+	
+	
 </div>
 
 
@@ -228,10 +355,20 @@ font-size: 13px;
 		</div>
 	</div>
 	
-	<div class="guidebook_part">
+	<div class="community_part">
 		<div class="head_title">
-			<p>가이드북</p>
+			<p>커뮤니티 인기글</p>
+		</div>
+		<div class="offset-md-9 move_to_" id="move_to_afterbbs">
+			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
 		</div>
 	</div>
 	
 </div><!--  하단부 내용 -->
+
+
+<script>
+function move_to_aaa() {
+	location.href="editor_essay.do";
+} 
+</script>

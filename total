@@ -288,7 +288,7 @@ CREATE TABLE LIKETABLE(
 	TARGET_BBS_SEQ NUMBER(8)
 	);
 	
-	--BBS_CATEGORY: 1번 후기, 2번 투둥이, 3번 투디터, 4번 자유게시판
+	--BBS_CATEGORY: 1번 후기, 2번 투둥이, 3번 투디터, 4번 자유게시판, 5번 가이드북
 	
 ----------------------------------------------------------------------------
 --TODITOR COMMENT

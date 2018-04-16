@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import www.tours2us.com.model.DayPlanerDto;
+import www.tours2us.com.model.LikeDto;
 import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.TimePlanerDto;
+import www.tours2us.com.model.TravelerDto;
+import www.tours2us.com.service.LikeService;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.UserGuideService;
 
@@ -30,6 +34,9 @@ public class UserGuideController {
 	
 	@Autowired
 	UserGuideService userGuideService;
+	
+	@Autowired
+	LikeService likeService;
 	
 	// 투둥이 가이드북
 	@RequestMapping(value="user_guide.do", method={RequestMethod.GET, RequestMethod.POST})
@@ -70,7 +77,7 @@ public class UserGuideController {
 	}
 
 	@RequestMapping(value="guideDetail.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String guideDetail(int seq, Model model) {
+	public String guideDetail(HttpServletRequest req,  int seq, Model model) throws Exception{
 		logger.info("UserGuideController >>>> guideDetail");
 		
 		PlanerDto planer = planerService.getPlaner(seq);
@@ -89,8 +96,26 @@ public class UserGuideController {
 			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 	
-		model.addAttribute("planer",planer);
+		model.addAttribute("planer", planer);
 		model.addAttribute("planerMap", planMap);
+		
+		int isLiked = 0;
+		int like_count = 0;
+		
+		HttpSession session = req.getSession();
+		TravelerDto userInfo = (TravelerDto) session.getAttribute("current_user");
+		
+		int target_user_seq = userInfo.getSeq();
+		
+		LikeDto dto = new LikeDto(2, target_user_seq, seq);
+		
+		isLiked = likeService.prevent_duplication(dto);
+		like_count = likeService.getLikeCount(dto);
+		
+		model.addAttribute("like_count", like_count);
+		model.addAttribute("isLiked", isLiked);
+		
+		
 		
 		return "user_guide_detail.tiles";
 	}

@@ -120,9 +120,17 @@ h2 {
 			</div>
 			<div class="row toto-downBtn">
 				<button class="btn btn-outline-secondary" id="downBtn" onclick="filedown('${toto.filename}','${toto.seq}')"><span data-feather="download"></span><span>다운로드</span></button>
-			</div>
-		</div>
+			</div>		
+				
+		</div>		
 	</div>
+	<!-- 좋아요 -->	
+	<div class="detailBody_like" align="center">
+			<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br> <span>좋아요</span>&nbsp;<strong
+			id="like_count">${like_count }</strong>
+	</div>
+	<hr class="offset-md-2 col-md-8">
+	<!-- 좋아요 -->
 </div>
 <form name="delfileup" action="toto_download.do" method="post">
 <input type="hidden" name="filename" />
@@ -130,6 +138,31 @@ h2 {
 </form>
 
 <script>
+$('#like_btn').click(function () {
+
+
+	$.ajax({
+		url:"likebtn_click.do",
+		data: {bbs_category: 5, target_user_seq: ${current_user.seq }, target_bbs_seq: ${toto.seq }},
+		type:"post",
+		success : function (data) {
+
+			var result = JSON.parse(data);
+
+			if(result.status == 404){
+
+				$('img.hearticon').attr('src', './image/empty_heart.png');
+			} else {
+
+				$('img.hearticon').attr('src', './image/heart.png');
+			}
+
+			$('strong#like_count').html(result.like_count);
+		}
+	})
+});
+
+
 function filedown(filename,seq){
 	//alert(filename+'  '+seq);
 	var doc=document.delfileup;

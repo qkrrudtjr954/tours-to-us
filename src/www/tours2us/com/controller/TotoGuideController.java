@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import www.tours2us.com.model.Korea;
+import www.tours2us.com.model.LikeDto;
+import www.tours2us.com.model.ToditorCommentDto;
 import www.tours2us.com.model.TotoGuideDto;
+import www.tours2us.com.model.TravelerDto;
+import www.tours2us.com.service.LikeService;
 import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.TotoGuideService;
 
@@ -33,6 +39,9 @@ public class TotoGuideController {
 	@Autowired
 	PlanerService planerService;
 	
+	@Autowired
+	LikeService likeService;
+	
 	@RequestMapping(value="toto_guide.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String toto_guide(Model model)throws Exception {
 		logger.info("TotoGuideController >>>> toto_guide");
@@ -45,13 +54,31 @@ public class TotoGuideController {
 	}
 	
 	@RequestMapping(value="toto_detail.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String toto_detail(int seq, Model model)throws Exception{
+	public String toto_detail(HttpServletRequest req, int seq, Model model)throws Exception{
 		logger.info("TotoGuideController >>>> toto_detail");
 		
 		System.out.println(""+seq);
 		TotoGuideDto toto = totoGuideService.getTotoDetail(seq);
 		totoGuideService.readCount(seq);
 		model.addAttribute("toto", toto);
+		
+		
+		int isLiked = 0;
+		int like_count = 0;
+		
+		HttpSession session = req.getSession();
+		TravelerDto userInfo = (TravelerDto) session.getAttribute("current_user");
+		
+		int target_user_seq = userInfo.getSeq();
+		
+		LikeDto dto = new LikeDto(5, target_user_seq, seq);
+		
+		isLiked = likeService.prevent_duplication(dto);
+		like_count = likeService.getLikeCount(dto);
+		
+		model.addAttribute("like_count", like_count);
+		model.addAttribute("isLiked", isLiked);
+		
 				
 		return "toto_guide_detail.tiles";
 	}

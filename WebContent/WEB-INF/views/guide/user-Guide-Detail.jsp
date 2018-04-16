@@ -108,10 +108,42 @@
 				</div>
 			</c:forEach>
 		</div>
+	<!-- 좋아요 -->	
+	<div class="detailBody_like" align="center">
+			<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br> <span>좋아요</span>&nbsp;<strong
+			id="like_count">${like_count }</strong>
+	</div>
+	<!-- 좋아요 -->
 	</div>
 </div>
 
 <script>
+
+$('#like_btn').click(function () {
+
+
+	$.ajax({
+		url:"likebtn_click.do",
+		data: {bbs_category: 2, target_user_seq: ${current_user.seq }, target_bbs_seq: ${planer.seq }},
+		type:"post",
+		success : function (data) {
+
+			var result = JSON.parse(data);
+
+			if(result.status == 404){
+
+				$('img.hearticon').attr('src', './image/empty_heart.png');
+			} else {
+
+				$('img.hearticon').attr('src', './image/heart.png');
+			}
+
+			$('strong#like_count').html(result.like_count);
+		}
+	})
+});
+
+
 function day_show() {
 	$(".collapse").addClass("show");
 }

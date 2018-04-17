@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCategoryDto;
 import www.tours2us.com.model.CommuFreeCommentDto;
 import www.tours2us.com.model.LikeDto;
 import www.tours2us.com.model.PlanerDto;
@@ -95,12 +96,12 @@ public class CommuController {
 		}
 		logger.info("CommuController >>>> bbswriteAf");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		System.out.println("s" + t_dto.toString());
+		//System.out.println("s" + t_dto.toString());
 
 		bbs.setTarget_user_seq(t_dto.getSeq());
-		System.out.println("b" + bbs.getTarget_user_seq());
+		//System.out.println("b" + bbs.getTarget_user_seq());
 		System.out.println(bbs.toString());
-
+		
 		commuService.afterwriteBbs(bbs);
 		return "redirect:/afterBbs.do";
 	}
@@ -242,15 +243,19 @@ public class CommuController {
 	}
 
 	@RequestMapping(value = "freeBbsWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})
-	public String freeBbsWrite(Model model) {
+	public String freeBbsWrite(Model model)throws Exception {
 		logger.info("CommuController >>>> freeBbsWrite");
+
+		List<CommuFreeCategoryDto> category = commuService.GetFreeBbsCategory();
+		model.addAttribute("category", category);
+		System.out.println(category);
 
 		return "freeBbsWrite.tiles";
 
 	}
 
 	@RequestMapping(value="freeBbsWriteAf.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String freeBbsWriteAf(Model model, CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
+	public String freeBbsWriteAf(Model model,CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
 		logger.info("CommuController >>>> freeBbsWriteAf");
 
 		System.out.println("dddddd" + freewrite.toString());
@@ -258,6 +263,7 @@ public class CommuController {
 		System.out.println("s"+t_dto.toString());
 
 		freewrite.setTarget_user_seq(t_dto.getSeq());
+		
 		boolean isS = commuService.FreeBbsWrite(freewrite);
 
 		return "redirect:/freeBbsList.do";

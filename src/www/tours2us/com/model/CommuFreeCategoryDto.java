@@ -11,6 +11,7 @@ public class CommuFreeCategoryDto implements Serializable {
 	private String reg_date;
 	private String last_updated;
 	
+	
 	//추가
 		private String profile;
 		private int like_count;
@@ -22,29 +23,29 @@ public class CommuFreeCategoryDto implements Serializable {
 		private int comment_count;
 
 	
-	
-	
+	public CommuFreeCategoryDto() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	public CommuFreeCategoryDto(int seq, String title, String description, int status, String reg_date,
-				String last_updated, String profile, int like_count, int next_seq, int prev_seq, String next_title,
-				String prev_title, int comment_count) {
-			super();
-			this.seq = seq;
-			this.title = title;
-			this.description = description;
-			this.status = status;
-			this.reg_date = reg_date;
-			this.last_updated = last_updated;
-			this.profile = profile;
-			this.like_count = like_count;
-			this.next_seq = next_seq;
-			this.prev_seq = prev_seq;
-			this.next_title = next_title;
-			this.prev_title = prev_title;
-			this.comment_count = comment_count;
-		}
-
+			String last_updated, String profile, int like_count, int next_seq, int prev_seq, String next_title,
+			String prev_title, int comment_count) {
+		super();
+		this.seq = seq;
+		this.title = title;
+		this.description = description;
+		this.status = status;
+		this.reg_date = reg_date;
+		this.last_updated = last_updated;
+		this.profile = profile;
+		this.like_count = like_count;
+		this.next_seq = next_seq;
+		this.prev_seq = prev_seq;
+		this.next_title = next_title;
+		this.prev_title = prev_title;
+		this.comment_count = comment_count;
+	}
 
 
 	public int getSeq() {
@@ -52,11 +53,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-
 
 
 	public String getTitle() {
@@ -64,11 +63,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 
 	public String getDescription() {
@@ -76,11 +73,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 
 	public int getStatus() {
@@ -88,11 +83,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
 
 
 	public String getReg_date() {
@@ -100,11 +93,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
-
 
 
 	public String getLast_updated() {
@@ -112,17 +103,14 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public void setLast_updated(String last_updated) {
 		this.last_updated = last_updated;
 	}
 
 
-	
 	public String getProfile() {
 		return profile;
 	}
-
 
 
 	public void setProfile(String profile) {
@@ -130,11 +118,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public int getLike_count() {
 		return like_count;
 	}
-
 
 
 	public void setLike_count(int like_count) {
@@ -142,11 +128,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public int getNext_seq() {
 		return next_seq;
 	}
-
 
 
 	public void setNext_seq(int next_seq) {
@@ -154,11 +138,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public int getPrev_seq() {
 		return prev_seq;
 	}
-
 
 
 	public void setPrev_seq(int prev_seq) {
@@ -166,11 +148,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public String getNext_title() {
 		return next_title;
 	}
-
 
 
 	public void setNext_title(String next_title) {
@@ -178,11 +158,9 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public String getPrev_title() {
 		return prev_title;
 	}
-
 
 
 	public void setPrev_title(String prev_title) {
@@ -190,17 +168,14 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
 	public int getComment_count() {
 		return comment_count;
 	}
 
 
-
 	public void setComment_count(int comment_count) {
 		this.comment_count = comment_count;
 	}
-
 
 
 	@Override
@@ -212,17 +187,6 @@ public class CommuFreeCategoryDto implements Serializable {
 	}
 
 
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

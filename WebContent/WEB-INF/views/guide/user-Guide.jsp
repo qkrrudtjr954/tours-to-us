@@ -373,9 +373,10 @@ $(".cur").click(function () {
 });
 
 function printUserlistHtml(plan) {	
+	var count =0;
 	
 	var html = '<tr>'
-		+'<td>'+plan.count+'</td>'
+		+'<td>'+count+'</td>'
 		+'<td>'+plan.location+'</td>'
 		+'<td>'
 		+'<a href="guideDetail.do?seq='+plan.seq+'" class="ti-link">'+plan.title+'</a>'
@@ -384,5 +385,6 @@ function printUserlistHtml(plan) {
 		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date+'</td>'					
 		+'</tr>'	
 		$(".table-ajax").append(html);
+		count++;
 }
 </script>

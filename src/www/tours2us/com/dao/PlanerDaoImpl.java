@@ -109,4 +109,10 @@ public class PlanerDaoImpl implements PlanerDao{
 		return (result > 0) ? true : false;
 	}
 
+	@Override
+	public List<PlanerDto> getBestPlan() {
+		
+		return sqlSession.selectList(namespace+"getBestPlan");
+	}
+
 }

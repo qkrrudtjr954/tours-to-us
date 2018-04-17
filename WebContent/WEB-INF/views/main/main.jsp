@@ -2,6 +2,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
+/* 가이드북 */
+.tag-location{
+	float: left;
+	display: inline-block;
+    height: 49px;
+    margin-left: -50px;
+}
+
+.tag-location ul {
+    display: block;
+    height: 39px;
+}
+
+.tag-location li {
+    float: left;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.tag-location li a {
+    display: inline-block;
+    height: 100%;
+    font-size: 15px;
+    line-height: 39px;
+    padding: 0 10px;
+}
+
+.tag-location li a:hover {
+    height: 37px;
+    line-height: 39px;
+    text-decoration: none;
+    color: #7DC3BB;
+    border-bottom: 3px solid #7DC3BB;
+}
+
+.tag-location .active a.cur {
+    height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none; 
+    color: #000000;
+}
+
+.cur:link {text-decoration: none; color: #000000;}
+.cur:hover {text-decoration: none; color: #7DC3BB;}
+.cur:visited {text-decoration: none; color: #000000;}
+
+.book-card{
+	padding: 0;
+    width: 100px;
+    height: 305px;
+    margin: 2px 60px -30px 2px;
+    border-top: 2px solid #7DC3BB;
+}
+
+
 .main-container {
 	/* background-image: url('${pageContext.request.contextPath}/image/background.jpg'); */
 	background-size: contain;
@@ -131,10 +188,10 @@ left:100px;
 .head_title p{
 	font: normal 25px/40px "NanumBarunGothicBold";
     color: #444;   
-    padding-top:10px;
+    padding-top:50px;
     font-weight: bold;
     letter-spacing: -1px;
-    margin-bottm:5px;
+    margin-bottm:0px;
 }
 
 
@@ -179,6 +236,10 @@ padding-right: 200px;
 }
 .view_toditor{
 font-size: 13px;
+}
+.no-gutters{
+padding-left:50px;
+padding-bottom:0px;
 }
 /* 
  .main_cover_right button{
@@ -332,8 +393,8 @@ font-size: 13px;
 							<col style="width:10%" />
 						</colgroup>
 						<tbody>
-						<c:forEach items="${commulist }" begin="0" end="4" var="item" varStatus="i">
-							<tr><td>[지역]<a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+						<c:forEach items="${planlist }" begin="0" end="4" var="item" varStatus="i">
+							<tr><td><a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td>추천 ${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
 						</table>	
@@ -344,8 +405,8 @@ font-size: 13px;
 							<col style="width:10%" />
 						</colgroup>
 						<tbody>
-						<c:forEach items="${commulist }" begin="5" end="9" var="item" varStatus="i">
-							<tr><td>[지역]<a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+						<c:forEach items="${planlist }" begin="5" end="9" var="item" varStatus="i">
+							<tr><td><a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td>추천 ${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
 						</table>
@@ -362,7 +423,116 @@ font-size: 13px;
 		<div class="offset-md-9 move_to_" id="move_to_afterbbs">
 			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
 		</div>
+		<div class="3rd_best_content">		
+		
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
+						
+						<table class="col-md-6">
+						<colgroup>
+							<col style="width:50%" />
+							<col style="width:10%" />
+						</colgroup>
+						<tbody>
+						<c:forEach items="${commulist }" begin="0" end="4" var="item" varStatus="i">
+							<tr><td><a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+						</c:forEach>
+						</tbody>
+						</table>	
+						
+						<table class="col-md-6">
+						<colgroup>
+							<col style="width:50%" />
+							<col style="width:10%" />
+						</colgroup>
+						<tbody>
+						<c:forEach items="${commulist }" begin="5" end="9" var="item" varStatus="i">
+							<tr><td><a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+						</c:forEach>
+						</tbody>
+						</table>
+					</div>
+		
+				
+		</div>
+		
 	</div>
+	
+	<div class="download_part">
+		<div class="head_title">
+			<p>투투 가이드북</p>
+		</div>
+		<div class="offset-md-9 move_to_">
+			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
+		</div>
+		<div class="4th_best_content">		
+		
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
+						<div class="row col-md-9">
+						<div class="tag-location">
+								<ul>
+									<li class="active">
+										<a href="toto_guide.do" class="cur">전체</a>
+									</li>
+									<li class="">
+										<a href="#" class="cur" onclick="location_search()">서울</a>
+									</li>
+									<li class="">
+										<a href="#" class="cur" onclick="location_search()">강원도</a>
+									</li>
+									<li class="">
+										<a href="#" class="cur" onclick="location_search()">충청도</a>
+									</li>
+									<li class="">
+										<a href="#" class="cur" onclick="location_search()">경상도</a>
+									</li>
+									<li class="">
+										<a href="#" class="cur" onclick="location_search()">전라도</a>
+									</li>
+									<li class="">
+										<a href="#" class="cur" onclick="location_search()">제주도</a>
+									</li>
+								</ul>						
+						</div>
+						</div>
+						<div class="col-md-3">
+							<span>전체 다운로드 수</span><span>123,456</span>
+						</div>	
+						
+						<div class="myplan-content">
+						<div class="row">
+							
+								<c:if test="${empty totolist }">
+									<div class="col-md-11 text-center col-xs-12">
+										<p>작성된 글이 없습니다</p>
+									</div>
+								</c:if>
+								<div class="no-gutters">
+									<c:forEach items="${totolist }" var="toto" varStatus="i">
+										<div class="book-card">
+											<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
+												<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="250px" height="200px">
+											</div>
+											<div class="book-info" style="height: 25px; width: 210px; text-align: center;">
+													<span class="update-text">${toto.location }</span>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+					
+					
+						
+						</div>
+						</div>
+						
+						
+				</div>
+		
+				
+		</div>
+		
+	</div>
+	
+	
 	
 </div><!--  하단부 내용 -->
 

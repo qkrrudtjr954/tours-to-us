@@ -36,5 +36,16 @@
 		SELECT * FROM TOTOGUIDE
 		WHERE  LOCATION like '%'||#{location}||'%'
 	</select>
-
+	
+	
+	<select id="bestToToguide" resultType="www.tours2us.com.model.TotoGuideDto">
+	SELECT TITLE, SEQ, PIC,location, downcount
+	FROM
+	( SELECT ROW_NUMBER() OVER (ORDER BY  downcount DESC) as rnum,
+		TITLE, SEQ, PIC,location, downcount
+		FROM totoguide
+		WHERE STATUS = 0
+		) A
+		WHERE rnum between 1 AND 6
+	</select>
 </mapper>

@@ -119,4 +119,11 @@ public class PlanerServiceImpl implements PlanerService{
 		}
 	}
 
+
+	@Override
+	public List<PlanerDto> getBestPlan() {
+		// TODO Auto-generated method stub
+		return planerDao.getBestPlan();
+	}
+
 }

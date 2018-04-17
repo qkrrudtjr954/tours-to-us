@@ -43,4 +43,10 @@ public class TotoGuideServiceImpl implements TotoGuideService {
 		// TODO Auto-generated method stub
 		totoGuideDao.readCount(seq);
 	}
+
+	@Override
+	public List<TotoGuideDto> bestToToguide() {
+		// TODO Auto-generated method stub
+		return totoGuideDao.bestToToguide();
+	}
 }

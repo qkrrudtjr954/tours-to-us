@@ -16,6 +16,7 @@ public class PlanerDto implements Serializable {
 	private String reg_date;
 	private String last_updated;
 	
+	
 	private String name;
 
 	// 표지 url
@@ -31,15 +32,20 @@ public class PlanerDto implements Serializable {
    
    private int start=1;
    private int end=10;
-
+   
+   //추가
+   private String like_count;
+  
 	public PlanerDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 
+	
 	public PlanerDto(int seq, int target_user_seq, String title, String location, int status, String to_date,
-			String from_date, int range, long total_cost, String reg_date, String last_updated, String paper,String name
-			) {
+			String from_date, int range, long total_cost, String reg_date, String last_updated, String name,
+			String paper, String s_category, String s_keyword, int recordCountPerPage, int pageNumber, int start,
+			int end, String like_count) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -52,9 +58,18 @@ public class PlanerDto implements Serializable {
 		this.total_cost = total_cost;
 		this.reg_date = reg_date;
 		this.last_updated = last_updated;
-		this.paper = paper;
 		this.name = name;
+		this.paper = paper;
+		this.s_category = s_category;
+		this.s_keyword = s_keyword;
+		this.recordCountPerPage = recordCountPerPage;
+		this.pageNumber = pageNumber;
+		this.start = start;
+		this.end = end;
+		this.like_count = like_count;
 	}
+
+
 
 	public int getSeq() {
 		return seq;
@@ -220,6 +235,20 @@ public class PlanerDto implements Serializable {
 	public void setEnd(int end) {
 		this.end = end;
 	}
+	
+	
+	
+
+	public String getLike_count() {
+		return like_count;
+	}
+
+
+
+	public void setLike_count(String like_count) {
+		this.like_count = like_count;
+	}
+
 
 
 	@Override
@@ -227,8 +256,12 @@ public class PlanerDto implements Serializable {
 		return "PlanerDto [seq=" + seq + ", target_user_seq=" + target_user_seq + ", title=" + title + ", location="
 				+ location + ", status=" + status + ", to_date=" + to_date + ", from_date=" + from_date + ", range="
 				+ range + ", total_cost=" + total_cost + ", reg_date=" + reg_date + ", last_updated=" + last_updated
-				+ ", target_user_name=" + name + ", paper=" + paper + "]";
+				+ ", name=" + name + ", paper=" + paper + ", s_category=" + s_category + ", s_keyword=" + s_keyword
+				+ ", recordCountPerPage=" + recordCountPerPage + ", pageNumber=" + pageNumber + ", start=" + start
+				+ ", end=" + end + ", like_count=" + like_count + "]";
 	}
+
+
 
 	
 

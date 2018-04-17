@@ -38,5 +38,6 @@ public interface PlanerDao {
 	List<Korea> getKoreaList();
 
 	boolean deleteTimePlaner(int seq);
+	List<PlanerDto> getBestPlan();
 
 }

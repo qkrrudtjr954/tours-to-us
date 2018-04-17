@@ -11,4 +11,5 @@ public interface TotoGuideService {
 	public void totoUpload(TotoGuideDto totodto);
 	public boolean downCount(int seq);
 	public void readCount(int seq);
+	public List<TotoGuideDto> bestToToguide();
 }

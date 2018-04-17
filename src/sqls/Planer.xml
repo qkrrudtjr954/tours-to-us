@@ -81,5 +81,19 @@
 	<select id="getKorea" resultType="www.tours2us.com.model.Korea">
 		SELECT * FROM KOREA
 	</select>
+	
+	<select id="getBestPlan" resultType="www.tours2us.com.model.PlanerDto">
+	SELECT RNUM, TITLE, SEQ, NAME, LIKE_COUNT, location, reg_date
+		FROM
+		(	select ROW_NUMBER() OVER (ORDER BY LIKE_COUNT DESC) AS RNUM,  TITLE, SEQ, NAME, LIKE_COUNT, location, reg_date
+			from (
+				select TITLE, E.SEQ, T.NAME, (select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=2) as like_count, e.location, e.reg_date
+				FROM planer E, TRAVELER T
+				WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 0
+				ORDER BY LIKE_COUNT DESC
+			) SUB
+		) A
+		WHERE RNUM BETWEEN 1 AND 10 and REG_DATE >= TO_CHAR(SYSDATE-7,'YYYYMMDD')
+	</select>
 
 </mapper>

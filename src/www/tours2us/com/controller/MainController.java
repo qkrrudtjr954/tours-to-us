@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
+import www.tours2us.com.model.PlanerDto;
 import www.tours2us.com.model.ToditorBBS;
+import www.tours2us.com.model.TotoGuideDto;
 import www.tours2us.com.service.CommuService;
+import www.tours2us.com.service.PlanerService;
 import www.tours2us.com.service.ToditorService;
+import www.tours2us.com.service.TotoGuideService;
 
 @Controller
 public class MainController {
@@ -26,6 +30,12 @@ public class MainController {
 	@Autowired
 	CommuService commuService;
 	
+	@Autowired
+	PlanerService planerService;
+	
+	@Autowired
+	TotoGuideService totoGuideService;
+	
 	@RequestMapping(value="main.do", method=RequestMethod.GET)
 	public String home(Model model) throws Exception {
 		
@@ -36,6 +46,12 @@ public class MainController {
 		
 		List<CommuAfterBbsDto> commulist = commuService.bestAfter();
 		model.addAttribute("commulist", commulist);
+		
+		List<PlanerDto> planlist = planerService.getBestPlan();
+		model.addAttribute("planlist", planlist);
+		
+		List<TotoGuideDto> totolist = totoGuideService.bestToToguide();
+		model.addAttribute("totolist", totolist);
 		
 		return "main.tiles";
 	}

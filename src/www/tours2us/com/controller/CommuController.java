@@ -210,8 +210,6 @@ public class CommuController {
 	
 	
 	
-	
-	
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	//자유게시판
 	@RequestMapping(value="freeBbsList.do", method= {RequestMethod.GET, RequestMethod.POST})

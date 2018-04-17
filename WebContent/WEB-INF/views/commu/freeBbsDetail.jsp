@@ -441,7 +441,8 @@ function delete_Comment(seq, dom) {
 	      success:function(data){
 	    	  //alert("data"+date);
 	    	  if(data){
-	    		  $('#commentCount').html(parseInt($('#commentCount').html()) -1)
+	    		  //$('#commentCount').html(parseInt($('#commentCount').html()) -1)
+	    		    $('#commentCount').html(parseInt($('#commentCount').html()))
 	    		  
 	    		  var count = parseInt($('#commentCount').html());
 	    		  

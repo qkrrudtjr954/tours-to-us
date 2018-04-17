@@ -88,7 +88,7 @@ public class CommuController {
 
 	}
 
-	@RequestMapping(value = "afterWriteAf.do", method = RequestMethod.GET)
+	@RequestMapping(value = "afterWriteAf.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterbbswriteAf(HttpServletRequest req, CommuAfterBbsDto bbs, Model model) throws Exception {
 		if (bbs.getContent().equals("") || bbs.getTitle().equals("")) {
 			return "afterWrite.tiles";

@@ -361,9 +361,9 @@ $(".cur").click(function () {
 		data:{location:local},
 		success:function(data){
 			$(".table-ajax").children().remove();
-			
+			var leng=data.length;
 			for(var i=0; i<data.length; i++ ){
-				printUserlistHtml(data[i]);
+				printUserlistHtml(data[i], leng);
 			}
 		},
 		error : function(req, sta, err){
@@ -372,9 +372,8 @@ $(".cur").click(function () {
 	})
 });
 
-function printUserlistHtml(plan) {	
+function printUserlistHtml(plan, leng) {	
 	var count =0;
-	
 	var html = '<tr>'
 		+'<td>'+count+'</td>'
 		+'<td>'+plan.location+'</td>'
@@ -385,6 +384,8 @@ function printUserlistHtml(plan) {
 		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date+'</td>'					
 		+'</tr>'	
 		$(".table-ajax").append(html);
-		count++;
+		 /* for(var i=0;i<leng;i++){
+			count ++;
+		}  */
 }
 </script>

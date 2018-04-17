@@ -291,7 +291,7 @@ h2 {
 				<c:forEach items="${planlist }" var="plan" varStatus="i">
 					<tr>
 						<td>${i.count }</td>
-						<td>${plan.location }</td>
+						<td class="tdcls">${plan.location }</td>
 						<td>
 							<a href="guideDetail.do?seq=${plan.seq }" class="ti-link">${plan.title }</a>
 						</td>
@@ -354,14 +354,12 @@ $(document).ready(function() {
 <script>
 $(".cur").click(function () {
 	var local = $(this).attr('value');
-	//alert("local"+location);
 	
 	$.ajax({
 		url:"user_search.do",
 		method:"post",
 		data:{location:local},
 		success:function(data){
-			//alert("user"+data);
 			$(".table-ajax").children().remove();
 			
 			for(var i=0; i<data.length; i++ ){
@@ -383,8 +381,7 @@ function printUserlistHtml(plan) {
 		+'<a href="guideDetail.do?seq='+plan.seq+'" class="ti-link">'+plan.title+'</a>'
 		+'</td>'
 		+'<td>'+plan.name+'</td>'	
-		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date
-		+'</td>'					
+		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date+'</td>'					
 		+'</tr>'	
 		$(".table-ajax").append(html);
 }

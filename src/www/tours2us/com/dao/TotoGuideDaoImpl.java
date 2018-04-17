@@ -38,6 +38,7 @@ public class TotoGuideDaoImpl implements TotoGuideDao {
 
 	@Override
 	public boolean downCount(int seq) {
+		System.out.println("down");
 		int n = sqlSession.update(ns+"downCount", seq);
 		return n>0?true:false;
 	}

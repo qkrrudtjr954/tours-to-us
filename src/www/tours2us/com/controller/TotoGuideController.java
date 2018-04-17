@@ -121,6 +121,15 @@ public class TotoGuideController {
 		File downloadFile = new File(fupload+"/"+filename);
 		model.addAttribute("downloadFile", downloadFile);
 		model.addAttribute("seq", seq);
+		boolean isS = totoGuideService.downCount(seq);
+		
+		if(isS) {
+			System.out.println("downloadview"+seq);
+		}else {
+			System.out.println("error"+seq);
+		}
+		
+		System.out.println(downloadFile);
 		
 		return "downloadView";
 	}

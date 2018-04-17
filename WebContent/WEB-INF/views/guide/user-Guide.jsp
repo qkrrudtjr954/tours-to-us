@@ -230,7 +230,7 @@ h2 {
 					<a href="#" class="cur" value="충청">충청도</a>
 				</li>
 				<li class="">
-					<a href="#" class="cur" value="경상">경상도</a>
+					<a href="#" class="cur" value="부산">부산</a>
 				</li>
 				<li class="">
 					<a href="#" class="cur" value="전라">전라도</a>

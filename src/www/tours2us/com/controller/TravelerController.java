@@ -178,5 +178,7 @@ public class TravelerController {
 	public void deleteFriend(CoTravelerDto coTraveler){
 		travelerService.deleteCoTraveler(coTraveler);
 	}
+	
+	@RequestMapping()
 
 }

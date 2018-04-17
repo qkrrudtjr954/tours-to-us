@@ -99,6 +99,7 @@ div.user-action a:hover {
 									</li>							
 									<li class="dropdown-item btn btn-sm mypage-link-item"><a href="myplan.do" class="nav-link" title="나의플랜보기" >나의 플랜보기</a></li>
 									<li class="dropdown-item btn btn-sm mypage-link-item"><a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a></li>
+									<li class="dropdown-item btn btn-sm mypage-link-item"><a href="mypage.do" class="nav-link" title="회원정보수정">투디터 신청하기</a></li>
 								</ul>				
 							</li>
 						</ul>

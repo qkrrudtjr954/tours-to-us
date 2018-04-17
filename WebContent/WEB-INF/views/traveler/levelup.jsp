@@ -18,7 +18,7 @@ div{
 
 <div class="mypage-title">
 	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>투디터 신청하기</h2>
+		<h2>회원 정보 수정</h2>
 	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">

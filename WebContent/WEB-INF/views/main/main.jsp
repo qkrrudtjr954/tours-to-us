@@ -52,9 +52,11 @@
 
 .book-card{
 	padding: 0;
-    width: 100px;
-    height: 305px;
-    margin: 2px 60px -30px 2px;
+    width: 162px;
+    height: 250px;
+    /*margin: 2px 60px -30px 2px; */
+    margin-left:3px;
+    margin-right:3px;
     border-top: 2px solid #7DC3BB;
 }
 
@@ -237,10 +239,18 @@ padding-right: 200px;
 .view_toditor{
 font-size: 13px;
 }
-.no-gutters{
-padding-left:50px;
-padding-bottom:0px;
+
+.update-text{
+font-size: 13px;
+color: #232323;
+
 }
+
+.downloadcount{
+padding-left:30px;
+
+}
+
 /* 
  .main_cover_right button{
     z-index: 2;
@@ -495,7 +505,9 @@ padding-bottom:0px;
 						</div>
 						</div>
 						<div class="col-md-3">
-							<span>전체 다운로드 수</span><span>123,456</span>
+							<div class="downloadcount">
+							<span><strong>전체 다운로드 수</strong></span>&nbsp;<span style="color: #7DC3BB;"><strong>123,456</strong></span>
+							</div>
 						</div>	
 						
 						<div class="myplan-content">
@@ -505,20 +517,20 @@ padding-bottom:0px;
 									<div class="col-md-11 text-center col-xs-12">
 										<p>작성된 글이 없습니다</p>
 									</div>
-								</c:if>
-								<div class="no-gutters">
+								</c:if>			
+								<div class="row no-gutters">					
 									<c:forEach items="${totolist }" var="toto" varStatus="i">
+										
 										<div class="book-card">
 											<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
-												<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="250px" height="200px">
+												<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width: 162px; heigh:200px;">
 											</div>
-											<div class="book-info" style="height: 25px; width: 210px; text-align: center;">
+											<div class="book-info" style="height: 25px; width: 162px; text-align: center;">
 													<span class="update-text">${toto.location }</span>
 											</div>
-										</div>
-									</c:forEach>
-								</div>
-					
+										</div>								
+									</c:forEach>					
+									</div>
 					
 						
 						</div>
@@ -541,4 +553,13 @@ padding-bottom:0px;
 function move_to_aaa() {
 	location.href="editor_essay.do";
 } 
+
+$(function() {
+	var sBtn = $("li");
+	sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+		sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+		$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+	})
+});	
+
 </script>

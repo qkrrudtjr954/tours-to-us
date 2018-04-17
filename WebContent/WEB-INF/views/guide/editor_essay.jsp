@@ -154,9 +154,9 @@
 		<div class="offset-md-2 col-md-10">
 			<h3>투디터 pick!</h3>
 			<p>투디터들이 엄선한 여행지 꿀팁&맛집 pick!</p>
+			<hr>
 		</div>
 	</div>
-	<hr>
 </div>
 
 <div class="row no-gutters">
@@ -171,11 +171,14 @@
 						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
 					</li>
 					<li><hr></li>
-					<li class="menu-title">
-						<span class="planer-label-icon" data-feather="user"></span>회원정보관리
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
 					</li>
 					<li class="menu_item">
-						<a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a>
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
 					</li>
 				</ul>
 			</div>

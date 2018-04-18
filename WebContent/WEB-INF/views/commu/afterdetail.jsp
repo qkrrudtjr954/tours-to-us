@@ -255,9 +255,6 @@
 			<hr>
 			<div class="detailBody">
 				<div class="detailBody_content">${aftergetBbs.content }</div>
-				<!-- 		<div class="tag">
-					<span><b>태그</b>  #부산 #맛집 #먹방</span>
-				</div>	 -->
 				<hr>
 				<div class="detailBody_like" align="center">
 					<img class="hearticon"

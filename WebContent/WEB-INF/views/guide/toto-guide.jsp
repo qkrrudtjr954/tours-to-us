@@ -213,27 +213,27 @@ h2 {
 		<div class="d-flex justify-content-between">
 			<div class="tag-location">
 				<ul>
-					<li class="active">
-						<a href="toto_guide.do" class="cur">전체</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">서울</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">강원도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">충청도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">경상도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">전라도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">제주도</a>
-					</li>
+						<li class="active">
+					<a href="toto_guide.do" class="cur-all">전체</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="서울">서울</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="강원">강원도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="충청">충청도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="경상">경상도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="전라">전라도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="제주">제주도</a>
+				</li>
 				</ul>
 			</div>
 

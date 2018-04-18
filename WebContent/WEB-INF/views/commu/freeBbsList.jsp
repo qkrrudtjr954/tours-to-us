@@ -50,8 +50,8 @@ color: #f37720;
                id="_recordCountPerPage"
                value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
       </div>
-      &nbsp;&nbsp;&nbsp;
-	<input type="button" class="btn btn-success" id="btnwrite" value="글쓰기" onclick="writeFreeBbs()">
+      &nbsp;
+	<input type="button" class="btn btn-outline-secondary" id="btnwrite" value="글쓰기" onclick="writeFreeBbs()">
    </div>
 </form>
 

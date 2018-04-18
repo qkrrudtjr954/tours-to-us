@@ -31,7 +31,7 @@ color: #f37720;
 </div>
 <div class="search">
 <div class="row" style="margin:0 auto;width:1200px;">
-	<div class="offset-md-3 input-group-prepend">
+	<div class="offset-md-2 input-group-prepend">
 			<form action="afterBbs.do" method="get" id="_frmFormSearch">
    <div class="row" style="margin:0 auto;width:900px;">
       <div class="input-group-prepend">

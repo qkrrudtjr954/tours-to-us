@@ -30,12 +30,12 @@ color: #f37720;
 </div>
 <br>
 <div class="offset-md-1">
-	<form action="guideSearch.do" method="get" id="_frmFormSearch">
+	<form action="freeBbsList.do" method="get" id="_frmFormSearch">
    <div class="row" style="margin:0 auto;width:900px;">
       <div class="input-group-prepend">
          <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
             <option value="title">제목</option>
-         	<option value="contents">내용</option>
+         	<!-- <option value="contents">내용</option> -->
          	<option value="name">작성자</option>
          </select> 
          <input type="text" class="form-control"
@@ -50,8 +50,8 @@ color: #f37720;
                id="_recordCountPerPage"
                value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
       </div>
-      &nbsp;&nbsp;&nbsp;
-	<input type="button" class="btn btn-success" id="btnwrite" value="글쓰기" onclick="writeFreeBbs()">
+      &nbsp;
+	<input type="button" class="btn btn-outline-secondary" id="btnwrite" value="글쓰기" onclick="writeFreeBbs()">
    </div>
 </form>
 
@@ -136,9 +136,35 @@ $(document).ready(function() {
 });
 
 $("#btnSearch").click(function() {
-   //alert('search');                  
-   $("#_frmFormSearch").attr({ "target":"_self", "action":"freeBbsList.do" }).submit();
+	   //alert('search'); 
+	   var text = $("#text").val();
+	   if(text===""){
+		   alert("검색창이 비웠습니다");
+			$("#text").focus();
+		   
+	   }else{
+		   $("#_frmFormSearch").attr({ "target":"_self", "action":"afterBbs.do" }).submit(); 
+		   
+	   }
+	   
 });
+
+$("#text").keypress(function(event) {
+	var text = $("#text").val();
+
+	if (event.which == "13") {
+		event.preventDefault();
+		if (text === "") {
+			alert("검색창이 비웠습니다");
+			$("#text").focus();
+		} else {
+			$("#btnSearch").click();
+		}
+
+	}
+});
+	
+	
 function goPage(pageNumber) {   
    $("#_pageNumber").val(pageNumber) ;
    $("#_frmFormSearch").attr("target","_self").attr("action","freeBbsList.do").submit();

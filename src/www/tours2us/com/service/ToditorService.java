@@ -72,6 +72,19 @@ public class ToditorService {
 		return list;
 	}
 	
+	public boolean CommentDelete(int seq) throws Exception {
+		return toditorDao.CommentDelete(seq);
+	}
+	
+	public boolean CommentDeleteCheck(int seq, int current_user_seq) throws Exception {
+		int target_user_seq = toditorDao.CommentGgtUserSeq(seq);
+		System.out.println("dkdkdkdk = " + target_user_seq);
+		return(target_user_seq==current_user_seq)?true:false;
+	}
+	
+	
+	
+	
 	public boolean ToditorUpdate(ToditorBBS bbs) throws Exception {		
 		return toditorDao.ToditorUpdate(bbs);
 	}

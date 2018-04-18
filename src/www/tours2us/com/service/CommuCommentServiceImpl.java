@@ -20,11 +20,11 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 	@Override
 	public List<CommuAfterCommentDto> addComment(CommuAfterCommentDto comment) throws Exception {	
 		boolean result = commuCommentDao.addComment(comment);
-		System.out.println("addComment = " + result);
+		//System.out.println("addComment = " + result);
 		List<CommuAfterCommentDto> list = new ArrayList<CommuAfterCommentDto>();
-		System.out.println("comment = " +  comment);
+		//System.out.println("comment = " +  comment);
 		int seq = comment.getTarget_bbs_seq();
-		System.out.println("seq = " + seq);
+		//System.out.println("seq = " + seq);
 		if(result) {
 			
 			list = commuCommentDao.getAllComments(seq);
@@ -61,10 +61,10 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 	@Override
 	public List<CommuFreeCommentDto> FreeAddComent(CommuFreeCommentDto freecomment) throws Exception {
 		boolean result = commuCommentDao.FreeAddComent(freecomment);
-		System.out.println("addComment = " + result);
+		//System.out.println("addComment = " + result);
 		List<CommuFreeCommentDto> list = new ArrayList<CommuFreeCommentDto>();
 		int seq = freecomment.getTarget_free_seq();
-		System.out.println("seq = " + seq);
+		//System.out.println("seq = " + seq);
 		
 		if(result) {
 			list = commuCommentDao.FreeGetAllComments(seq);
@@ -74,7 +74,16 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		return list;
 	}
 
+	@Override
+	public boolean FreeCommentDelete(int seq) throws Exception {
+		return commuCommentDao.FreeCommentDelete(seq);
+	}
 
+	@Override
+	public boolean FreeCommentDeleteCheck(int seq, int current_user_seq) throws Exception {
+		int target_user_seq = commuCommentDao.FreeCommentGgtUserSeq(seq);
+		return(target_user_seq==current_user_seq)?true:false;
+	}
 	
 	
 	

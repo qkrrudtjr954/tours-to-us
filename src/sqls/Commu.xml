@@ -139,8 +139,7 @@ SELECT RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
 </select>
 
 <select id="FreeCategory" resultType="www.tours2us.com.model.CommuFreeCategoryDto">
-	SELECT *
-	FROM FREECATEGORY 
+	SELECT * FROM FREECATEGORY 
 </select>
 
 <insert id="FreeBbsWrite" parameterType="www.tours2us.com.model.CommuFreeBbsDto">

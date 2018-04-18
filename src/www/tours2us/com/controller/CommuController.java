@@ -79,8 +79,6 @@ public class CommuController {
 
 	@RequestMapping(value = "afterWrite.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterbbswrite(Model model, int seq) {
-		//logger.info("CommuController >>>> afterWrite");
-		System.out.println("ss:" + seq);
 
 		PlanerDto planer = planerService.getPlaner(seq);
 

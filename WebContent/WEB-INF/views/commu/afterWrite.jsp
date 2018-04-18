@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     
-    <style>
+<style>
 .card {
 	padding: 0;
 	border: 1px solid #7DC3BB;
@@ -53,144 +55,120 @@
 .gu-link:hover {text-decoration: underline; color: #7DC3BB;}
 .gu-link:visited {text-decoration: none; color: #000000;}
 
-/* input.img_button {
-	background: url(./image/search.png) no-repeat;
-	width: 40px;
-	height: 35px;
-	border: none; 
-	cursor: pointer;
-} */
 
-.guide-info-over {
-	position: absolute;
-	background-color: #fff;
+
+myplan-title{
+	border-bottom: 2px solid #7cc4bb;
+    width: 35%;
+    margin-top: 50px;
+}
+.planer-info-over {
+	background-color: #7DC3BB;
 	padding: 15px;
 	margin: 10px;
 	width: 90%;
-	border-radius: 15px;
-	border: 1px solid #7DC3BB;
-}
-
-.gu-link{
-	text-align: left;
-}
-
-.guide-label-icon{
-text-align: center;
-}
-
-.guide-info-top{
-	background-color: #7DC3BB;
-	margin-top: 10px;
-	margin-bottom: 10px;
 	text-align: center;
+	border-radius: 15px;
+}
+.planer-label-icon {
+    margin-top: 15px;
+    color: white;
+}
+.planer-label-title {
+	width: 100%;
+	font-size: 18px;
+	font-weight: 500;
+	color: white;
+}
+#myform {
+	width: 100%;
 }
 
-.guide-label-atag{
-	line-height: 1.5;
+.after-form-label {
+	font-size: 25px;
+	font-weight: 700;
+	margin: 30px 0px 30px 10px;
+	border-bottom: 2px solid gray;
+}
+.after-title-container {
+	margin-top: 20px;
+	width: 100%;
 }
 
 </style>
     
-    
-    
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="./css/main.css" rel="stylesheet">
 
-    
- <div class="after-title">
-   <div class="offset-md-2 col-md-4 col-xs-12">
-      <h2>글 작성</h2>
-   </div>
+<div class="row no-gutters">
+	<div class="offset-md-2 col-md-7">
+		<div class="after-title-container">
+			<h3>후기 작성</h3>
+			<p>당신의 여행을 자랑해주세요!</p>
+			<hr>
+		</div>
+	</div>
 </div>
-
-
 
 <div class="row no-gutters">
 	<div class="col-md-2 col-xs-12">
-		<div class="guide-info-over">
-			<div class="guide-info-top">
-				<p>
-					<span class="guide-label-icon" data-feather="book-open"></span>
-					<br>
-					<span class="guide-label-title">나의 여행 후기</span> 
-				</p>
-			</div>
-				<hr style="color:white; width:100%;">
-				<div>		
-				<p>
-					<span class="planer-label-icon" data-feather="briefcase">여행 이름</span><br>
-					<span class="planer-label-title">${planer.title }</span>
-				</p>	 
-				<hr style="color:white; width:100%;">
-				<p>
-					<span class="planer-label-icon" data-feather="map"></span><br>
-					<span class="planer-label-title">${planer.location }</span> 
-				</p>
-				
-				<p>
-					<span class="planer-label-icon" data-feather="calendar"></span><br>
-					<span class="planer-label-title">${planer.from_date } ~ </span><br>
-					<span class="planer-label-title">${planer.to_date }</span><br><br>
-					<c:choose>
-						<c:when test="${planer.range < 2 }">
-							<span class="planer-label-title">당일 치기</span>								
-						</c:when>
-						<c:otherwise>
-							<span class="planer-label-title">${planer.range-1 }박 ${planer.range }일</span>
-						</c:otherwise>
-					</c:choose>
-				</p>
-				
-						
+		<div class="planer-info-over">
+			<p>
+				<span class="planer-label-icon" data-feather="briefcase">여행 이름</span><br>
+				<span class="planer-label-title">${planer.title }</span> 
+			</p>
+			<hr style="color:white; width:100%;">
+			<p>
+				<span class="planer-label-icon" data-feather="map"></span><br>
+				<span class="planer-label-title">${planer.location }</span> 
+			</p>
+			<p>
+				<span class="planer-label-icon" data-feather="calendar"></span><br>
+				<span class="planer-label-title">${planer.from_date } ~ </span><br>
+				<span class="planer-label-title">${planer.to_date }</span><br><br>
+				<c:choose>
+					<c:when test="${planer.range < 2 }">
+						<span class="planer-label-title">당일 치기</span>								
+					</c:when>
+					<c:otherwise>
+						<span class="planer-label-title">${planer.range-1 }박 ${planer.range }일</span>
+					</c:otherwise>
+				</c:choose>
+			</p>
 		</div>
+	</div>
+	
+	<div class="col-md-8 col-xs-12">
+		<form action="afterWriteAf.do" method="post" id="myform">
+			<input type="hidden" name="target_planer_seq" value="${planer.seq }">
+			
+
+			<div class="form-group">
+				<label class="after-form-label" for="title">제목</label> 
+				<input type="text" class="form-control" size="20" name="title" id="title" placeholder="제목을 입력해주세요."> 
+			</div>
+
+	
+			<div class="form-group">
+				<label class="after-form-label" for="summernote">내용</label>
+				<textarea id="summernote" name="content"></textarea>
+			</div>
+		
+
+			<input type="submit" class="btn btn-success offset-md-4 col-md-2" value="글쓰기" onclick="" id="btnwrite">&nbsp; 
+			<a href="afterBbs.do" class="btn btn-outline-secondary col-md-2 " id="btnBack">돌아가기</a>
+		</form>
 	</div>
 </div>
 
 
 
-<div class="offset-md-2 col-md-8 col-xs-12">
-   <hr>
-</div>
-<form action="afterWriteAf.do" method="post" id="myform" >
-<input type="hidden" name="target_planer_seq" value="${planer.seq }">
-<div class="row">
-   <div class=" offset-md-3 col-md-6 write-form">
-      <div class="input-group-prepend">
-         <span class="input-group-text">제목</span> 
-         <input type="text" class="form-control" size="20" name="title" id="title"
-            placeholder="제목">
-      </div>   
-   </div>
 
-   <div class=" offset-md-3 col-md-6 write-form">
-      <div class="input-group-prepend">
-         <textarea id="summernote" name="content"></textarea>
-      </div>   
-   </div>
-
-</div>
- <div class="row">
-             <input type="submit" class="btn btn-success offset-md-4 col-md-2"  value="글쓰기" onclick="" id="btnwrite">&nbsp;
-           <a href="afterBbs.do" class="btn btn-outline-secondary col-md-2 "  id="btnBack">돌아가기</a>
-
-
-        </div>
-</form>
-
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-              width : 1100,
-            height: 300,                 // set editor height
+            width : '100%',
+            height: 500,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
             focus: true,                  // set focus to editable area after initializing summernote

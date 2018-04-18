@@ -116,7 +116,7 @@ h2 {
     color: #000000;
 }
 
-.active{
+li.cur.active{
 	 height: 37px;
     font-size: 15px;
     line-height: 39px;
@@ -162,6 +162,9 @@ h2 {
 
 .editor-title-container {
 	margin-top: 20px;
+	width: 100%;
+}
+.myplan-content {
 	width: 100%;
 }
 </style>

@@ -363,7 +363,7 @@ $(".cur").click(function () {
 			$(".table-ajax").children().remove();
 			var leng=data.length;
 			for(var i=0; i<data.length; i++ ){
-				printUserlistHtml(data[i], leng);
+				printUserlistHtml(data[i], i);
 			}
 		},
 		error : function(req, sta, err){
@@ -372,10 +372,10 @@ $(".cur").click(function () {
 	})
 });
 
-function printUserlistHtml(plan, leng) {	
+function printUserlistHtml(plan, index) {	
 	var count =0;
 	var html = '<tr>'
-		+'<td>'+count+'</td>'
+		+'<td>'+(index+1)+'</td>'
 		+'<td>'+plan.location+'</td>'
 		+'<td>'
 		+'<a href="guideDetail.do?seq='+plan.seq+'" class="ti-link">'+plan.title+'</a>'

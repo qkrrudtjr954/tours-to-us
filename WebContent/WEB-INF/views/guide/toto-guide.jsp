@@ -49,28 +49,20 @@ h2 {
     -webkit-margin-after: 0.83em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-   
-} 
+
+}
 
 .book-card{
+	float: left;
 	padding: 0;
     width: 138px;
     height: 305px;
-    margin: 2px 60px -30px 2px;
+    margin: 30px;
     border-top: 2px solid #7DC3BB;
-}
-
-.book-img{
-	width: 211px;
-    height: 305px;
 }
 
 .title-sub-content{
 	padding: 0 400px 0 0;
-}
-
-.book-info{
-    margin: -90px 0px 5px -40px;
 }
 
 .update-text{
@@ -86,7 +78,6 @@ h2 {
 	float: left;
 	display: inline-block;
     height: 49px;
-    margin-left: -50px;
 }
 
 .tag-location ul {
@@ -121,101 +112,139 @@ h2 {
     font-size: 15px;
     line-height: 39px;
     border-bottom: 3px solid #7DC3BB;
-    text-decoration: none; 
+    text-decoration: none;
     color: #000000;
 }
 
 .cur:link {text-decoration: none; color: #000000;}
 .cur:hover {text-decoration: none; color: #7DC3BB;}
 .cur:visited {text-decoration: none; color: #000000;}
+
+
+
+.planer-info-over {
+	background-color: #7DC3BB;
+	margin: 30px 10px;
+	width: 80%;
+	text-align: center;
+	border-radius: 15px;
+	padding: 15px;
+    margin: 10px;
+}
+
+.menu_table ul{
+	list-style-type: none;
+	padding: 0px;
+}
+.menu_table li{
+	padding: 10px 0px;
+	color: white;
+}
+.menu-title {
+	font-size: 20px;
+}
+.menu-item {
+	font-size: 15px;
+}
+.planer-label-icon {
+	vertical-align: middle;
+	margin: 0px 3px;
+}
+
+.editor-title-container {
+	margin-top: 20px;
+	width: 100%;
+}
 </style>
 
+
 <div class="row no-gutters">
-	<div class="col-md-2 col-xs-12">
-		<div class="guide-info-over">
-			<div class="guide-info-top">
-				<p>
-					<span class="guide-label-icon" data-feather="download"></span>
-					<br>
-					<span class="guide-label-title">투투 가이드북</span> 
-				</p>
+	<div class="editor-title-container">
+		<div class="row no-gutters">
+			<div class="offset-md-2 col-md-7">
+				<h3>투투 가이드북</h3>
+				<p>투디터들과 투투 운영진이 엄선한 가이드북</p>
 			</div>
-				<hr style="color:white; width:100%;">		
-				<p>
-					<div class="guide-label-icon" style="text-align: center;">
-						<span data-feather="bookmark"></span><br>
-					</div>
-					<span class="guide-label-atag"><a href="editor_essay.do" class="gu-link">투디터 pick</a></span> 
-					<br>
-					<span class="guide-label-atag"><a href="user_guide.do" class="gu-link">투둥이 가이드북</a></span>
-					<br>
-					<span class="guide-label-atag"><a href=toto_guide.do" class="gu-link">투투 가이드북</a></span>	
-				</p>		
+			<div class="col-md-2">
+				<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;"></b></span>
+			</div>
+		</div>
+		<div class="row no-gutters">
+			<div class="offset-md-2 col-md-8"><hr></div>
 		</div>
 	</div>
 </div>
 
-<div class="toto-title">
-	<div class="offset-md-2 col-md-6 col-xs-12">
-		<h2 class="guide-title">투투 가이드북</h2>
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="planer-info-over">
+			<div class="menu_table">
+				<ul style="list-style-type: none">
+					<li class="menu-title">
+						<span class="planer-label-icon" data-feather="briefcase"></span>나의 플랜
+					</li>
+					<li class="menu_item">
+						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+					</li>
+					<li><hr></li>
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
+					</li>
+					<li class="menu_item">
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-	<div class="offset-md-2 col-md-12" id="title-sub">
-		<span class="title-sub-content">투디터들과 투투 운영진이 엄선한 가이드북</span>
-		<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;"></b></span>
-	</div>
-</div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<hr>
-</div>
-<div class="offset-md-2 col-md-10">
-	<div class="tag-location">
-		<ul>
-			<li class="active">
-				<a href="toto_guide.do" class="cur">전체</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="서울">서울</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="강원">강원도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="충청">충청도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="경상">경상도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="전라">전라도</a>
-			</li>
-			<li class="">
-				<a href="#" class="cur" value="제주">제주도</a>
-			</li>
-		</ul>
-	</div>
-</div>
+	<div class="col-md-8">
+		<div class="d-flex justify-content-between">
+			<div class="tag-location">
+				<ul>
+					<li class="active">
+						<a href="toto_guide.do" class="cur">전체</a>
+					</li>
+					<li class="">
+						<a href="#" class="cur" onclick="location_search()">서울</a>
+					</li>
+					<li class="">
+						<a href="#" class="cur" onclick="location_search()">강원도</a>
+					</li>
+					<li class="">
+						<a href="#" class="cur" onclick="location_search()">충청도</a>
+					</li>
+					<li class="">
+						<a href="#" class="cur" onclick="location_search()">경상도</a>
+					</li>
+					<li class="">
+						<a href="#" class="cur" onclick="location_search()">전라도</a>
+					</li>
+					<li class="">
+						<a href="#" class="cur" onclick="location_search()">제주도</a>
+					</li>
+				</ul>
+			</div>
 
-<!-- <div class="row offset-md-9">
-	<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
-</div> -->
+			<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
+		</div>
+		<div class="row no-gutters">
+			<div class="myplan-content text-center">
+				<c:if test="${empty totolist }">
+					<div class="d-flex justify-content-center align-items-center" style="height:400px;">
+						<p>작성된 글이 없습니다</p>
+					</div>
+				</c:if>
 
-<br>
 
-<div class="toto-content">
-	<div class="row">
-		<div class="offset-md-2 col-md-8 ">
-			<c:if test="${empty totolist }">
-				<div class="col-md-11 text-center col-xs-12">
-					<p>작성된 글이 없습니다</p>
-				</div>
-			</c:if>
-			<div class="row no-gutters toContent">
 				<c:forEach items="${totolist }" var="toto" varStatus="i">
 					<div class="book-card">
 						<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
 							<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="300px" height="200px">
 						</div>
-						<div class="book-info" style="height: 25px; width: 210px; text-align: center;">
+						<div class="book-info">
 								<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
 						</div>
 					</div>
@@ -223,7 +252,11 @@ h2 {
 			</div>
 		</div>
 	</div>
+
 </div>
+
+
+
 
 <script>
 	$(function() {
@@ -233,11 +266,11 @@ h2 {
 			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
 		})
 	});
-	
+
 	$(".cur").click(function () {
 		var local = $(this).attr('value');
 		//alert("local"+location);
-		
+
 		$.ajax({
 			url:"toto_search.do",
 			method:"post",
@@ -245,7 +278,7 @@ h2 {
 			success:function(data){
 				alert("d"+data);
 				$(".toContent").children().remove();
-				
+
 				for(var i=0; i<data.length; i++ ){
 					printTotolistHtml(data[i]);
 				}
@@ -255,14 +288,14 @@ h2 {
 			}
 		})
 	});
-	
+
 	function printTotolistHtml(toto) {
 		var html = '<div class="book-card">'
 			+'<div class="book-img" onclick="location.href=toto_detail.do?seq=${toto.seq }">'
 			+'<img class="book-img-top" src="${toto.pic eq null ? "image/no-img.png" : toto.pic}" style="cursor: pointer;" width="300px" height="200px">'
 			+'</div>'
 			+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
-			+'<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>'			
+			+'<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>'
 			+'</div>'
 			+'</div>';
 			$(".toContent").append(html);

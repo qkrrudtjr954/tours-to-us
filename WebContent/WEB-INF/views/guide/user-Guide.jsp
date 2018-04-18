@@ -111,124 +111,173 @@ h2 {
 	top: -20px;
 }
 
+
+.planer-info-over {
+	background-color: #7DC3BB;
+	margin: 30px 10px;
+	width: 80%;
+	text-align: center;
+	border-radius: 15px;
+	padding: 15px;
+    margin: 10px;
+}
+
+.menu_table ul{
+	list-style-type: none;
+	padding: 0px;
+}
+.menu_table li{
+	padding: 10px 0px;
+	color: white;
+}
+.menu-title {
+	font-size: 20px;
+}
+.menu-item {
+	font-size: 15px;
+}
+.planer-label-icon {
+	vertical-align: middle;
+	margin: 0px 3px;
+}
+
+.user-guide-table {
+	width: 100%;
+}
+
+#_frmFormSearch {
+	width : 100%;
+}
+#_frmFormSearch > div{
+	margin: 10px 0px;
+}
+
+.editor-title-container {
+	margin-top: 20px;
+	width: 100%;
+}
+
 </style>
 
-<div class="myplan-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2 class="guide-title">투둥이 가이드북</h2>
+<div class="row no-gutters">
+	<div class="editor-title-container">
+		<div class="offset-md-2 col-md-8">
+			<h3>투둥이 가이드북</h3>
+			<p>투둥이 유저들의 여행 플랜들</p>
+			
+			<hr>
+		</div>
 	</div>
-	<div class="offset-md-2 col-md-4 col-xs-12" id="title-sub">
-		<span>투둥이 유저들의 여행 플랜들</span>
-	</div>
-</div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<hr>
 </div>
 
 <div class="row no-gutters">
 	<div class="col-md-2 col-xs-12">
-		<div class="guide-info-over">
-			<div class="guide-info-top">
-				<p>
-					<span class="guide-label-icon" data-feather="book-open"></span>
-					<br>
-					<span class="guide-label-title">투둥이 가이드북</span> 
-				</p>
+		<div class="planer-info-over">
+			<div class="menu_table">
+				<ul style="list-style-type: none">
+					<li class="menu-title">
+						<span class="planer-label-icon" data-feather="briefcase"></span>나의 플랜
+					</li>
+					<li class="menu_item">
+						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+					</li>
+					<li><hr></li>
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
+					</li>
+					<li class="menu_item">
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
+					</li>
+				</ul>
 			</div>
-				<hr style="color:white; width:100%;">		
-				<p>
-					<div class="guide-label-icon" style="text-align: center;">
-						<span data-feather="bookmark"></span><br>
+		</div>
+	</div>
+	<div class="col-md-8 col-xs-12">
+		<div class="row no-gutters">
+			<form action="guideSearch.do" method="get" id="_frmFormSearch">
+				<div class="d-flex justify-content-center">
+					<div class="input-group-prepend">
+						<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
+							<option value="title">제목</option>
+							<option value="location">지역</option>
+						</select> 
+						<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" size="50" name="s_keyword" id="text">
 					</div>
-					<span class="guide-label-atag"><a href="editor_essay.do" class="gu-link">투디터 pick</a></span> 
-					<br>
-					<span class="guide-label-atag"><a href="user_guide.do" class="gu-link">투둥이 가이드북</a></span>
-					<br>
-					<span class="guide-label-atag"><a href="toto_guide.do" class="gu-link">투투 가이드북</a></span>	
-				</p>		
-		</div>
-	</div>
-</div>
-
-<form action="guideSearch.do" method="get" id="_frmFormSearch">
-	<div class="row" style="margin:0 auto;width:900px;">
-		<div class="offset-md-1 input-group-prepend">
-			<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;" >
-				<option value="title">제목</option>
-				<option value="location">지역</option>
-			</select> 
-			<input type="text" class="form-control"
-				aria-label="Text input with segmented dropdown button" size="50"
-				name="s_keyword" id="text">
-		</div>
-		<div class="serach">
-			<button class="btn btn-outline-secondary" type="button" id="btnSearch"><span data-feather="search"></span></button>
-			<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span><span class="list-text">전체리스트</span></button>
-			<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
-            <input type="hidden" name="recordCountPerPage"
-               id="_recordCountPerPage"
-               value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
-		</div>
-	</div>
-</form>
-<br>
-
-<div class="user-guide-table">
-	<div class="offset-md-2 col-md-8">
-		<table class="table">
-			<colgroup>
-				<col style="width:30px;" />
-				<col style="width:70px;" />
-				<col style="width:100px;" />
-				<col style="width:100px;" />
-				<col style="width:100px;" />
-			</colgroup>
-				<thead>
-				<tr>	
-					<th>번호</th><th>지역</th><th>제목</th><th>작성자</th><th>여행기간</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${empty planlist }">
-					<div class="col-md-12 text-center col-xs-12">
-						<p>작성된 글이 없습니다</p>
+					<div class="serach">
+						<button class="btn btn-outline-secondary" type="button" id="btnSearch">
+							<span data-feather="search"></span>
+						</button>
 					</div>
-				</c:if>	
-				
-				<c:forEach items="${planlist }" var="plan" varStatus="i">
-					<tr>
-						<td>${i.count }</td>
-						<td>${plan.location }</td>
-						<td>
-							<a href="guideDetail.do?seq=${plan.seq }" class="ti-link">${plan.title }</a>
-						</td>
-						<td>${plan.name }</td>	
-						<td>
-							${plan.from_date }&nbsp;~&nbsp;${plan.to_date }
-						</td>					
-					</tr>	
-				</c:forEach>
-						
-			</tbody>
-		</table>					
+					<div class="total-list-button">
+						<button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()">
+							<span data-feather="list"></span><span class="list-text">전체리스트</span>
+						</button>
+					</div>
+				</div>
+				<input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
+				<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
+			</form>
+		</div>
+
+		<div class="row no-gutters">
+			<div class="user-guide-table">
+				<table class="table">
+					<colgroup>
+						<col style="width: 30px;" />
+						<col style="width: 70px;" />
+						<col style="width: 100px;" />
+						<col style="width: 100px;" />
+						<col style="width: 100px;" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>지역</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>여행기간</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:if test="${empty planlist }">
+							<div class="col-md-12 text-center col-xs-12">
+								<p>작성된 글이 없습니다</p>
+							</div>
+						</c:if>
+
+						<c:forEach items="${planlist }" var="plan" varStatus="i">
+							<tr>
+								<td>${i.count }</td>
+								<td>${plan.location }</td>
+								<td><a href="guideDetail.do?seq=${plan.seq }"
+									class="ti-link">${plan.title }</a></td>
+								<td>${plan.name }</td>
+								<td>${plan.from_date }&nbsp;~&nbsp;${plan.to_date }</td>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="paging_wrap">
+			<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
+			   <jsp:param value="${pageNumber }" name="pageNumber"/>
+			   <jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
+			   <jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
+			   <jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
+			</jsp:include>
+		</div>
 	</div>
 </div>
 
-<!-- 페이징 처리 -->
 
-<div id="paging_wrap">
-<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
-   <jsp:param value="${pageNumber }" name="pageNumber"/>
-   <jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
-   <jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
-   <jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
-</jsp:include>
-</div>
-
-<!-- 페이징 처리 -->
 
 <script>
-$(document).ready(function() {    
+$(document).ready(function() {
     $("#_s_category > option[value="+'<c:out value="${ param.s_category }"/>'+"]").attr("selected","selected");
                  
  });

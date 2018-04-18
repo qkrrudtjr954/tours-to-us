@@ -129,7 +129,9 @@ h2 {
 .cur:hover {text-decoration: none; color: #7DC3BB;}
 .cur:visited {text-decoration: none; color: #000000;}
 
-
+.cur-all:link {text-decoration: none; color: #000000;}
+.cur-all:hover {text-decoration: none; color: #7DC3BB;}
+.cur-all:visited {text-decoration: none; color: #000000;}
 
 .planer-info-over {
 	background-color: #7DC3BB;
@@ -289,7 +291,7 @@ $(".cur").click(function () {
 		data:{location:local},
 		success:function(data){
 			//alert("toto"+data);
-			$(".toContent").children().remove();
+			$(".myplan-content").children().remove();
 
 			for(var i=0; i<data.length; i++ ){
 				printTotolistHtml(data[i]);
@@ -312,6 +314,6 @@ function printTotolistHtml(toto) {
 		+'<span class="update-text">업데이트 : '+str+'</span>'
 		+'</div>'
 		+'</div>';
-		$(".toContent").append(html);
+		$(".myplan-content").append(html);
 }
 </script>

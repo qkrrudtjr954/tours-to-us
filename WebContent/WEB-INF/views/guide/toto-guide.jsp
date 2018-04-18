@@ -116,6 +116,15 @@ h2 {
     color: #000000;
 }
 
+.active{
+	 height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none;
+    color: #000000;
+}
+
 .cur:link {text-decoration: none; color: #000000;}
 .cur:hover {text-decoration: none; color: #7DC3BB;}
 .cur:visited {text-decoration: none; color: #000000;}
@@ -267,37 +276,42 @@ h2 {
 		})
 	});
 
-	$(".cur").click(function () {
-		var local = $(this).attr('value');
-		//alert("local"+location);
+</script>
 
-		$.ajax({
-			url:"toto_search.do",
-			method:"post",
-			data:{location:local},
-			success:function(data){
-				alert("d"+data);
-				$(".toContent").children().remove();
+<script>
+$(".cur").click(function () {
+	var local = $(this).attr('value');
+	//alert("local"+location);
 
-				for(var i=0; i<data.length; i++ ){
-					printTotolistHtml(data[i]);
-				}
-			},
-			error : function(req, sta, err){
-				alert("error");
+	$.ajax({
+		url:"toto_search.do",
+		method:"post",
+		data:{location:local},
+		success:function(data){
+			//alert("toto"+data);
+			$(".toContent").children().remove();
+
+			for(var i=0; i<data.length; i++ ){
+				printTotolistHtml(data[i]);
 			}
-		})
-	});
+		},
+		error : function(req, sta, err){
+			//alert("error");
+		}
+	})
+});
 
-	function printTotolistHtml(toto) {
-		var html = '<div class="book-card">'
-			+'<div class="book-img" onclick="location.href=toto_detail.do?seq=${toto.seq }">'
-			+'<img class="book-img-top" src="${toto.pic eq null ? "image/no-img.png" : toto.pic}" style="cursor: pointer;" width="300px" height="200px">'
-			+'</div>'
-			+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
-			+'<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>'
-			+'</div>'
-			+'</div>';
-			$(".toContent").append(html);
-	}
+function printTotolistHtml(toto) {
+	var last = toto.last_updated;
+	var str = last.substring(0, 10);
+	var html = '<div class="book-card">'
+		+'<div class="book-img" onclick="location.href=toto_detail.do?seq='+toto.seq+'">'
+		+'<img class="book-img-top" src="'+toto.pic+'" style="cursor: pointer; width:137px; height:200px;">'
+		+'</div>'
+		+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
+		+'<span class="update-text">업데이트 : '+str+'</span>'
+		+'</div>'
+		+'</div>';
+		$(".toContent").append(html);
+}
 </script>

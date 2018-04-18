@@ -12,4 +12,5 @@ public interface TotoGuideService {
 	public boolean downCount(int seq);
 	public void readCount(int seq);
 	public List<TotoGuideDto> totoSearch(String location);
+	public String getTotalDownCount();
 }

@@ -39,7 +39,9 @@ public class TotoGuideController {
 		logger.info("TotoGuideController >>>> toto_guide");
 		
 		List<TotoGuideDto> list = totoGuideService.getTotoList();
+		String totalDowncount = totoGuideService.getTotalDownCount();
 		model.addAttribute("totolist", list);
+		model.addAttribute("totalDowncount", totalDowncount);
 		System.out.println(list);
 		
 		return "toto_guide.tiles";
@@ -119,6 +121,15 @@ public class TotoGuideController {
 		File downloadFile = new File(fupload+"/"+filename);
 		model.addAttribute("downloadFile", downloadFile);
 		model.addAttribute("seq", seq);
+		boolean isS = totoGuideService.downCount(seq);
+		
+		if(isS) {
+			System.out.println("downloadview"+seq);
+		}else {
+			System.out.println("error"+seq);
+		}
+		
+		System.out.println(downloadFile);
 		
 		return "downloadView";
 	}

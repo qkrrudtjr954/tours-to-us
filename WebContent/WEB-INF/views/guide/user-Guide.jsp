@@ -37,7 +37,7 @@
 #plan-title:hover {
 	text-decoration: underline;
 	color: #7DC3BB;
-} 
+}
 
 .change-title-div {
 	display: none;
@@ -59,7 +59,7 @@
 	background: url(./image/search.png) no-repeat;
 	width: 40px;
 	height: 35px;
-	border: none; 
+	border: none;
 	cursor: pointer;
 } */
 
@@ -99,8 +99,8 @@ h2 {
     -webkit-margin-after: 0.83em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-   
-} 
+
+}
 .list-text{
 	height: 100%;
     width: 100%;
@@ -164,7 +164,7 @@ h2 {
 		<div class="offset-md-2 col-md-8">
 			<h3>투둥이 가이드북</h3>
 			<p>투둥이 유저들의 여행 플랜들</p>
-			
+
 			<hr>
 		</div>
 	</div>
@@ -203,7 +203,7 @@ h2 {
 						<select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
 							<option value="title">제목</option>
 							<option value="location">지역</option>
-						</select> 
+						</select>
 						<input type="text" class="form-control" aria-label="Text input with segmented dropdown button" size="50" name="s_keyword" id="text">
 					</div>
 					<div class="serach">
@@ -279,24 +279,24 @@ h2 {
 <script>
 $(document).ready(function() {
     $("#_s_category > option[value="+'<c:out value="${ param.s_category }"/>'+"]").attr("selected","selected");
-                 
+
  });
 
  $("#btnSearch").click(function() {
     //alert('search');
-    
+
 	 var text = $("#text").val();
 	   if(text===""){
 		   alert("검색창이 비웠습니다");
 			$("#text").focus();
-		   
+
 	   }else{
-    
+
     $("#_frmFormSearch").attr({ "target":"_self", "action":"user_guide.do" }).submit();
    }
-    
+
 });
- 
+
  $("#text").keypress(function(event) {
 		var text = $("#text").val();
 
@@ -311,15 +311,65 @@ $(document).ready(function() {
 
 		}
 	});
- 
- 
- 
- function goPage(pageNumber) {   
+
+
+
+ function goPage(pageNumber) {
     $("#_pageNumber").val(pageNumber) ;
     $("#_frmFormSearch").attr("target","_self").attr("action","user_guide.do").submit();
  }
 
  function user_guide() {
 	location.href="user_guide.do";
+}
+</script>
+
+<script>
+	$(function() {
+		var sBtn = $("li");
+		sBtn.find("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+			sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+		})
+	});
+
+</script>
+
+<script>
+$(".cur").click(function () {
+	var local = $(this).attr('value');
+
+	$.ajax({
+		url:"user_search.do",
+		method:"post",
+		data:{location:local},
+		success:function(data){
+			$(".table-ajax").children().remove();
+			var leng=data.length;
+			for(var i=0; i<data.length; i++ ){
+				printUserlistHtml(data[i], i);
+			}
+		},
+		error : function(req, sta, err){
+			//alert("error");
+		}
+	})
+});
+
+function printUserlistHtml(plan, index) {
+	var count =0;
+	var html = '<tr>'
+		+'<td>'+(index+1)+'</td>'
+		+'<td>'+plan.location+'</td>'
+		+'<td>'
+		+'<a href="guideDetail.do?seq='+plan.seq+'" class="ti-link">'+plan.title+'</a>'
+		+'</td>'
+		+'<td>'+plan.name+'</td>'
+		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date+'</td>'
+		+'</tr>'
+		$(".table-ajax").append(html);
+		 /* for(var i=0;i<leng;i++){
+			count ++;
+		}  */
 }
 </script>

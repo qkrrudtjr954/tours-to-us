@@ -62,6 +62,7 @@
 		WHERE T.SEQ = E.TARGET_USER_SEQ ) WHERE SEQ = #{seq}
 	</select>
 
+
 	<!-- 투둥이 가이드북 -->
 
 	<select id="guideSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
@@ -80,6 +81,13 @@
 		   ) A
 		   WHERE rnum between #{start} AND #{end}
            ORDER BY REG_DATE DESC
+	</select>
+	
+	<select id="userSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT  P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE,
+			P.RANGE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, T.NAME
+		FROM PLANER P, TRAVELER T
+		WHERE T.SEQ = P.TARGET_USER_SEQ AND P.LOCATION LIKE '%'||#{location}||'%' AND P.STATUS NOT IN (SELECT STATUS FROM PLANER WHERE STATUS=2 OR STATUS=3 OR STATUS=4)
 	</select>
 
 	<select id="guideCount"  parameterType="www.tours2us.com.model.PlanerDto" resultType="int">

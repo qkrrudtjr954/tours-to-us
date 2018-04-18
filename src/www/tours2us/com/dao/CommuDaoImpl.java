@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCategoryDto;
 
 @Repository
 public class CommuDaoImpl implements CommuDao {
@@ -25,7 +26,7 @@ private String ns = "Commu.";
 
 @Override
 public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
-	logger.info("CommuDaoImpl >>>> afterbbslist");
+	//logger.info("CommuDaoImpl >>>> afterbbslist");
 	// sqlSession 설정 타입 (BATCH, SIMPLE)
 	System.out.println("타입:" + sqlSession.getConfiguration().getDefaultExecutorType());
 	
@@ -36,20 +37,20 @@ public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
 
 @Override
 public boolean afterwriteBbs(CommuAfterBbsDto bbs) throws Exception {
-	logger.info("CommuDaoImpl >>>> afterwriteBbs");
+	//logger.info("CommuDaoImpl >>>> afterwriteBbs");
 	sqlSession.insert(ns+"AfterWrite", bbs);
 	return true;
 }
 
 @Override
 public CommuAfterBbsDto getAfterBbs(int seq) throws Exception {
-	logger.info("CommuDaoImpl >>>> getAfterBbs");
+	//logger.info("CommuDaoImpl >>>> getAfterBbs");
 	return sqlSession.selectOne(ns+ "AftergetBbs", seq);
 }
 
 @Override
 public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
-	logger.info("CommuDaoImpl >>>> AfterUpdate");
+	//logger.info("CommuDaoImpl >>>> AfterUpdate");
 	int n = sqlSession.update(ns+"AfterUpdateBbs", bbs);
 	
 	System.out.println("bbs = "  +bbs);
@@ -58,7 +59,7 @@ public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
 
 @Override
 public boolean Afterdelete(int seq) throws Exception {
-	logger.info("CommuDaoImpl >>>> Afterdelete");
+	//logger.info("CommuDaoImpl >>>> Afterdelete");
 	int count = sqlSession.update(ns + "AfterdeleteBbs", seq);
 	return count>0?true:false;
 }
@@ -81,27 +82,27 @@ public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 // 자유 게시판
 @Override
 public List<CommuFreeBbsDto> getFreeBbslist() throws Exception {
-	logger.info("CommuDaoImpl >>>> getFreeBbslist");
+	//logger.info("CommuDaoImpl >>>> getFreeBbslist");
 	List<CommuFreeBbsDto> list = sqlSession.selectList(ns+"FreeBbsList");
 	return list;
 }
 
 @Override
 public boolean FreeBbsWrite(CommuFreeBbsDto freewrite) throws Exception {
-	logger.info("CommuDaoImpl >>>> FreeBbsWrite");
+	//logger.info("CommuDaoImpl >>>> FreeBbsWrite");
 	sqlSession.insert(ns+"FreeBbsWrite", freewrite);
 	return true;
 }
 
 @Override
 public CommuFreeBbsDto FreeBbsDetail(int seq) throws Exception {
-	logger.info("CommuDaoImpl >>>> FreeBbsDetail");
+	//logger.info("CommuDaoImpl >>>> FreeBbsDetail");
 	return sqlSession.selectOne(ns + "FreeBbsDetail", seq);
 }
 
 @Override
 public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
-	logger.info("CommuDaoImpl >>>> FreeBbsUpdate");
+	//logger.info("CommuDaoImpl >>>> FreeBbsUpdate");
 	int n = sqlSession.update(ns+"FreeBbsUpdate", freebbsupdate);
 	System.out.println("freebbsupdate = "  +freebbsupdate);
 	return n>0?true:false;
@@ -109,7 +110,7 @@ public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
 
 @Override
 public boolean FreeDelete(int seq) throws Exception {
-	logger.info("CommuDaoImpl >>>> FreeDelete");
+	//logger.info("CommuDaoImpl >>>> FreeDelete");
 	int count = sqlSession.update(ns + "FreeDeleteBbs", seq);
 	return count>0?true:false;
 }
@@ -133,6 +134,15 @@ public List<CommuAfterBbsDto> bestAfter() throws Exception {
 	
 	return sqlSession.selectList(ns+"bestAfter");
 }
+
+@Override
+public List<CommuFreeCategoryDto> GetFreeBbsCategory() throws Exception {
+	List<CommuFreeCategoryDto> list = new ArrayList<CommuFreeCategoryDto>();
+	list = sqlSession.selectList(ns + "FreeCategory");
+	return list;
+}
+
+
 
 
 

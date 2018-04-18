@@ -51,7 +51,8 @@
 			SELECT  A.SEQ, A.TARGET_USER_SEQ, A.TARGET_BBS_SEQ, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.PROFILE 
 			FROM AFTERBBSCOMMENT A, TRAVELER B 
 			WHERE A.TARGET_USER_SEQ = B.SEQ AND 
-			TARGET_BBS_SEQ=#{target_bbs_seq} AND STATUS=0 ORDER BY REG_DATE DESC
+			TARGET_BBS_SEQ=#{target_bbs_seq} AND 
+			STATUS=0 ORDER BY REG_DATE DESC
 	</select>
 		
 	<!-- 댓글 쓰기 -->
@@ -137,11 +138,15 @@ SELECT RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
     ORDER BY F.REG_DATE DESC    
 </select>
 
+<select id="FreeCategory" resultType="www.tours2us.com.model.CommuFreeCategoryDto">
+	SELECT *
+	FROM FREECATEGORY 
+</select>
 
 <insert id="FreeBbsWrite" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
 		INSERT INTO FREEBBS
 		(SEQ,TARGET_CATEGORY_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
-		VALUES(FREEBBS_SEQ.NEXTVAL,2,#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0)		
+		VALUES(FREEBBS_SEQ.NEXTVAL,#{target_category_seq},#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0 )		
 </insert>
 
 <select id="FreeBbsDetail"

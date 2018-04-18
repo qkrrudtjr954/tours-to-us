@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -17,6 +19,20 @@
 <div class="offset-md-2 col-md-8 col-xs-12">
    <hr>
 </div>
+<br>
+<div class="row">
+		<div class="offset-md-3 col-md-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Category</span> 
+			<select class="form-control" id="location" name="location" style="width: 200px">
+				<c:forEach var="part" items="${category }">
+				<option>${part.title }</option>
+				</c:forEach>
+			</select>
+			</div>
+		</div>
+	</div>
+	<br>
 <form action="freeBbsWriteAf.do" method="post" id="myform">
 <div class="row">
    <div class=" offset-md-3 col-md-6 write-form">
@@ -26,7 +42,7 @@
             placeholder="제목">
       </div>   
    </div>
-
+	<br><br><br>
    <div class=" offset-md-3 col-md-6 write-form">
       <div class="input-group-prepend">
          <textarea id="summernote" name="content" value=""></textarea>

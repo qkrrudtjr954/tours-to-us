@@ -31,13 +31,13 @@ color: #f37720;
 </div>
 <div class="search">
 <div class="row" style="margin:0 auto;width:1200px;">
-	<div class="offset-md-1 input-group-prepend">
+	<div class="offset-md-2 input-group-prepend">
 			<form action="afterBbs.do" method="get" id="_frmFormSearch">
    <div class="row" style="margin:0 auto;width:900px;">
       <div class="input-group-prepend">
          <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
             <option value="title">제목</option>
-         	<option value="contents">내용</option>
+         	<!-- <option value="contents">내용</option> -->
          	<option value="name">작성자</option>
          </select> 
          <input type="text" class="form-control"
@@ -57,10 +57,11 @@ color: #f37720;
 
 </div>
 </div>
+</div>
 <br>
 
 <!--  -->
-<div class="offset-md-2">
+<div class="offset-md-2 col-md-9">
 <table style="width:85%;" class="table">
 <colgroup>
 		<col style="width:10%" />
@@ -150,13 +151,31 @@ $(document).ready(function() {
 	   }
 	   
 	});
-	function goPage(pageNumber) {   
-	   $("#_pageNumber").val(pageNumber) ;
-	   $("#_frmFormSearch").attr("target","_self").attr("action","afterBbs.do").submit();
+	
+ 
+	$("#text").keypress(function(event) {
+		var text = $("#text").val();
+
+		if (event.which == "13") {
+			event.preventDefault();
+			if (text === "") {
+				alert("검색창이 비웠습니다");
+				$("#text").focus();
+			} else {
+				$("#btnSearch").click();
+			}
+
+		}
+	});
+
+	function goPage(pageNumber) {
+		$("#_pageNumber").val(pageNumber);
+		$("#_frmFormSearch").attr("target", "_self").attr("action",
+				"afterBbs.do").submit();
 	}
-function user_guide() {
-	
-	location.href="afterBbs.do";
-	
-}
+	function user_guide() {
+
+		location.href = "afterBbs.do";
+
+	}
 </script>

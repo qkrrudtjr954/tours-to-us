@@ -141,6 +141,30 @@ public class guidebookController {
 		
 		return commList;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "ComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean ComentDelete(int seq ,HttpServletRequest req , ToditorCommentDto comment)throws Exception {
+		logger.info("CommuController >>>> ComentDelete");
+		System.out.println("seq" + seq);
+		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
+		comment.setTarget_user_seq(t_dto.getSeq());
+		
+		boolean check = toditorService.CommentDeleteCheck(seq, t_dto.getSeq());
+		System.out.println("check = " + check);
+		
+		
+
+		if (check) {
+			return  toditorService.CommentDelete(seq);
+		}else {
+			return false;
+		}
+	}
+	
+	
+	
+	
 				
 	@RequestMapping(value="toditor_update.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String toditor_update(ToditorBBS bbs, Model model) throws Exception{

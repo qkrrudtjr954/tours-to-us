@@ -13,6 +13,7 @@ import www.tours2us.com.dao.CommuDao;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCategoryDto;
 
 @Service
 public class CommuServiceImpl implements CommuService {
@@ -115,7 +116,11 @@ public List<CommuAfterBbsDto> bestAfter() throws Exception {
 	return commutDao.bestAfter();
 }
 
-
+@Override
+public List<CommuFreeCategoryDto> GetFreeBbsCategory() throws Exception {
+	// TODO Auto-generated method stub
+	return commutDao.GetFreeBbsCategory();
+}
 
 
 

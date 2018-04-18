@@ -35,7 +35,7 @@ color: #f37720;
       <div class="input-group-prepend">
          <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
             <option value="title">제목</option>
-         	<option value="contents">내용</option>
+         	<!-- <option value="contents">내용</option> -->
          	<option value="name">작성자</option>
          </select> 
          <input type="text" class="form-control"

@@ -52,18 +52,18 @@ public class CommuController {
 
 	@RequestMapping(value = "afterBbs.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterBbs(Model model, CommuAfterBbsDto afterparam) throws Exception {
-		logger.info("CommuController >>>> afterbbslist");
+		//logger.info("CommuController >>>> afterbbslist");
 		int sn = afterparam.getPageNumber();
 		int start = (sn) * afterparam.getRecordCountPerPage() + 1;
 		int end = (sn + 1) * afterparam.getRecordCountPerPage();
-		System.out.println("start: " + start);
-		System.out.println("end: " + end);
+		//System.out.println("start: " + start);
+		//System.out.println("end: " + end);
 		afterparam.setStart(start);
 		afterparam.setEnd(end);
 		int totalRecordCount = commuService.AfterGetBbsCount(afterparam);
 		List<CommuAfterBbsDto> paging = commuService.AftergetBbsPagingList(afterparam);
 
-		System.out.println( afterparam.getS_category()+"="+afterparam.getS_keyword());
+		//System.out.println( afterparam.getS_category()+"="+afterparam.getS_keyword());
 		// List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
 		// list = commuService.getAfterBbslist();
 		model.addAttribute("afterBbslist", paging);
@@ -79,7 +79,7 @@ public class CommuController {
 
 	@RequestMapping(value = "afterWrite.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterbbswrite(Model model, int seq) {
-		logger.info("CommuController >>>> afterWrite");
+		//logger.info("CommuController >>>> afterWrite");
 		System.out.println("ss:" + seq);
 
 		PlanerDto planer = planerService.getPlaner(seq);
@@ -94,7 +94,7 @@ public class CommuController {
 		if (bbs.getContent().equals("") || bbs.getTitle().equals("")) {
 			return "afterWrite.tiles";
 		}
-		logger.info("CommuController >>>> bbswriteAf");
+		//logger.info("CommuController >>>> bbswriteAf");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		//System.out.println("s" + t_dto.toString());
 
@@ -137,7 +137,7 @@ public class CommuController {
 
 	@RequestMapping(value = "afterUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterupdate(Model model, int seq) throws Exception {
-		logger.info("CommuController >>>> afterupdate");
+		//logger.info("CommuController >>>> afterupdate");
 		PlanerDto planer = planerService.getPlaner(seq);
 		CommuAfterBbsDto afterbbs = commuService.getAfterBbs(seq);
 		model.addAttribute("afterbbs", afterbbs);
@@ -148,9 +148,9 @@ public class CommuController {
 
 	@RequestMapping(value = "afterUpdateAf.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String updateAf(Model model, CommuAfterBbsDto bbs) throws Exception {
-		logger.info("CommuController >>>> updateAf");
+		//logger.info("CommuController >>>> updateAf");
 		boolean isS = commuService.AfterUpdate(bbs);
-		logger.info("isS" + isS);
+		//logger.info("isS" + isS);
 		if (isS) {
 			return "redirect:/afterdetail.do?seq=" + bbs.getSeq();
 		} else {
@@ -163,7 +163,7 @@ public class CommuController {
 	// 지우기
 	@RequestMapping(value = "afterDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(Model model, int seq) {
-		logger.info("CommuController >>>> updateAf");
+		//logger.info("CommuController >>>> updateAf");
 		try {
 			commuService.Afterdelete(seq);
 		} catch (Exception e) {
@@ -176,7 +176,7 @@ public class CommuController {
 	@ResponseBody
 	@RequestMapping(value="AfterComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
 	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
-		logger.info("CommuController >>>> AfterComentAf");
+		//logger.info("CommuController >>>> AfterComentAf");
 
 		System.out.println("coment" + comment.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
@@ -190,13 +190,13 @@ public class CommuController {
 	@ResponseBody
 	@RequestMapping(value = "AfterComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean AfterComentDelete(int seq ,HttpServletRequest req , CommuAfterCommentDto comment)throws Exception {
-		logger.info("CommuController >>>> AfterComentDelete");
+		//logger.info("CommuController >>>> AfterComentDelete");
 		System.out.println("seq" + seq);
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
 		
 		boolean check = commucommentService.AfterCommentDeleteCheck(seq, t_dto.getSeq());
-		System.out.println("check = " + check);
+		//System.out.println("check = " + check);
 		
 		//System.out.println("check = " + check);
 		
@@ -218,8 +218,8 @@ public class CommuController {
 		int sn = freeparam.getPageNumber();
 		int start = (sn) * freeparam.getRecordCountPerPage() + 1;
 		int end = (sn + 1) * freeparam.getRecordCountPerPage();
-		System.out.println("start: " + start);
-		System.out.println("end: " + end);
+		//System.out.println("start: " + start);
+		//System.out.println("end: " + end);
 		freeparam.setStart(start);
 		freeparam.setEnd(end);
 		int totalRecordCount = commuService.FreeBbsGetCount(freeparam);
@@ -227,7 +227,7 @@ public class CommuController {
 
 		//List<CommuFreeBbsDto> freelist = new ArrayList<CommuFreeBbsDto>();
 		//freelist = commuService.getFreeBbslist();
-		System.out.println("freelist = " + freelist);
+		//System.out.println("freelist = " + freelist);
 		model.addAttribute("freelist", freelist);
 		model.addAttribute("pageNumber", sn);
 		model.addAttribute("pageCountPerScreen", 10);
@@ -242,7 +242,7 @@ public class CommuController {
 
 	@RequestMapping(value = "freeBbsWrite.do", method = {RequestMethod.GET,	RequestMethod.POST})
 	public String freeBbsWrite(Model model)throws Exception {
-		logger.info("CommuController >>>> freeBbsWrite");
+		//logger.info("CommuController >>>> freeBbsWrite");
 
 		List<CommuFreeCategoryDto> category = commuService.GetFreeBbsCategory();
 		model.addAttribute("category", category);
@@ -254,11 +254,11 @@ public class CommuController {
 
 	@RequestMapping(value="freeBbsWriteAf.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsWriteAf(Model model,CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
-		logger.info("CommuController >>>> freeBbsWriteAf");
+		//logger.info("CommuController >>>> freeBbsWriteAf");
 
-		System.out.println("dddddd" + freewrite.toString());
+		//System.out.println("dddddd" + freewrite.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
-		System.out.println("s"+t_dto.toString());
+		//System.out.println("s"+t_dto.toString());
 
 		freewrite.setTarget_user_seq(t_dto.getSeq());
 		
@@ -277,7 +277,7 @@ public class CommuController {
 
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("commufredetail", commufredetail);
-		System.out.println("c"+commufredetail.toString());
+		//System.out.println("c"+commufredetail.toString());
 		
 		int isLiked = 0;
 		int like_count = 0;
@@ -301,7 +301,7 @@ public class CommuController {
 
 	@RequestMapping(value="freeBbsUpdate.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsUpdate(Model model, int seq) throws Exception {
-		logger.info("CommuController >>>> freeBbsUpdate");
+		//logger.info("CommuController >>>> freeBbsUpdate");
 		CommuFreeBbsDto freebbs = commuService.FreeBbsDetail(seq);
 		model.addAttribute("freebbs", freebbs);
 		return "freeBbsUpdate.tiles";
@@ -309,9 +309,9 @@ public class CommuController {
 
 	@RequestMapping(value="freeBbsUpdateAf.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsUpdateAf(Model model, CommuFreeBbsDto freebbsupdate) throws Exception{
-		logger.info("CommuController >>>> freeBbsUpdateAf");
+		//logger.info("CommuController >>>> freeBbsUpdateAf");
 		boolean isS = commuService.FreeBbsUpdate(freebbsupdate);
-		logger.info("isS" + isS);
+		//logger.info("isS" + isS);
 		if(isS) {
 
 			return "redirect:/freeBbsDetail.do?seq=" + freebbsupdate.getSeq();
@@ -324,7 +324,7 @@ public class CommuController {
 
 	@RequestMapping(value="freeBbsDelete.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsDelete(Model model, int seq) {
-		logger.info("CommuController >>>> freeBbsDelete");
+		//logger.info("CommuController >>>> freeBbsDelete");
 		try {
 			commuService.FreeDelete(seq);
 		} catch (Exception e) {
@@ -339,9 +339,9 @@ public class CommuController {
 	@ResponseBody
 	@RequestMapping(value="freeBbsComentAf.do",method={RequestMethod.GET, RequestMethod.POST})
 	public List<CommuFreeCommentDto> freeBbsComentAf(Model model, CommuFreeCommentDto comment ,HttpServletRequest req) throws Exception{
-		logger.info("CommuController >>>> freeBbsComentAf");
+		//logger.info("CommuController >>>> freeBbsComentAf");
 
-		System.out.println("coment" + comment.toString());
+		//System.out.println("coment" + comment.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
 
@@ -353,13 +353,13 @@ public class CommuController {
 	@ResponseBody
 	@RequestMapping(value = "FreeComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean FreeComentDelete(int seq ,HttpServletRequest req , CommuFreeCommentDto freecomment)throws Exception {
-		logger.info("CommuController >>>> FreeComentDelete");
-		System.out.println("seq" + seq);
+		//logger.info("CommuController >>>> FreeComentDelete");
+		//System.out.println("seq" + seq);
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		freecomment.setTarget_user_seq(t_dto.getSeq());
 		
 		boolean check = commucommentService.FreeCommentDeleteCheck(seq, t_dto.getSeq());
-		System.out.println("check = " + check);
+		//System.out.println("check = " + check);
 		
 		//System.out.println("check = " + check);
 		

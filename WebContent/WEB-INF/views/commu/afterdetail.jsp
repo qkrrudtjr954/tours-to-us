@@ -4,16 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8" />
 <style>
-#floatMenu {
-	position: absolute;
-	width: 200px;
-	height: 300px;
-	left: 50px;
-	top: 200px;
-	background-color: #ffffff;
-	color: black;
-}
-
 .writer_profile {
 	border-radius: 50%;
 }
@@ -34,8 +24,7 @@
 }
 
 .detailArea {
-	margin-left: 100px;
-	margin-right: 100px;
+	margin: 0px 50px;
 	margin-top: 5px;
 	border: 1px solid #dcdcdc;
 	padding: 10px;
@@ -162,41 +151,41 @@
 	padding-top: 15px
 }
 
+.editor-title-container {
+	margin-top: 20px;
+	width: 100%;
+}
+
+.planer-info-over {
+	background-color: #7DC3BB;
+	padding: 15px;
+	margin: 10px;
+	width: 90%;
+	text-align: center;
+	border-radius: 15px;
+}
+.planer-label-icon {
+    margin-top: 15px;
+    color: white;
+}
+.planer-label-title {
+	width: 100%;
+	font-size: 18px;
+	font-weight: 500;
+	color: white;
+}
 
 
 </style>
 
-
-
-
-<div id="floatMenu">
-<ul style="width:100%; list-style-type: none;" class="menu_">
-	<li class="title"><h2>가이드북</h2><hr></li>
-<hr>	
-</ul>
-
-<div class="menu_table">
-		<ul style="list-style-type: none">
-			<li class="title">나의 플랜</li>
-			<li class="menu_item">
-				<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기" >나의 플랜보기</a>
-			</li>
-			<li class="title">회원정보관리</li>
-			<li class="menu_item">
-				<a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a>
-			</li> 
-		</ul>
+<div class="row no-gutters">
+	<div class="editor-title-container">
+		<div class="offset-md-2 col-md-8">
+			<h3>여행 후기</h3>
+			<hr>
+		</div>
 	</div>
 </div>
-
-
-
-
-<div class="offset-md-2 col-md-9"> <!-- 내용 div -->
-<div class="top_headline">
-<h1>여행 후기</h1>
-</div>
-<hr>
 
 <c:if test="${aftergetBbs.email eq current_user.email }">
 	 <div class="d-flex justify-content-end">
@@ -206,119 +195,168 @@
 		</div>
 	</div>
 </c:if>
-<!-- -->
-<div class="detailArea">
-	<div class="row detailHead">			
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+			<div class="planer-info-over">
+				<p>
+					<span class="planer-label-icon" data-feather="briefcase">여행 이름</span><br>
+					<span class="planer-label-title">${planer.title }</span> 
+				</p>
+				<hr style="color:white; width:100%;">
+				<p>
+					<span class="planer-label-icon" data-feather="map"></span><br>
+					<span class="planer-label-title">${planer.location }</span> 
+				</p>
+				<p>
+					<span class="planer-label-icon" data-feather="calendar"></span><br>
+					<span class="planer-label-title">${planer.from_date } ~ </span><br>
+					<span class="planer-label-title">${planer.to_date }</span><br><br>
+					<c:choose>
+						<c:when test="${planer.range < 2 }">
+							<span class="planer-label-title">당일 치기</span>								
+						</c:when>
+						<c:otherwise>
+							<span class="planer-label-title">${planer.range-1 }박 ${planer.range }일</span>
+						</c:otherwise>
+					</c:choose>
+				</p>
+			</div>
+		</div>
+	<div class="col-md-8 col-xs-12">
+		<div class="detailArea">
+			<div class="row detailHead">
 				<div class="user_profileView">
 					<c:choose>
-							<c:when test="${aftergetBbs.profile eq 'no-profile.png' }">
-								<img class="no_profile" src="image/user.png" height="50px">
-							</c:when>
-							<c:otherwise>
-								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${aftergetBbs.profile }" height="50px">
-							</c:otherwise>
-						</c:choose>
+						<c:when test="${aftergetBbs.profile eq 'no-profile.png' }">
+							<img class="no_profile" src="image/user.png" height="50px">
+						</c:when>
+						<c:otherwise>
+							<img class="writer_profile"
+								src="${initParam.IMG_SERVER_PATH }/image/${aftergetBbs.profile }"
+								height="50px">
+						</c:otherwise>
+					</c:choose>
 				</div>
-				
+
 				<div class="col-md-8 toditor_title">
-				<span class="toditor_category">#여행후기</span>
-				<span class="toditor_title_bold">${aftergetBbs.title }</span>
-				<div class="toditor_etc">
-					<span class="etc_writer">${aftergetBbs.name }</span>
-					<span class="etc_date"><fmt:parseDate value="${aftergetBbs.reg_date }" var="date" pattern="yyyy-MM-dd"/>
-														<fmt:formatDate value="${date}" pattern="yyyy/MM/dd"/></span>
-					<span class="read_count">조회 : </span>
-					
-					
+					<span class="toditor_category">#여행후기</span> <span
+						class="toditor_title_bold">${aftergetBbs.title }</span>
+					<div class="toditor_etc">
+						<span class="etc_writer">${aftergetBbs.name }</span> <span
+							class="etc_date"><fmt:parseDate
+								value="${aftergetBbs.reg_date }" var="date" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" /></span> <span
+							class="read_count">조회 : </span>
+
+
+					</div>
 				</div>
-				</div>				
-	</div>
-	<hr>
-	<div class="detailBody">
-		<div class="detailBody_content">
-			${aftergetBbs.content }
-		</div>
-<!-- 		<div class="tag">
-			<span><b>태그</b>  #부산 #맛집 #먹방</span>
-		</div>	 -->
-		<hr>
-		<div class="detailBody_like" align="center">
-				<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br>
-				<span>좋아요</span>&nbsp;<strong id="like_count">${like_count }</strong>
-		</div>	
-				
-	</div>
-	
-	<div class="detailBottom">
-	<hr class="comment_hr">
-		<div class="commemt_size">
-			<span>댓글</span>&nbsp;<span id="commentCount" style="color: rgb(125, 195, 187); font-weight: bold; ">${commentlist.size() }</span>
-		</div>
-		
-		<div class="row comment_input">
-			<div class="col-md-1 user_comment_profile">
-					<c:choose>
+			</div>
+			<hr>
+			<div class="detailBody">
+				<div class="detailBody_content">${aftergetBbs.content }</div>
+				<!-- 		<div class="tag">
+					<span><b>태그</b>  #부산 #맛집 #먹방</span>
+				</div>	 -->
+				<hr>
+				<div class="detailBody_like" align="center">
+					<img class="hearticon"
+						src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }"
+						id="like_btn" width="100px"><br> <span>좋아요</span>&nbsp;<strong
+						id="like_count">${like_count }</strong>
+				</div>
+
+			</div>
+
+			<div class="detailBottom">
+				<hr class="comment_hr">
+				<div class="commemt_size">
+					<span>댓글</span>&nbsp;<span id="commentCount"
+						style="color: rgb(125, 195, 187); font-weight: bold;">${commentlist.size() }</span>
+				</div>
+
+				<div class="row comment_input">
+					<div class="col-md-1 user_comment_profile">
+						<c:choose>
 							<c:when test="${current_user eq 'no-profile.png' }">
 								<img class="no_profile" src="image/user.png" height="50px">
 							</c:when>
 							<c:otherwise>
-								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${current_user.profile }" height="50px">
+								<img class="writer_profile"
+									src="${initParam.IMG_SERVER_PATH }/image/${current_user.profile }"
+									height="50px">
 							</c:otherwise>
 						</c:choose>
-				</div>
-				
-				<div class="col-md-9 user_comment_text">
-					<input type="text" class="form-control"  name="content" id="content0" size="90" placeholder="댓글을 입력해주세요"> 
-				</div>
-				<div class="col-md-2 user_comment_btn">
-					<input type="button" id="addCommetn" class="btn btn-outline-success" value="comment" onclick="addComment()">
-				</div>
-		</div>
-		<div class="comment_content">
-	<div class="comment-area">
-					
-				<c:forEach begin="0" items="${commentlist }" var="comment" varStatus="i">
-					<div class="offset-ms-1 col-md-12">
-					<div class="row comment-item">
-							<div class="col-md-1 comment_profile">						
-								<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }" height="50px">						
-							</div>
-							<div class="col-md-10">
-								<div class=row>
-										<div class="comment_name">${comment.name }</div>
-										<div class="comment_time"><fmt:formatDate value="${comment.reg_date}" pattern="yyyy/MM/dd" /></div>										
-								</div>
-								
-								<div class=row>
-										<div class="comment_content">${comment.content }</div>
-								</div>
-							</div>
-							<div class="col-md-1">
-								<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">
-							</div>
-						</div>
-						</div>
-					</c:forEach>
-					
-				
+					</div>
 
+					<div class="col-md-9 user_comment_text">
+						<input type="text" class="form-control" name="content"
+							id="content0" size="90" placeholder="댓글을 입력해주세요">
+					</div>
+					<div class="col-md-2 user_comment_btn">
+						<input type="button" id="addCommetn"
+							class="btn btn-outline-success" value="comment"
+							onclick="addComment()">
+					</div>
+				</div>
+				<div class="comment_content">
+					<div class="comment-area">
+
+						<c:forEach begin="0" items="${commentlist }" var="comment"
+							varStatus="i">
+							<div class="offset-ms-1 col-md-12">
+								<div class="row comment-item">
+									<div class="col-md-1 comment_profile">
+										<img class="writer_profile"
+											src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }"
+											height="50px">
+									</div>
+									<div class="col-md-10">
+										<div class=row>
+											<div class="comment_name">${comment.name }</div>
+											<div class="comment_time">
+												<fmt:formatDate value="${comment.reg_date}"
+													pattern="yyyy/MM/dd" />
+											</div>
+										</div>
+
+										<div class=row>
+											<div class="comment_content">${comment.content }</div>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<input type="button" class="btn btn-link" id="delBtn"
+											onclick="delete_Comment(${comment.seq}, this)"
+											style="size: 2em; color: #696969; margin-left: -70px;"
+											value="삭제">
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+
+
+
+					</div>
+
+				</div>
 			</div>
-			
+			<div class="nextprev">
+				<div class="prev">
+					<span class="prev_bbs">이전글</span> <span class="prev_title"><c:if
+							test="${aftergetBbs.prev_seq==0}">이전글이 없습니다.</c:if><a
+						href='afterdetail.do?seq=${aftergetBbs.prev_seq}'>${aftergetBbs.prev_title}</a></span>
+				</div>
+				<hr>
+				<div class="next">
+					<span class="next_bbs">다음글</span> <span class="next_title"><c:if
+							test="${aftergetBbs.next_seq==0}">다음글이 없습니다.</c:if><a
+						href='afterdetail.do?seq=${aftergetBbs.next_seq}'>${aftergetBbs.next_title}</a></span>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
-		<div class="nextprev">
-				<div class="prev">
-					<span class="prev_bbs">이전글</span>
-					<span class="prev_title"><c:if test="${aftergetBbs.prev_seq==0}">이전글이 없습니다.</c:if><a href='afterdetail.do?seq=${aftergetBbs.prev_seq}'>${aftergetBbs.prev_title}</a></span>
-				</div>
-					<hr>
-				<div class="next">
-					<span class="next_bbs">다음글</span>
-					<span class="next_title"><c:if test="${aftergetBbs.next_seq==0}">다음글이 없습니다.</c:if><a href='afterdetail.do?seq=${aftergetBbs.next_seq}'>${aftergetBbs.next_title}</a></span>
-				</div>
-		</div> 
-
-
 </div>
 
 

@@ -213,24 +213,22 @@ color: #f37720;
 						<c:forEach items="${freelist }" var="free" varStatus="i">
 							<c:if test="${free.status==0 }">
 								<tr>
-
 									<td align="center"><span
 										style="font-size: 14px; color: black;">${i.count }</span></td>
 
-									<td><a id="freebbs_title"
-										href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>&nbsp;<span
-										class="comment_count">[${free.comment_count }]</span></td>
-
-									<td align="center"><span
-										style="font-size: 13px; color: black;">${free.like_count }</span>
+									<td>
+										<a id="freebbs_title" href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>&nbsp;
+										<span class="comment_count">[${free.comment_count }]</span></td>
+									<td align="center">
+										<span style="font-size: 13px; color: black;">${free.like_count }</span>
 									</td>
 
 									<td align="center">${free.name }</td>
 
-									<td align="center"
-										style="font-size: 13px; color: color: #6e6e6e;"><fmt:parseDate
-											value="${free.reg_date }" var="date" pattern="yyyy-MM-dd" />
-										<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" /></td>
+									<td align="center" style="font-size: 13px; color: color: #6e6e6e;">
+										<fmt:parseDate value="${free.reg_date }" var="date" pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" />
+									</td>
 								</tr>
 							</c:if>
 						</c:forEach>

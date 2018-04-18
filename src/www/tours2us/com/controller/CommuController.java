@@ -130,6 +130,9 @@ public class CommuController {
 
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("aftergetBbs", aftergetBbs);
+		
+		PlanerDto planer = planerService.getPlaner(aftergetBbs.getTarget_planer_seq());
+		model.addAttribute("planer", planer);
 		return "afterdetail.tiles";
 	}
 

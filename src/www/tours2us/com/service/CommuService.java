@@ -23,6 +23,8 @@ public interface CommuService {
 	
 	public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception;
 	
+	public void AfterReadCount(int seq) throws Exception;
+	
 	//FreeBbs
 	List<CommuFreeBbsDto> getFreeBbslist()throws Exception;
 	
@@ -41,5 +43,7 @@ public interface CommuService {
 	public List<CommuAfterBbsDto> bestAfter() throws Exception;
 	
 	List<CommuFreeCategoryDto> GetFreeBbsCategory()throws Exception;
+	
+	public void FreeReadCount(int seq) throws Exception;
 
 }

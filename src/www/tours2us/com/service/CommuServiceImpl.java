@@ -66,6 +66,13 @@ public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 	return commutDao.AfterGetBbsCount(aftercontparam);
 }
 
+
+@Override
+public void AfterReadCount(int seq) throws Exception {
+	logger.info("CommuServiceImpl >>>> AfterReadCount");
+	commutDao.AfterReadCount(seq);
+}
+
 //FreeBbs
 @Override
 @Transactional(readOnly=true)
@@ -120,6 +127,11 @@ public List<CommuAfterBbsDto> bestAfter() throws Exception {
 public List<CommuFreeCategoryDto> GetFreeBbsCategory() throws Exception {
 	// TODO Auto-generated method stub
 	return commutDao.GetFreeBbsCategory();
+}
+
+@Override
+public void FreeReadCount(int seq) throws Exception {
+	commutDao.FreeReadCount(seq);
 }
 
 

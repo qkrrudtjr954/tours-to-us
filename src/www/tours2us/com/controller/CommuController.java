@@ -108,8 +108,10 @@ public class CommuController {
 	public String afterbbsdetail(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("CommuController >>>> commuafterdetail");
 
-		CommuAfterBbsDto aftergetBbs = null;
-		aftergetBbs = commuService.getAfterBbs(seq);
+		CommuAfterBbsDto aftergetBbs = commuService.getAfterBbs(seq);
+		commuService.AfterReadCount(seq);
+		
+
 		List<CommuAfterCommentDto> commentlist = commucommentService.getAllComments(seq);
 
 		int isLiked = 0;
@@ -130,6 +132,8 @@ public class CommuController {
 
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("aftergetBbs", aftergetBbs);
+		//System.out.println("aftergetBbs=====" + aftergetBbs);
+		
 		
 		PlanerDto planer = planerService.getPlaner(aftergetBbs.getTarget_planer_seq());
 		model.addAttribute("planer", planer);
@@ -274,6 +278,7 @@ public class CommuController {
 	@RequestMapping(value = "freeBbsDetail.do",method = {RequestMethod.GET, RequestMethod.POST})
 	public String freeBbsDetail(HttpServletRequest req, int seq,Model model) throws Exception {
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
+		commuService.FreeReadCount(seq);
 		List<CommuFreeCommentDto> commentlist = commucommentService.FreeGetAllComments(seq);
 
 		model.addAttribute("commentlist", commentlist);

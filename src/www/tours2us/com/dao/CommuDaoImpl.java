@@ -79,6 +79,14 @@ public int AfterGetBbsCount(CommuAfterBbsDto aftercontparam) throws Exception {
 }
 
 
+@Override
+public void AfterReadCount(int seq) throws Exception {
+	//logger.info("CommuDaoImpl >>>> AfterReadCount");
+	sqlSession.update(ns + "AfterReadCount", seq);
+	
+	
+}
+
 // 자유 게시판
 @Override
 public List<CommuFreeBbsDto> getFreeBbslist() throws Exception {
@@ -142,8 +150,11 @@ public List<CommuFreeCategoryDto> GetFreeBbsCategory() throws Exception {
 	return list;
 }
 
-
-
+@Override
+public void FreeReadCount(int seq) throws Exception {
+	sqlSession.update(ns + "FreeReadCount", seq);
+	
+}
 
 
 

@@ -245,10 +245,8 @@
 						<span class="etc_writer">${aftergetBbs.name }</span> <span
 							class="etc_date"><fmt:parseDate
 								value="${aftergetBbs.reg_date }" var="date" pattern="yyyy-MM-dd" />
-							<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" /></span> <span
-							class="read_count">조회 : </span>
-
-
+							<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" /></span>
+							 <span class="read_count">조회 :${aftergetBbs.readcount} </span>
 					</div>
 				</div>
 			</div>
@@ -323,7 +321,7 @@
 									</div>
 									<div class="col-md-1">
 										<input type="button" class="btn btn-link" id="delBtn"
-											onclick="delete_Comment(${comment.seq}, this)"
+										onclick="delete_Comment(${comment.seq}, this)"
 											style="size: 2em; color: #696969; margin-left: -70px;"
 											value="삭제">
 									</div>

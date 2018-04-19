@@ -14,6 +14,7 @@ public class CommuAfterBbsDto implements Serializable {
 	private int status;
 	private String name;   //Traveler 와 조인할 변수
 	private String email;    //Traveler 와 조인할 변수
+	private int readcount; // 조회수
 	//search(무엇으로 검색할지 category)
 	private String s_category; 	
 	private String s_keyword; 
@@ -41,17 +42,11 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-	
-
-
-
-
-
-
 	public CommuAfterBbsDto(int seq, int target_planer_seq, int target_user_seq, String title, String content,
-			String reg_date, String last_updated, int status, String name, String email, String s_category,
-			String s_keyword, int recordCountPerPage, int pageNumber, int start, int end, String profile,
-			int like_count, int next_seq, int prev_seq, String next_title, String prev_title, int comment_count) {
+			String reg_date, String last_updated, int status, String name, String email, int readcount,
+			String s_category, String s_keyword, int recordCountPerPage, int pageNumber, int start, int end,
+			String profile, int like_count, int next_seq, int prev_seq, String next_title, String prev_title,
+			int comment_count) {
 		super();
 		this.seq = seq;
 		this.target_planer_seq = target_planer_seq;
@@ -63,6 +58,7 @@ public class CommuAfterBbsDto implements Serializable {
 		this.status = status;
 		this.name = name;
 		this.email = email;
+		this.readcount = readcount;
 		this.s_category = s_category;
 		this.s_keyword = s_keyword;
 		this.recordCountPerPage = recordCountPerPage;
@@ -77,13 +73,6 @@ public class CommuAfterBbsDto implements Serializable {
 		this.prev_title = prev_title;
 		this.comment_count = comment_count;
 	}
-
-
-
-
-
-
-
 
 
 	public int getSeq() {
@@ -186,6 +175,16 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
+	public int getReadcount() {
+		return readcount;
+	}
+
+
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+
+
 	public String getS_category() {
 		return s_category;
 	}
@@ -244,16 +243,11 @@ public class CommuAfterBbsDto implements Serializable {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-	
-	
-	
+
 
 	public String getProfile() {
 		return profile;
 	}
-
-
-
 
 
 	public void setProfile(String profile) {
@@ -261,15 +255,9 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-
-
-
 	public int getLike_count() {
 		return like_count;
 	}
-
-
-
 
 
 	public void setLike_count(int like_count) {
@@ -277,15 +265,9 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-
-
-
 	public int getNext_seq() {
 		return next_seq;
 	}
-
-
-
 
 
 	public void setNext_seq(int next_seq) {
@@ -293,15 +275,9 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-
-
-
 	public int getPrev_seq() {
 		return prev_seq;
 	}
-
-
-
 
 
 	public void setPrev_seq(int prev_seq) {
@@ -309,15 +285,9 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-
-
-
 	public String getNext_title() {
 		return next_title;
 	}
-
-
-
 
 
 	public void setNext_title(String next_title) {
@@ -325,15 +295,9 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-
-
-
 	public String getPrev_title() {
 		return prev_title;
 	}
-
-
-
 
 
 	public void setPrev_title(String prev_title) {
@@ -341,19 +305,9 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-	
-
-
 	public int getComment_count() {
 		return comment_count;
 	}
-
-
-
-
-
-
-
 
 
 	public void setComment_count(int comment_count) {
@@ -361,24 +315,29 @@ public class CommuAfterBbsDto implements Serializable {
 	}
 
 
-
-
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "CommuAfterBbsDto [seq=" + seq + ", target_planer_seq=" + target_planer_seq + ", target_user_seq="
 				+ target_user_seq + ", title=" + title + ", content=" + content + ", reg_date=" + reg_date
 				+ ", last_updated=" + last_updated + ", status=" + status + ", name=" + name + ", email=" + email
-				+ ", s_category=" + s_category + ", s_keyword=" + s_keyword + ", recordCountPerPage="
-				+ recordCountPerPage + ", pageNumber=" + pageNumber + ", start=" + start + ", end=" + end + ", profile="
-				+ profile + ", like_count=" + like_count + ", next_seq=" + next_seq + ", prev_seq=" + prev_seq
-				+ ", next_title=" + next_title + ", prev_title=" + prev_title + ", comment_count=" + comment_count
-				+ "]";
+				+ ", readcount=" + readcount + ", s_category=" + s_category + ", s_keyword=" + s_keyword
+				+ ", recordCountPerPage=" + recordCountPerPage + ", pageNumber=" + pageNumber + ", start=" + start
+				+ ", end=" + end + ", profile=" + profile + ", like_count=" + like_count + ", next_seq=" + next_seq
+				+ ", prev_seq=" + prev_seq + ", next_title=" + next_title + ", prev_title=" + prev_title
+				+ ", comment_count=" + comment_count + "]";
 	}
+	
+	
+
+
+	
+
+
+
+
+
+
+	
 
 
 

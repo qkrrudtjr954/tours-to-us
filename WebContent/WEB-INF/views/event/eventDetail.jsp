@@ -8,7 +8,11 @@
 		<h2>진행 중 EVENT</h2>
 	</div>
 	<div class="offset-md-9 col-md-4 col-xs-12">
-		<a href="event.do" class="btn btn-primary">리스트로</a>
+		<div class="total-list-button">
+			<button class="btn btn-outline-secondary" type="button" id="list" onclick="location.href='event.do'">
+				<span data-feather="list"></span><span class="list-text">전체리스트</span>
+			</button>
+		</div>
 	</div>
 </div>
 <div class="offset-md-2  col-md-8 col-xs-12">

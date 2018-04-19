@@ -40,10 +40,8 @@
 </style>
 
 <div class="row">
-	<div class="offset-md-2  myplanDetail-title">
-		<div class="col-md-10 col-xs-12">
-			<h2>${planer.title }</h2>
-		</div>
+	<div class="offset-md-2 col-md-10">
+		<h2>${planer.title }</h2>
 	</div>
 	<div class="offset-md-2 col-md-8 col-xs-12">
 		<img src="./image/back.png" onclick="day_back(${planer.seq})" class="offset-md-11" style="cursor:pointer" title="돌아가기" width="30px" height="30px">

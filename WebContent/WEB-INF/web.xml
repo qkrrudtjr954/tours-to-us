@@ -13,7 +13,6 @@
 		<description>image server url</description>
 		<param-name>IMG_SERVER_PATH</param-name>
 		<param-value>http://192.168.10.71:3000</param-value>
-		<param-value>http://localhost:3000</param-value>
 	</context-param>
 
 	  <servlet>

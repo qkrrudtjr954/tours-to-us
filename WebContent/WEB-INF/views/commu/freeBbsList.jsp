@@ -204,9 +204,9 @@ color: #f37720;
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${empty freelist}">
+						<c:if test="${empty afterBbslist}">
 							<tr>
-								<td colspan="11">작성된 글이 없습니다.</td>
+								<td colspan="11" class="text-center">작성된 글이 없습니다.</td>
 							</tr>
 						</c:if>
 

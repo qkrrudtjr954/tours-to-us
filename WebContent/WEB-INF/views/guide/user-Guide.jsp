@@ -157,6 +157,66 @@ h2 {
 	width: 100%;
 }
 
+.tag-location{
+	float: left;
+	display: inline-block;
+    height: 49px;
+}
+
+.tag-location ul {
+    display: block;
+    height: 39px;
+}
+
+.tag-location li {
+    float: left;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.tag-location li a {
+    display: inline-block;
+    height: 100%;
+    font-size: 15px;
+    line-height: 39px;
+    padding: 0 10px;
+}
+
+.tag-location li a:hover {
+    height: 37px;
+    line-height: 39px;
+    text-decoration: none;
+    color: #7DC3BB;
+    border-bottom: 3px solid #7DC3BB;
+}
+
+.tag-location .active a.cur {
+    height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none;
+    color: #000000;
+}
+
+li.cur.active{
+	 height: 37px;
+    font-size: 15px;
+    line-height: 39px;
+    border-bottom: 3px solid #7DC3BB;
+    text-decoration: none;
+    color: #000000;
+}
+
+.cur:link {text-decoration: none; color: #000000;}
+.cur:hover {text-decoration: none; color: #7DC3BB;}
+.cur:visited {text-decoration: none; color: #000000;}
+
+.cur-all:link {text-decoration: none; color: #000000;}
+.cur-all:hover {text-decoration: none; color: #7DC3BB;}
+.cur-all:visited {text-decoration: none; color: #000000;}
+
+
 </style>
 
 <div class="row no-gutters">
@@ -196,6 +256,21 @@ h2 {
 		</div>
 	</div>
 	<div class="col-md-8 col-xs-12">
+		<div class="row no-gutters">
+			<div class="col-md-10">
+				<div class="tag-location">
+					<ul>
+						<li class="active"><a href="user_guide.do" class="cur-all">전체</a></li>
+						<li class=""><a href="#" class="cur" value="서울">서울</a></li>
+						<li class=""><a href="#" class="cur" value="강원">강원도</a></li>
+						<li class=""><a href="#" class="cur" value="충청">충청도</a></li>
+						<li class=""><a href="#" class="cur" value="부산">부산</a></li>
+						<li class=""><a href="#" class="cur" value="전라">전라도</a></li>
+						<li class=""><a href="#" class="cur" value="제주">제주도</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<div class="row no-gutters">
 			<form action="guideSearch.do" method="get" id="_frmFormSearch">
 				<div class="d-flex justify-content-center">
@@ -241,7 +316,7 @@ h2 {
 							<th>여행기간</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="table-ajax">
 						<c:if test="${empty planlist }">
 							<div class="col-md-12 text-center col-xs-12">
 								<p>작성된 글이 없습니다</p>
@@ -368,8 +443,5 @@ function printUserlistHtml(plan, index) {
 		+'<td>'+plan.from_date+'&nbsp;~&nbsp;'+plan.to_date+'</td>'
 		+'</tr>'
 		$(".table-ajax").append(html);
-		 /* for(var i=0;i<leng;i++){
-			count ++;
-		}  */
 }
 </script>

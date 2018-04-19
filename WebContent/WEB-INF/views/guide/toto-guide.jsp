@@ -169,6 +169,10 @@ li.cur.active{
 .myplan-content {
 	width: 100%;
 }
+b{
+font-size: x-large;
+color: #7DC3BB;
+}
 </style>
 
 
@@ -179,8 +183,10 @@ li.cur.active{
 				<h3>투투 가이드북</h3>
 				<p>투디터들과 투투 운영진이 엄선한 가이드북</p>
 			</div>
-			<div class="col-md-2">
-				<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;"></b></span>
+		</div>
+		<div class="row no-gutters">
+			<div class="offset-md-8 col-md-2">
+				<span>전체 누적 다운로드 수 : <b class="downcount-font">${totalDowncount }</b></span>
 			</div>
 		</div>
 		<div class="row no-gutters">

@@ -15,7 +15,7 @@ import www.tours2us.com.service.EventService;
 
 @Controller
 public class EventController {
-	Logger logger = LoggerFactory.getLogger(PlanerController.class);
+	Logger logger = LoggerFactory.getLogger(EventController.class);
 	
 	@Autowired
 	EventService eventService;

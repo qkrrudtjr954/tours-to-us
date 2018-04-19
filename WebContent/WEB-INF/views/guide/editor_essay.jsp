@@ -269,7 +269,7 @@
 							</div>
 						</div>
 
-						<button class="btn btn-outline-secondary" id="btn_write">에디터 글쓰기</button>
+						<a class="btn btn-outline-secondary" href="toditor_write.do">에디터 글쓰기</a>
 
 					</div>
 				</form>
@@ -330,9 +330,6 @@
 </div>
 
 <script>
-	$('#btn_write').click(function() {
-		location.href = "toditor_write.do";
-	});
 
 	$(document).ready(function() {
 		$("#_s_category > option[value=" + '<c:out value="${ pv.s_category }"/>' + "]").attr("selected", "selected");

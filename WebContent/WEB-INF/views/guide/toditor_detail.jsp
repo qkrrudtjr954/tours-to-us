@@ -244,11 +244,14 @@
 						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
 					</li>
 					<li><hr></li>
-					<li class="menu-title">
-						<span class="planer-label-icon" data-feather="user"></span>회원정보관리
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
 					</li>
 					<li class="menu_item">
-						<a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a>
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
 					</li>
 				</ul>
 			</div>

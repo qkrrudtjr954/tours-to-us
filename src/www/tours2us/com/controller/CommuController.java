@@ -79,8 +79,6 @@ public class CommuController {
 
 	@RequestMapping(value = "afterWrite.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String afterbbswrite(Model model, int seq) {
-		//logger.info("CommuController >>>> afterWrite");
-		System.out.println("ss:" + seq);
 
 		PlanerDto planer = planerService.getPlaner(seq);
 
@@ -132,6 +130,9 @@ public class CommuController {
 
 		model.addAttribute("commentlist", commentlist);
 		model.addAttribute("aftergetBbs", aftergetBbs);
+		
+		PlanerDto planer = planerService.getPlaner(aftergetBbs.getTarget_planer_seq());
+		model.addAttribute("planer", planer);
 		return "afterdetail.tiles";
 	}
 

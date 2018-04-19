@@ -116,7 +116,7 @@ h2 {
     color: #000000;
 }
 
-.active{
+li.cur.active{
 	 height: 37px;
     font-size: 15px;
     line-height: 39px;
@@ -164,6 +164,9 @@ h2 {
 
 .editor-title-container {
 	margin-top: 20px;
+	width: 100%;
+}
+.myplan-content {
 	width: 100%;
 }
 </style>
@@ -238,8 +241,6 @@ h2 {
 				</li>
 				</ul>
 			</div>
-
-			<button  class="btn btn-outline-secondary" onclick="location.href='toto_write.do'"><span data-feather="file-plus"></span></button>
 		</div>
 		<div class="row no-gutters">
 			<div class="myplan-content text-center">

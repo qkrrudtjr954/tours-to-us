@@ -58,11 +58,6 @@ padding-left:8px;
     background: #f37720;
     border-radius: 32px;
 }
-a, a:link {
-    text-decoration: none;
-    color: #232323;
-    cursor: pointer;
-}
 
 #like {
 	position: absolute;

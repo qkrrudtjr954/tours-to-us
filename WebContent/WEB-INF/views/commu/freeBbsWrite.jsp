@@ -37,9 +37,9 @@
 
 			<div class="form-group">
 				<label class="after-form-label" for="title">카테고리</label> 
-				<select class="form-control" id="location" name="location" style="width: 200px">
+				<select class="form-control" id="target_category_seq" name="target_category_seq" style="width: 200px">
 					<c:forEach var="part" items="${category }">
-						<option>${part.title }</option>
+						<option value="${part.seq}" >${part.title}</option> 
 					</c:forEach>
 				</select> 
 			</div>

@@ -279,6 +279,7 @@ public class CommuController {
 	public String freeBbsDetail(HttpServletRequest req, int seq,Model model) throws Exception {
 		CommuFreeBbsDto commufredetail = commuService.FreeBbsDetail(seq);
 		commuService.FreeReadCount(seq);
+		System.out.println("commufredetail" + commufredetail);
 		List<CommuFreeCommentDto> commentlist = commucommentService.FreeGetAllComments(seq);
 
 		model.addAttribute("commentlist", commentlist);

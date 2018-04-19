@@ -14,7 +14,7 @@ public class CommuFreeBbsDto implements Serializable {
 	private String name;   //Traveler 와 조인할 변수
 	private String email;    //Traveler 와 조인할 변수
 	private int readcount; // 조회수
-	private String catgory;// 카테고리 값 받아 오기
+	private String category;// 카테고리 값 받아 오기
 	//search(무엇으로 검색할지 category)
 	private String s_category; 	
 	private String s_keyword; 
@@ -45,9 +45,9 @@ public class CommuFreeBbsDto implements Serializable {
 
 
 	public CommuFreeBbsDto(int seq, int target_category_seq, int target_user_seq, String title, String content,
-			String reg_date, String last_updeated, int status, String name, String email, int readcount, String catgory,
-			String s_category, String s_keyword, int recordCountPerPage, int pageNumber, int start, int end,
-			String profile, int like_count, int next_seq, int prev_seq, String next_title, String prev_title,
+			String reg_date, String last_updeated, int status, String name, String email, int readcount,
+			String category, String s_category, String s_keyword, int recordCountPerPage, int pageNumber, int start,
+			int end, String profile, int like_count, int next_seq, int prev_seq, String next_title, String prev_title,
 			int comment_count) {
 		super();
 		this.seq = seq;
@@ -61,7 +61,7 @@ public class CommuFreeBbsDto implements Serializable {
 		this.name = name;
 		this.email = email;
 		this.readcount = readcount;
-		this.catgory = catgory;
+		this.category = category;
 		this.s_category = s_category;
 		this.s_keyword = s_keyword;
 		this.recordCountPerPage = recordCountPerPage;
@@ -234,15 +234,15 @@ public class CommuFreeBbsDto implements Serializable {
 
 
 
-	public String getCatgory() {
-		return catgory;
+	public String getCategory() {
+		return category;
 	}
 
 
 
 
-	public void setCatgory(String catgory) {
-		this.catgory = catgory;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 
@@ -435,7 +435,7 @@ public class CommuFreeBbsDto implements Serializable {
 		return "CommuFreeBbsDto [seq=" + seq + ", target_category_seq=" + target_category_seq + ", target_user_seq="
 				+ target_user_seq + ", title=" + title + ", content=" + content + ", reg_date=" + reg_date
 				+ ", last_updeated=" + last_updeated + ", status=" + status + ", name=" + name + ", email=" + email
-				+ ", readcount=" + readcount + ", catgory=" + catgory + ", s_category=" + s_category + ", s_keyword="
+				+ ", readcount=" + readcount + ", category=" + category + ", s_category=" + s_category + ", s_keyword="
 				+ s_keyword + ", recordCountPerPage=" + recordCountPerPage + ", pageNumber=" + pageNumber + ", start="
 				+ start + ", end=" + end + ", profile=" + profile + ", like_count=" + like_count + ", next_seq="
 				+ next_seq + ", prev_seq=" + prev_seq + ", next_title=" + next_title + ", prev_title=" + prev_title
@@ -444,8 +444,5 @@ public class CommuFreeBbsDto implements Serializable {
 	
 	
 	
-
-
-
 	
 }

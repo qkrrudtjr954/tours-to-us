@@ -20,13 +20,16 @@ public class FindHotel {
 		
 		try {
 		
-			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
+			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"--한국/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
+			//Document doc = Jsoup.connect("").get();
 			Elements links = doc.select("div._1szwzht a:first-child");
 			Elements names = doc.select("div._1qp0hqb div._1rths372");
 			Elements descs = doc.select("div._saba1yg span");
 			Elements pic = doc.select("div._1szwzht div._1df8dftk");
 			Elements price = doc.select("div._1yarz4r span span:nth-child(2)");
-
+			
+			
+			System.out.println(doc);
 			for (Element e : pic) {
 				String attr = e.attr("style");
 				e.text(attr.substring(attr.indexOf("https://"), attr.indexOf(")")));

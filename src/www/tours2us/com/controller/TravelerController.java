@@ -179,6 +179,6 @@ public class TravelerController {
 		travelerService.deleteCoTraveler(coTraveler);
 	}
 	
-	@RequestMapping()
+	
 
 }

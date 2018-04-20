@@ -467,7 +467,7 @@ padding-left:30px;
 		
 	</div>
 	
-	<div class="download_part">
+	<%-- <div class="download_part">
 		<div class="head_title">
 			<p>투투 가이드북</p>
 		</div>
@@ -543,7 +543,7 @@ padding-left:30px;
 		</div>
 		
 	</div>
-	
+	 --%>
 	
 	
 </div><!--  하단부 내용 -->

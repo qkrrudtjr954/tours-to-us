@@ -23,7 +23,7 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 	
 	@Override
 	public List<CommuAfterCommentDto> getAllComments(int seq) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> getAllComments");
+		//logger.info("CommuCommentDaoImpl >>>> getAllComments");
 		List<CommuAfterCommentDto> list = new ArrayList<CommuAfterCommentDto>();
 		list = sqlSession.selectList(ns + "getAllComments", seq); 
 		return list;
@@ -31,14 +31,14 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 
 	@Override
 	public boolean addComment(CommuAfterCommentDto comment) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> addComment");
+		//logger.info("CommuCommentDaoImpl >>>> addComment");
 		sqlSession.insert(ns+"AfterAddComent", comment);
 		return true;
 	}
 	
 	@Override
 	public boolean AfterCommentDelete(int seq) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> AfterCommentDelete");
+		//logger.info("CommuCommentDaoImpl >>>> AfterCommentDelete");
 		int count = sqlSession.update(ns + "AfterComentDelete", seq);
 		return count>0?true:false;
 	}
@@ -46,14 +46,14 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 
 	@Override
 	public int AfterCommentGgtUserSeq(int seq) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> AfterCommentGgtUserSeq");
+		//logger.info("CommuCommentDaoImpl >>>> AfterCommentGgtUserSeq");
 		return sqlSession.selectOne(ns + "AfterCommentgetUserSeq", seq);
 	}
 
 	// 자유 게시판
 	@Override
 	public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> FreeGetAllComments");
+		//logger.info("CommuCommentDaoImpl >>>> FreeGetAllComments");
 		List<CommuFreeCommentDto> list = new ArrayList<CommuFreeCommentDto>();
 		list = sqlSession.selectList(ns + "FreeGetAllComments", seq);
 		return list;
@@ -61,21 +61,22 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 
 	@Override
 	public boolean FreeAddComent(CommuFreeCommentDto freecomment) throws Exception {
-		logger.info("CommuCommentDaoImpl >>>> FreeAddComent");
+		//logger.info("CommuCommentDaoImpl >>>> FreeAddComent");
 		sqlSession.insert(ns + "FreeAddComent", freecomment);
 		return true;
 	}
 
 	@Override
 	public boolean FreeCommentDelete(int seq) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		//logger.info("CommuCommentDaoImpl >>>> FreeCommentDelete");
+		int count = sqlSession.update(ns + "FreeComentDelete", seq);
+		return count>0?true:false;
 	}
 
 	@Override
 	public int FreeCommentGgtUserSeq(int seq) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		//logger.info("CommuCommentDaoImpl >>>> FreeCommentGgtUserSeq");
+		return sqlSession.selectOne(ns + "FreeCommentgetUserSeq", seq);
 	}
 	
 	

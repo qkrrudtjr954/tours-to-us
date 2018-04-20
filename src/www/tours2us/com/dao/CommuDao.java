@@ -6,6 +6,7 @@ import java.util.List;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCategoryDto;
 
 public interface CommuDao {
 	
@@ -40,7 +41,7 @@ public interface CommuDao {
 	
 	
 	public List<CommuAfterBbsDto> bestAfter() throws Exception;
-	
+	List<CommuFreeCategoryDto> GetFreeBbsCategory()throws Exception;
 	
 
 }

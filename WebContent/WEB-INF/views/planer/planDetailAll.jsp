@@ -40,10 +40,8 @@
 </style>
 
 <div class="row">
-	<div class="offset-md-2  myplanDetail-title">
-		<div class="col-md-10 col-xs-12">
-			<h2>${planer.title }</h2>
-		</div>
+	<div class="offset-md-2 col-md-10">
+		<h2>${planer.title }</h2>
 	</div>
 	<div class="offset-md-2 col-md-8 col-xs-12">
 		<img src="./image/back.png" onclick="day_back(${planer.seq})" class="offset-md-11" style="cursor:pointer" title="돌아가기" width="30px" height="30px">
@@ -113,7 +111,7 @@
 						<div class="col-md-4 planer-progress-bar" style="background-image: url('${url}');"></div>
 <%-- 						<div class="col-md-1 planer-transportaion" style="background-image: url('${initParam.IMG_SERVER_PATH }/image/${timePlaner.transportation }');"></div> --%>
 						<div class="col-md-1 d-flex align-items-center planer-transportaion">
-							<img src="${initParam.IMG_SERVER_PATH }/image/subway.png" alt="${timePlan.transportation }" width="45px"/>
+							<img src="${initParam.IMG_SERVER_PATH }/image/${timePlan.transportation}" alt="${timePlan.transportation}" width="45px"/>
 						</div>
 						<div class="col d-flex align-items-center">
 							<table id="time-info-table">

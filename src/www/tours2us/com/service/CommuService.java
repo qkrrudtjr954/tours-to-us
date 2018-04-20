@@ -5,6 +5,7 @@ import java.util.List;
 import www.tours2us.com.model.CommuAfterBbsDto;
 import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
+import www.tours2us.com.model.CommuFreeCategoryDto;
 
 public interface CommuService {
 	
@@ -38,5 +39,7 @@ public interface CommuService {
 	public int FreeBbsGetCount(CommuFreeBbsDto freecontparam) throws Exception;
 	
 	public List<CommuAfterBbsDto> bestAfter() throws Exception;
+	
+	List<CommuFreeCategoryDto> GetFreeBbsCategory()throws Exception;
 
 }

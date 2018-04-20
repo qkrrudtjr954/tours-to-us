@@ -73,6 +73,16 @@ public class ToditorDao {
 		return true;
 	}
 	
+	public boolean CommentDelete(int seq) throws Exception {
+		int count = sqlSession.update(ns + "ComentDelete", seq);
+		return count>0?true:false;
+	}
+	
+	public int CommentGgtUserSeq(int seq) throws Exception {
+		return sqlSession.selectOne(ns + "CommentgetUserSeq", seq);
+	}
+	
+	
 	public boolean ToditorUpdate(ToditorBBS bbs) throws Exception {
 		sqlSession.update(ns+"ToditorUpdate", bbs);
 		return true;

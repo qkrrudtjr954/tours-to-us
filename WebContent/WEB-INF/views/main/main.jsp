@@ -42,7 +42,7 @@
     font-size: 15px;
     line-height: 39px;
     border-bottom: 3px solid #7DC3BB;
-    text-decoration: none; 
+    text-decoration: none;
     color: #000000;
 }
 
@@ -103,7 +103,7 @@ left:100px;
     font: 0/0 arial;
     line-height: 0;
     overflow: visible;
-} 
+}
 
 
 .main_cover_right button:hover{
@@ -184,13 +184,13 @@ left:100px;
     color: #FFF;
     letter-spacing: -2px;
     font-weight: bold;
-    
+
 }
 
 .head_title p{
 	font: normal 25px/40px "NanumBarunGothicBold";
-    color: #444;   
-    padding-top:50px;
+    color: #444;
+    padding-top:10px;
     font-weight: bold;
     letter-spacing: -1px;
     margin-bottm:0px;
@@ -213,11 +213,6 @@ padding-left:8px;
     margin-top: 10px;
     background: #f37720;
     border-radius: 32px;
-}
-a, a:link {
-    text-decoration: none;
-    color: #232323;
-    cursor: pointer;
 }
 
 #like {
@@ -251,7 +246,7 @@ padding-left:30px;
 
 }
 
-/* 
+/*
  .main_cover_right button{
     z-index: 2;
     position: absolute;
@@ -274,7 +269,7 @@ padding-left:30px;
 
 </style>
 <section>
-			
+
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			  <ol class="carousel-indicators">
 			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -301,7 +296,7 @@ padding-left:30px;
 			    <span class="sr-only">Next</span>
 			  </a>
 			</div>
-			
+
 <div class="main_cover">
 	<img src="image/bg_mainCopy.png" class="bg_maincopy"><br>
 	<p id="main_copy">어디로 떠날까요?</p>
@@ -312,36 +307,36 @@ padding-left:30px;
 <div class="main_cover_right">
 	<div class="map_background">
 		<img src="image/map_ver2.png" width="480px">
-		
+
 	</div>
 	<button type="button" class="seoul" title="서울 자세히 보기">
 					<span class="continents">서울</span>
 					<span class="cover"></span>
-	</button> 
-	
+	</button>
+
 	<button type="button" class="busan" title="부산 자세히 보기">
 					<span class="continents">부산</span>
 					<span class="cover"></span>
-	</button> 
-	
+	</button>
+
 	<button type="button" class="gangwondo" title="강원도 자세히 보기">
 					<span class="continents">강원도</span>
 					<span class="cover"></span>
-	</button> 
-	
+	</button>
+
 	<button type="button" class="jeju" title="제주 자세히 보기">
 					<span class="continents">제주</span>
 					<span class="cover"></span>
-	</button> 
-	
+	</button>
+
 	<button type="button" class="junla" title="전라도 자세히 보기">
 					<span class="continents">전라도</span>
 					<span class="cover"></span>
-	</button> 
-	
+	</button>
 
-	
-	
+
+
+
 </div>
 
 
@@ -375,7 +370,7 @@ padding-left:30px;
 					</div>
 					<div class="card-body" onclick="location.href='toditor_detail.do?seq=${item.seq }'" style="cursor: pointer;">
 						<span data-feather="map-pin" style="color: rgb(26, 188, 156);"></span>
-						<span id="location">${item.category }</span><br> 
+						<span id="location">${item.category }</span><br>
 						<span style="font-size: 15px; font-weight: bold;">${item.title }</span>&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span><br>
 						<span style="font-size: 14px; float: right; color: #484848; font-weight: 200;">Editor: ${item.name }</span>
 					</div>
@@ -384,7 +379,7 @@ padding-left:30px;
 		</c:forEach>
 	</div>
 	</div>
-	
+
 	<!-- 커뮤니티 인기글 -->
 	<div class="commu_part">
 		<div class="head_title">
@@ -393,10 +388,10 @@ padding-left:30px;
 		<div class="offset-md-9 move_to_" id="move_to_afterbbs">
 			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
 		</div>
-		<div class="2nd_best_content">		
-		
-				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
-						
+		<div class="2nd_best_content">
+
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">
+
 						<table class="col-md-6">
 						<colgroup>
 							<col style="width:50%" />
@@ -407,8 +402,8 @@ padding-left:30px;
 							<tr><td><a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td>추천 ${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
-						</table>	
-						
+						</table>
+
 						<table class="col-md-6">
 						<colgroup>
 							<col style="width:50%" />
@@ -421,11 +416,11 @@ padding-left:30px;
 						</tbody>
 						</table>
 					</div>
-		
-				
+
+
 		</div>
 	</div>
-	
+
 	<div class="community_part">
 		<div class="head_title">
 			<p>커뮤니티 인기글</p>
@@ -433,10 +428,10 @@ padding-left:30px;
 		<div class="offset-md-9 move_to_" id="move_to_afterbbs">
 			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
 		</div>
-		<div class="3rd_best_content">		
-		
-				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
-						
+		<div class="3rd_best_content">
+
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">
+
 						<table class="col-md-6">
 						<colgroup>
 							<col style="width:50%" />
@@ -447,8 +442,8 @@ padding-left:30px;
 							<tr><td><a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
-						</table>	
-						
+						</table>
+
 						<table class="col-md-6">
 						<colgroup>
 							<col style="width:50%" />
@@ -461,12 +456,12 @@ padding-left:30px;
 						</tbody>
 						</table>
 					</div>
-		
-				
+
+
 		</div>
-		
+
 	</div>
-	
+
 	<%-- <div class="download_part">
 		<div class="head_title">
 			<p>투투 가이드북</p>
@@ -474,9 +469,9 @@ padding-left:30px;
 		<div class="offset-md-9 move_to_">
 			<a href="afterBbs.do"><p class="view_toditor">전체보기</p></a>
 		</div>
-		<div class="4th_best_content">		
-		
-				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">			
+		<div class="4th_best_content">
+
+				<div class="row content col-md-10" style="border: 1px solid #dcdcdc; padding:20px; ">
 						<div class="row col-md-9">
 						<div class="tag-location">
 								<ul>
@@ -501,26 +496,26 @@ padding-left:30px;
 									<li class="">
 										<a href="#" class="cur" onclick="location_search()">제주도</a>
 									</li>
-								</ul>						
+								</ul>
 						</div>
 						</div>
 						<div class="col-md-3">
 							<div class="downloadcount">
 							<span><strong>전체 다운로드 수</strong></span>&nbsp;<span style="color: #7DC3BB;"><strong>123,456</strong></span>
 							</div>
-						</div>	
-						
+						</div>
+
 						<div class="myplan-content">
 						<div class="row">
-							
+
 								<c:if test="${empty totolist }">
 									<div class="col-md-11 text-center col-xs-12">
 										<p>작성된 글이 없습니다</p>
 									</div>
-								</c:if>			
-								<div class="row no-gutters">					
+								</c:if>
+								<div class="row no-gutters">
 									<c:forEach items="${totolist }" var="toto" varStatus="i">
-										
+
 										<div class="book-card">
 											<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
 												<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width: 162px; heigh:200px;">
@@ -528,31 +523,31 @@ padding-left:30px;
 											<div class="book-info" style="height: 25px; width: 162px; text-align: center;">
 													<span class="update-text">${toto.location }</span>
 											</div>
-										</div>								
-									</c:forEach>					
+										</div>
+									</c:forEach>
 									</div>
-					
-						
+
+
 						</div>
 						</div>
-						
-						
+
+
 				</div>
-		
-				
+
+
 		</div>
-		
+
 	</div>
 	 --%>
-	
-	
+
+
 </div><!--  하단부 내용 -->
 
 
 <script>
 function move_to_aaa() {
 	location.href="editor_essay.do";
-} 
+}
 
 $(function() {
 	var sBtn = $("li");
@@ -560,6 +555,6 @@ $(function() {
 		sBtn.removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
 		$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
 	})
-});	
+});
 
 </script>

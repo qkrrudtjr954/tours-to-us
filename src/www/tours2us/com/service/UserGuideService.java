@@ -11,4 +11,6 @@ public interface UserGuideService {
 	public List<PlanerDto> guideSearch(PlanerDto plan);
 	
 	public int guideCount(PlanerDto plan);
+	
+	public List<PlanerDto> userSearch(String location);
 }

@@ -62,6 +62,7 @@
 		WHERE T.SEQ = E.TARGET_USER_SEQ ) WHERE SEQ = #{seq}
 	</select>
 
+
 	<!-- 투둥이 가이드북 -->
 
 	<select id="guideSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
@@ -80,6 +81,13 @@
 		   ) A
 		   WHERE rnum between #{start} AND #{end}
            ORDER BY REG_DATE DESC
+	</select>
+	
+	<select id="userSearch" parameterType="www.tours2us.com.model.PlanerDto" resultType="www.tours2us.com.model.PlanerDto">
+		SELECT  P.SEQ, P.TARGET_USER_SEQ, P.TITLE, P.LOCATION, P.STATUS, P.TO_DATE, P.FROM_DATE,
+			P.RANGE, P.TOTAL_COST, P.REG_DATE, P.LAST_UPDATED, P.PAPER, T.NAME
+		FROM PLANER P, TRAVELER T
+		WHERE T.SEQ = P.TARGET_USER_SEQ AND P.LOCATION LIKE '%'||#{location}||'%' AND P.STATUS NOT IN (SELECT STATUS FROM PLANER WHERE STATUS=2 OR STATUS=3 OR STATUS=4)
 	</select>
 
 	<select id="guideCount"  parameterType="www.tours2us.com.model.PlanerDto" resultType="int">
@@ -108,7 +116,11 @@
 	</select>
 
 	<select id="getAllComments" resultType="www.tours2us.com.model.ToditorCommentDto">
-		SELECT T.NAME, T.PROFILE, E.CONTENT, E.REG_DATE FROM TRAVELER T, EDITORCOMMENT E WHERE TARGET_EDITOR_SEQ=#{target_editor_seq} AND STATUS = 0 AND T.SEQ = E.TARGET_USER_SEQ ORDER BY REG_DATE DESC
+		SELECT E.SEQ, E.TARGET_USER_SEQ, T.NAME, T.PROFILE, E.CONTENT, E.REG_DATE 
+		FROM TRAVELER T, EDITORCOMMENT E 
+		WHERE TARGET_EDITOR_SEQ=#{target_editor_seq}
+		AND STATUS = 0 AND T.SEQ = E.TARGET_USER_SEQ 
+		ORDER BY REG_DATE DESC
 	</select>
 
 	<!-- 댓글 쓰기 -->
@@ -116,6 +128,20 @@
 		INSERT INTO EDITORCOMMENT (SEQ,TARGET_USER_SEQ,TARGET_EDITOR_SEQ,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
 		VALUES(EDITORCOMMENT_SEQ.NEXTVAL,#{target_user_seq},#{target_editor_seq},#{content},SYSDATE,SYSDATE,0)
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<update id="ComentDelete" parameterType="int">
+		UPDATE EDITORCOMMENT SET STATUS=1
+		WHERE SEQ=#{seq} 	
+	</update>
+	
+	<!-- 댓글 시퀀스 가져오기 -->
+	<select id="CommentgetUserSeq"
+	parameterType="www.tours2us.com.model.ToditorCommentDto"
+	resultType="int">
+	SELECT TARGET_USER_SEQ FROM EDITORCOMMENT WHERE SEQ=#{seq}
+	</select>
+	
 
 	<!-- 수정 -->
 	<update id="ToditorUpdate" parameterType="www.tours2us.com.model.ToditorBBS">

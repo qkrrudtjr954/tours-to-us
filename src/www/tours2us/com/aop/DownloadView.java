@@ -60,7 +60,7 @@ public class DownloadView extends AbstractView {
 			
 			int seq = (int)model.get("seq");			
 			// downloadcount 증가
-			totoGuideService.downCount(seq);
+			//totoGuideService.downCount(seq);
 		}catch (Exception e) {
 		}finally {
 			if (fi != null) {

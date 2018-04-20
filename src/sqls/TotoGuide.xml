@@ -5,11 +5,13 @@
 	
 	<select id="getTotoList" resultType="www.tours2us.com.model.TotoGuideDto">
 		<!-- SELECT * FROM TOTOGUIDE ORDER BY REG_DATE DESC -->
-		SELECT * FROM TOTOGUIDE ORDER BY REG_DATE DESC
+		SELECT * FROM TOTOGUIDE
+		WHERE STATUS=0
+		ORDER BY REG_DATE DESC
 	</select>
 	
 	<select id="getTotalDownCount" resultType="string">
-		SELECT COUNT(DOWNCOUNT)AS DOWNCOUNT FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0
+		SELECT SUM(DOWNCOUNT) AS DOWNCOUNT FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0
 	</select>
 	
 	<select id="getTotoDetail" parameterType="int" resultType="www.tours2us.com.model.TotoGuideDto">
@@ -18,8 +20,8 @@
 	</select>
 	
 	<insert id="totoUpload" parameterType="www.tours2us.com.model.TotoGuideDto">
-		INSERT INTO TOTOGUIDE(SEQ, TITLE, CONTENT, PIC, LOCATION, FILENAME, READCOUNT, DOWNCOUNT, REG_DATE, LAST_UPDATED)
-		VALUES(TOTOGUIDE_SEQ.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE)
+		INSERT INTO TOTOGUIDE(SEQ, TITLE, CONTENT, PIC, LOCATION, FILENAME, READCOUNT, DOWNCOUNT, REG_DATE, LAST_UPDATED, STATUS)
+		VALUES(TOTOGUIDE_SEQ.NEXTVAL, #{title}, #{content}, './image/book.jpg', #{location}, #{filename}, 0, 0, SYSDATE, SYSDATE, 0)
 	</insert>
 	
 	<update id="downCount" parameterType="int">
@@ -32,9 +34,9 @@
 		WHERE SEQ=#{seq}
 	</update>
 	
-	<select id="totoSearch" parameterType="String" resultType="www.tours2us.com.model.TotoGuideDto">
+	<select id="totoSearch" parameterType="www.tours2us.com.model.TotoGuideDto" resultType="www.tours2us.com.model.TotoGuideDto">
 		SELECT * FROM TOTOGUIDE
-		WHERE  LOCATION like '%'||#{location}||'%'
+		WHERE  LOCATION like '%'||#{location}||'%' AND STATUS=0
 	</select>
 	
 	

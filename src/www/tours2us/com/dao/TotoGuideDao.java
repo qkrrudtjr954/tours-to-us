@@ -12,4 +12,6 @@ public interface TotoGuideDao {
 	boolean downCount(int seq);
 	void readCount(int seq);
 	List<TotoGuideDto> bestToToguide();
+	List<TotoGuideDto> totoSearch(String location);
+	String getTotalDownCount();
 }

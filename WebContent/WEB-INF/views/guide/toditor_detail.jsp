@@ -213,6 +213,11 @@
 	vertical-align: middle;
 	margin: 0px 3px;
 }
+
+.comment-item {
+	border-bottom: 1px solid #dcdcdc;
+	padding-top: 15px
+}
 </style>
 
 <div class="row no-gutters">
@@ -239,11 +244,14 @@
 						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
 					</li>
 					<li><hr></li>
-					<li class="menu-title">
-						<span class="planer-label-icon" data-feather="user"></span>회원정보관리
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
 					</li>
 					<li class="menu_item">
-						<a href="mypage.do" class="nav-link" title="회원정보수정">회원정보수정</a>
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
 					</li>
 				</ul>
 			</div>
@@ -320,7 +328,7 @@
 							id="content0" size="90" placeholder="댓글을 입력해주세요">
 					</div>
 					<div class="col-md-2 user_comment_btn">
-						<input type="button" class="btn btn-outline-success"
+						<input type="button" id="addCommetn" class="btn btn-outline-success"
 							value="comment" onclick="addComment()">
 					</div>
 				</div>
@@ -329,7 +337,8 @@
 
 						<c:forEach begin="0" items="${commentlist }" var="comment"
 							varStatus="i">
-							<div class="row">
+							<div class="offset-ms-1 col-md-12">
+							<div class="row comment-item">
 								<div class="col-md-1 comment_profile">
 									<img class="writer_profile"
 										src="${initParam.IMG_SERVER_PATH }/image/${comment.profile }"
@@ -347,11 +356,12 @@
 										<div class="comment_content">${comment.content }</div>
 									</div>
 								</div>
+									<div class="col-md-1">
+										<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">
+									</div>
 							</div>
-							<hr>
+							</div>
 						</c:forEach>
-
-
 
 					</div>
 
@@ -425,9 +435,17 @@ $('#like_btn').click(function () {
 	})
 });
 
+
 function addComment(seq) {
 	var seq = ${bbs.seq};
 	var user_seq = ${current_user.seq};
+	var text = $("#content0").val();
+	
+	if(text==""){
+  		alert("댓글을 입력해 주세요");
+		$("#content0").focus();
+   		
+ 	}else{
 	$.ajax({
 		url:"addcomment.do",
 		type:"post",
@@ -451,26 +469,43 @@ function addComment(seq) {
 			alert("실패");
 		}
 	});
+	
+ 	}
 }
+
+$("#content0").keypress(function(event) {
+	if(event.which == "13"){
+		event.preventDefault();
+		//버튼클릭부분으로 이동시킴
+		$("#addCommetn").click();
+	}
+});
 
 function printCommentHtml(comment ){
 
-	var html ='<div class="row">'+
-					'<div class="col-md-1 comment_profile">'+
-						'<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/'+comment.profile+'" height="50px">'+
-					'</div>'+
-					'<div class="col-md-10">'+
-						'<div class=row>'+
-								'<div class="comment_name">'+comment.name+'</div>'+
-								'<div class="comment_time">'+dateTest(comment.reg_date)+'</div>'+
-						'</div>'+
-						'<div class=row>'+
-								'<div class="comment_content">'+comment.content+'</div>'+
-						'</div>'+
-					'</div>'+
-				'</div>'+
-				'<hr>';
-			$('.comment-area').append(html);
+	var html ='<div class="offset-ms-1 col-md-12">'
+		+'<div class="row comment-item">'
+		+'<div class="col-md-1 comment_profile">'
+		+'<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/'+comment.profile+'" height="50px">'
+		+'</div>'
+		+'<div class="col-md-10">'
+		+'<div class=row>'
+		+'<div class="comment_name">'+comment.name+'</div>'
+		+'<div class="comment_time">'+dateTest(comment.reg_date)+'</div>'
+		+'</div>'
+		+'<div class=row>'
+		+'<div class="comment_content">'+comment.content+'</div>'
+		+'</div>'
+		+'</div>'
+		+'<div class="col-md-1">'
+		+'<div class="comment-email col-md-1" style="height: 50px;">'
+		+'<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment('+comment.seq+', this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">'
+		+'</div>'
+		+'</div>'
+		+'</div>'
+		+'</div>'
+		+'</div>';
+		$('.comment-area').append(html);
 }
 
 
@@ -484,3 +519,43 @@ function dateTest(date) {
 	return result;
 }
 </script>
+
+
+<script>
+function delete_Comment(seq, dom) {
+	//alert("deleteComment" + seq);
+   	var user_seq = ${current_user.seq};
+	//var target_test_seq =${comment.target_user_seq};
+	var dom2 = dom;
+	
+	$.ajax({
+	      url:"ComentDelete.do",
+	      method:"post",
+	      data:{seq : seq, target_user_seq : user_seq},
+	      success:function(data){
+	    	  //alert("data"+date);
+	    	  if(data){
+	    		  $('#commentCount').html(parseInt($('#commentCount').html()))
+	    		  
+	    		  var count = parseInt($('#commentCount').html());
+	    		  //alert('count' + count );
+	    		  if(count < 1){
+	    			  $('#commentCount').html(0);
+	    		  } else {
+	    			  $('#commentCount').html(count-1);
+	    		  }
+	    		  $(dom2).parent().parent().parent().remove();
+	    	  }else{
+	         	alert('본인만 삭제가 가능합니다.');
+	    	  }
+		},
+		error : function(request, status, error) {
+			alert("실패");
+		} 
+	}); 
+	
+	
+}
+</script>
+
+

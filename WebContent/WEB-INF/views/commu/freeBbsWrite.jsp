@@ -1,48 +1,66 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="./css/main.css" rel="stylesheet">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-    
- <div class="after-title">
-   <div class="offset-md-2 col-md-4 col-xs-12">
-      <h2>글 작성</h2>
-   </div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+<style>
+#myform {
+	width: 100%;
+}
+
+.after-form-label {
+	font-size: 25px;
+	font-weight: 700;
+	margin: 30px 0px 30px 10px;
+	border-bottom: 2px solid gray;
+}
+.after-title-container {
+	margin-top: 20px;
+	width: 100%;
+}
+</style>
+<div class="row no-gutters">
+	<div class="offset-md-2 col-md-7">
+		<div class="after-title-container">
+			<h3>자유 게시판 글쓰기</h3>
+			<p>당신이 원하는 모든 것을 공유해주세요!</p>
+			<hr>
+		</div>
+	</div>
 </div>
 
-<div class="offset-md-2 col-md-8 col-xs-12">
-   <hr>
+<div class="row no-gutters">
+	<div class="offset-md-2 col-md-8 col-xs-12">
+		<form action="freeBbsWriteAf.do" method="post" id="myform">
+			<input type="hidden" name="target_planer_seq" value="${planer.seq }">
+			
+
+			<div class="form-group">
+				<label class="after-form-label" for="title">카테고리</label> 
+				<select class="form-control" id="location" name="location" style="width: 200px">
+					<c:forEach var="part" items="${category }">
+						<option>${part.title }</option>
+					</c:forEach>
+				</select> 
+			</div>
+			<div class="form-group">
+				<label class="after-form-label" for="title">제목</label> 
+				<input type="text" class="form-control" size="20" name="title" id="title" placeholder="제목을 입력해주세요."> 
+			</div>
+
+	
+			<div class="form-group">
+				<label class="after-form-label" for="summernote">내용</label>
+				<textarea id="summernote" name="content"></textarea>
+			</div>
+		
+
+			<input type="submit" class="btn btn-success offset-md-4 col-md-2" value="글쓰기" onclick="" id="btnwrite">&nbsp; 
+			<a href="afterBbs.do" class="btn btn-outline-secondary col-md-2 " id="btnBack">돌아가기</a>
+		</form>
+	</div>
 </div>
-<form action="freeBbsWriteAf.do" method="post" id="myform">
-<div class="row">
-   <div class=" offset-md-3 col-md-6 write-form">
-      <div class="input-group-prepend">
-         <span class="input-group-text">제목</span> 
-         <input type="text" class="form-control" size="20" name="title" id="title"
-            placeholder="제목">
-      </div>   
-   </div>
 
-   <div class=" offset-md-3 col-md-6 write-form">
-      <div class="input-group-prepend">
-         <textarea id="summernote" name="content" value=""></textarea>
-      </div>   
-   </div>
-
-</div>
- <div class="row">
-            <input type="submit" class="btn btn-success offset-md-4 col-md-2"  value="글쓰기" onclick="" id="btnwrite">&nbsp;
-           <a href="freeBbsList.do" class="btn btn-outline-secondary col-md-2 "  id="btnBack">돌아가기</a>
-        </div>
-</form>
-
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <script>

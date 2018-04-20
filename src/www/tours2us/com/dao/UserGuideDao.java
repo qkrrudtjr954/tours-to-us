@@ -11,4 +11,6 @@ public interface UserGuideDao {
 	List<PlanerDto> guideSearch(PlanerDto plan);
 
 	int guideCount(PlanerDto plan);
+	
+	List<PlanerDto> userSearch(String location);
 }

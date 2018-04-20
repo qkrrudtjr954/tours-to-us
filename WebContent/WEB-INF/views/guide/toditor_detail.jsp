@@ -204,6 +204,9 @@
 .menu-title {
 	font-size: 20px;
 }
+.comment_delete{
+  font-size: 12px;
+}
 
 .menu-item {
 	font-size: 15px;
@@ -362,6 +365,7 @@
 							</div>
 							</div>
 						</c:forEach>
+>>>>>>> mj5
 
 					</div>
 
@@ -440,11 +444,11 @@ function addComment(seq) {
 	var seq = ${bbs.seq};
 	var user_seq = ${current_user.seq};
 	var text = $("#content0").val();
-	
+
 	if(text==""){
   		alert("댓글을 입력해 주세요");
 		$("#content0").focus();
-   		
+
  	}else{
 	$.ajax({
 		url:"addcomment.do",
@@ -469,7 +473,7 @@ function addComment(seq) {
 			alert("실패");
 		}
 	});
-	
+
  	}
 }
 
@@ -527,7 +531,7 @@ function delete_Comment(seq, dom) {
    	var user_seq = ${current_user.seq};
 	//var target_test_seq =${comment.target_user_seq};
 	var dom2 = dom;
-	
+
 	$.ajax({
 	      url:"ComentDelete.do",
 	      method:"post",
@@ -536,7 +540,7 @@ function delete_Comment(seq, dom) {
 	    	  //alert("data"+date);
 	    	  if(data){
 	    		  $('#commentCount').html(parseInt($('#commentCount').html()))
-	    		  
+
 	    		  var count = parseInt($('#commentCount').html());
 	    		  //alert('count' + count );
 	    		  if(count < 1){
@@ -551,11 +555,9 @@ function delete_Comment(seq, dom) {
 		},
 		error : function(request, status, error) {
 			alert("실패");
-		} 
-	}); 
-	
-	
+		}
+	});
+
+
 }
 </script>
-
-

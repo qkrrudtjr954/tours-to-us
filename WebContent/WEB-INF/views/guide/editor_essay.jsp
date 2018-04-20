@@ -341,17 +341,17 @@
 		if(_s_keyword===""){
 			alert("검색창이 비웠습니다");
 			$('#_s_keyword').focus();
-			
+
 		}else{
 		$("#_frmFormSearch").attr({
 			"target" : "_self",
 			"action" : "editor_essay.do"
 		}).submit();
-		
+
 	}
 });
 
-	
+
 
 	$("#_s_keyword").keypress(function(event) {
 		var text = $("#_s_keyword").val();
@@ -367,9 +367,9 @@
 
 		}
 	});
-	
-	
-	
+
+
+
 	function goPage(pageNumber) {
 		$("#_pageNumber").val(pageNumber);
 		$("#_frmFormSearch").attr("target", "_self").attr("action",

@@ -40,7 +40,7 @@
 	<select id="ToditorgetBbsCount" parameterType="www.tours2us.com.model.PagingVo" resultType="java.lang.Integer">
 
 			SELECT NVL(count(*),0) AS cnt
-			  FROM   EDITOR  WHERE 1 = 1
+			  FROM   EDITOR  WHERE status=0
 
 		<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
 			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>
@@ -53,6 +53,7 @@
 	<select id="ToditorDetail" resultType="www.tours2us.com.model.ToditorBBS" parameterType="java.lang.Integer">
 		 SELECT*FROM
         (SELECT E.SEQ, E.TITLE, E.CONTENT,  (SELECT TITLE FROM EDITORCATEGORY WHERE SEQ = E.TARGET_CATEGORY_SEQ) AS CATEGORY, T.NAME,  E.REG_DATE,
+		T.EMAIL,
 		T.PROFILE,  E.READCOUNT,
         LEAD(E.TITLE,1) OVER(ORDER BY E.reg_date DESC) NEXT_TITLE,
      	LEAD(E.SEQ,1,0) OVER(ORDER BY E.reg_date DESC) NEXT_SEQ,

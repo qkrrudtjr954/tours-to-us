@@ -43,7 +43,7 @@ public class ToditorBBS implements Serializable {
 	private String prev_title;
 	
 	private int comment_count;
-	
+	private String email; 
 	
 	public ToditorBBS() {
 		// TODO Auto-generated constructor stub
@@ -52,14 +52,10 @@ public class ToditorBBS implements Serializable {
 	
 
 
-
-
-
-
-
 	public ToditorBBS(int seq, int target_user_seq, int target_category_seq, String title, String content, String pic1,
 			Date reg_date, Date last_date, int readcount, int status, String category, String name, String profile,
-			int like_count, int next_seq, int prev_seq, String next_title, String prev_title, int comment_count) {
+			int like_count, int next_seq, int prev_seq, String next_title, String prev_title, int comment_count,
+			String email) {
 		super();
 		this.seq = seq;
 		this.target_user_seq = target_user_seq;
@@ -80,7 +76,18 @@ public class ToditorBBS implements Serializable {
 		this.next_title = next_title;
 		this.prev_title = prev_title;
 		this.comment_count = comment_count;
+		this.email = email;
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -417,6 +424,20 @@ public class ToditorBBS implements Serializable {
 
 
 
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "ToditorBBS [seq=" + seq + ", target_user_seq=" + target_user_seq + ", target_category_seq="
@@ -424,17 +445,8 @@ public class ToditorBBS implements Serializable {
 				+ reg_date + ", last_date=" + last_date + ", readcount=" + readcount + ", status=" + status
 				+ ", category=" + category + ", name=" + name + ", profile=" + profile + ", like_count=" + like_count
 				+ ", next_seq=" + next_seq + ", prev_seq=" + prev_seq + ", next_title=" + next_title + ", prev_title="
-				+ prev_title + ", comment_count=" + comment_count + "]";
+				+ prev_title + ", comment_count=" + comment_count + ", email=" + email + "]";
 	}
-
-
-
-
-
-
-
-
-
 
 
 

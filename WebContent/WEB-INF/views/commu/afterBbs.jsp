@@ -223,10 +223,10 @@ color: #f37720;
 										href="afterdetail.do?seq=${after.seq }">${after.title }</a>&nbsp;<span
 										class="comment_count">[${after.comment_count }]</span></td>
 
-									<td align="center"><span
+									<td align="center"><%-- <span
 										style="font-size: 13px; color: black;">${after.like_count }</span>
-									</td>
-
+									</td> --%>
+									<img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px"> ${after.like_count }</td>
 									<td align="center">${after.name }</td>
 
 									<td align="center"

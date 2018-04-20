@@ -9,18 +9,20 @@ public class HotelDto implements Serializable {
 	private String checkout;
 	private int adults;
 	private int children;
+	private int room_no;
 	
 	public HotelDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HotelDto(String city, String checkin, String checkout, int adults, int children) {
+	public HotelDto(String city, String checkin, String checkout, int adults, int children, int room_no) {
 		super();
 		this.city = city;
 		this.checkin = checkin;
 		this.checkout = checkout;
 		this.adults = adults;
 		this.children = children;
+		this.room_no = room_no;
 	}
 
 	public String getCity() {
@@ -63,10 +65,19 @@ public class HotelDto implements Serializable {
 		this.children = children;
 	}
 
+	public int getRoom_no() {
+		return room_no;
+	}
+
+	public void setRoom_no(int room_no) {
+		this.room_no = room_no;
+	}
+
 	@Override
 	public String toString() {
-		return "hotelDto [city=" + city + ", checkin=" + checkin + ", checkout=" + checkout + ", adults=" + adults
-				+ ", children=" + children + "]";
+		return "HotelDto [city=" + city + ", checkin=" + checkin + ", checkout=" + checkout + ", adults=" + adults
+				+ ", children=" + children + ", room_no=" + room_no + "]";
 	}
+
 	
 }

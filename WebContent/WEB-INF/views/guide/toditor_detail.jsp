@@ -130,11 +130,6 @@
 	padding-left: 5px;
 }
 
-.tag {
-	font-size: 13px;
-	color: #6e6e6e;
-}
-
 .update_delete_box {
 	padding-top: 20px;
 	padding-left: 200px;
@@ -260,6 +255,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:if test="${current_user.email eq  bbs.email}">
 	<div class="col-md-8">
 		<div class="d-flex justify-content-end">
 			<div class="d-flex justify-content-end">
@@ -267,6 +264,8 @@
 				<span id="deleteBBS" onclick="bbsDelete()">삭제</span>
 			</div>
 		</div>
+	</c:if>
+		
 		<div class="detailArea">
 			<div class="row no-gutters">
 				<div class="col-md-2 col-xs-12 detailHeader">
@@ -280,7 +279,7 @@
 						class="toditor_title_bold">${bbs.title }</span>
 					<div class="toditor_etc">
 						<span class="etc_writer">${bbs.name }</span>
-						<span class="etc_date">s<fmt:formatDate value="${bbs.reg_date}" pattern="yyyy/MM/dd" /></span>
+						<span class="etc_date"><fmt:formatDate value="${bbs.reg_date}" pattern="yyyy/MM/dd" /></span>
 						<span class="read_count">조회 : ${bbs.readcount }</span>
 					</div>
 				</div>
@@ -293,9 +292,6 @@
 							${bbs.content }
 						</div>
 					</div>
-				</div>
-				<div class="tag">
-					<span><b>태그</b> #부산 #맛집 #먹방</span>
 				</div>
 				<hr>
 				<div class="detailBody_like" align="center">
@@ -365,7 +361,7 @@
 							</div>
 							</div>
 						</c:forEach>
->>>>>>> mj5
+
 
 					</div>
 

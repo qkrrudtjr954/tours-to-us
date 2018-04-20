@@ -104,7 +104,7 @@
 	resultType="int">
 	
 	SELECT NVL(COUNT(*),0) AS cnt
-	FROM AFTERBBS WHERE 1 = 1
+	FROM AFTERBBS WHERE status=0
 	
 	<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
 		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
@@ -227,7 +227,7 @@ SELECT TARGET_USER_SEQ FROM FREEBBSCOMMENT WHERE SEQ=#{seq}
 	resultType="int">
 	
 	SELECT NVL(COUNT(*),0) AS cnt
-	FROM FREEBBS WHERE 1 = 1
+	FROM FREEBBS WHERE status=0
 	
 	<if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
 		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	

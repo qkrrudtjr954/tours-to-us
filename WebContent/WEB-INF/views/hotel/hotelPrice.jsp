@@ -60,37 +60,47 @@ font-size: 13px;
 						</div>				
 					</div>
 				</div>
-					<div class="row">
-						<div class="col">
-						<span>성인</span>
-					<select class="form-control" name="adults" id="adults" >
-			    	<option value="0">성인 0명</option>
-					<option value="1">성인 1명</option>
-					<option value="2">성인 2명</option>
-					<option value="3">성인 3명</option>
-					<option value="4">성인 4명</option>
-					<option value="5">성인 5명</option>
-					<option value="6">성인 6명</option>
-					<option value="7">성인 7명</option>
-					<option value="8">성인 8명</option>
-				   </select>
-							
-						</div>
-						<div class="col">
-						<span>어린이</span>
-					<select class="form-control" name="children">
-			    	<option value="0">아이 0명</option>
-					<option value="1">아이 1명</option>
-					<option value="2">아이 2명</option>
-					<option value="3">아이 3명</option>
-					<option value="4">아이 4명</option>
-					<option value="5">아이 5명</option>
-				   </select>
-						</div>				
-					</div>
-				
+			<div class="row">
+				<div class="col">
+					<span>성인</span> <select class="form-control" name="adults"
+						id="adults">
+						<option value="0">성인 0명</option>
+						<option value="1">성인 1명</option>
+						<option value="2">성인 2명</option>
+						<option value="3">성인 3명</option>
+						<option value="4">성인 4명</option>
+						<option value="5">성인 5명</option>
+						<option value="6">성인 6명</option>
+						<option value="7">성인 7명</option>
+						<option value="8">성인 8명</option>
+					</select>
 
-<br>
+				</div>
+				<div class="col">
+					<span>어린이</span> <select class="form-control" name="children">
+						<option value="0">아이 0명</option>
+						<option value="1">아이 1명</option>
+						<option value="2">아이 2명</option>
+						<option value="3">아이 3명</option>
+						<option value="4">아이 4명</option>
+						<option value="5">아이 5명</option>
+					</select>
+				</div>
+				<div class="col">
+					<span>방 개수</span> 
+					<select class="form-control" name="room_no">
+						<option value="1">1개</option>
+						<option value="2">2개</option>
+						<option value="3">3개</option>
+						<option value="4">4개</option>
+						<option value="5">5개</option>
+						<option value="6">6개</option>
+					</select>
+				</div>
+			</div>
+
+
+			<br>
 <br>
 <input type="submit"  id="searchBtn"class="form-control" style="background-color: #7DC3BB; border: none; color: #FFFFFF; font-weight: bold;" value="검색하기">
 <br>
@@ -117,11 +127,11 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 			<div class="card mb-4 box-shadow">
 				<img class="card-img-top" src="${item.pic }" height="300px">
 				
-					<div class="card-body" onclick="location.href='${item.link}'">				
+					<div class="card-body">				
 						<!-- <p class="card-text"> -->
 							<c:choose>
-								<c:when test="${item.desc eq '·' }"> 
-									<span style="font-size: 10px; color: rgb(155, 49, 67);">개인실·침대 2개</span>
+								<c:when test="${empty item.desc}"> 
+									<span style="font-size: 10px; color: rgb(155, 49, 67);">평범함</span>
 								</c:when>
 								<c:otherwise>
 									<span style="font-size: 10px; color: rgb(155, 49, 67);">${item.desc }</span>
@@ -129,11 +139,12 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 							</c:choose>
 								<br><!-- </p> -->
 							
-							<span style="font-size: 15px; font-weight: bold;">${item.name }</span>
+							<a href="${item.link }">
+								<span style="font-size: 15px; font-weight: bold;">${item.name }</span>
+							</a>
 							<br>
-							
 							<c:choose>
-								<c:when test="${item.price eq '/박' || item.price eq '/월'}">
+								<c:when test="${empty item.price}">
 									<span style="color: #484848; font-weight: 200;">홈페이지 확인</span>
 								</c:when>
 								<c:otherwise>

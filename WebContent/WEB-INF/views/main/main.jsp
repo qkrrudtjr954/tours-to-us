@@ -399,7 +399,7 @@ padding-left:30px;
 						</colgroup>
 						<tbody>
 						<c:forEach items="${planlist }" begin="0" end="4" var="item" varStatus="i">
-							<tr><td><a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td>추천 ${item.like_count }</td></tr>
+							<tr><td>&nbsp;<a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td> <img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px">${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
 						</table>
@@ -411,7 +411,7 @@ padding-left:30px;
 						</colgroup>
 						<tbody>
 						<c:forEach items="${planlist }" begin="5" end="9" var="item" varStatus="i">
-							<tr><td><a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td>추천 ${item.like_count }</td></tr>
+							<tr><td>&nbsp;<a href="guideDetail.do?seq=${item.seq }">[${item.location }]&nbsp;${item.title }</a></td><td> <img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px">${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
 						</table>
@@ -439,7 +439,7 @@ padding-left:30px;
 						</colgroup>
 						<tbody>
 						<c:forEach items="${commulist }" begin="0" end="4" var="item" varStatus="i">
-							<tr><td><a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+							<tr><td>&nbsp;<a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td> <img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px">${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
 						</table>
@@ -451,7 +451,7 @@ padding-left:30px;
 						</colgroup>
 						<tbody>
 						<c:forEach items="${commulist }" begin="5" end="9" var="item" varStatus="i">
-							<tr><td><a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td>추천 ${item.like_count }</td></tr>
+							<tr><td>&nbsp;<a href="afterdetail.do?seq=${item.seq }">${item.title }&nbsp;<span style="font-size: 12px; color: #f37720;">[${item.comment_count }]</span></a></td><td> <img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px">${item.like_count }</td></tr>
 						</c:forEach>
 						</tbody>
 						</table>
@@ -462,7 +462,7 @@ padding-left:30px;
 
 	</div>
 
-	<%-- <div class="download_part">
+<div class="download_part">
 		<div class="head_title">
 			<p>투투 가이드북</p>
 		</div>
@@ -538,7 +538,7 @@ padding-left:30px;
 		</div>
 
 	</div>
-	 --%>
+
 
 
 </div><!--  하단부 내용 -->

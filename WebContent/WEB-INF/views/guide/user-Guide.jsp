@@ -243,9 +243,12 @@ h2 {
 					</thead>
 					<tbody>
 						<c:if test="${empty planlist }">
-							<div class="col-md-12 text-center col-xs-12">
+							<!-- <div class="col-md-12 text-center col-xs-12">
 								<p>작성된 글이 없습니다</p>
-							</div>
+							</div> -->
+							<tr class="text-center">
+								<td colspan="5" >작성된 글이 없습니다.</td>
+							</tr>
 						</c:if>
 
 						<c:forEach items="${planlist }" var="plan" varStatus="i">

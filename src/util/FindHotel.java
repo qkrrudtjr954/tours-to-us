@@ -1,7 +1,10 @@
 package util;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -19,65 +22,82 @@ public class FindHotel {
 		List<HotelResultDto> list = new ArrayList<>();
 		
 		try {
-		
-			Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"--한국/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").get();
-			//Document doc = Jsoup.connect("").get();
-			Elements links = doc.select("div._1szwzht a:first-child");
-			Elements names = doc.select("div._1qp0hqb div._1rths372");
-			Elements descs = doc.select("div._saba1yg span");
-			Elements pic = doc.select("div._1szwzht div._1df8dftk");
-			Elements price = doc.select("div._1yarz4r span span:nth-child(2)");
+			String checkInDate[] = dto.getCheckin().split("-");
+			String checkOutDate[] = dto.getCheckout().split("-");
+			//Document doc = Jsoup.connect("https://www.airbnb.co.kr/s/"+dto.getCity()+"--한국/homes?checkin="+dto.getCheckin()+"&checkout="+dto.getCheckout()+"&adults="+dto.getAdults()+"&children="+dto.getChildren()+"&infants=0&source=mc_search_bar&refinement_paths%5B%5D=%2Fhomes&allow_override%5B%5D=&s_tag=DW0bvo2w").timeout(5000).get();
+			String url = "https://www.booking.com/searchresults.ko.html?"
+					+ "aid=309654&label=hotels-korean-ko-gyVHHho6XvMzklDv1L_GHwS95119518172%3Apl%3Ata%3Ap1%3Ap21%2C759%2C000%3Aac%3Aap1t1%3Aneg%3Afi%3Atikwd-4205654390%3Alp1009871%3Ali%3Adec%3Adm&sid=1fb7acf20a72b50b206b2c656ec2f409&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.ko.html%3Faid%3D309654%3Blabel%3Dhotels-korean-ko-gyVHHho6XvMzklDv1L_GHwS95119518172%253Apl%253Ata%253Ap1%253Ap21%252C759%252C000%253Aac%253Aap1t1%253Aneg%253Afi%253Atikwd-4205654390%253Alp1009871%253Ali%253Adec%253Adm%3Bsid%3D1fb7acf20a72b50b206b2c656ec2f409%3Bsb_price_type%3Dtotal%26%3B&ac_presel=0"
+					+ "&ss="+dto.getCity()
+					+ "&checkin_year="+checkInDate[0]
+					+ "&checkin_month="+checkInDate[1]
+					+ "&checkin_monthday="+checkInDate[2]
+					+ "&checkout_year="+checkOutDate[0]
+					+ "&checkout_month="+checkOutDate[1]
+					+ "&checkout_monthday="+checkOutDate[2]
+					+ "&group_adults="+dto.getAdults()
+					+ "&group_children="+dto.getChildren()
+					+ "&no_rooms="+dto.getRoom_no();
 			
+			Document doc = Jsoup.connect(url).timeout(5000).get();
 			
-			System.out.println(doc);
-			for (Element e : pic) {
-				String attr = e.attr("style");
-				e.text(attr.substring(attr.indexOf("https://"), attr.indexOf(")")));
+			Elements links = doc.select("a.hotel_name_link.url");
+			Elements names = doc.select("a.hotel_name_link.url span:first-child");
+			Elements descs = doc.select("span.review-score-widget__body span:first-child");
+			Elements pic = doc.select("img.hotel_image");
+			Elements price = doc.select("div.totalPrice");
+
+			int array[] = new int[5];
+			array[0] = links.size();
+			array[1] = names.size();
+			array[2] = descs.size();
+			array[3] = pic.size();
+			array[4] = price.size();
+			
+			System.out.println(array.toString());
+			
+			int max =array[0];	
+			for(int i=0; i < array.length ; i++) {
+			    if( array[i] > max ) max = array[i];
 			}
-			for (Element e : links) {
-				String attr = e.attr("href");
-				System.out.println(attr);
-				e.text("https://www.airbnb.co.kr"+attr);
-			}
-		
-			
-			int size = 12;
-			
-			if(links.size() <= 12 || names.size() <= 12 || descs.size() <= 12 || pic.size() <= 12 || price.size() <= 12) {
-				if(links.size() < names.size()) {
-					if(descs.size() < links.size()) {
-						size = descs.size();
-						size=pic.size();
-						size=price.size();
-					} else { 
-						size = links.size();
-						size=pic.size();
-						size=price.size();
-					}
-				} else {
-					if(descs.size() < names.size()) {
-						size = descs.size();
-						size=pic.size();
-						size=price.size();
-					} else { 
-						size = names.size();
-						size=pic.size();
-						size=price.size();
-					}
-				}				
-			}
+	
+			int size = max;
 			
 			for(int i=0; i<size; i++) {
 				HotelResultDto hdto = new HotelResultDto();
+				if(i >= links.size()) {
+					hdto.link = "";
+				}else {
+					String attr = links.get(i).attr("href");
+					hdto.link ="https://www.booking.com"+attr;
+				}
 				
-				hdto.link = links.get(i).text();
-				hdto.name = names.get(i).text();
-				hdto.desc = descs.get(i).text();
-				hdto.price = price.get(i).text();
-				hdto.pic = pic.get(i).text();
+				if(i >= names.size()) {
+					hdto.name = "";
+				}else {
+					hdto.name = names.get(i).text();
+				}
+				
+				if(i >= descs.size()) {
+					hdto.desc = "";
+				}else {
+					hdto.desc = descs.get(i).text();
+				}
+				
+				if(i >= price.size()) {
+					hdto.price = "";
+				}else {
+					hdto.price = price.get(i).text();
+				}
+				
+				if(i >= pic.size()) {
+					hdto.pic = "";
+				}else {
+					String src = pic.get(i).attr("src");
+					hdto.pic = src;
+				}
+			
 				list.add(hdto);
 			}
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -138,15 +138,17 @@ public class PlanerController {
 	@RequestMapping(value = "myplan.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myplan(HttpServletRequest req, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> myplan");
+		
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		System.out.println(t_dto.getSeq());
 		int seq = t_dto.getSeq();
 
 		// 플랜 select
 		List<PlanerDto> planlist = planerService.getplanList(seq);
 		System.out.println(planlist);
+		
 		model.addAttribute("seq", seq);
 		model.addAttribute("planlist", planlist);
+		
 		return "myplan.tiles";
 	}
 	

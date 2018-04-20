@@ -49,13 +49,12 @@ public class UserGuideController {
 		   int sn = plan.getPageNumber();
 		   int start = (sn) * plan.getRecordCountPerPage() +1;
 		   int end = (sn+1) * plan.getRecordCountPerPage();
-		   System.out.println("start: " + start);
-		   System.out.println("end: " + end);
+		   
 		   plan.setStart(start);
 		   plan.setEnd(end);
 		   int totalRecordCount = userGuideService.guideCount(plan);
 		   List<PlanerDto> paging = userGuideService.guideSearch(plan);
-
+		
 		   model.addAttribute("planlist", paging);
 		   model.addAttribute("pageNumber", sn);
 		   model.addAttribute("pageCountPerScreen", 10);
@@ -64,10 +63,6 @@ public class UserGuideController {
 		   model.addAttribute("s_category", plan.getS_category());
 		   model.addAttribute("s_keyword", plan.getS_keyword());
 
-	/*	List<PlanerDto> planlist = userGuideService.getUserPlanList();
-		System.out.println(planlist);
-		model.addAttribute("planlist", planlist);
-		*/
 		return "user_guide.tiles";
 	}
 

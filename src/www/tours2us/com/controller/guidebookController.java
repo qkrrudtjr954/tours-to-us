@@ -29,6 +29,7 @@ import www.tours2us.com.service.ToditorService;
 public class guidebookController {
 	private static final Logger logger = LoggerFactory.getLogger(guidebookController.class);
 	
+	
 	@Autowired
 	ToditorService toditorService;
 	

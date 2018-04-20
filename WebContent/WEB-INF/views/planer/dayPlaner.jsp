@@ -208,7 +208,7 @@ button#toggleChat {
 	</div>
 	<hr>
 </div>
-   
+   ${planer }
 <div class="add-friend">
 	<div class="row no-gutters">
 		<div class="col-md-2 col-xs-12">
@@ -613,7 +613,7 @@ function drawSpan(name, align) {
 			$('#chat-data').append(other);				
 		}
 	}
-	
+	$('.chat-container2').animate({ scrollTop: 100000 });
 }
 
 function onClose(evt) {

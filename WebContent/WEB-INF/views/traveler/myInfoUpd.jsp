@@ -1,94 +1,117 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <style type="text/css">
-    p {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<style>
+
+.planer-info-over {
+	background-color: #7DC3BB;
+	margin: 30px 10px;
+	width: 80%;
+	text-align: center;
+	border-radius: 15px;
+	padding: 15px;
+    margin: 10px;
 }
 
-div{
-	margin: 0;
-    padding: 0;
-    font-family: "NanumBarunGothic", "Arial", "돋움";
-    font-weight: normal;
-
+.menu_table ul{
+	list-style-type: none;
+	padding: 0px;
+}
+.menu_table li{
+	padding: 10px 0px;
+	color: white;
+}
+.menu-title {
+	font-size: 20px;
+}
+.menu-item {
+	font-size: 15px;
+}
+.planer-label-icon {
+	vertical-align: middle;
+	margin: 0px 3px;
+}
+.editor-title-container {
+	margin-top: 20px;
+	width: 100%;
 }    
 </style>
 
-<div class="mypage-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>투디터 신청하기</h2>
+<div class="row no-gutters">
+	<div class="offset-md-2 col-md-8">
+		<div class="editor-title-container">
+			<h3>회원 정보 수정</h3>
+			<p>회원님의 정보를 안전하게 수정하세요!</p>
+		</div>
+		<hr>
 	</div>
 </div>
-<div class="offset-md-2 col-md-8 col-xs-12">
-	<hr>
-</div>
 
-<div class="check-Box">
-<div class="row">
-<div class="offset-md-4">
-	<form action="myInfoUpdAf.do" id="frmForm" autocomplete="off">
-	<table class="table">
-		<tbody>
-			<tr>
-				<td>
-					<label class="title">아이디 또는 이메일 주소</label>
-				</td>
-				<td colspan="2">
-					${c_user.email }<input type="hidden" name="email" id="login_id" value="${c_user.email }">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="title">현재 비밀번호</label>
-				</td>
-				<td>
-					<input type="password" name="nowpass" class="nowpass" title="현재 비밀번호">
-				</td>
-				<td class="invalid-nowpwd">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="title">새 비밀번호</label>
-				</td>
-				<td>
-					<input type="password" name="newpass1" class="newpass1" title="새 비밀번호">
-				</td>
-				<td class="invalid-feedback">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="title">새 비밀번호 확인</label>
-				</td>
-				<td>
-					<input type="password" name="password" class="newpass2" title="새 비밀번호 확인">
-				</td>
-				<td class="invalid-password">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="title">이름</label>
-				</td>
-				<td colspan="2">
-					<input type="text" name="name" class="name" value="${c_user.name }">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center">
-					<input type="button" id="upd-btn" class="btn btn-primary" value="확인">
-				</td>
-			</tr>
-		</tbody>
-	</table>									
-	</form>	
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="planer-info-over">
+			<div class="menu_table">
+				<ul style="list-style-type: none">
+					<li class="menu-title">
+						<span class="planer-label-icon" data-feather="user"></span>마이 페이지
+					</li>
+					<li><hr></li>
+					<li class="menu_item">
+						<a href="myplan.do" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+					</li>
+					<li class="menu_item">
+						<a href="mypage.do" class="nav-link" title="회원 정보 수정">회원 정보 수정</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="offset-md-1 col-md-6">
+		<form action="myInfoUpdAf.do" id="frmForm" autocomplete="off">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><label class="title">아이디 또는 이메일 주소</label></td>
+						<td colspan="2">${c_user.email }
+							<input type="hidden" name="email" id="login_id" value="${c_user.email }">
+						</td>
+					</tr>
+					<tr>
+						<td><label class="title">현재 비밀번호</label></td>
+						<td>
+							<input type="password" name="nowpass" class="nowpass" title="현재 비밀번호">
+							<div class="invalid-nowpwd"></div>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="title">새 비밀번호</label></td>
+						<td>
+							<input type="password" name="newpass1" class="newpass1" title="새 비밀번호">
+							<div  class="invalid-feedback"></div>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="title">새 비밀번호 확인</label></td>
+						<td>
+							<input type="password" name="password" class="newpass2" title="새 비밀번호 확인">
+							<div  class="invalid-password"></div>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="title">이름</label></td>
+						<td colspan="2">
+							<input type="text" name="name" class="name" value="${c_user.name }">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" align="center">
+							<input type="button" id="upd-btn" class="btn btn-primary" value="확인">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 	</div>
 </div>
-</div>
-
 <script>
 $(".nowpass").keyup(function () {
 	var pwd = "${c_user.password}";
@@ -98,7 +121,7 @@ $(".nowpass").keyup(function () {
 		$(".invalid-nowpwd").html('<span style="font-size:80%;color:#dc3545;">비밀번호가 일치하지 않습니다.</span>');
 	}else{
 		$(this).addClass('success');
-		$(".invalid-nowpwd").html('<span style="font-size:80%;color:#dc3545;">완료</span>');
+		$(".invalid-nowpwd").html('<span style="font-size:80%;color:#28a745;">완료</span>');
 	}
 });
 

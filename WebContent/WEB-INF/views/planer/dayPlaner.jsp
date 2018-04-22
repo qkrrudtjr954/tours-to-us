@@ -43,7 +43,7 @@
     height: 500px;
     bottom: 100px;
     z-index: 500;
-    background-color: brown;
+    background-color: #7dc3bb66;
     border: 1px solid #7DC3BB;
 }
 
@@ -208,7 +208,6 @@ button#toggleChat {
 	</div>
 	<hr>
 </div>
-   ${planer }
 <div class="add-friend">
 	<div class="row no-gutters">
 		<div class="col-md-2 col-xs-12">

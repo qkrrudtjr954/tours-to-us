@@ -140,7 +140,7 @@ div.user-action a:hover {
 		<li class="dropdown">
          	<a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">호텔</a>
 	         <ul class="dropdown-menu">
-				<li class="dropdown-item"><a href="hotelPrice.do">airbnb 예약하기</a></li>
+				<li class="dropdown-item"><a href="hotelPrice.do">booking닷컴 예약하기</a></li>
 			</ul>
        	</li>
 		<li class="dropdown">

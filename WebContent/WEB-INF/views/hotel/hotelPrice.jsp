@@ -108,7 +108,7 @@ font-size: 13px;
 
 </div>
 
-<p id="desc">*숙소 예약 서비스는 <span style="font-size: 15px; font-weight: bold;">airbnb</span>와 <span style="font-size: 15px; font-weight: bold;">Tours to-us </span>가 제휴를 맺어 제공하는 숙소 예약 서비스입니다. </p>
+<p id="desc">*숙소 예약 서비스는 <span style="font-size: 15px; font-weight: bold;">booking닷컴</span>와 <span style="font-size: 15px; font-weight: bold;">Tours to-us </span>가 제휴를 맺어 제공하는 숙소 예약 서비스입니다. </p>
 </div>
 
 <br>
@@ -160,7 +160,7 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 		</div>
 <hr>
 	<div class="row offset-md-5">
-		<a href="https://www.airbnb.co.kr" style="color: rgb(155, 49, 67);">더 많은 숙소 정보 확인하러 가기</a>
+		<a href="https://www.booking.com" style="color: rgb(155, 49, 67);">더 많은 숙소 정보 확인하러 가기</a>
 	</div>
 
 

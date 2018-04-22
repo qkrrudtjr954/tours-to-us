@@ -27,8 +27,9 @@
 .menu-title {
 	font-size: 20px;
 }
-.menu-item {
+.menu_item {
 	font-size: 15px;
+	text-align: left;
 }
 .planer-label-icon {
 	vertical-align: middle;
@@ -93,6 +94,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="col-md-8 col-xs-12">
 		<div class="row no-gutters">
 			<form action="toditor_writeAf.do" id="myform">
@@ -137,15 +139,6 @@
 				maxHeight : null, // set maximum height of editor
 				focus : true, // set focus to editable area after initializing summernote
 				lang : 'ko-KR',
-				map: {
-				        apiKey: 'AIzaSyDg3RVWDevoGPmAxPHOtH0PVh1daHZJK5o',
-				        // This will be used when map is initialized in the dialog.
-				        center: {
-				          lat: -33.8688,
-				          lng: 151.2195
-				        },
-				        zoom: 13
-				    },
 				callbacks : {
 					onImageUpload : function(files, editor,welEditable) {
 						sendFile(files[0], this);
@@ -183,7 +176,7 @@
 					$('#pic1').val(data.filename);
 				}
 
-				alert(url);
+				/* alert(url); */
 				$('#hello').html(url);
 				$(editor).summernote('editor.insertImage', url);
 				$('#imageDiv > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');

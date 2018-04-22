@@ -53,6 +53,9 @@ public class MainController {
 		List<TotoGuideDto> totolist = totoGuideService.bestToToguide();
 		model.addAttribute("totolist", totolist);
 		
+		String downcount = totoGuideService.getTotalDownCount();
+		model.addAttribute("downcount", downcount);
+		
 		return "main.tiles";
 	}
 

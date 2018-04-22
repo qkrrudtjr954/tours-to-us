@@ -50,13 +50,15 @@ font-size: 13px;
 					<label for="tripdate"  style="font-weight: bold;">여행 기간</label> 
 					<br>
 					<div class="row">
-						<div class="col">
+						<div class="col" id="checkin-container">
 						<span>체크인</span>
 							<input type="date" class="form-control" id="checkin" name="checkin" onchange="checktoday()">
+							<span style="font-size:80%;color:#dc3545;display:none;">체크인 날짜를 확인해주세요</span>
 						</div>
-						<div class="col">
+						<div class="col" id="checkout-container">
 						<span>체크아웃</span>
 							<input type="date" class="form-control" id="checkout" name="checkout" onchange="checkdate()">
+							<span style="font-size:80%;color:#dc3545;display:none;">체크아웃 날짜를 확인해주세요</span>
 						</div>				
 					</div>
 				</div>
@@ -139,7 +141,7 @@ alert("죄송합니다. 화면을 다시 새로고침 해주세요");
 							</c:choose>
 								<br><!-- </p> -->
 							
-							<a href="${item.link }">
+							<a href="${item.link }" target="_blank">
 								<span style="font-size: 15px; font-weight: bold;">${item.name }</span>
 							</a>
 							<br>
@@ -188,9 +190,14 @@ function checktoday() {
 		//alert("선택날짜 : " + strDate1 +" / 오늘 날짜 : " + chan_val +" 뺴기 " + diff);
 		
 		if( diff>=0){
-			alert("체크인 날짜를 확인해주세요");
-			$('#checkin').val('');
-		} 
+			//alert("체크인 날짜를 확인해주세요");
+			if($('#checkin-container span:last-child').css('display') == 'none'){
+				$('#checkin-container span:last-child').css('display', 'block');
+			}
+		}else{
+			$('#checkin-container span:last-child').css('display', 'none'); 
+
+		}
 	     
 }
 
@@ -211,14 +218,16 @@ function checkdate() {
 	var diff = dat2 - dat1;
 	
 	if(diff<0){
-		alert("체크인과 체크아웃 날짜를 다시 확인해주세요.");
-		$('#checkin').val('');
-		$('#checkout').val('');
+		if($('#checkout-container span:last-child').css('display') == 'none'){
+			$('#checkout-container span:last-child').css('display', 'block');
+		}
+	}else{
+		$('#checkout-container span:last-child').css('display', 'none'); 
 	}
 	
 }
 
-$('#searchBtn').click(function() {
+$('#searchBtn').on('click', function(e){
 	var state = $('#adults option:selected').val();
 	if($('#city').val()==''){
 		alert("도시를 입력해주세요.");
@@ -228,6 +237,12 @@ $('#searchBtn').click(function() {
 		alert("체크아웃 날짜를 입력해주세요.");
 	}else if(state == '0') {
 		alert("성인 1명 이상 선택해주세요.");
-	} 
+	}else if($('#checkout-container span:last-child').css('display') != 'none'){
+		alert("체크아웃 날짜를 확인해주세요");
+		 e.preventDefault();
+	}else if($('#checkin-container span:last-child').css('display') != 'none'){
+		alert("체크인 날짜를 확인해주세요");
+		 e.preventDefault();
+	}
 });
 </script>

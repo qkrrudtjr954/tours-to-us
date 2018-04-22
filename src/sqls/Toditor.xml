@@ -85,7 +85,7 @@
 	<select id="guideCount"  parameterType="www.tours2us.com.model.PlanerDto" resultType="int">
 
 	   SELECT NVL(COUNT(*),0) AS cnt
-	   FROM PLANER WHERE 1 = 1
+	   FROM PLANER WHERE status=1
 
 	   <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
 	      <if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>

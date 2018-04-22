@@ -120,8 +120,9 @@
 .menu-title {
 	font-size: 20px;
 }
-.menu-item {
+.menu_item {
 	font-size: 15px;
+	text-align: left;
 }
 .planer-label-icon {
 	vertical-align: middle;
@@ -268,9 +269,9 @@
 								</div>
 							</div>
 						</div>
-
+						<c:if test="${current_user.author eq 1}">
 						<a class="btn btn-outline-secondary" href="toditor_write.do">에디터 글쓰기</a>
-
+						</c:if>
 					</div>
 				</form>
 			</div>

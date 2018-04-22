@@ -133,8 +133,9 @@ h2 {
 .menu-title {
 	font-size: 20px;
 }
-.menu-item {
+.menu_item {
 	font-size: 15px;
+	text-align: left;
 }
 .planer-label-icon {
 	vertical-align: middle;
@@ -227,12 +228,12 @@ h2 {
 				<table class="table">
 					<colgroup>
 						<col style="width: 30px;" />
-						<col style="width: 70px;" />
-						<col style="width: 100px;" />
-						<col style="width: 100px;" />
-						<col style="width: 100px;" />
+						<col style="width: 50px;" />
+						<col style="width: 200px;" />
+						<col style="width: 30px;" />
+						<col style="width: 90px;" />
 					</colgroup>
-					<thead>
+					<thead align="center">
 						<tr>
 							<th>번호</th>
 							<th>지역</th>
@@ -253,12 +254,12 @@ h2 {
 
 						<c:forEach items="${planlist }" var="plan" varStatus="i">
 							<tr>
-								<td>${i.count }</td>
-								<td>${plan.location }</td>
-								<td><a href="guideDetail.do?seq=${plan.seq }"
+								<td align="center">${i.count }</td>
+								<td align="center">${plan.location }</td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="guideDetail.do?seq=${plan.seq }"
 									class="ti-link">${plan.title }</a></td>
-								<td>${plan.name }</td>
-								<td>${plan.from_date }&nbsp;~&nbsp;${plan.to_date }</td>
+								<td align="center">${plan.name }</td>
+								<td align="center">${plan.from_date }&nbsp;~&nbsp;${plan.to_date }</td>
 							</tr>
 						</c:forEach>
 

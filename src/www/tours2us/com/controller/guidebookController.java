@@ -35,17 +35,7 @@ public class guidebookController {
 	
 	@Autowired
 	LikeService likeService;
-	
-	/*@RequestMapping(value="editor_essay.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String essaylist(Model model) throws Exception{
-		logger.info("guidebookController >>>> essaylist");
-		
-		List<ToditorBBS> list = new ArrayList<>();
-		list = toditorService.ToditorgetList();
-		model.addAttribute("list", list);
 
-		return "editor_essay.tiles";
-	}*/
 	
 	@RequestMapping(value="editor_essay.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String essaylist(PagingVo pv, Model model) throws Exception{

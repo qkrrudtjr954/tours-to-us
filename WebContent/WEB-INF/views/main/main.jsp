@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
 /* 가이드북 */
@@ -501,7 +502,7 @@ padding-left:30px;
 						</div>
 						<div class="col-md-3">
 							<div class="downloadcount">
-							<span><strong>전체 다운로드 수</strong></span>&nbsp;<span style="color: #7DC3BB;"><strong>123,456</strong></span>
+							<span><strong>전체 다운로드 수</strong></span>&nbsp;<span style="color: #7DC3BB;"><strong><fmt:formatNumber value="${downcount }" type="number"/></strong></span>
 							</div>
 						</div>
 

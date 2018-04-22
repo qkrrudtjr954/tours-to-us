@@ -203,8 +203,9 @@
   font-size: 12px;
 }
 
-.menu-item {
+.menu_item {
 	font-size: 15px;
+	text-align: left;
 }
 
 .planer-label-icon {

@@ -152,8 +152,9 @@ li.cur.active{
 .menu-title {
 	font-size: 20px;
 }
-.menu-item {
+.menu_item {
 	font-size: 15px;
+	text-align: left;
 }
 .planer-label-icon {
 	vertical-align: middle;

@@ -39,13 +39,13 @@
 	if (screenEndPageIndex > totalPageCount) screenEndPageIndex = totalPageCount;		// 페이지 블록을 10까지만 표시하려고 하는 처리
 	//		10					2				2					2
 			
-	System.out.println("totalRecordCount:" + totalRecordCount);
+	/* System.out.println("totalRecordCount:" + totalRecordCount);
 	System.out.println("pageNumber:" + pageNumber);
 	System.out.println("pageCountPerScreen:" + pageCountPerScreen);
 	System.out.println("recordCountPerPage:" + recordCountPerPage);
 	System.out.println("totalPageCount:" + totalPageCount);
 	System.out.println("screenStartPageIndex:" + screenStartPageIndex);
-	System.out.println("screenEndPageIndex:" + screenEndPageIndex);
+	System.out.println("screenEndPageIndex:" + screenEndPageIndex); */
 
 	/* 
 	totalRecordCount:12

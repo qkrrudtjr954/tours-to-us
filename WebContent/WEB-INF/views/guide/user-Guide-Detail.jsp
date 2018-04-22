@@ -41,9 +41,69 @@
 .title-container {
     margin-top: 50px;
 }
+
+
+.planer-info-over {
+	background-color: #7DC3BB;
+	margin: 30px 10px;
+	width: 80%;
+	text-align: center;
+	border-radius: 15px;
+	padding: 15px;
+    margin: 10px;
+}
+
+.menu_table ul{
+	list-style-type: none;
+	padding: 0px;
+}
+.menu_table li{
+	padding: 10px 0px;
+	color: white;
+}
+.menu-title {
+	font-size: 20px;
+}
+.menu_item {
+	font-size: 15px;
+	text-align: left;
+}
+.planer-label-icon {
+	vertical-align: middle;
+	margin: 0px 3px;
+}
+
 </style>
 
 <div class="row no-gutters title-container">
+
+<!-- <div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="planer-info-over">
+			<div class="menu_table">
+				<ul style="list-style-type: none">
+					<li class="menu-title">
+						<span class="planer-label-icon" data-feather="briefcase"></span>나의 플랜
+					</li>
+					<li class="menu_item">
+						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+					</li>
+					<li><hr></li>
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
+					</li>
+					<li class="menu_item">
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	 -->
+	
 	<div class="offset-md-3 col-md-4 col-xs-12">
 		<div class="myplanDetail-title">
 			<h2 class="plan-label-title">${planer.title }</h2>
@@ -59,7 +119,7 @@
 		</div>
 	</div>
 </div>
-<hr>
+
 
 <style>
 .planer-progress-bar {
@@ -72,7 +132,32 @@
 
 
 <div id="myplanDetail-content">
-	<div class="offset-md-2 col-md-8 col-xs-12">
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="planer-info-over">
+			<div class="menu_table">
+				<ul style="list-style-type: none">
+					<li class="menu-title">
+						<span class="planer-label-icon" data-feather="briefcase"></span>나의 플랜
+					</li>
+					<li class="menu_item">
+						<a href="#none" onclick="url_myplan()" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+					</li>
+					<li><hr></li>
+					<li class="menu_item">
+						<a href="editor_essay.do" class="nav-link" title="투디터 pick">투디터 pick</a>
+					</li>
+					<li class="menu_item">
+						<a href="user_guide.do" class="nav-link" title="투둥이 가이드북">투둥이 가이드북</a>
+					</li>
+					<li class="menu_item">
+						<a href="toto_guide.do" class="nav-link" title="투투 가이드북">투투 가이드북</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class=" col-md-8 col-xs-12">
 		<div class="card">
 			<c:forEach var="dayPlan" items="${planerMap.keySet() }" varStatus="i">
 				<div class="row no-gutters">

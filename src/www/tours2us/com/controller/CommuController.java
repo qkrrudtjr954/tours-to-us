@@ -56,16 +56,12 @@ public class CommuController {
 		int sn = afterparam.getPageNumber();
 		int start = (sn) * afterparam.getRecordCountPerPage() + 1;
 		int end = (sn + 1) * afterparam.getRecordCountPerPage();
-		//System.out.println("start: " + start);
-		//System.out.println("end: " + end);
+
 		afterparam.setStart(start);
 		afterparam.setEnd(end);
 		int totalRecordCount = commuService.AfterGetBbsCount(afterparam);
 		List<CommuAfterBbsDto> paging = commuService.AftergetBbsPagingList(afterparam);
 
-		//System.out.println( afterparam.getS_category()+"="+afterparam.getS_keyword());
-		// List<CommuAfterBbsDto> list = new ArrayList<CommuAfterBbsDto>();
-		// list = commuService.getAfterBbslist();
 		model.addAttribute("afterBbslist", paging);
 		model.addAttribute("pageNumber", sn);
 		model.addAttribute("pageCountPerScreen", 10);
@@ -179,7 +175,6 @@ public class CommuController {
 	public List<CommuAfterCommentDto> ComentAf(Model model, CommuAfterCommentDto comment ,HttpServletRequest req) throws Exception{
 		//logger.info("CommuController >>>> AfterComentAf");
 
-		System.out.println("coment" + comment.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
 
@@ -192,7 +187,6 @@ public class CommuController {
 	@RequestMapping(value = "AfterComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean AfterComentDelete(int seq ,HttpServletRequest req , CommuAfterCommentDto comment)throws Exception {
 		//logger.info("CommuController >>>> AfterComentDelete");
-		System.out.println("seq" + seq);
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
 
@@ -247,7 +241,6 @@ public class CommuController {
 
 		List<CommuFreeCategoryDto> category = commuService.GetFreeBbsCategory();
 		model.addAttribute("category", category);
-		System.out.println(category);
 
 		return "freeBbsWrite.tiles";
 

@@ -74,7 +74,7 @@ public class guidebookController {
 		
 		List<ToditorCategoryDto> list = new ArrayList<>();
 		list = toditorService.getCategory();
-		System.out.println(list);
+
 		model.addAttribute("categorylist", list);
 		return "toditor_write.tiles";
 	}
@@ -83,7 +83,6 @@ public class guidebookController {
 	public String toditor_writeAf(ToditorBBS bbs, Model model) throws Exception{
 		logger.info("guidebookController >>>> toditor_writeAf");
 		
-		System.out.println(bbs.toString());
 		toditorService.Toditorwrite(bbs);
 		
 		
@@ -124,7 +123,6 @@ public class guidebookController {
 	public List<ToditorCommentDto> addcomment(Model model, ToditorCommentDto comment ,HttpServletRequest req) throws Exception{
 		logger.info("CommuController >>>> AfterComentAf");
 		
-		System.out.println("coment" + comment.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
 		
@@ -137,14 +135,10 @@ public class guidebookController {
 	@RequestMapping(value = "ComentDelete.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean ComentDelete(int seq ,HttpServletRequest req , ToditorCommentDto comment)throws Exception {
 		logger.info("CommuController >>>> ComentDelete");
-		System.out.println("seq" + seq);
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
 		comment.setTarget_user_seq(t_dto.getSeq());
 		
 		boolean check = toditorService.CommentDeleteCheck(seq, t_dto.getSeq());
-		System.out.println("check = " + check);
-		
-		
 
 		if (check) {
 			return  toditorService.CommentDelete(seq);
@@ -171,7 +165,6 @@ public class guidebookController {
 	public String toditor_updateAf(ToditorBBS bbs, Model model) throws Exception{
 		logger.info("guidebookController >>>> toditor_updateAf");
 		
-		System.out.println(bbs.toString());
 		toditorService.ToditorUpdate(bbs);
 		
 		

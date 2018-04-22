@@ -3,7 +3,7 @@
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import www.tours2us.com.model.CoTravelerDto;
 import www.tours2us.com.model.TravelerDto;
-import www.tours2us.com.model.TravelerinfoDto;
 import www.tours2us.com.service.TravelerService;
 
 @Controller
@@ -128,19 +127,20 @@ public class TravelerController {
         if(signin != null && !signin.getEmail().equals("")) {
 	        return "myInfoUpd.tiles";
         }else {
-        	return "redirect:/mypage.do";
+        		return "redirect:/mypage.do";
         }
     }
 
 	@RequestMapping(value="myInfoUpdAf.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String myInfoUpdAf(HttpServletRequest req, TravelerDto dto, Model model)throws Exception{
         logger.info("TravelerController >>>> myInfoUpdAf");
-        System.out.println(dto.toString());
 
         // 정보 수정
         boolean isS = travelerService.myInfoUpd(dto);
 
         if(isS) {
+        		HttpSession session = req.getSession();
+        		session.invalidate();
 	        return "redirect:/signin.do";
         }else {
         	return "redirect:/mypage.do";

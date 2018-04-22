@@ -83,7 +83,7 @@
 	</select>
 	
 	<select id="getBestPlan" resultType="www.tours2us.com.model.PlanerDto">
-	SELECT RNUM, TITLE, SEQ, NAME, LIKE_COUNT, location, reg_date
+		SELECT RNUM, TITLE, SEQ, NAME, LIKE_COUNT, location, reg_date
 		FROM
 		(	select ROW_NUMBER() OVER (ORDER BY LIKE_COUNT DESC) AS RNUM,  TITLE, SEQ, NAME, LIKE_COUNT, location, reg_date
 			from (
@@ -95,5 +95,4 @@
 		) A
 		WHERE RNUM BETWEEN 1 AND 10 and REG_DATE >= TO_CHAR(SYSDATE-7,'YYYYMMDD')
 	</select>
-
 </mapper>

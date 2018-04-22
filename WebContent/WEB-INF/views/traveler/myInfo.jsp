@@ -40,81 +40,114 @@ text-align: center;
 .gu-link:hover {text-decoration: underline; color: #7DC3BB;}
 .gu-link:visited {text-decoration: none; color: #000000;}
 
+
+
+
+.planer-info-over {
+	background-color: #7DC3BB;
+	margin: 30px 10px;
+	width: 80%;
+	text-align: center;
+	border-radius: 15px;
+	padding: 15px;
+    margin: 10px;
+}
+
+.menu_table ul{
+	list-style-type: none;
+	padding: 0px;
+}
+.menu_table li{
+	padding: 10px 0px;
+	color: white;
+}
+.menu-title {
+	font-size: 20px;
+}
+.menu-item {
+	font-size: 15px;
+}
+.planer-label-icon {
+	vertical-align: middle;
+	margin: 0px 3px;
+}
+.editor-title-container {
+	margin-top: 20px;
+	width: 100%;
+}
 </style>
 
 <div class="row no-gutters">
-	<div class="col-md-2 col-xs-12">
-		<div class="guide-info-over">
-			<div class="guide-info-top">
-				<p>
-					<span class="guide-label-icon" data-feather="info"></span>
-					<br>
-					<span class="guide-label-title">My Page</span> 
-				</p>
-			</div>
-				<hr style="color:white; width:100%;">		
-				<p>
-					<div class="guide-label-icon" style="text-align: center;">
-						<span data-feather="tag"></span><br>
-					</div>
-					<span class="guide-label-atag"><a href="#" class="gu-link"onclick="url_myplan()" title="나의 플랜보기" >나의 플랜보기</a></span> 
-					<br>
-					<span class="guide-label-atag"><a href="mypage.do" class="gu-link" title="회원정보수정">회원정보수정</a></span>	
-				</p>		
+	<div class="offset-md-2 col-md-8">
+		<div class="editor-title-container">
+			<h3>회원 정보 수정</h3>
+			<p>회원님의 정보를 안전하게 수정하세요!</p>
 		</div>
+		<hr>
 	</div>
 </div>
 
-<div class="mypage-title">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2>회원 정보 수정</h2>
+
+<div class="row no-gutters">
+	<div class="col-md-2 col-xs-12">
+		<div class="planer-info-over">
+			<div class="menu_table">
+				<ul style="list-style-type: none">
+					<li class="menu-title">
+						<span class="planer-label-icon" data-feather="user"></span>마이 페이지
+					</li>
+					<li><hr></li>
+					<li class="menu_item">
+						<a href="myplan.do" class="nav-link" title="나의 플랜보기">나의 플랜보기</a>
+					</li>
+					<li class="menu_item">
+						<a href="mypage.do" class="nav-link" title="회원 정보 수정">회원 정보 수정</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="offset-md-1 col-md-6">
+		<form action="myInfoUpd.do" id="frmForm" autocomplete="off">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							<label class="title">아이디 또는 이메일 주소</label>
+						</td>
+						<td>${c_user.email }
+							<input type="hidden" name="email" id="login_id" value="${c_user.email }">
+						</td>
+					</tr>
+					<tr>
+						<td><label class="password">비밀번호</label></td>
+						<td>
+							<input type="password" name="password" id="password" title="비밀번호" onkeypress="caps_lock(event)">
+							<p id="capslock" style="position: relative; border: 1px solid #7cc4bb; width: 220px; bottom: 0px; display: none;"> &nbsp;
+								<span style="font-family: 고딕; font-size: medium; color: #191970;">CapsLock키가 눌려있습니다.&nbsp;</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p class="text-center">
+								외부로부터 <span>${c_user.email }</span> 님의 정보를
+								안전하게 보호하기 위해 비밀번호를 다시 한번 확인합니다.<br> 항상 비밀번호는 타인에게 노출되지 않도록
+								주의해 주세요.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<input type="button" id="login_submit" class="btn btn-primary" value="확인">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 	</div>
 </div>
-<div class="offset-md-2 col-md-8 col-xs-12">
-	<hr>
-</div>
-<div class="check-Box">
-<div class="row">
-<div class="offset-md-3">
-	<form action="myInfoUpd.do" id="frmForm" autocomplete="off">
-	<table class="table">
-		<tbody>
-			<tr>
-				<td>
-					<label class="title">아이디 또는 이메일 주소</label>
-				</td>
-				<td>
-					${c_user.email }<input type="hidden" name="email" id="login_id" value="${c_user.email }">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="title">비밀번호</label>
-				</td>
-				<td>
-					<input type="password" name="password" id="password" title="비밀번호" onkeypress="caps_lock(event)">
-					<p id="capslock" style="position:relative; border:1px solid #7cc4bb; width:220px; bottom:0px; display:none"> 
-			    		&nbsp;<span style="font-family: 고딕;font-size: medium ; color: #191970; ">CapsLock키가 눌려있습니다.&nbsp;</span>
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-						외부로부터  <span>${c_user.email }</span> 님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인합니다.<br>
-						항상 비밀번호는 타인에게 노출되지 않도록 주의해 주세요.				
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" id="login_submit" class="btn btn-primary" value="확인">
-				</td>
-			</tr>
-		</tbody>
-	</table>									
-	</form>	
-	</div>
-</div>
-</div>
+
 
 <script>
 	document.getElementById('password').focus();

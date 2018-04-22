@@ -91,12 +91,10 @@ button#next-step:hover {
 						class="planer-label-title">여행 기간</span></label>
 					<div class="row">
 						<div class="col">
-							<input type="date" class="form-control" id="from_date"
-								name="from_date">
+							<input type="date" class="form-control" id="from_date" name="from_date">
 						</div>
 						<div class="col">
-							<input type="date" class="form-control" id="to_date"
-								name="to_date">
+							<input type="date" class="form-control" id="to_date" name="to_date">
 						</div>
 					</div>
 				</div>
@@ -158,9 +156,7 @@ button#next-step:hover {
 	$('#next-step').on(
 			'click',
 			function() {
-				if (validation($('#title'), '제목을 입력해주세요.')
-						&& validation($('#from_date'), '출발 일자를 입력해주세요.')
-						&& validation($('#to_date'), '도착 일자를 입력해주세요.')) {
+				if (validation($('#title'), '제목을 입력해주세요.') && validation($('#from_date'), '출발 일자를 입력해주세요.') && validation($('#to_date'), '도착 일자를 입력해주세요.')) {
 					if (checkDateRange()) {
 						makePlaner();
 					}
@@ -195,8 +191,7 @@ button#next-step:hover {
 		if ($(dom).val() == '') {
 			removeSpan($(dom));
 			$(dom).parent().append(
-					'<span style="font-size:80%;color:#dc3545;">' + msg
-							+ '</span>');
+					'<span style="font-size:80%;color:#dc3545;">' + msg + '</span>');
 			$(dom).focus();
 			result = false;
 		} else {

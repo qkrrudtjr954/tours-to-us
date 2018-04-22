@@ -40,7 +40,7 @@ h2 {
 		</thead>
 		<tbody>
 			<c:if test="${empty eventlist }">
-				<div class="col-md-12 text-center col-xs-12">
+				<div class="col-md-12 col-xs-12">
 					<p>작성된 글이 없습니다</p>
 				</div>
 			</c:if>			

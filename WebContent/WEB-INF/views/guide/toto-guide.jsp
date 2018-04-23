@@ -297,7 +297,6 @@ $(".cur").click(function () {
 		method:"post",
 		data:{location:local},
 		success:function(data){
-			//alert("toto"+data);
 			$(".myplan-content").children().remove();
 
 			for(var i=0; i<data.length; i++ ){

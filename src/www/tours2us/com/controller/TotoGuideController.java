@@ -39,9 +39,9 @@ public class TotoGuideController {
 		logger.info("TotoGuideController >>>> toto_guide");
 		
 		List<TotoGuideDto> list = totoGuideService.getTotoList();
-		String totalDowncount = totoGuideService.getTotalDownCount();
+		//String totalDowncount = totoGuideService.getTotalDownCount();
 		model.addAttribute("totolist", list);
-		model.addAttribute("totalDowncount", totalDowncount);
+		//model.addAttribute("totalDowncount", totalDowncount);
 		System.out.println(list);
 		
 		return "toto_guide.tiles";

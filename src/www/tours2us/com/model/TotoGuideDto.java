@@ -16,7 +16,7 @@ public class TotoGuideDto implements Serializable{
 	private String last_updated;
 	private int status;
 	
-	private String total_downcount;
+	private int total_downcount;
 	
 	public TotoGuideDto() {
 		// TODO Auto-generated constructor stub
@@ -130,12 +130,12 @@ public class TotoGuideDto implements Serializable{
 	}
 
 
-	public String getTotal_downcount() {
+	public int getTotal_downcount() {
 		return total_downcount;
 	}
 
 
-	public void setTotal_downcount(String total_downcount) {
+	public void setTotal_downcount(int total_downcount) {
 		this.total_downcount = total_downcount;
 	}
 

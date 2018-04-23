@@ -186,7 +186,7 @@ color: #7DC3BB;
 		</div>
 		<div class="row no-gutters">
 			<div class="offset-md-8 col-md-2">
-				<span>전체 누적 다운로드 수 : <b class="downcount-font">${totalDowncount }</b></span>
+				<span>전체 누적 다운로드 수 : <b class="downcount-font">${totolist.get(0).total_downcount }</b></span>
 			</div>
 		</div>
 		<div class="row no-gutters">
@@ -317,7 +317,7 @@ function printTotolistHtml(toto) {
 		+'<div class="book-img" onclick="location.href=toto_detail.do?seq='+toto.seq+'">'
 		+'<img class="book-img-top" src="'+toto.pic+'" style="cursor: pointer; width:137px; height:200px;">'
 		+'</div>'
-		+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
+		+'<div class="book-info">'
 		+'<span class="update-text">업데이트 : '+str+'</span>'
 		+'</div>'
 		+'</div>';

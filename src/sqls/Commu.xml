@@ -21,9 +21,7 @@
 </insert>
 
 
-<select id="AftergetBbs"
-	parameterType="int"
-	resultType="www.tours2us.com.model.CommuAfterBbsDto">
+<select id="AftergetBbs" parameterType="int" resultType="www.tours2us.com.model.CommuAfterBbsDto">
 		SELECT*FROM
 		(SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
          A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL, B.PROFILE,
@@ -131,11 +129,10 @@ SELECT RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
 
 <!--==============================FreeBbs======================================-->
 <select id="FreeBbsList" resultType="www.tours2us.com.model.CommuFreeBbsDto">
-	SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
-    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME
-    FROM FREEBBS F, TRAVELER T
-    WHERE F.TARGET_USER_SEQ = T.SEQ
-    ORDER BY F.REG_DATE DESC    
+	SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, (SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY
+	FROM FREEBBS F, TRAVELER T
+	WHERE F.TARGET_USER_SEQ = T.SEQ
+	ORDER BY F.REG_DATE DESC  
 </select>
 
 <select id="FreeCategory" resultType="www.tours2us.com.model.CommuFreeCategoryDto">
@@ -148,13 +145,10 @@ SELECT RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
 		VALUES(FREEBBS_SEQ.NEXTVAL,#{target_category_seq},#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0 )		
 </insert>
 
-<select id="FreeBbsDetail"
-	parameterType="int"
-	resultType="www.tours2us.com.model.CommuFreeBbsDto">
-		SELECT*FROM
-		(SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
-    	F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, T.PROFILE,
-    	 LEAD(F.TITLE,1) OVER(ORDER BY F.reg_date DESC) NEXT_TITLE,
+<select id="FreeBbsDetail" parameterType="int" resultType="www.tours2us.com.model.CommuFreeBbsDto">
+		SELECT * FROM (SELECT F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ,(SELECT TITLE FROM FREECATEGORY WHERE SEQ = F.TARGET_CATEGORY_SEQ) AS CATEGORY, 
+    		F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, T.PROFILE,
+    	 	LEAD(F.TITLE,1) OVER(ORDER BY F.reg_date DESC) NEXT_TITLE,
      	LEAD(F.SEQ,1,0) OVER(ORDER BY F.reg_date DESC) NEXT_SEQ,
      	Lag(F.TITLE,1) OVER(ORDER BY F.reg_date DESC) PREV_TITLE,
      	Lag(F.SEQ,1,0) OVER(ORDER BY F.reg_date DESC) PREV_SEQ         

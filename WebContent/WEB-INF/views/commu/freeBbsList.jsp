@@ -49,108 +49,6 @@ color: #f37720;
 		</div>
 	</div>
 </div>
-
-<%-- 
-<div class="offset-md-2 col-md-8 col-xs-12">
-	<hr>
-</div>
-<br>
-<div class="offset-md-1">
-	<form action="freeBbsList.do" method="get" id="_frmFormSearch">
-   <div class="row" style="margin:0 auto;width:900px;">
-      <div class="input-group-prepend">
-         <select class="custom-select" id="_s_category" name="s_category" style="width: 150px; height: 45px;">
-            <option value="title">제목</option>
-         	<!-- <option value="contents">내용</option> -->
-         	<option value="name">작성자</option>
-         </select> 
-         <input type="text" class="form-control"
-            aria-label="Text input with segmented dropdown button" size="50"
-            name="s_keyword" id="text">
-      </div>
-      <div class="serach">
-         <button class="btn btn-outline-secondary" type="button" id="btnSearch"><span data-feather="search"></span></button>
-         <button class="btn btn-outline-secondary" type="button" id="list" onclick="user_guide()"><span data-feather="list"></span><span class="list-text">전체리스트</span></button>
-         <input type="hidden" name="pageNumber" id="_pageNumber" value="0" />
-            <input type="hidden" name="recordCountPerPage"
-               id="_recordCountPerPage"
-               value="${(empty recordCountPerPage)?10:recordCountPerPage}" />
-      </div>
-      &nbsp;
-	<input type="button" class="btn btn-outline-secondary" id="btnwrite" value="글쓰기" onclick="writeFreeBbs()">
-   </div>
-</form>
-
-</div>
-<br>
-
-<div class="offset-md-2">
-<table style="width:85%;" class="table">
-<colgroup>
-		<col style="width:10%" />
-		<col style="width:60%" />
-		<col style="width:10%" />
-		<col style="width:10%" />
-		<col style="width:10%" />
-</colgroup>
-
-
-<thead>
-	<tr align="center">
-		<th>번호</th><th>제목</th> <th>추천수</th><th>작성자</th> <th>작성일</th>  
-	</tr>
-</thead>
-<tbody>	
-	<c:if test="${empty freelist}">
-	<tr>
-		<td colspan="11">작성된 글이 없습니다.</td>
-	</tr>	
-	</c:if>
-	
-	<c:forEach items="${freelist }" var="free" varStatus="i">
-	<c:if test="${free.status==0 }">
-	<tr>
-		
-		<td align="center">
-			<span  style="font-size: 14px; color: black;">${i.count }</span>
-		</td>
-	
-		<td >
-			<a id="freebbs_title" href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>&nbsp;<span class="comment_count">[${free.comment_count }]</span>
-		</td>
-		
-		<td align="center">
-			<span  style="font-size: 13px; color: black;">${free.like_count }</span>
-		</td>
-		
-		<td align="center">
-			${free.name }
-		</td>
-		
-		<td align="center"  style="font-size: 13px; color: color: #6e6e6e;">
-			<fmt:parseDate value="${free.reg_date }" var="date" pattern="yyyy-MM-dd"/>
-			<fmt:formatDate value="${date}" pattern="yyyy/MM/dd"/>
-		</td>			
-	</tr>
-	</c:if>
-	</c:forEach>
-</tbody>
-</table>
-</div>
-
-<!-- 페이징 처리 -->
-
-<div id="paging_wrap">
-<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
-	<jsp:param value="${pageNumber }" name="pageNumber"/>
-	<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
-	<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
-	<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
-</jsp:include>
-</div>
-
-<!-- 페이징 처리 -->
- --%>
  
  <div class="row no-gutters">
 	<div class="offset-md-2 col-md-8 col-xs-12">
@@ -187,7 +85,8 @@ color: #f37720;
 				<table class="table">
 					<colgroup>
 						<col style="width: 10%" />
-						<col style="width: 60%" />
+						<col style="width: 10%" />
+						<col style="width: 50%" />
 						<col style="width: 10%" />
 						<col style="width: 10%" />
 						<col style="width: 10%" />
@@ -197,6 +96,7 @@ color: #f37720;
 					<thead>
 						<tr align="center">
 							<th>번호</th>
+							<th>카테고리</th>
 							<th>제목</th>
 							<th>추천수</th>
 							<th>작성자</th>
@@ -213,17 +113,20 @@ color: #f37720;
 						<c:forEach items="${freelist }" var="free" varStatus="i">
 							<c:if test="${free.status==0 }">
 								<tr>
-									<td align="center"><span
-										style="font-size: 14px; color: black;">${i.count }</span></td>
-
+									<td align="center">
+										<span style="font-size: 14px; color: black;">${i.count }</span>
+									</td>
+									<td align="center">
+										<span>${free.category }</span>
+									</td>
 									<td>
 										<a id="freebbs_title" href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>&nbsp;
 										<span class="comment_count">[${free.comment_count }]</span></td>
 									<td align="center">
-									<img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px"> ${free.like_count }</td>
+										<img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px"> ${free.like_count }
+									</td>
 									<td align="center">${after.name }</td>
 									<td align="center">${free.name }</td>
-
 									<td align="center" style="font-size: 13px; color: color: #6e6e6e;">
 										<fmt:parseDate value="${free.reg_date }" var="date" pattern="yyyy-MM-dd" />
 										<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" />
@@ -235,6 +138,7 @@ color: #f37720;
 				</table>
 			</div>
 		</div>
+		
 		<div id="paging_wrap">
 			<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
 			   <jsp:param value="${pageNumber }" name="pageNumber"/>

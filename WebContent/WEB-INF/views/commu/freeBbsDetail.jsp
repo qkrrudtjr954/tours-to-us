@@ -205,8 +205,8 @@ font-size: 13px;
 				</div>
 
 				<div class="col-md-8 toditor_title">
-					<span class="toditor_category">#</span> <span
-						class="toditor_title_bold">${commufredetail.title }</span>
+					<span class="toditor_category">#${commufredetail.category }</span> 
+					<span class="toditor_title_bold">${commufredetail.title }</span>
 					<div class="toditor_etc">
 						<span class="etc_writer">${commufredetail.name }</span> 
 						<span class="etc_date">

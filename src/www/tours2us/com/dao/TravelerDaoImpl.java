@@ -23,10 +23,7 @@ public class TravelerDaoImpl implements TravelerDao{
 
 	@Override
 	public boolean signup(TravelerDto dto) throws Exception {
-		
-		System.out.println("before : "+dto);
 		int n = sqlSession.insert(ns+"signup", dto);
-		System.out.println("after : "+dto);
 		return n>0? true:false;
 	}
 

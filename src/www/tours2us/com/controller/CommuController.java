@@ -90,11 +90,8 @@ public class CommuController {
 		}
 		//logger.info("CommuController >>>> bbswriteAf");
 		TravelerDto t_dto = (TravelerDto) req.getSession().getAttribute("current_user");
-		//System.out.println("s" + t_dto.toString());
 
 		bbs.setTarget_user_seq(t_dto.getSeq());
-		//System.out.println("b" + bbs.getTarget_user_seq());
-		System.out.println(bbs.toString());
 
 		commuService.afterwriteBbs(bbs);
 		return "redirect:/afterBbs.do";

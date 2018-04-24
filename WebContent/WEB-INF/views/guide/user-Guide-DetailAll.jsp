@@ -112,7 +112,7 @@
 						<div class="col-md-4 planer-progress-bar" style="background-image: url('${url}');"></div>
 <%-- 						<div class="col-md-1 planer-transportaion" style="background-image: url('${initParam.IMG_SERVER_PATH }/image/${timePlaner.transportation }');"></div> --%>
 						<div class="col-md-1 d-flex align-items-center planer-transportaion">
-							<img src="${initParam.IMG_SERVER_PATH }/image/${timePlan.transportation}" alt="${timePlan.transportation}" width="45px"/>
+							<img src="${initParam.IMG_SERVER_PATH }/image/${timePlan.transportation}" alt="${timePlan.transportation}" width="50px"/>
 						</div>
 						<div class="col d-flex align-items-center">
 							<table id="time-info-table">

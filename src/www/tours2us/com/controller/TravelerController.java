@@ -36,7 +36,6 @@ public class TravelerController {
 	@RequestMapping(value="signinAf.do", method=RequestMethod.POST)
 	public TravelerDto signinAf(HttpServletRequest req, TravelerDto dto, Model model) throws Exception {
 		logger.info("TravelerController >>>> signinAf");
-		System.out.println(dto.toString());
         TravelerDto signin = travelerService.signin(dto);
 
         if(signin != null && !signin.getEmail().equals("")) {
@@ -57,7 +56,6 @@ public class TravelerController {
 	public String signupAf(TravelerDto dto, String password2, Model model){
 		logger.info("TravelerController >>>> signupAf {} {}", dto);
 		boolean isS = false;
-		System.out.println(password2);
 		try {
 			isS = travelerService.signup(dto);
 		} catch (Exception e) {
@@ -108,11 +106,9 @@ public class TravelerController {
 	@RequestMapping(value="mypage.do", method= {RequestMethod.GET, RequestMethod.POST})
     public String mypage(HttpServletRequest req, Model model)throws Exception {
         logger.info("TravelerController >>>> mypage");
-      TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
-       System.out.println("s"+t_dto.toString());
-       TravelerDto signin = travelerService.signin(t_dto);
-       System.out.println(signin.toString());
-       model.addAttribute("c_user", signin);
+        TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
+        TravelerDto signin = travelerService.signin(t_dto);
+        model.addAttribute("c_user", signin);
         return "mypage.tiles";
     }
 
@@ -122,7 +118,7 @@ public class TravelerController {
         // 비번확인
 
         TravelerDto signin = travelerService.signin(dto);
-        System.out.println(signin.toString());
+        
         model.addAttribute("c_user", signin);
         if(signin != null && !signin.getEmail().equals("")) {
 	        return "myInfoUpd.tiles";

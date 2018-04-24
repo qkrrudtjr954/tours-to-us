@@ -94,7 +94,6 @@ public class UserGuideController {
 
 		for(DayPlanerDto dayPlan : dayPlanlist) {
 			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
-			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 
 		model.addAttribute("planer", planer);
@@ -124,7 +123,6 @@ public class UserGuideController {
 	@RequestMapping(value = "guideDetailAll.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String guideDetailAll(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> planDetailAll");
-		System.out.println("planerseq:"+seq);
 
 		PlanerDto planer = planerService.getPlaner(seq);
 
@@ -139,7 +137,6 @@ public class UserGuideController {
 
 		for(DayPlanerDto dayPlan : dayPlanlist) {
 			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
-			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 
 		model.addAttribute("planer",planer);
@@ -152,9 +149,7 @@ public class UserGuideController {
 	@RequestMapping(value="user_search.do", method={RequestMethod.GET, RequestMethod.POST})
 	public List<PlanerDto> user_search(Model model, String location)throws Exception {
 
-		System.out.println("l:"+location);
 		List<PlanerDto> planlist = userGuideService.userSearch(location);
-		System.out.println(planlist);
 		return planlist;
 	}
 

@@ -171,6 +171,8 @@ button#toggleChat {
 
 #timePlanerForm {
 	padding: 5px;
+	background-color: #6c757d45;
+	border-radius: 5px;
 }
 
 .deleteTimePlanerBtn {

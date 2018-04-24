@@ -15,7 +15,6 @@ private String ns = "Like.";
 	SqlSessionTemplate sqlSession;
 	
 	public int prevent_duplication(LikeDto dto) {
-		System.out.println(dto);
 		int isS = sqlSession.selectOne(ns+"prevent_duplication", dto);
 		return isS;
 	}

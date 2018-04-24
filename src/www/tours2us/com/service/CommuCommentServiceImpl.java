@@ -84,6 +84,12 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		int target_user_seq = commuCommentDao.FreeCommentGgtUserSeq(seq);
 		return(target_user_seq==current_user_seq)?true:false;
 	}
+
+	@Override
+	public void readCount(int seq) {
+		// TODO Auto-generated method stub
+		commuCommentDao.readCount(seq);
+	}
 	
 	
 	

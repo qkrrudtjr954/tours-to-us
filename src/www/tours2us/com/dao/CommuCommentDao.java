@@ -18,6 +18,7 @@ public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception;
 public boolean FreeAddComent(CommuFreeCommentDto freecomment) throws Exception;
 public boolean FreeCommentDelete(int seq)throws Exception;
 public int FreeCommentGgtUserSeq(int seq)throws Exception;
+public void readCount(int seq);
 
 
 

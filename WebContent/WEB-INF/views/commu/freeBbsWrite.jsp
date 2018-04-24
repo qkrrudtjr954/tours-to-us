@@ -32,14 +32,11 @@
 <div class="row no-gutters">
 	<div class="offset-md-2 col-md-8 col-xs-12">
 		<form action="freeBbsWriteAf.do" method="post" id="myform">
-			<input type="hidden" name="target_planer_seq" value="${planer.seq }">
-			
-
 			<div class="form-group">
 				<label class="after-form-label" for="title">카테고리</label> 
-				<select class="form-control" id="location" name="location" style="width: 200px">
+				<select class="form-control" id="location" name="target_category_seq" style="width: 200px">
 					<c:forEach var="part" items="${category }">
-						<option>${part.title }</option>
+						<option value="${part.seq }">${part.title }</option>
 					</c:forEach>
 				</select> 
 			</div>
@@ -47,13 +44,11 @@
 				<label class="after-form-label" for="title">제목</label> 
 				<input type="text" class="form-control" size="20" name="title" id="title" placeholder="제목을 입력해주세요."> 
 			</div>
-
 	
 			<div class="form-group">
 				<label class="after-form-label" for="summernote">내용</label>
 				<textarea id="summernote" name="content"></textarea>
 			</div>
-		
 
 			<input type="submit" class="btn btn-success offset-md-4 col-md-2" value="글쓰기" onclick="" id="btnwrite">&nbsp; 
 			<a href="afterBbs.do" class="btn btn-outline-secondary col-md-2 " id="btnBack">돌아가기</a>

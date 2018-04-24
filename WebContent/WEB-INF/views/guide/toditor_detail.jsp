@@ -215,7 +215,7 @@
 
 .comment-item {
 	border-bottom: 1px solid #dcdcdc;
-	padding-top: 15px
+	padding: 15px 0px;
 }
 </style>
 

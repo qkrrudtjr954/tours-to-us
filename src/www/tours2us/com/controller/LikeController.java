@@ -31,14 +31,12 @@ public class LikeController {
 		logger.info("LikeController >>>> likebtn_click");
 		
 		// 글의 seq (target_bbs_seq), 게시판 카테고리(bbs_category), 현재 유저(current_user)
-		System.out.println(dto.toString());
 		
 		int like_count = 0;
 		HashMap<String, Integer> status = new HashMap<>();
 		
 		int check=0;
 		check = likeService.prevent_duplication(dto);
-		System.out.println("체크 : " +check);
 		if (check ==  1) {
 			// 테이블에서 해당 행을 삭제( 추가) 한다.
 			likeService.delete_like(dto);
@@ -59,7 +57,6 @@ public class LikeController {
 		status.put("like_count", like_count);
 		String json = new Gson().toJson(status);
 
-		System.out.println(json);
 		return json;
 	}
 }

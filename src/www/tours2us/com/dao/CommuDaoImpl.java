@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import www.tours2us.com.model.CommuAfterBbsDto;
-import www.tours2us.com.model.CommuAfterCommentDto;
 import www.tours2us.com.model.CommuFreeBbsDto;
 import www.tours2us.com.model.CommuFreeCategoryDto;
 
@@ -28,7 +27,6 @@ private String ns = "Commu.";
 public List<CommuAfterBbsDto> getAfterBbslist() throws Exception {
 	//logger.info("CommuDaoImpl >>>> afterbbslist");
 	// sqlSession 설정 타입 (BATCH, SIMPLE)
-	System.out.println("타입:" + sqlSession.getConfiguration().getDefaultExecutorType());
 	
 	List<CommuAfterBbsDto> list = sqlSession.selectList(ns + "AfterBbslist");	
 	
@@ -53,7 +51,6 @@ public boolean AfterUpdate(CommuAfterBbsDto bbs) throws Exception {
 	//logger.info("CommuDaoImpl >>>> AfterUpdate");
 	int n = sqlSession.update(ns+"AfterUpdateBbs", bbs);
 	
-	System.out.println("bbs = "  +bbs);
 	return n>0?true:false;
 }
 
@@ -104,7 +101,6 @@ public CommuFreeBbsDto FreeBbsDetail(int seq) throws Exception {
 public boolean FreeBbsUpdate(CommuFreeBbsDto freebbsupdate) throws Exception {
 	//logger.info("CommuDaoImpl >>>> FreeBbsUpdate");
 	int n = sqlSession.update(ns+"FreeBbsUpdate", freebbsupdate);
-	System.out.println("freebbsupdate = "  +freebbsupdate);
 	return n>0?true:false;
 }
 

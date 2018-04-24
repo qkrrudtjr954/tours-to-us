@@ -62,7 +62,6 @@ public class TotoGuideController {
 	public String toto_detail(HttpServletRequest req, int seq, Model model)throws Exception{
 		logger.info("TotoGuideController >>>> toto_detail");
 		
-		System.out.println(""+seq);
 		TotoGuideDto toto = totoGuideService.getTotoDetail(seq);
 		totoGuideService.readCount(seq);
 		model.addAttribute("toto", toto);
@@ -101,15 +100,9 @@ public class TotoGuideController {
 	@RequestMapping(value="toto_upload.do", method=RequestMethod.POST)
 	public String toto_upload(Model model, TotoGuideDto totodto, HttpServletRequest req, @RequestParam(value="fileload", required=false)MultipartFile fileload){
 		logger.info("TotoGuideController >>>> toto_upload");
-		System.out.println(totodto.toString());		
-		System.out.println(fileload);
 		
 		// upload -MultipartResolver spring에 추가
 		totodto.setFilename(fileload.getOriginalFilename());
-		
-		// 서버저장
-		//String fupload = req.getServletContext().getRealPath("/upload");
-		//System.out.println("fup"+fupload);
 		
 		// 폴더저장
 		String fupload = "c:\\test";
@@ -118,7 +111,6 @@ public class TotoGuideController {
 		// 이름변경
 		//String newFile = FUpUtil.getNewFile(f);
 		totodto.setFilename(f);
-		System.out.println(fupload+"\\"+f);
 		
 		try {
 			File file = new File(fupload+"/"+f);
@@ -127,7 +119,6 @@ public class TotoGuideController {
 			// db insert
 			totoGuideService.totoUpload(totodto);
 		
-			System.out.println("upload success");
 		} catch (IOException e) {
 			System.out.println("upload fail");
 		}
@@ -139,26 +130,13 @@ public class TotoGuideController {
 	@RequestMapping(value="toto_download.do", method={RequestMethod.GET, RequestMethod.POST})
 	public String toto_download(int seq, String filename, HttpServletRequest req, Model model)throws Exception{
 		logger.info("TotoGuideController >>>> toto_download");
-		
-		System.out.println("s:"+seq+"f:"+filename);
-		
-		// 서버저장
-		//String fupload = req.getServletContext().getRealPath("/upload");
-		
+	
 		// 폴더저장
 		String fupload = "c:\\test";
 		File downloadFile = new File(fupload+"/"+filename);
 		model.addAttribute("downloadFile", downloadFile);
 		model.addAttribute("seq", seq);
 		boolean isS = totoGuideService.downCount(seq);
-		
-		if(isS) {
-			System.out.println("downloadview"+seq);
-		}else {
-			System.out.println("error"+seq);
-		}
-		
-		System.out.println(downloadFile);
 		
 		return "downloadView";
 	}
@@ -168,9 +146,7 @@ public class TotoGuideController {
 	public List<TotoGuideDto> toto_search(Model model, String location)throws Exception {
 		logger.info("TotoGuideController >>>> toto_search");
 		
-		System.out.println("l:"+location);
 		List<TotoGuideDto> totolist = totoGuideService.totoSearch(location);
-		System.out.println(totolist);
 		return totolist;
 	}
 }

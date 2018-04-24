@@ -85,14 +85,12 @@ color: #f37720;
 				<table class="table">
 					<colgroup>
 						<col style="width: 10%" />
-						<col style="width: 10%" />
-						<col style="width: 50%" />
+						<col style="width: 15%" />
+						<col style="width: 45%" />
 						<col style="width: 10%" />
 						<col style="width: 10%" />
 						<col style="width: 10%" />
 					</colgroup>
-
-
 					<thead>
 						<tr align="center">
 							<th>번호</th>
@@ -121,11 +119,11 @@ color: #f37720;
 									</td>
 									<td>
 										<a id="freebbs_title" href="freeBbsDetail.do?seq=${free.seq }">${free.title }</a>&nbsp;
-										<span class="comment_count">[${free.comment_count }]</span></td>
+										<span class="comment_count">[${free.comment_count }]</span>
+									</td>
 									<td align="center">
 										<img src="${initParam.IMG_SERVER_PATH}/image/heart.png" width="30px" height="30px"> ${free.like_count }
 									</td>
-									<td align="center">${after.name }</td>
 									<td align="center">${free.name }</td>
 									<td align="center" style="font-size: 13px; color: color: #6e6e6e;">
 										<fmt:parseDate value="${free.reg_date }" var="date" pattern="yyyy-MM-dd" />

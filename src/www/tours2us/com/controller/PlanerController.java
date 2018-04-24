@@ -144,7 +144,6 @@ public class PlanerController {
 
 		// 플랜 select
 		List<PlanerDto> planlist = planerService.getplanList(seq);
-		System.out.println(planlist);
 		
 		model.addAttribute("seq", seq);
 		model.addAttribute("planlist", planlist);
@@ -206,7 +205,7 @@ public class PlanerController {
 	@RequestMapping(value = "planDetail.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String planDetail(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> planDetail");
-		System.out.println("planerseq:"+seq);
+		
 		
 		PlanerDto planer = planerService.getPlaner(seq);
 		
@@ -232,7 +231,6 @@ public class PlanerController {
 	@RequestMapping(value = "planDetailAll.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String planDetailAll(HttpServletRequest req, int seq, Model model) throws Exception {
 		logger.info("PlanerContoller >>>> planDetailAll");
-		System.out.println("planerseq:"+seq);
 		
 		PlanerDto planer = planerService.getPlaner(seq);
 		
@@ -247,7 +245,6 @@ public class PlanerController {
 		
 		for(DayPlanerDto dayPlan : dayPlanlist) {
 			planMap.put(dayPlan, planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
-			System.out.println(planerService.getAllTimePlanersByTargetDayPlanerSeq(dayPlan.getSeq()));
 		}
 	
 		model.addAttribute("planer",planer);
@@ -260,12 +257,12 @@ public class PlanerController {
 	@RequestMapping(value = "changeTitle.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public PlanerDto changeTitle(Model model, PlanerDto planer)throws Exception {
 		logger.info("PlanerController >>>> changeTitle");
-		System.out.println(planer.toString());
+		
 		PlanerDto dto = null;
 		int seq = planer.getSeq();
-		System.out.println(""+seq);
+		
 		boolean isS = planerService.changeTitle(planer);
-		System.out.println(isS);
+		
 		if(isS) {
 			dto = planerService.getPlaner(seq);
 			return dto;

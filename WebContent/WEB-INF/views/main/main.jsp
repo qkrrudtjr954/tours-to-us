@@ -293,7 +293,7 @@
 	<div class="main_cover">
 		<img src="image/bg_mainCopy.png" class="bg_maincopy"><br>
 		<p id="main_copy">어디로 떠날까요?</p>
-		<a href="#"> <span>이달의 추천 도시 '서울'로 떠나보세요</span></a>
+		<a href="location.href='user_guide.do?fromMainMap=서울'"> <span>이달의 추천 도시 '서울'로 떠나보세요</span></a>
 	</div>
 
 	<div class="main_cover_right">

@@ -30,8 +30,7 @@
 	</insert>
 	
 	<update id="downCount" parameterType="int">
-		UPDATE TOTOGUIDE SET DOWNCOUNT= DOWNCOUNT+1
-		WHERE SEQ=#{seq}
+		UPDATE TOTOGUIDE SET DOWNCOUNT= DOWNCOUNT+1 WHERE SEQ=#{seq}
 	</update>
 	
 	<update id="readCount" parameterType="int">

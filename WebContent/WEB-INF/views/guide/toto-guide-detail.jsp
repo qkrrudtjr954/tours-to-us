@@ -68,8 +68,8 @@ h2 {
     margin-top: 60px;
 }
 
-.toto-downBtn{
-    margin-top: 50px;
+.filesown-button{
+    width: 100px;
 }
 
 #toto-pic-box{
@@ -78,120 +78,97 @@ h2 {
     /* border-right: 1px solid #DCDCDC; */
 }
 
-#downBtn{
-	width: 300px;
-	margin-left: 30px;
+.editor-title-container {
+	margin-top: 20px;
+	width: 100%;
 }
-
 
 </style>
 
-<div class="toto-location">
-	<div class="offset-md-2 col-md-4 col-xs-12">
-		<h2 class="guide-title">${toto.location }</h2>
+<div class="row no-gutters">
+	<div class="editor-title-container">
+		<div class="offset-md-2 col-md-10">
+			<h3>${toto.location }</h3>
+			<p>Tours to us가 제공하는 ${toto.location } 가이드북!</p>
+		</div>
 	</div>
-</div>
-<div class="offset-md-2  col-md-8 col-xs-12">
-	<span class="toto-readcount">조회수 : ${toto.readcount }</span>
 	<hr>
 </div>
-
-<div class="toto-div">
-	<div class="row">
-		<div class="offset-md-3 col-md-4 ">
-			<div class="row no-gutters" id="toto-pic-box">
-				<div class="toto-img">
-					<img class="toto-img-top"  src="${initParam.IMG_SERVER_PATH}/image/${toto.pic}" width="300px" height="355px">
+<div class="row no-gutters">
+	<div class="offset-md-2 col-md-8">
+		<div class="d-flex justify-content-end" style="width: 100%">
+			<span class="toto-readcount">조회수 : ${toto.readcount }</span>
+		</div>	
+		<div class="row no-gutters">
+			<div class="offset-md-1 col-md-5">
+				<div class="row no-gutters" id="toto-pic-box">
+					<div class="toto-img">
+						<img class="toto-img-top"  src="${initParam.IMG_SERVER_PATH}/image/${toto.pic}" width="300px" height="355px">
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-5" id="toto-box">
-			<div class="row toto-body">
-				<span class="toto-title" style="font-weight: bold; font-size: 20px;">${toto.title }</span>
-			</div>
-			<div class="row toto-content-sub">
-				<span class="toto-updated" style="font-weight: bold;">업데이트 : </span>&nbsp;<span class="toto-updated">${fn:substring(toto.last_updated, 0, 10) }</span>
-				<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated">${toto.downcount }</span>
-			</div>
-			<div class="row col-md-8" id="under-line">
+			<div class="col-md-6">
+				<div class="row no-gutters">
+					<span class="toto-title" style="font-weight: bold; font-size: 20px;">${toto.title }</span>
+				</div>
+				<div class="row no-gutters">
+					<span class="toto-updated" style="font-weight: bold;">업데이트 : </span>&nbsp;<span class="toto-updated">${fn:substring(toto.last_updated, 0, 10) }</span>
+					<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated downcount">${toto.downcount }</span>
+				</div>
 				<hr>
-			</div>
-			<div class="row row-content">
-				<span class="toto-content" style="fo">추가 설명 : ${toto.content }</span>
-			</div>
-			<div class="row toto-downBtn">
-				<button class="btn btn-outline-secondary" id="downBtn" onclick="filedown('${toto.filename}','${toto.seq}')"><span data-feather="download"></span><span>다운로드</span></button>
+				<div class="row no-gutters">
+					<span class="toto-content" style="fo">추가 설명 : ${toto.content }</span>
+				</div>
+				<div class="row no-gutters">
+					<div class="d-flex justify-content-center" style="width: 100%;">
+						<a id="filedown-button" class="btn btn-outline-secondary" href="${initParam.FILE_SERVER_PATH }/download?filename=${toto.filename }">다운로드</a>
+					</div>
+				</div>		
+					
 			</div>		
-				
-		</div>		
+		</div>
+		
 	</div>
-	<!-- 좋아요 -->	
-	<div class="detailBody_like" align="center">
-			<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br> <span>좋아요</span>&nbsp;<strong
-			id="like_count">${like_count }</strong>
+</div>
+<div class="row no-gutters">
+	<div class="detailBody_like">
+		<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br> <span>좋아요</span>&nbsp;<strong id="like_count">${like_count }</strong>
 	</div>
 	<hr class="offset-md-2 col-md-8">
-	<!-- 좋아요 -->
 </div>
-<form name="delfileup" action="toto_download.do" method="post">
-<input type="hidden" name="filename" />
-<input type="hidden" name="seq" />
-</form>
+
 
 <script>
+$('#filedown-button').on('click', function () {
+	$.get('${initParam.FILE_SERVER_PATH }/download?filename=${toto.filename }', function () {
+		$.ajax({
+			url: 'downCount.do',
+			data : { seq : ${toto.seq}},
+			method : 'POST',
+			success : function (data) {
+				if(data){
+					var downcount = parseInt($('span.downcount').text()) + 1;
+					$('span.downcount').text(downcount);
+				}
+			}
+		})	
+	});
+})
+
 $('#like_btn').click(function () {
-
-
 	$.ajax({
 		url:"likebtn_click.do",
 		data: {bbs_category: 5, target_user_seq: ${current_user.seq }, target_bbs_seq: ${toto.seq }},
 		type:"post",
 		success : function (data) {
-
 			var result = JSON.parse(data);
-
 			if(result.status == 404){
-
 				$('img.hearticon').attr('src', './image/empty_heart.png');
 			} else {
-
 				$('img.hearticon').attr('src', './image/heart.png');
 			}
-
 			$('strong#like_count').html(result.like_count);
 		}
 	})
-});
-
-
-function filedown(filename,seq){
-	//alert(filename+'  '+seq);
-	var doc=document.delfileup;
-	doc.filename.value=filename;
-	doc.seq.value=seq;
-	doc.submit();
-}
-
-//'저장' 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
-function submitContents(elClickedObj) {
-   // 에디터의 내용이 textarea에 적용된다.
-   oEditors[0].exec("UPDATE_CONTENTS_FIELD", []);
- 
-   // 에디터에 입력된 내용의 검증은 이곳에서
-   // document.getElementById("ir1").value 값을 이용해서 처리한다.
-   //alert(ares+'------------------------');
-   try{
-       // 이 라인은 현재 사용 중인 폼에 따라 달라질 수 있다.
-       //elClickedObj.action.value=ares;
-       elClickedObj.submit();
-   }catch(e){}
-}
-
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-    oAppRef: oEditors,
-    elPlaceHolder: "_content",
-    sSkinURI: "./se2/SmartEditor2Skin.html",
-    fCreator: "createSEditor2"
 });
 </script>

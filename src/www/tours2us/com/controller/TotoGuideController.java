@@ -127,18 +127,11 @@ public class TotoGuideController {
 		return "redirect:/toto_guide.do";
 	}
 	
-	@RequestMapping(value="toto_download.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String toto_download(int seq, String filename, HttpServletRequest req, Model model)throws Exception{
+	@ResponseBody
+	@RequestMapping(value="downCount.do", method=RequestMethod.POST)
+	public boolean toto_download(@RequestParam("seq") int seq) throws Exception{
 		logger.info("TotoGuideController >>>> toto_download");
-	
-		// 폴더저장
-		String fupload = "c:\\test";
-		File downloadFile = new File(fupload+"/"+filename);
-		model.addAttribute("downloadFile", downloadFile);
-		model.addAttribute("seq", seq);
-		boolean isS = totoGuideService.downCount(seq);
-		
-		return "downloadView";
+		return totoGuideService.downCount(seq);
 	}
 	
 	@ResponseBody

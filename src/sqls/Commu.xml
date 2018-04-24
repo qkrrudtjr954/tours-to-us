@@ -197,22 +197,21 @@ SELECT TARGET_USER_SEQ FROM FREEBBSCOMMENT WHERE SEQ=#{seq}
 <select id="FreeGetBbsPagingList"
 	parameterType="www.tours2us.com.model.CommuFreeBbsDto"
 	resultType="www.tours2us.com.model.CommuFreeBbsDto">
-	SELECT SEQ, TARGET_CATEGORY_SEQ, TARGET_USER_SEQ, 
-    	TITLE, CONTENT, REG_DATE, LAST_UPDATED, STATUS, NAME, EMAIL, LIKE_COUNT, COMMENT_COUNT
+	SELECT SEQ, TARGET_CATEGORY_SEQ, TARGET_USER_SEQ, TITLE, CONTENT, REG_DATE, LAST_UPDATED, STATUS, NAME, EMAIL, LIKE_COUNT, COMMENT_COUNT, (SELECT TITLE FROM FREECATEGORY WHERE SEQ = A.TARGET_CATEGORY_SEQ) AS CATEGORY
 	FROM
-	(SELECT ROW_NUMBER() OVER (ORDER BY F.REG_DATE DESC) as rnum,
-	 F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
-         F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, 
-          (select count(*) from liketable C where F.seq = C.target_bbs_seq and C.bbs_category=4) as like_count,
-        (SELECT COUNT(*) FROM FREEBBSCOMMENT D WHERE D.TARGET_FREE_SEQ = F.SEQ  and d.status=0 ) AS COMMENT_COUNT
-      	FROM FREEBBS F, TRAVELER T
-	WHERE F.TARGET_USER_SEQ = T.SEQ AND STATUS=0
-	 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
-		<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
-		<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
-		<if test="s_category == 'name'"> AND NAME like '%'||#{s_keyword}||'%'</if>
-	</if>
-	) A
+		(SELECT ROW_NUMBER() OVER (ORDER BY F.REG_DATE DESC) as rnum,
+		 F.SEQ, F.TARGET_CATEGORY_SEQ, F.TARGET_USER_SEQ, 
+	         F.TITLE, F.CONTENT, F.REG_DATE, F.LAST_UPDATED, F.STATUS, T.NAME, T.EMAIL, 
+	          (select count(*) from liketable C where F.seq = C.target_bbs_seq and C.bbs_category=4) as like_count,
+	        (SELECT COUNT(*) FROM FREEBBSCOMMENT D WHERE D.TARGET_FREE_SEQ = F.SEQ  and d.status=0 ) AS COMMENT_COUNT
+	      	FROM FREEBBS F, TRAVELER T
+		WHERE F.TARGET_USER_SEQ = T.SEQ AND STATUS=0
+		 <if test="s_category != '' and s_category != null and s_keyword != '' and s_keyword != null">
+			<if test="s_category == 'title'"> AND TITLE like '%'||#{s_keyword}||'%'</if>	
+			<if test="s_category == 'contents'"> AND CONTENT like '%'||#{s_keyword}||'%'</if>
+			<if test="s_category == 'name'"> AND NAME like '%'||#{s_keyword}||'%'</if>
+		</if>
+		) A
 	WHERE rnum between #{start} AND #{end}	
 </select>
 

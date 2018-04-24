@@ -129,7 +129,9 @@ li.cur.active{
 .cur:hover {text-decoration: none; color: #7DC3BB;}
 .cur:visited {text-decoration: none; color: #000000;}
 
-
+.cur-all:link {text-decoration: none; color: #000000;}
+.cur-all:hover {text-decoration: none; color: #7DC3BB;}
+.cur-all:visited {text-decoration: none; color: #000000;}
 
 .planer-info-over {
 	background-color: #7DC3BB;
@@ -168,6 +170,10 @@ li.cur.active{
 .myplan-content {
 	width: 100%;
 }
+b{
+font-size: x-large;
+color: #7DC3BB;
+}
 </style>
 
 
@@ -178,8 +184,10 @@ li.cur.active{
 				<h3>투투 가이드북</h3>
 				<p>투디터들과 투투 운영진이 엄선한 가이드북</p>
 			</div>
-			<div class="col-md-2">
-				<span>전체 누적 다운로드 수 : <b style="font-size: x-large;color: #7DC3BB;"></b></span>
+		</div>
+		<div class="row no-gutters">
+			<div class="offset-md-8 col-md-2">
+				<span>전체 누적 다운로드 수 : <b class="downcount-font">${totolist.get(0).total_downcount }</b></span>
 			</div>
 		</div>
 		<div class="row no-gutters">
@@ -217,27 +225,27 @@ li.cur.active{
 		<div class="d-flex justify-content-between">
 			<div class="tag-location">
 				<ul>
-					<li class="active">
-						<a href="toto_guide.do" class="cur">전체</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">서울</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">강원도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">충청도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">경상도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">전라도</a>
-					</li>
-					<li class="">
-						<a href="#" class="cur" onclick="location_search()">제주도</a>
-					</li>
+						<li class="active">
+					<a href="toto_guide.do" class="cur-all">전체</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="서울">서울</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="강원">강원도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="충청">충청도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="경상">경상도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="전라">전라도</a>
+				</li>
+				<li class="">
+					<a href="#" class="cur" value="제주">제주도</a>
+				</li>
 				</ul>
 			</div>
 		</div>
@@ -290,8 +298,7 @@ $(".cur").click(function () {
 		method:"post",
 		data:{location:local},
 		success:function(data){
-			//alert("toto"+data);
-			$(".toContent").children().remove();
+			$(".myplan-content").children().remove();
 
 			for(var i=0; i<data.length; i++ ){
 				printTotolistHtml(data[i]);
@@ -310,10 +317,10 @@ function printTotolistHtml(toto) {
 		+'<div class="book-img" onclick="location.href=toto_detail.do?seq='+toto.seq+'">'
 		+'<img class="book-img-top" src="'+toto.pic+'" style="cursor: pointer; width:137px; height:200px;">'
 		+'</div>'
-		+'<div class="book-info" style="height: 25px; width: 210px; text-align: center;">'
+		+'<div class="book-info">'
 		+'<span class="update-text">업데이트 : '+str+'</span>'
 		+'</div>'
 		+'</div>';
-		$(".toContent").append(html);
+		$(".myplan-content").append(html);
 }
 </script>

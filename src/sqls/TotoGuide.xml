@@ -4,14 +4,19 @@
 <mapper namespace="TotoGuide">
 	
 	<select id="getTotoList" resultType="www.tours2us.com.model.TotoGuideDto">
-		<!-- SELECT * FROM TOTOGUIDE ORDER BY REG_DATE DESC -->
-		SELECT * FROM TOTOGUIDE
+		<!-- SELECT * FROM TOTOGUIDE
 		WHERE STATUS=0
-		ORDER BY REG_DATE DESC
+		ORDER BY REG_DATE DESC -->
+		SELECT seq, title, content, pic, location, filename, readcount, downcount, reg_date, last_updated, status, 
+		(SELECT SUM(DOWNCOUNT) FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0) as total_downcount
+		FROM TOTOGUIDE
+		WHERE STATUS=0
+		ORDER BY REG_DATE DESC 
+		
 	</select>
 	
 	<select id="getTotalDownCount" resultType="string">
-		SELECT SUM(DOWNCOUNT) AS DOWNCOUNT FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0
+		SELECT SUM(DOWNCOUNT) FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0
 	</select>
 	
 	<select id="getTotoDetail" parameterType="int" resultType="www.tours2us.com.model.TotoGuideDto">

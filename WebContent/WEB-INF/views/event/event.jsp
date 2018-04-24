@@ -12,8 +12,8 @@ h2 {
     -webkit-margin-after: 0.83em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-   
-} 
+
+}
 
 .title:link {text-decoration: none; color: #000000;}
 .title:hover {text-decoration: underline; color: #7DC3BB;}
@@ -46,7 +46,7 @@ h2 {
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
-						<th>진행기간</th>  
+						<th>진행기간</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,16 +54,16 @@ h2 {
 						<div class="col-md-12 text-center col-xs-12">
 							<p>작성된 글이 없습니다</p>
 						</div>
-					</c:if>			
-					
+					</c:if>
+
 					<c:forEach items="${eventlist }" var="event" varStatus="i">
 						<tr>
 							<td>${i.count }</td>
-						
-							<td> 
+
+							<td>
 								<c:choose>
 									<c:when test="${event.category eq '항공'}">
-										<span class="badge badge-pill" style="background-color: #3CC2FF; color: #fff">${event.category }</span>&nbsp;								
+										<span class="badge badge-pill" style="background-color: #3CC2FF; color: #fff">${event.category }</span>&nbsp;
 									</c:when>
 									<c:when test="${event.category eq '호텔'}">
 										<span class="badge badge-pill" style="background-color: #FF5050; color: #fff">${event.category }</span>&nbsp;
@@ -74,7 +74,7 @@ h2 {
 								</c:choose>
 								<a href="eventDetail.do?seq=${event.seq }" class="title">${event.title }</a>
 							</td>
-						
+
 							<td>${event.from_date } ~ ${event.to_date }</td>
 						</tr>
 					</c:forEach>

@@ -9,14 +9,14 @@
 	width: 100%;
 }
 </style>
-		
+
 <div class="row no-gutters">
 	<div class="editor-title-container">
 		<div class="offset-md-2 col-md-8">
 			<h3>
 				<c:choose>
 					<c:when test="${e_dto.category eq '항공'}">
-						<span class="badge badge-pill" style="background-color: #3CC2FF; color: #fff">${e_dto.category }</span>&nbsp;								
+						<span class="badge badge-pill" style="background-color: #3CC2FF; color: #fff">${e_dto.category }</span>&nbsp;
 					</c:when>
 					<c:when test="${e_dto.category eq '호텔'}">
 						<span class="badge badge-pill" style="background-color: #FF5050; color: #fff">${e_dto.category }</span>&nbsp;
@@ -27,7 +27,7 @@
 				</c:choose>
 				${e_dto.title }
 			</h3>
-			
+
 			<hr>
 		</div>
 	</div>

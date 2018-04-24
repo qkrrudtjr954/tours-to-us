@@ -42,10 +42,9 @@ public class UserGuideController {
 
 	// 투둥이 가이드북
 	@RequestMapping(value="user_guide.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String user_guide(HttpServletRequest req, PlanerDto plan, Model model) {
-		logger.info("UserGuideController >>>> user_guide");
+	public String user_guide(HttpServletRequest req, PlanerDto plan, Model model, String fromMainMap) {
 
-
+			
 		   int sn = plan.getPageNumber();
 		   int start = (sn) * plan.getRecordCountPerPage() +1;
 		   int end = (sn+1) * plan.getRecordCountPerPage();
@@ -53,7 +52,12 @@ public class UserGuideController {
 		   plan.setStart(start);
 		   plan.setEnd(end);
 		   int totalRecordCount = userGuideService.guideCount(plan);
-		   List<PlanerDto> paging = userGuideService.guideSearch(plan);
+		   List<PlanerDto> paging = null;
+		   if(fromMainMap == null || fromMainMap.equals("")) {
+			   paging = userGuideService.guideSearch(plan);		   
+		   }else {
+			   paging = userGuideService.userSearch(fromMainMap);
+		   }
 		
 		   model.addAttribute("planlist", paging);
 		   model.addAttribute("pageNumber", sn);

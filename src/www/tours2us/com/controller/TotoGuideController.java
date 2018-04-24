@@ -44,14 +44,16 @@ public class TotoGuideController {
 	LikeService likeService;
 	
 	@RequestMapping(value="toto_guide.do", method={RequestMethod.GET, RequestMethod.POST})
-	public String toto_guide(Model model)throws Exception {
+	public String toto_guide(Model model, String fromMain)throws Exception {
 		logger.info("TotoGuideController >>>> toto_guide");
+		List<TotoGuideDto> list = null;
 		
-		List<TotoGuideDto> list = totoGuideService.getTotoList();
-		//String totalDowncount = totoGuideService.getTotalDownCount();
+		if(fromMain==null || fromMain.equals("")) {
+			list = totoGuideService.getTotoList();			
+		} else {
+			list = totoGuideService.totoSearch(fromMain);
+		}
 		model.addAttribute("totolist", list);
-		//model.addAttribute("totalDowncount", totalDowncount);
-		System.out.println(list);
 		
 		return "toto_guide.tiles";
 	}

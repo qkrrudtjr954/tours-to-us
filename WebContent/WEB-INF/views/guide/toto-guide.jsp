@@ -187,7 +187,16 @@ color: #7DC3BB;
 		</div>
 		<div class="row no-gutters">
 			<div class="offset-md-8 col-md-2">
-				<span>전체 누적 다운로드 수 : <b class="downcount-font">${totolist.get(0).total_downcount }</b></span>
+				<span>전체 누적 다운로드 수 : 
+					<c:choose>
+						<c:when test="${totolist.get(0).total_downcount eq 0 }">
+							<b class="downcount-font">0</b>
+						</c:when>
+						<c:otherwise>
+							<b class="downcount-font">${totolist.get(0).total_downcount }</b>							
+						</c:otherwise>
+					</c:choose>
+				</span>
 			</div>
 		</div>
 		<div class="row no-gutters">

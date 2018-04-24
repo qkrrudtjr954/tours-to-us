@@ -301,23 +301,23 @@
 			<img src="image/map_ver2.png" width="480px">
 		</div>
 		<button type="button" class="seoul" title="서울 자세히 보기">
-			<span class="continents">서울</span> <span class="cover"></span>
+			<span class="continents" onclick="location.href='user_guide.do?fromMainMap=서울'">서울</span> <span class="cover"></span>
 		</button>
 
 		<button type="button" class="busan" title="부산 자세히 보기">
-			<span class="continents">부산</span> <span class="cover"></span>
+			<span class="continents" onclick="location.href='user_guide.do?fromMainMap=부산'">부산</span> <span class="cover"></span>
 		</button>
 
 		<button type="button" class="gangwondo" title="강원도 자세히 보기">
-			<span class="continents">강원도</span> <span class="cover"></span>
+			<span class="continents" onclick="location.href='user_guide.do?fromMainMap=강원'">강원도</span> <span class="cover"></span>
 		</button>
 
 		<button type="button" class="jeju" title="제주 자세히 보기">
-			<span class="continents">제주</span> <span class="cover"></span>
+			<span class="continents" onclick="location.href='user_guide.do?fromMainMap=제주'">제주</span> <span class="cover"></span>
 		</button>
 
 		<button type="button" class="junla" title="전라도 자세히 보기">
-			<span class="continents">전라도</span> <span class="cover"></span>
+			<span class="continents" onclick="location.href='user_guide.do?fromMainMap=전라'">전라도</span> <span class="cover"></span>
 		</button>
 	</div>
 
@@ -593,18 +593,12 @@
 						<ul>
 							<li class="active"><a href="toto_guide.do" class="cur">전체</a>
 							</li>
-							<li class=""><a href="#" class="cur"
-								onclick="location_search()">서울</a></li>
-							<li class=""><a href="#" class="cur"
-								onclick="location_search()">강원도</a></li>
-							<li class=""><a href="#" class="cur"
-								onclick="location_search()">충청도</a></li>
-							<li class=""><a href="#" class="cur"
-								onclick="location_search()">경상도</a></li>
-							<li class=""><a href="#" class="cur"
-								onclick="location_search()">전라도</a></li>
-							<li class=""><a href="#" class="cur"
-								onclick="location_search()">제주도</a></li>
+							<li class=""><a href="toto_guide.do?fromMain=서울" class="cur">서울</a></li>
+							<li class=""><a href="toto_guide.do?fromMain=강원" class="cur">강원도</a></li>
+							<li class=""><a href="toto_guide.do?fromMain=충청" class="cur">충청도</a></li>
+							<li class=""><a href="toto_guide.do?fromMain=경상" class="cur">경상도</a></li>
+							<li class=""><a href="toto_guide.do?fromMain=전라" class="cur">전라도</a></li>
+							<li class=""><a href="toto_guide.do?fromMain=제주" class="cur">제주도</a></li>
 						</ul>
 					</div>
 					<div class="downloadcount">

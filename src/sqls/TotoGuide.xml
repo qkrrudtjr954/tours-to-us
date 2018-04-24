@@ -40,7 +40,9 @@
 	</update>
 	
 	<select id="totoSearch" parameterType="www.tours2us.com.model.TotoGuideDto" resultType="www.tours2us.com.model.TotoGuideDto">
-		SELECT * FROM TOTOGUIDE
+		SELECT seq, title, content, pic, location, filename, readcount, downcount, reg_date, last_updated, status, 
+		(SELECT SUM(DOWNCOUNT) FROM TOTOGUIDE WHERE DOWNCOUNT NOT IN 0) as total_downcount
+		FROM TOTOGUIDE
 		WHERE  LOCATION like '%'||#{location}||'%' AND STATUS=0
 	</select>
 	
@@ -51,6 +53,7 @@
 	( SELECT ROW_NUMBER() OVER (ORDER BY  downcount DESC) as rnum,
 		TITLE, SEQ, PIC,location, downcount
 		FROM totoguide
+		where status=0
 		) A
 		WHERE rnum between 1 AND 6
 	</select>

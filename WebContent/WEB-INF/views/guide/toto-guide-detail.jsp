@@ -5,13 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <style>
-.toto-img{
-	width: 305px;
-    height: 360px;
-    margin-top: 30px;
-    border-top: 2px solid #7DC3BB;
-}
-
 .toto-body{
 	margin-top: 30px;
 }
@@ -24,19 +17,16 @@
 .toto-downcount{
 	font-size: 13px;
 	color: #484848;
-	margin-left: 140px;
 }
 
 .toto-readcount{
 	font-size: 13px;
 	color: #484848;
-	margin-left: 900px;
 }
 
 .toto-content{
 	font-size: 13px;
 	color: #000;
-    width: 370px;
 }
 
 .row-content{
@@ -83,6 +73,13 @@ h2 {
 	width: 100%;
 }
 
+
+div#cover-image {
+	 background-size:contain;
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 height: 300px;
+}
 </style>
 
 <div class="row no-gutters">
@@ -92,49 +89,56 @@ h2 {
 			<p>Tours to us가 제공하는 ${toto.location } 가이드북!</p>
 		</div>
 	</div>
-	<hr>
 </div>
+
 <div class="row no-gutters">
 	<div class="offset-md-2 col-md-8">
-		<div class="d-flex justify-content-end" style="width: 100%">
-			<span class="toto-readcount">조회수 : ${toto.readcount }</span>
+		<div class="d-flex justify-content-end" style="margin: 20px 0px;">		
+			<p class="toto-readcount">조회수 : ${toto.readcount }</p>
 		</div>	
 		<div class="row no-gutters">
-			<div class="offset-md-1 col-md-5">
-				<div class="row no-gutters" id="toto-pic-box">
+			<div class="col-md-6 col-xs-12" id="cover-image" style="background-image:url('${initParam.IMG_SERVER_PATH}/image/${toto.pic}');">
+				<%-- <div class="row no-gutters" id="toto-pic-box">
 					<div class="toto-img">
 						<img class="toto-img-top"  src="${initParam.IMG_SERVER_PATH}/image/${toto.pic}" width="300px" height="355px">
 					</div>
-				</div>
+				</div> --%>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6 col-xs-12">
 				<div class="row no-gutters">
 					<span class="toto-title" style="font-weight: bold; font-size: 20px;">${toto.title }</span>
 				</div>
 				<div class="row no-gutters">
-					<span class="toto-updated" style="font-weight: bold;">업데이트 : </span>&nbsp;<span class="toto-updated">${fn:substring(toto.last_updated, 0, 10) }</span>
-					<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated downcount">${toto.downcount }</span>
+					<div class="d-flex justify-content-between align-items-center" style="width:100%;">
+						<p>
+							<span class="toto-updated" style="font-weight: bold;">업데이트 : </span>&nbsp;<span class="toto-updated">${fn:substring(toto.last_updated, 0, 10) }</span>
+						</p>
+						<p>
+							<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated downcount">${toto.downcount }</span>
+						</p>
+					</div>
 				</div>
+				
 				<hr>
+				
 				<div class="row no-gutters">
 					<span class="toto-content" style="fo">추가 설명 : ${toto.content }</span>
 				</div>
+				
 				<div class="row no-gutters">
 					<div class="d-flex justify-content-center" style="width: 100%;">
 						<a id="filedown-button" class="btn btn-outline-secondary" href="${initParam.FILE_SERVER_PATH }/download?filename=${toto.filename }">다운로드</a>
 					</div>
 				</div>		
-					
 			</div>		
 		</div>
-		
 	</div>
 </div>
+<hr class="offset-md-2 col-md-8">
 <div class="row no-gutters">
-	<div class="detailBody_like">
+	<div class="text-center" style="width:100%;">
 		<img class="hearticon" src="${ isLiked == 1 ? './image/heart.png' : './image/empty_heart.png' }" id="like_btn" width="100px"><br> <span>좋아요</span>&nbsp;<strong id="like_count">${like_count }</strong>
 	</div>
-	<hr class="offset-md-2 col-md-8">
 </div>
 
 

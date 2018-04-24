@@ -140,15 +140,17 @@
 	padding-left: 10px;
 }
 
-.update_div {
-	margin-top: 20px;
-	margin-right: 110px;
+.update_div{
+	margin: 20px 55px 0px 20px;
 	color: #6e6e6e;
 	font-size: 13px;
 }
+.update_div span {
+	margin: 0px 5px;
+}
 .comment-item {
 	border-bottom: 1px solid #dcdcdc;
-	padding-top: 15px
+	padding: 15px 0px;
 }
 
 .editor-title-container {
@@ -188,13 +190,19 @@
 </div>
 
 <c:if test="${aftergetBbs.email eq current_user.email }">
-	 <div class="d-flex justify-content-end">
-		<div class="update_div">
-			<span id="updateBBS" onclick="bbsUpdate()" style="cursor: pointer;">수정</span>
-			<span id="deleteBBS" onclick="bbsDelete()" style="cursor: pointer;">삭제</span>
+<div class="row no-gutters">
+	<div class="offset-md-2 col-md-8">
+		<div class="d-flex justify-content-end">
+			<div class="update_div">
+				<span id="updateBBS" onclick="bbsUpdate()" style="cursor: pointer;">수정</span>
+				<span id="deleteBBS" onclick="bbsDelete()" style="cursor: pointer;">삭제</span>
+			</div>
 		</div>
 	</div>
+</div>
 </c:if>
+
+
 <div class="row no-gutters">
 	<div class="col-md-2 col-xs-12">
 			<div class="planer-info-over">
@@ -226,16 +234,7 @@
 		<div class="detailArea">
 			<div class="row detailHead">
 				<div class="user_profileView">
-					<c:choose>
-						<c:when test="${aftergetBbs.profile eq 'no-profile.png' }">
-							<img class="no_profile" src="image/user.png" height="50px">
-						</c:when>
-						<c:otherwise>
-							<img class="writer_profile"
-								src="${initParam.IMG_SERVER_PATH }/image/${aftergetBbs.profile }"
-								height="50px">
-						</c:otherwise>
-					</c:choose>
+					<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${aftergetBbs.profile }" height="50px">
 				</div>
 
 				<div class="col-md-8 toditor_title">

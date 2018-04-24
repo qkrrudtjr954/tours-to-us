@@ -242,12 +242,10 @@ public class CommuController {
 	}
 
 	@RequestMapping(value="freeBbsWriteAf.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String freeBbsWriteAf(Model model,CommuFreeBbsDto freewrite ,HttpServletRequest req)throws Exception{
-		//logger.info("CommuController >>>> freeBbsWriteAf");
+	public String freeBbsWriteAf(Model model,CommuFreeBbsDto freewrite, HttpServletRequest req)throws Exception{
+		logger.info("CommuController >>>> freeBbsWriteAf");
 
-		//System.out.println("dddddd" + freewrite.toString());
 		TravelerDto t_dto = (TravelerDto)req.getSession().getAttribute("current_user");
-		//System.out.println("s"+t_dto.toString());
 
 		freewrite.setTarget_user_seq(t_dto.getSeq());
 

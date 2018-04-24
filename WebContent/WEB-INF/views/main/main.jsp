@@ -469,7 +469,7 @@
 					<p>투둥이 인기 여행플랜</p>
 				</div>
 				<div class="total-button">
-					<a href="afterBbs.do"><span class="view_toditor">전체보기</span></a>
+					<a href="user_guide.do"><span class="view_toditor">전체보기</span></a>
 				</div>
 			</div>
 			<div class="row no-gutters" style="border: 1px solid #dcdcdc; padding: 20px;">
@@ -584,7 +584,7 @@
 					<p>투투 가이드북</p>
 				</div>
 				<div class="total-button">
-					<a href="afterBbs.do"><span class="view_toditor">전체보기</span></a>
+					<a href="toto_guide.do"><span class="view_toditor">전체보기</span></a>
 				</div>
 			</div>
 			<div class="row no-gutters" style="border: 1px solid #dcdcdc; padding: 20px;">

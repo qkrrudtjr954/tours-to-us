@@ -42,7 +42,7 @@
 
 </div>
  <div class="row">
-             <input type="submit" class="btn btn-success offset-md-4 col-md-2"  value="글쓰기" onclick="" id="btnwrite">&nbsp;
+             <input type="button" class="btn btn-success offset-md-4 col-md-2"  value="글쓰기" onclick="" id="btnwrite">&nbsp;
            <a href="afterBbs.do" class="btn btn-outline-secondary col-md-2 "  id="btnBack">돌아가기</a>
 
 

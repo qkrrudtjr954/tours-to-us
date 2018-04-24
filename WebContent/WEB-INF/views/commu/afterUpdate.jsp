@@ -35,13 +35,13 @@ ${afterbbs.seq } --%>
 <div class="offset-md-2 col-md-8 col-xs-12">
    <hr>
 </div>
-<form action="afterUpdateAf.do" method="post" id="myform">
+<form action="afterUpdateAf.do" method="get" id="myform">
 <input type="hidden" name="seq" value="${afterbbs.seq }">
 <input type="hidden" name="target_planer_seq" value="${planer.seq }">
 <div class="row">
    <div class=" offset-md-3 col-md-6 write-form">
       <div class="input-group-prepend">
-         <span class="input-group-text">제목</span> 
+         <span class="input-group-text">제목/${planer.seq }</span> 
          <input type="text" class="form-control" size="20" name="title" id="title"
             placeholder="제목" value="${afterbbs.title }">
       </div>   
@@ -52,13 +52,10 @@ ${afterbbs.seq } --%>
          <textarea id="summernote" name="content">${afterbbs.content }</textarea>
       </div>   
    </div>
-
 </div>
  <div class="row">
-             <input type="submit" class="btn btn-success offset-md-4 col-md-2"  value="글쓰기" onclick="" id="btnwrite">&nbsp;
+             <input type="button" class="btn btn-success offset-md-4 col-md-2"  value="글쓰기" id="btnwrite">&nbsp;
            <a href="afterBbs.do" class="btn btn-outline-secondary col-md-2 "  id="btnBack">돌아가기</a>
-
-
         </div>
 </form>
 

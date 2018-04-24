@@ -130,9 +130,10 @@ public class CommuController {
 	}
 
 	@RequestMapping(value = "afterUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String afterupdate(Model model, int seq) throws Exception {
+	public String afterupdate(Model model, int seq, int target_planer_seq) throws Exception {
+		System.out.println(""+seq);
 		//logger.info("CommuController >>>> afterupdate");
-		PlanerDto planer = planerService.getPlaner(seq);
+		PlanerDto planer = planerService.getPlaner(target_planer_seq);
 		CommuAfterBbsDto afterbbs = commuService.getAfterBbs(seq);
 		model.addAttribute("afterbbs", afterbbs);
 		model.addAttribute("planer", planer);
@@ -143,6 +144,7 @@ public class CommuController {
 	@RequestMapping(value = "afterUpdateAf.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String updateAf(Model model, CommuAfterBbsDto bbs) throws Exception {
 		//logger.info("CommuController >>>> updateAf");
+		System.out.println(bbs.toString());
 		boolean isS = commuService.AfterUpdate(bbs);
 		//logger.info("isS" + isS);
 		if (isS) {

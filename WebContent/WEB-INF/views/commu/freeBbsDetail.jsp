@@ -183,8 +183,8 @@ font-size: 13px;
 <c:if test="${commufredetail.email eq current_user.email }">
 	 <div class="d-flex justify-content-end">
 		<div class="update_div">
-			<span id="updateBBS" onclick="bbsUpdate()">수정</span>
-			<span id="deleteBBS" onclick="bbsDelete()">삭제</span>
+			<span id="updateBBS" onclick="bbsUpdate()" style="cursor: pointer;">수정</span>
+			<span id="deleteBBS" onclick="bbsDelete()" style="cursor: pointer;">삭제</span>
 		</div>
 	</div>
 </c:if>
@@ -306,6 +306,21 @@ font-size: 13px;
 
 
 <script type="text/javascript">
+
+function bbsDelete() {
+	  if(confirm("정말 삭제하시겠습니까?")==true){
+		  location.href="freeBbsDelete.do?seq=${commufredetail.seq }";
+	         
+	        }else{
+	        	return;
+	        }
+	
+}
+
+function bbsUpdate() {
+	location.href="freeBbsUpdate.do?seq=${commufredetail.seq }";
+}
+
 
 $('#like_btn').click(function () {
 	

@@ -190,8 +190,8 @@
 <c:if test="${aftergetBbs.email eq current_user.email }">
 	 <div class="d-flex justify-content-end">
 		<div class="update_div">
-			<span id="updateBBS" onclick="bbsUpdate()">수정</span>
-			<span id="deleteBBS" onclick="bbsDelete()">삭제</span>
+			<span id="updateBBS" onclick="bbsUpdate()" style="cursor: pointer;">수정</span>
+			<span id="deleteBBS" onclick="bbsDelete()" style="cursor: pointer;">삭제</span>
 		</div>
 	</div>
 </c:if>
@@ -372,7 +372,7 @@ function bbsDelete() {
 }
 
 function bbsUpdate() {
-	location.href="afterUpdate.do?seq=${aftergetBbs.seq }";
+	location.href="afterUpdate.do?seq=${aftergetBbs.seq }&target_planer_seq=${aftergetBbs.target_planer_seq}";
 }
 
 $('#like_btn').click(function () {

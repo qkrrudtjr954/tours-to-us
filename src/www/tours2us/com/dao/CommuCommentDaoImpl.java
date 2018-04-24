@@ -78,6 +78,12 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		//logger.info("CommuCommentDaoImpl >>>> FreeCommentGgtUserSeq");
 		return sqlSession.selectOne(ns + "FreeCommentgetUserSeq", seq);
 	}
+
+	@Override
+	public void readCount(int seq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(ns+"readCount", seq);
+	}
 	
 	
 

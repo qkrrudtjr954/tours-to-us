@@ -11,6 +11,7 @@ public class CommuFreeBbsDto implements Serializable {
 	private String reg_date;
 	private String last_updeated;
 	private int status;
+	private String readcount;
 	private String name;   //Traveler 와 조인할 변수
 	private String email;    //Traveler 와 조인할 변수
 	//search(무엇으로 검색할지 category)
@@ -39,7 +40,7 @@ public class CommuFreeBbsDto implements Serializable {
 	}
 
 	public CommuFreeBbsDto(int seq, int target_category_seq, int target_user_seq, String title, String content,
-			String reg_date, String last_updeated, int status, String name, String email, String s_category,
+			String reg_date, String last_updeated, int status, String readcount, String name, String email, String s_category,
 			String s_keyword, String category, int recordCountPerPage, int pageNumber, int start, int end,
 			String profile, int like_count, int next_seq, int prev_seq, String next_title, String prev_title,
 			int comment_count) {
@@ -52,6 +53,7 @@ public class CommuFreeBbsDto implements Serializable {
 		this.reg_date = reg_date;
 		this.last_updeated = last_updeated;
 		this.status = status;
+		this.readcount = readcount;
 		this.name = name;
 		this.email = email;
 		this.s_category = s_category;
@@ -132,6 +134,14 @@ public class CommuFreeBbsDto implements Serializable {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getReadcount() {
+		return readcount;
+	}
+
+	public void setReadcount(String readcount) {
+		this.readcount = readcount;
 	}
 
 	public String getName() {

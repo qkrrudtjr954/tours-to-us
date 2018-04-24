@@ -15,8 +15,8 @@
 
 <insert id="AfterWrite" parameterType="www.tours2us.com.model.CommuAfterBbsDto">
 		INSERT INTO AFTERBBS
-		(SEQ,TARGET_PLANER_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
-		VALUES(AFTERBBS_SEQ.NEXTVAL,#{target_planer_seq},#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0)
+		(SEQ,TARGET_PLANER_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS, READCOUNT)
+		VALUES(AFTERBBS_SEQ.NEXTVAL,#{target_planer_seq},#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0, 0)
 		
 </insert>
 
@@ -141,8 +141,8 @@ SELECT RNUM, TITLE, SEQ, CONTENT, NAME, LIKE_COUNT, COMMENT_COUNT
 
 <insert id="FreeBbsWrite" parameterType="www.tours2us.com.model.CommuFreeBbsDto">
 		INSERT INTO FREEBBS
-		(SEQ,TARGET_CATEGORY_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS)
-		VALUES(FREEBBS_SEQ.NEXTVAL,#{target_category_seq},#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0 )		
+		(SEQ,TARGET_CATEGORY_SEQ,TARGET_USER_SEQ,TITLE,CONTENT,REG_DATE,LAST_UPDATED,STATUS, READCOUNT)
+		VALUES(FREEBBS_SEQ.NEXTVAL,#{target_category_seq},#{target_user_seq},#{title},#{content},SYSDATE,SYSDATE,0, 0 )		
 </insert>
 
 <select id="FreeBbsDetail" parameterType="int" resultType="www.tours2us.com.model.CommuFreeBbsDto">

@@ -187,16 +187,15 @@ color: #7DC3BB;
 		</div>
 		<div class="row no-gutters">
 			<div class="offset-md-8 col-md-2">
-				<span>전체 누적 다운로드 수 : 
-					<c:choose>
-						<c:when test="${totolist.get(0).total_downcount eq 0 }">
-							<b class="downcount-font">0</b>
-						</c:when>
-						<c:otherwise>
-							<b class="downcount-font">${totolist.get(0).total_downcount }</b>							
-						</c:otherwise>
-					</c:choose>
-				</span>
+				<strong>전체 다운로드 수</strong> &nbsp; 
+				<c:choose>
+					<c:when test="${totolist.get(0).total_downcount eq 0 }">
+						<strong style="color: #7DC3BB;">0</strong>
+					</c:when>
+					<c:otherwise>
+						<strong style="color: #7DC3BB;"><fmt:formatNumber value="${totolist.get(0).total_downcount }" type="number" /></strong>							
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div class="row no-gutters">
@@ -270,7 +269,7 @@ color: #7DC3BB;
 				<c:forEach items="${totolist }" var="toto" varStatus="i">
 					<div class="book-card">
 						<div class="book-img" onclick="location.href='toto_detail.do?seq=${toto.seq }'">
-							<img class=book-img-top" src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" style="cursor: pointer; width="300px" height="200px">
+							<img class=book-img-top" src="${initParam.IMG_SERVER_PATH}/image/${toto.pic}" style="cursor: pointer; width="300px" height="200px">
 						</div>
 						<div class="book-info">
 								<span class="update-text">업데이트 : ${fn:substring(toto.last_updated, 0, 10) }</span>
@@ -324,7 +323,7 @@ function printTotolistHtml(toto) {
 	var str = last.substring(0, 10);
 	var html = '<div class="book-card">'
 		+'<div class="book-img" onclick="location.href=toto_detail.do?seq='+toto.seq+'">'
-		+'<img class="book-img-top" src="'+toto.pic+'" style="cursor: pointer; width:137px; height:200px;">'
+		+'<img class="book-img-top" src="${initParam.IMG_SERVER_PATH}/image/'+toto.pic+'" style="cursor: pointer; width:137px; height:200px;">'
 		+'</div>'
 		+'<div class="book-info">'
 		+'<span class="update-text">업데이트 : '+str+'</span>'

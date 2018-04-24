@@ -101,7 +101,7 @@ h2 {
 		<div class="offset-md-3 col-md-4 ">
 			<div class="row no-gutters" id="toto-pic-box">
 				<div class="toto-img">
-					<img class="toto-img-top"  src="${toto.pic eq null ? 'image/no-img.png' : toto.pic}" width="300px" height="355px">
+					<img class="toto-img-top"  src="${initParam.IMG_SERVER_PATH}/image/${toto.pic}" width="300px" height="355px">
 				</div>
 			</div>
 		</div>

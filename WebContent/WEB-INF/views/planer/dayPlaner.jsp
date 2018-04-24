@@ -181,26 +181,35 @@ button#toggleChat {
 .deleteTimePlanerBtn:hover {
 	color: red;
 }
+
+.planer-title-button img {
+	cursor: pointer;
+	transition: width 0.5s;
+}
+.planer-title-button img:hover {
+	width: 25px;
+	transition: width 0.5s;
+}
 </style>
 <div class="offset-md-3 col-md-6 col-xs-12 planer-title">
 	<div class="d-flex justify-content-around align-items-center">
 		<div class="planer-title-button">
-			<button class="btn btn-default commonBtn" id="prevDayPlaner">prev</button>
+			<img alt="prev" src="${initParam.IMG_SERVER_PATH }/image/go-left.png" id="prevDayPlaner" width="20px">
 		</div>
 		<div class="planer-title-content">
 			<h2 id="title">Day <span id="day_count"></span><span data-feather="calendar" style="margin-left:5px"></span></h2>
 			<span id="day"></span>
 		</div>
 		<div class="planer-title-button">
-			<button class="btn btn-default commonBtn" id="nextDayPlaner">next</button>
+			<img alt="next" src="${initParam.IMG_SERVER_PATH }/image/go-right.png" id="nextDayPlaner" width="20px">
 		</div>
 	</div>
 </div>
 <div class="offset-md-2 col-md-8 col-xs-12">
 	<div class="d-flex justify-content-center" style="margin: 15px 0px;">
 		<c:forEach begin="1" end="${planer.range }" varStatus="i">
-			<button class="btn btn-sm btn-secondary" style="margin: 0px 3px;" onclick="getDayPlaner(${i.index})">Day ${i.index }</button>
-			<c:if test="${i.index%15 == 0 }">
+			<button class="btn btn-sm btn-outline-secondary" style="margin: 0px 3px;" onclick="getDayPlaner(${i.index})">Day ${i.index }</button>
+			<c:if test="${i.index%10 == 0 }">
 				</div>
 				<div class="d-flex justify-content-center" style="margin: 5px 0px;">
 			</c:if>
@@ -224,15 +233,22 @@ button#toggleChat {
 				<p>
 					<span class="planer-label-icon" data-feather="calendar"></span><br>
 					<span class="planer-label-title">${planer.from_date } ~ </span><br>
-					<span class="planer-label-title">${planer.to_date }</span><br><br>
+					<span class="planer-label-title">${planer.to_date }</span><br>
 					<c:choose>
 						<c:when test="${planer.range < 2 }">
-							<span class="planer-label-title">당일 치기</span>								
+							<span class="planer-label-title">( 당일 치기 )</span>								
 						</c:when>
 						<c:otherwise>
-							<span class="planer-label-title">${planer.range-1 }박 ${planer.range }일</span>
+							<span class="planer-label-title">( ${planer.range-1 }박 ${planer.range }일 )</span>
 						</c:otherwise>
 					</c:choose>
+				</p>
+				<p>
+					<span class="planer-label-icon" data-feather="users"></span><br>
+					<c:forEach items="${coTraveler }" varStatus="i" var="traveler">
+						<span data-feather="user" style="vertical-align: bottom;color: white;width: 15px;margin-right:2px;"></span>
+						<span class="planer-label-title">${traveler.name }</span><br>
+					</c:forEach>
 				</p>
 			</div>
 		</div>

@@ -104,7 +104,7 @@ public class CommuController {
 		CommuAfterBbsDto aftergetBbs = null;
 		aftergetBbs = commuService.getAfterBbs(seq);
 		List<CommuAfterCommentDto> commentlist = commucommentService.getAllComments(seq);
-		commucommentService.afterReadCount(seq);
+
 		int isLiked = 0;
 		int like_count = 0;
 		HttpSession session = req.getSession();
@@ -214,7 +214,6 @@ public class CommuController {
 		freeparam.setStart(start);
 		freeparam.setEnd(end);
 		int totalRecordCount = commuService.FreeBbsGetCount(freeparam);
-		
 		List<CommuFreeBbsDto> freelist = commuService.FreeBbsGetPagingList(freeparam);
 
 		model.addAttribute("freelist", freelist);

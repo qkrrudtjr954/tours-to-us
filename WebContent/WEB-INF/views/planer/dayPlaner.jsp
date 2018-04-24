@@ -126,6 +126,7 @@
 
 .chat-info {
 	text-align: center;
+	clear: both;
 }
 .chat-info > p {
     font-size: 12px;
@@ -542,7 +543,7 @@ function drawTimePlaner(data) {
 				'<ul>'+
 					'<li>'+data.location+'</li>'+
 					'<li>'+data.start_time+' ~ '+data.end_time+'</li>'+
-					'<li>'+data.transportation+'</li>'+
+					'<li>'+getTransportation(data.transportation)+'</li>'+
 					'<li>'+data.expected_cost+'</li>'+
 					'<li>'+data.types+'</li>'+
 					'<li>'+data.content+'</li>'+
@@ -556,6 +557,23 @@ function drawTimePlaner(data) {
 	$('.timePlanersList').append(html);	
 }
 
+function getTransportation(trans) {
+	if(trans == 'walking.png'){
+		return '도보';
+	} else if(trans == 'bus.png'){
+		return '대중 교통';
+	} else if(trans == 'taxi.png'){
+		return '택시';
+	} else if(trans == 'train.png'){
+		return '기차';
+	} else if(trans == 'bicycle.png'){
+		return '자전거';
+	} else if(trans == 'no-transportation.png'){
+		return '기타';
+	} else if(trans == 'car.png'){
+		return '자동차';
+	} 
+}
 
 function deleteTimePlaner(seq, DOM) {
 	if(confirm('삭제하시겠습니까?')){		

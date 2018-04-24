@@ -84,6 +84,12 @@ public class CommuCommentDaoImpl implements CommuCommentDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(ns+"readCount", seq);
 	}
+
+	@Override
+	public void afterReadCount(int seq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(ns+"afterReadCount", seq);
+	}
 	
 	
 

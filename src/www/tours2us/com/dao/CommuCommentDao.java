@@ -11,7 +11,7 @@ public List<CommuAfterCommentDto> getAllComments(int seq) throws Exception;
 public boolean addComment(CommuAfterCommentDto comment) throws Exception;
 public boolean AfterCommentDelete(int seq)throws Exception;
 public int AfterCommentGgtUserSeq(int seq)throws Exception;
-
+public void afterReadCount(int seq);
 
 //자유게시판
 public List<CommuFreeCommentDto> FreeGetAllComments(int seq) throws Exception;

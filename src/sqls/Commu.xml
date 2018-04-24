@@ -24,7 +24,7 @@
 <select id="AftergetBbs" parameterType="int" resultType="www.tours2us.com.model.CommuAfterBbsDto">
 		SELECT*FROM
 		(SELECT A.SEQ, A.TARGET_PLANER_SEQ, A.TARGET_USER_SEQ, 
-         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, B.NAME, B.EMAIL, B.PROFILE,
+         A.TITLE, A.CONTENT, A.REG_DATE, A.LAST_UPDATED, A.STATUS, A.READCOUNT, B.NAME, B.EMAIL, B.PROFILE,
           LEAD(A.TITLE,1) OVER(ORDER BY A.reg_date DESC) NEXT_TITLE,
      	LEAD(A.SEQ,1,0) OVER(ORDER BY A.reg_date DESC) NEXT_SEQ,
      	Lag(A.TITLE,1) OVER(ORDER BY A.reg_date DESC) PREV_TITLE,
@@ -234,6 +234,10 @@ SELECT TARGET_USER_SEQ FROM FREEBBSCOMMENT WHERE SEQ=#{seq}
 		WHERE SEQ=#{seq}
 	</update>
 	
+	<update id="afterReadCount" parameterType="int">
+		UPDATE AFTERBBS SET READCOUNT=READCOUNT+1
+		WHERE SEQ=#{seq}
+	</update>
 
 
 

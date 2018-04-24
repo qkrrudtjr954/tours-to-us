@@ -90,6 +90,12 @@ public class CommuCommentServiceImpl implements CommuCommentService {
 		// TODO Auto-generated method stub
 		commuCommentDao.readCount(seq);
 	}
+
+	@Override
+	public void afterReadCount(int seq) {
+		// TODO Auto-generated method stub
+		commuCommentDao.afterReadCount(seq);
+	}
 	
 	
 	

@@ -246,7 +246,7 @@
 							class="etc_date"><fmt:parseDate
 								value="${aftergetBbs.reg_date }" var="date" pattern="yyyy-MM-dd" />
 							<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" /></span> <span
-							class="read_count">조회 : </span>
+							class="read_count">조회 : ${aftergetBbs.readcount }</span>
 
 
 					</div>

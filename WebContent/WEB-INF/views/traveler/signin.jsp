@@ -93,12 +93,10 @@ $('input[type="checkbox"]').on('click', function () {
 			alert("아이디를 입력해 주십시오");
 			$('#inputEmail').focus();
 		}else{
-			alert('session!')
 			$.cookie('user_id', $('#inputEmail').val(), {expires: 7, path: '/'});
 		}
 	}else{
 		// delete from session
-		alert("delete!");
 		$.removeCookie("user_id", {path: '/'});
 	}
 });

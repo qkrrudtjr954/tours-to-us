@@ -320,6 +320,7 @@ button#toggleChat {
 						<option>식당 </option>
 						<option>체험 </option>
 						<option>휴식 </option>
+						<option>이동 </option>
 					</select>
 				</div>
 				

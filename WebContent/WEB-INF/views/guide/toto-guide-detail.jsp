@@ -94,7 +94,7 @@ div#cover-image {
 <div class="row no-gutters">
 	<div class="offset-md-2 col-md-8">
 		<div class="d-flex justify-content-end" style="margin: 20px 0px;">		
-			<p class="toto-readcount">조회수 : ${toto.readcount }</p>
+			<p class="toto-readcount">조회수 : <fmt:formatNumber value="${toto.readcount }" type="number" /></p>
 		</div>	
 		<div class="row no-gutters">
 			<div class="col-md-6 col-xs-12" id="cover-image" style="background-image:url('${initParam.IMG_SERVER_PATH}/image/${toto.pic}');">
@@ -114,7 +114,7 @@ div#cover-image {
 							<span class="toto-updated" style="font-weight: bold;">업데이트 : </span>&nbsp;<span class="toto-updated">${fn:substring(toto.last_updated, 0, 10) }</span>
 						</p>
 						<p>
-							<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated downcount">${toto.downcount }</span>
+							<span class="toto-downcount" style="font-weight: bold;">다운로드 수 : </span>&nbsp;<span class="toto-updated downcount"><fmt:formatNumber value="${toto.downcount }" type="number" /></span>
 						</p>
 					</div>
 				</div>

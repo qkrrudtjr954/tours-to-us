@@ -60,7 +60,7 @@ h2 {
 						<tr>
 							<td>${i.count }</td>
 
-							<td>
+							<td align="left">
 								<c:choose>
 									<c:when test="${event.category eq '항공'}">
 										<span class="badge badge-pill" style="background-color: #3CC2FF; color: #fff">${event.category }</span>&nbsp;

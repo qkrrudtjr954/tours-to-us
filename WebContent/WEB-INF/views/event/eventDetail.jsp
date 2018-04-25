@@ -39,14 +39,14 @@
 			<div class="d-flex justify-content-end align-item-center">
 				<span style="font-size: medium;padding: 15px;margin: 0px 10px;">${e_dto.from_date } ~ ${e_dto.to_date }</span>
 				<div class="btn-area">
-					<a href="event.do" class="btn btn-primary" style="padding: 10px;">돌아가기</a>
+					<a href="event.do" class="btn btn-outline-secondary" style="padding: 10px;">뒤로가기</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="row no-gutters">
-	<div class="col-md-6 offset-md-3">
+	<div class="col-md-10 offset-md-1">
 		${e_dto.content }
 	</div>
 </div>

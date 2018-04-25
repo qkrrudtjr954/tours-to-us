@@ -89,7 +89,7 @@
 			from (
 				select TITLE, E.SEQ, T.NAME, (select count(*) from liketable C where E.seq = C.target_bbs_seq and C.bbs_category=2) as like_count, e.location, e.reg_date
 				FROM planer E, TRAVELER T
-				WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 0
+				WHERE T.SEQ = E.TARGET_USER_SEQ AND STATUS = 1
 				ORDER BY LIKE_COUNT DESC
 			) SUB
 		) A

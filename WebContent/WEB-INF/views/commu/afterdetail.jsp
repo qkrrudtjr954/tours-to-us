@@ -6,6 +6,8 @@
 <style>
 .writer_profile {
 	border-radius: 50%;
+	width: 50px;
+    border: 2px solid gray;
 }
 
 .user_profileView {
@@ -323,7 +325,7 @@
 									<div class="col-md-1">
 										<input type="button" class="btn btn-link" id="delBtn"
 											onclick="delete_Comment(${comment.seq}, this)"
-											style="size: 2em; color: #696969; margin-left: -70px;"
+											style="size: 2em; color: #696969;"
 											value="삭제">
 									</div>
 								</div>

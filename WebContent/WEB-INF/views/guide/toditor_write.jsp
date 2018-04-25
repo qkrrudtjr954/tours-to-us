@@ -97,7 +97,7 @@
 	
 	<div class="col-md-8 col-xs-12">
 		<div class="row no-gutters">
-			<form action="toditor_writeAf.do" id="myform">
+			<form action="toditor_writeAf.do" id="myform" method="post">
 				<input type="hidden" name="target_user_seq" value="${current_user.seq }">
 				<input type="hidden" name="pic1" value="no-img.png" id="pic1"/>
 				

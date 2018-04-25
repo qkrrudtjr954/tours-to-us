@@ -146,7 +146,7 @@ button#cancelBtn:hover {
 		</div>
 	</div>
 	<div class="col-md-8 col-xs-12">
-		<form name="form1" action="toditor_updateAf.do">
+		<form name="form1" action="toditor_updateAf.do" method="post">
 			<input type="hidden" name="seq" value="${bbs.seq }">
 			<input type="hidden" name="pic1" value="no-img.png" id="pic1"/>
 				

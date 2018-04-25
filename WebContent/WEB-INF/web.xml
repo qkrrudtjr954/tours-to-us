@@ -12,13 +12,13 @@
 	<context-param>
 		<description>image server url</description>
 		<param-name>IMG_SERVER_PATH</param-name>
-		<param-value>http://172.30.1.94:3000</param-value> 
+		<param-value>http://192.168.10.71:3000</param-value> 
 	</context-param>
 	
 	<context-param>
 		<description>file server url</description>
 		<param-name>FILE_SERVER_PATH</param-name>
-		<param-value>http://172.30.1.94:3300</param-value> 
+		<param-value>http://192.168.10.71:3300</param-value> 
 	</context-param>
 
 	  <servlet>

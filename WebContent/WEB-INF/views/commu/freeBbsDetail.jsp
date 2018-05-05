@@ -7,9 +7,8 @@
 
 
 .writer_profile{
-	border-radius: 50%;
-	width: 50px;
-    border: 2px solid gray;
+ border-radius: 50%;
+
 
 }
 .user_profileView{
@@ -151,16 +150,15 @@ padding-left:10px;
 }
 
 .update_div{
-	margin: 20px 55px 0px 20px;
-	color: #6e6e6e;
-	font-size: 13px;
-}
-.update_div span {
-	margin: 0px 5px;
+margin-top:20px;
+margin-right: 110px;
+color: #6e6e6e;
+font-size: 13px;
+
 }
 .comment-item {
 	border-bottom: 1px solid #dcdcdc;
-	padding: 15px 0px;
+	padding-top: 15px
 }
 
 .editor-title-container {
@@ -183,16 +181,12 @@ padding-left:10px;
 </div>
 
 <c:if test="${commufredetail.email eq current_user.email }">
-<div class="row no-gutters">
-	<div class="offset-md-2 col-md-8">
-		<div class="d-flex justify-content-end">
-			<div class="update_div">
-				<span id="updateBBS" onclick="bbsUpdate()" style="cursor: pointer;">수정</span>
-				<span id="deleteBBS" onclick="bbsDelete()" style="cursor: pointer;">삭제</span>
-			</div>
+	 <div class="d-flex justify-content-end">
+		<div class="update_div">
+			<span id="updateBBS"  class="btn btn-light" onclick="bbsUpdate()">수정</span>
+			<span id="deleteBBS"  class="btn btn-light" onclick="bbsDelete()">삭제</span>
 		</div>
 	</div>
-</div>
 </c:if>
 
 <div class="row no-gutters">
@@ -200,11 +194,18 @@ padding-left:10px;
 		<div class="detailArea">
 			<div class="row detailHead">
 				<div class="user_profileView">
-					<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${commufredetail.profile }" height="50px">
+					<c:choose>
+						<c:when test="${commufredetail.profile eq 'no-profile.png' }">
+							<img class="no_profile" src="image/user.png" height="50px">
+						</c:when>
+						<c:otherwise>
+							<img class="writer_profile" src="${initParam.IMG_SERVER_PATH }/image/${commufredetail.profile }" height="50px">
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<div class="col-md-8 toditor_title">
-					<span class="toditor_category">#${commufredetail.category }</span> 
+					<span class="toditor_category">#${commufredetail.category}</span>
 					<span class="toditor_title_bold">${commufredetail.title }</span>
 					<div class="toditor_etc">
 						<span class="etc_writer">${commufredetail.name }</span> 
@@ -212,7 +213,7 @@ padding-left:10px;
 							<fmt:parseDate value="${commufredetail.reg_date }" var="date" pattern="yyyy-MM-dd" /> 
 							<fmt:formatDate value="${date}" pattern="yyyy/MM/dd" />
 						</span> 
-						<span class="read_count">조회 : ${commufredetail.readcount }</span>
+						<span class="read_count">조회 :${commufredetail.readcount} </span>
 					</div>
 				</div>
 			</div>
@@ -274,7 +275,7 @@ padding-left:10px;
 										</div>
 									</div>
 									<div class="col-md-1">
-										<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969;" value="삭제">
+										<input type="button" class="btn btn-link" id="delBtn" onclick="delete_Comment(${comment.seq}, this)" style="size: 2em; color: #696969; margin-left: -70px;" value="삭제">
 									</div>
 								</div>
 							</div>
@@ -305,21 +306,6 @@ padding-left:10px;
 
 
 <script type="text/javascript">
-
-function bbsDelete() {
-	  if(confirm("정말 삭제하시겠습니까?")==true){
-		  location.href="freeBbsDelete.do?seq=${commufredetail.seq }";
-	         
-	        }else{
-	        	return;
-	        }
-	
-}
-
-function bbsUpdate() {
-	location.href="freeBbsUpdate.do?seq=${commufredetail.seq }";
-}
-
 
 $('#like_btn').click(function () {
 	

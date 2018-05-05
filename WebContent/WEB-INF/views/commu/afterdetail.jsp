@@ -189,9 +189,12 @@
 
 <c:if test="${aftergetBbs.email eq current_user.email }">
 	 <div class="d-flex justify-content-end">
+	 <div  class="col-md-3 ">
 		<div class="update_div">
-			<span id="updateBBS" onclick="bbsUpdate()">수정</span>
-			<span id="deleteBBS" onclick="bbsDelete()">삭제</span>
+		
+			<span id="updateBBS" class="btn btn-light" onclick="bbsUpdate()">수정</span>
+			<span id="deleteBBS"  class="btn btn-light" onclick="bbsDelete()">삭제</span>
+		</div>
 		</div>
 	</div>
 </c:if>
